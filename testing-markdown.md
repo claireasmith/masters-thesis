@@ -29,13 +29,13 @@ summary(cars)
 
 You can also embed plots, for example:
 
-![](testing-markdown_files/figure-gfm/pressure-1.png)<!-- -->![](testing-markdown_files/figure-gfm/pressure-2.png)<!-- -->
+![](testing-markdown_files/figure-gfm/pressure-1.png)<!-- -->
+
+    ## NULL
+
+![](testing-markdown_files/figure-gfm/pressure-2.png)<!-- -->![](testing-markdown_files/figure-gfm/pressure-3.png)<!-- -->
 
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
-
-``` r
-plot(pressure, type="b")
-```
 
 ![](testing-markdown_files/figure-gfm/new%20chunk-1.png)<!-- -->

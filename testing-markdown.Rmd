@@ -24,13 +24,14 @@ summary(cars)
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+(p1 <- plot(pressure))
 plot(pressure, type="l")
+plot(pressure, xlab="graph")
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-```{r new chunk}
+```{r new chunk, echo=FALSE}
 plot(pressure, type="b")
 ```
 
