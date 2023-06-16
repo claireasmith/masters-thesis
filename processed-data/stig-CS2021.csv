@@ -1,0 +1,1891 @@
+"Species","Date","Site","Plant","Flower","Flw_pollen","Stigmas_per_flw","Flower_height","Infl_max","Infl_min","D1","D2","D3","D4","D5"
+"Ambrosia artemisiifolia","2021-09-14","FBF","1","A",88,2,67,NA,NA,69,85,42,50,93
+"Ambrosia artemisiifolia","2021-09-14","FBF","1","B",46,2,70,NA,NA,69,85,42,50,93
+"Ambrosia artemisiifolia","2021-09-14","FBF","1","C",36,2,49,NA,NA,69,85,42,50,93
+"Ambrosia artemisiifolia","2021-09-14","FBF","2","A",10,2,56,NA,NA,80,130,73,134,107
+"Ambrosia artemisiifolia","2021-09-14","FBF","2","B",12,2,28,NA,NA,80,130,73,134,107
+"Ambrosia artemisiifolia","2021-09-14","FBF","2","C",70,2,63,NA,NA,80,130,73,134,107
+"Ambrosia artemisiifolia","2021-09-14","FBF","3","A",66,2,73,NA,NA,105,130,156,177,216
+"Ambrosia artemisiifolia","2021-09-14","FBF","3","B",25,2,42,NA,NA,105,130,156,177,216
+"Ambrosia artemisiifolia","2021-09-14","FBF","4","A",31,2,77,NA,NA,91,67,85,88,130
+"Ambrosia artemisiifolia","2021-09-14","FBF","4","B",26,2,85,NA,NA,91,67,85,88,130
+"Ambrosia artemisiifolia","2021-09-14","FBF","4","C",48,2,36,NA,NA,91,67,85,88,130
+"Ambrosia artemisiifolia","2021-09-14","FBF","5","A",71,2,51,NA,NA,86,83,93,87,104
+"Ambrosia artemisiifolia","2021-09-14","FBF","5","B",125,2,40,NA,NA,86,83,93,87,104
+"Ambrosia artemisiifolia","2021-09-14","FBF","5","C",91,2,37,NA,NA,86,83,93,87,104
+"Ambrosia artemisiifolia","2021-09-14","FBF","6","A",428,2,67,NA,NA,79,143,183,170,194
+"Ambrosia artemisiifolia","2021-09-14","FBF","6","B",86,2,47,NA,NA,79,143,183,170,194
+"Ambrosia artemisiifolia","2021-09-14","FBF","6","C",57,2,51,NA,NA,79,143,183,170,194
+"Ambrosia artemisiifolia","2021-09-14","FBF","7","A",19,2,23,NA,NA,11,20,17,22,28
+"Ambrosia artemisiifolia","2021-09-14","FBF","7","B",16,2,31,NA,NA,11,20,17,22,28
+"Ambrosia artemisiifolia","2021-09-14","FBF","7","C",120,2,21,NA,NA,11,20,17,22,28
+"Ambrosia artemisiifolia","2021-09-14","FBF","8","A",2,2,28,NA,NA,22,26,19,22,19
+"Ambrosia artemisiifolia","2021-09-14","FBF","8","B",75,2,17,NA,NA,22,26,19,22,19
+"Ambrosia artemisiifolia","2021-09-14","FBF","8","C",19,2,24,NA,NA,22,26,19,22,19
+"Ambrosia artemisiifolia","2021-09-14","FBF","9","A",86,2,24,NA,NA,8,21,22,27,29
+"Ambrosia artemisiifolia","2021-09-14","FBF","9","B",41,2,25,NA,NA,8,21,22,27,29
+"Ambrosia artemisiifolia","2021-09-14","FBF","9","C",84,2,17,NA,NA,8,21,22,27,29
+"Ambrosia artemisiifolia","2021-09-14","FBF","10","A",460,2,15,NA,NA,11,22,29,39,48
+"Ambrosia artemisiifolia","2021-09-14","FBF","10","B",276,2,18,NA,NA,11,22,29,39,48
+"Ambrosia artemisiifolia","2021-09-14","FBF","10","C",66,2,20,NA,NA,11,22,29,39,48
+"Ambrosia artemisiifolia","2021-09-14","FBF","11","A",76,2,38,NA,NA,14,36,38,57,91
+"Ambrosia artemisiifolia","2021-09-14","FBF","11","B",31,2,31,NA,NA,14,36,38,57,91
+"Ambrosia artemisiifolia","2021-09-14","FBF","11","C",14,2,41,NA,NA,14,36,38,57,91
+"Ambrosia artemisiifolia","2021-09-14","FBF","12","A",20,2,20,NA,NA,26,42,43,40,33
+"Ambrosia artemisiifolia","2021-09-14","FBF","12","B",107,2,19,NA,NA,26,42,43,40,33
+"Ambrosia artemisiifolia","2021-09-14","FBF","12","C",8,2,14,NA,NA,26,42,43,40,33
+"Ambrosia artemisiifolia","2021-09-14","FBF","13","A",172,2,50,NA,NA,16,37,70,79,110
+"Ambrosia artemisiifolia","2021-09-14","FBF","13","B",24,2,55,NA,NA,16,37,70,79,110
+"Ambrosia artemisiifolia","2021-09-14","FBF","13","C",25,2,48,NA,NA,16,37,70,79,110
+"Ambrosia artemisiifolia","2021-09-14","FBF","14","A",23,2,32,NA,NA,35,38,27,37,63
+"Ambrosia artemisiifolia","2021-09-14","FBF","14","B",131,2,30,NA,NA,35,38,27,37,63
+"Ambrosia artemisiifolia","2021-09-14","FBF","14","C",12,2,18,NA,NA,35,38,27,37,63
+"Ambrosia artemisiifolia","2021-09-14","FBF","15","A",145,2,22,NA,NA,102,106,170,168,175
+"Ambrosia artemisiifolia","2021-09-14","FBF","15","B",86,2,19,NA,NA,102,106,170,168,175
+"Ambrosia artemisiifolia","2021-09-14","FBF","15","C",71,2,10,NA,NA,102,106,170,168,175
+"Ambrosia artemisiifolia","2021-09-20","LP","1","A",37,2,60,NA,NA,14,66,60,36,35
+"Ambrosia artemisiifolia","2021-09-20","LP","1","B",8,2,55,NA,NA,14,16,60,36,35
+"Ambrosia artemisiifolia","2021-09-20","LP","1","C",7,2,62,NA,NA,14,16,60,36,35
+"Ambrosia artemisiifolia","2021-09-20","LP","2","A",4,2,45,NA,NA,32,78,90,93,85
+"Ambrosia artemisiifolia","2021-09-20","LP","2","B",12,2,40,NA,NA,32,78,90,93,85
+"Ambrosia artemisiifolia","2021-09-20","LP","2","C",5,2,36,NA,NA,32,78,90,93,85
+"Ambrosia artemisiifolia","2021-09-20","LP","3","A",5,2,71,NA,NA,117,95,75,177,205
+"Ambrosia artemisiifolia","2021-09-20","LP","3","B",136,2,78,NA,NA,117,95,75,177,205
+"Ambrosia artemisiifolia","2021-09-20","LP","3","C",17,2,57,NA,NA,117,95,75,177,205
+"Ambrosia artemisiifolia","2021-09-20","LP","4","A",11,2,66,NA,NA,215,165,200,240,210
+"Ambrosia artemisiifolia","2021-09-20","LP","4","B",16,2,71,NA,NA,215,165,200,240,210
+"Ambrosia artemisiifolia","2021-09-20","LP","4","C",3,2,80,NA,NA,215,165,200,240,210
+"Ambrosia artemisiifolia","2021-09-20","LP","5","A",17,2,82,NA,NA,43,70,39,58,73
+"Ambrosia artemisiifolia","2021-09-20","LP","5","C",18,2,79,NA,NA,43,70,39,58,73
+"Ambrosia artemisiifolia","2021-09-20","LP","6","A",24,2,89,NA,NA,37,36,62,95,78
+"Ambrosia artemisiifolia","2021-09-20","LP","6","B",14,2,77,NA,NA,37,36,62,95,78
+"Ambrosia artemisiifolia","2021-09-20","LP","6","C",18,2,85,NA,NA,37,36,62,95,78
+"Ambrosia artemisiifolia","2021-09-20","LP","7","A",7,2,63,NA,NA,69,80,42,97,99
+"Ambrosia artemisiifolia","2021-09-20","LP","7","B",11,2,71,NA,NA,69,80,42,97,99
+"Ambrosia artemisiifolia","2021-09-20","LP","7","C",16,2,66,NA,NA,69,80,42,97,99
+"Ambrosia artemisiifolia","2021-09-20","LP","8","A",7,2,74,NA,NA,19,17,21,15,29
+"Ambrosia artemisiifolia","2021-09-20","LP","8","B",50,2,62,NA,NA,19,17,21,15,29
+"Ambrosia artemisiifolia","2021-09-20","LP","8","C",5,2,43,NA,NA,19,17,21,15,29
+"Ambrosia artemisiifolia","2021-09-20","LP","9","A",48,2,55,NA,NA,64,95,58,112,140
+"Ambrosia artemisiifolia","2021-09-20","LP","9","B",104,2,59,NA,NA,64,95,58,112,140
+"Ambrosia artemisiifolia","2021-09-20","LP","9","C",23,2,51,NA,NA,64,95,58,112,140
+"Ambrosia artemisiifolia","2021-09-20","LP","10","A",33,2,41,NA,NA,52,83,84,107,120
+"Ambrosia artemisiifolia","2021-09-20","LP","10","B",6,2,41,NA,NA,52,83,84,107,120
+"Ambrosia artemisiifolia","2021-09-20","LP","10","C",7,2,34,NA,NA,52,83,84,107,120
+"Ambrosia artemisiifolia","2021-09-20","LP","11","A",3,2,56,NA,NA,34,39,37,53,56
+"Ambrosia artemisiifolia","2021-09-20","LP","11","B",15,2,69,NA,NA,34,39,37,53,56
+"Ambrosia artemisiifolia","2021-09-20","LP","11","C",2,2,63,NA,NA,34,39,37,53,56
+"Ambrosia artemisiifolia","2021-09-20","LP","12","A",11,2,49,NA,NA,18,23,31,20,36
+"Ambrosia artemisiifolia","2021-09-20","LP","12","B",151,2,46,NA,NA,18,23,31,20,36
+"Ambrosia artemisiifolia","2021-09-20","LP","12","C",6,2,52,NA,NA,18,23,31,20,36
+"Ambrosia artemisiifolia","2021-09-20","LP","13","A",12,2,84,NA,NA,77,77,87,119,122
+"Ambrosia artemisiifolia","2021-09-20","LP","13","B",0,2,69,NA,NA,77,77,87,119,122
+"Ambrosia artemisiifolia","2021-09-20","LP","13","C",7,2,91,NA,NA,77,77,87,119,122
+"Ambrosia artemisiifolia","2021-09-20","LP","14","A",0,2,33,NA,NA,113,120,70,137,145
+"Ambrosia artemisiifolia","2021-09-20","LP","14","B",13,2,27,NA,NA,113,120,70,137,145
+"Ambrosia artemisiifolia","2021-09-20","LP","14","C",6,2,22,NA,NA,113,120,70,137,145
+"Ambrosia artemisiifolia","2021-09-20","LP","15","A",27,2,70,NA,NA,22,46,40,22,29
+"Ambrosia artemisiifolia","2021-09-20","LP","15","B",25,2,46,NA,NA,22,46,40,22,29
+"Ambrosia artemisiifolia","2021-09-20","LP","15","C",19,2,70,NA,NA,22,46,40,22,29
+"Amaranthus sp","2021-08-16","FBF","S5","B",32,3,33,NA,NA,42,67,73,60,75
+"Amaranthus sp","2021-08-16","FBF","S1","A",4,3,36,NA,NA,70,83,62,46,77
+"Amaranthus sp","2021-08-16","FBF","S1","B",24,3,28,NA,NA,70,83,62,46,77
+"Amaranthus sp","2021-08-16","FBF","S1","C",7,3,20,NA,NA,70,83,62,46,77
+"Amaranthus sp","2021-08-16","FBF","S2","A",13,3,43,NA,NA,65,48,9,59,51
+"Amaranthus sp","2021-08-16","FBF","S2","B",5,3,29,NA,NA,65,48,9,59,51
+"Amaranthus sp","2021-08-16","FBF","S2","C",6,3,20,NA,NA,65,48,9,59,51
+"Amaranthus sp","2021-08-16","FBF","S3","A",3,3,29,NA,NA,11,10,27,29,40
+"Amaranthus sp","2021-08-16","FBF","S3","B",102,3,26,NA,NA,11,10,27,29,40
+"Amaranthus sp","2021-08-16","FBF","S3","C",21,3,20,NA,NA,11,10,27,29,40
+"Amaranthus sp","2021-08-16","FBF","S4","A",5,3,57,NA,NA,35,40,47,8,41
+"Amaranthus sp","2021-08-16","FBF","S4","B",14,3,51,NA,NA,35,40,47,8,41
+"Amaranthus sp","2021-08-16","FBF","S4","C",7,3,44,NA,NA,35,40,47,8,41
+"Amaranthus sp","2021-08-16","FBF","S5","A",13,3,38,NA,NA,42,67,73,60,75
+"Amaranthus sp","2021-08-16","FBF","S5","C",105,3,24,NA,NA,42,67,73,60,75
+"Amaranthus sp","2021-08-16","FBF","S6","A",7,3,24,NA,NA,17,33,44,38,86
+"Amaranthus sp","2021-08-16","FBF","S6","B",17,3,21,NA,NA,17,33,44,38,86
+"Amaranthus sp","2021-08-16","FBF","S6","C",4,3,18,NA,NA,17,33,44,38,86
+"Amaranthus sp","2021-08-16","FBF","S7","A",3,3,71,NA,NA,33,76,90,110,81
+"Amaranthus sp","2021-08-16","FBF","S7","B",21,3,53,NA,NA,33,76,90,110,81
+"Amaranthus sp","2021-08-16","FBF","S7","C",7,3,36,NA,NA,33,76,90,110,81
+"Amaranthus sp","2021-08-16","FBF","S8","A",48,3,43,NA,NA,33,79,52,74,87
+"Amaranthus sp","2021-08-16","FBF","S8","B",7,3,38,NA,NA,33,79,52,74,87
+"Amaranthus sp","2021-08-16","FBF","S8","C",4,3,29,NA,NA,33,79,52,74,87
+"Amaranthus sp","2021-08-16","FBF","S9","A",8,3,52,NA,NA,51,57,30,57,41
+"Amaranthus sp","2021-08-16","FBF","S9","B",4,4,36,NA,NA,51,57,30,57,41
+"Amaranthus sp","2021-08-16","FBF","S9","C",7,3,22,NA,NA,51,57,30,57,41
+"Amaranthus sp","2021-08-16","FBF","S10","A",24,3,61,NA,NA,28,32,62,40,44
+"Amaranthus sp","2021-08-16","FBF","S10","B",50,3,49,NA,NA,28,32,62,40,44
+"Amaranthus sp","2021-08-16","FBF","S10","C",20,3,28,NA,NA,28,32,62,40,44
+"Amaranthus sp","2021-08-16","FBF","S11","A",16,3,66,NA,NA,55,39,28,37,51
+"Amaranthus sp","2021-08-16","FBF","S11","B",41,3,32,NA,NA,55,39,28,37,51
+"Amaranthus sp","2021-08-16","FBF","S11","C",24,3,14,NA,NA,55,39,28,37,51
+"Amaranthus sp","2021-08-16","FBF","S12","A",4,3,25,NA,NA,38,51,52,59,50
+"Amaranthus sp","2021-08-16","FBF","S12","B",40,3,21,NA,NA,38,51,52,59,50
+"Amaranthus sp","2021-08-16","FBF","S13","A",86,3,58,NA,NA,24,19,14,12,16
+"Amaranthus sp","2021-08-16","FBF","S13","B",18,3,47,NA,NA,24,19,14,12,16
+"Amaranthus sp","2021-08-16","FBF","S13","C",21,3,37,NA,NA,24,19,14,12,16
+"Amaranthus sp","2021-08-16","FBF","S14","A",20,3,57,NA,NA,30,23,24,15,28
+"Amaranthus sp","2021-08-16","FBF","S14","B",17,3,43,NA,NA,30,23,24,15,28
+"Amaranthus sp","2021-08-16","FBF","S14","C",40,3,33,NA,NA,30,23,24,15,28
+"Amaranthus sp","2021-08-16","FBF","S15","A",24,3,51,NA,NA,41,30,20,33,26
+"Amaranthus sp","2021-08-16","FBF","S15","B",7,3,41,NA,NA,41,30,20,33,26
+"Amaranthus sp","2021-08-16","FBF","S15","C",35,3,35,NA,NA,41,30,20,33,26
+"Amaranthus sp","2021-08-14","FBF2","S1","A",6,3,74,NA,NA,47,169,114,170,120
+"Amaranthus sp","2021-08-14","FBF2","S1","B",1,3,65,NA,NA,47,169,114,170,120
+"Amaranthus sp","2021-08-14","FBF2","S1","C",47,3,56,NA,NA,47,169,114,170,120
+"Amaranthus sp","2021-08-14","FBF2","S2","A",9,3,105,NA,NA,48,135,122,158,104
+"Amaranthus sp","2021-08-14","FBF2","S2","B",7,3,78,NA,NA,48,135,122,158,104
+"Amaranthus sp","2021-08-14","FBF2","S2","C",5,3,61,NA,NA,48,135,122,158,104
+"Amaranthus sp","2021-08-14","FBF2","S3","A",20,3,60,NA,NA,70,120,142,135,174
+"Amaranthus sp","2021-08-14","FBF2","S3","B",45,3,44,NA,NA,70,120,142,135,174
+"Amaranthus sp","2021-08-14","FBF2","S3","C",66,3,34,NA,NA,70,120,142,135,174
+"Amaranthus sp","2021-08-14","FBF2","S4","A",2,3,76,NA,NA,72,87,107,162,181
+"Amaranthus sp","2021-08-14","FBF2","S4","B",3,3,52,NA,NA,72,87,107,162,181
+"Amaranthus sp","2021-08-14","FBF2","S5","A",5,3,65,NA,NA,23,85,33,81,69
+"Amaranthus sp","2021-08-14","FBF2","S5","B",30,3,45,NA,NA,23,85,33,81,69
+"Amaranthus sp","2021-08-14","FBF2","S5","C",6,3,32,NA,NA,23,85,33,81,69
+"Amaranthus sp","2021-08-14","FBF2","S6","A",14,3,48,NA,NA,18,18,46,86,272
+"Amaranthus sp","2021-08-14","FBF2","S6","B",73,4,36,NA,NA,18,18,46,86,272
+"Amaranthus sp","2021-08-14","FBF2","S6","C",12,3,28,NA,NA,18,18,46,86,272
+"Amaranthus sp","2021-08-14","FBF2","S7","A",4,3,41,NA,NA,50,74,101,88,78
+"Amaranthus sp","2021-08-14","FBF2","S7","B",43,3,35,NA,NA,50,74,101,88,78
+"Amaranthus sp","2021-08-14","FBF2","S7","C",49,3,22,NA,NA,50,74,101,88,78
+"Amaranthus sp","2021-08-14","FBF2","S8","A",8,3,59,NA,NA,83,232,240,260,280
+"Amaranthus sp","2021-08-14","FBF2","S8","B",150,3,45,NA,NA,83,232,240,260,280
+"Amaranthus sp","2021-08-14","FBF2","S8","C",16,3,35,NA,NA,83,232,240,260,280
+"Amaranthus sp","2021-08-14","FBF2","S9","A",1,3,30,NA,NA,19,33,64,99,280
+"Amaranthus sp","2021-08-14","FBF2","S9","B",3,3,26,NA,NA,19,33,64,99,280
+"Amaranthus sp","2021-08-14","FBF2","S9","C",44,3,18,NA,NA,19,33,64,99,280
+"Amaranthus sp","2021-08-14","FBF2","S10","A",2,3,39,NA,NA,50,30,47,60,220
+"Amaranthus sp","2021-08-14","FBF2","S10","B",12,3,30,NA,NA,50,30,47,60,220
+"Amaranthus sp","2021-08-14","FBF2","S10","C",18,3,19,NA,NA,50,30,47,60,220
+"Amaranthus sp","2021-08-14","FBF2","S11","A",1,3,61,NA,NA,134,180,330,310,80
+"Amaranthus sp","2021-08-14","FBF2","S11","B",1,3,50,NA,NA,134,180,330,310,80
+"Amaranthus sp","2021-08-14","FBF2","S11","C",40,3,42,NA,NA,134,180,330,310,80
+"Amaranthus sp","2021-08-14","FBF2","S12","A",3,3,34,NA,NA,80,240,275,185,235
+"Amaranthus sp","2021-08-14","FBF2","S12","B",0,3,20,NA,NA,80,240,275,185,235
+"Amaranthus sp","2021-08-14","FBF2","S12","C",12,3,13,NA,NA,80,240,275,185,235
+"Amaranthus sp","2021-08-14","FBF2","S13","A",11,3,80,NA,NA,215,122,200,233,60
+"Amaranthus sp","2021-08-14","FBF2","S13","B",40,3,60,NA,NA,215,122,200,233,60
+"Amaranthus sp","2021-08-14","FBF2","S13","C",11,3,43,NA,NA,215,122,200,233,60
+"Amaranthus sp","2021-08-14","FBF2","S14","A",4,3,78,NA,NA,112,97,100,242,211
+"Amaranthus sp","2021-08-14","FBF2","S14","B",98,3,55,NA,NA,112,97,100,242,211
+"Amaranthus sp","2021-08-14","FBF2","S14","C",9,3,42,NA,NA,112,97,100,242,211
+"Amaranthus sp","2021-08-14","FBF2","S15","A",13,3,52,NA,NA,100,101,112,207,261
+"Amaranthus sp","2021-08-14","FBF2","S15","B",25,3,40,NA,NA,100,101,112,207,261
+"Amaranthus sp","2021-08-14","FBF2","S15","C",17,3,35,NA,NA,100,101,112,207,261
+"Chenopodium album","2021-07-23","FBF2","1","A",16,1,73,83,NA,14,18,20,16,30
+"Chenopodium album","2021-07-23","FBF2","1","A2",2,1,NA,NA,NA,NA,NA,NA,NA,NA
+"Chenopodium album","2021-07-23","FBF2","1","B",4,1,78,83,NA,14,18,20,16,30
+"Chenopodium album","2021-07-23","FBF2","2","A",0,1,68,78,NA,27,18,26,34,39
+"Chenopodium album","2021-07-23","FBF2","2","B",8,1,78,78,NA,27,18,26,34,39
+"Chenopodium album","2021-07-23","FBF2","3","A",2,1,60,74,NA,71,69,68,35,32
+"Chenopodium album","2021-07-23","FBF2","3","B",0,1,72,74,NA,71,69,68,35,32
+"Chenopodium album","2021-07-23","FBF2","4","A1",0,1,NA,NA,NA,NA,NA,NA,NA,NA
+"Chenopodium album","2021-07-23","FBF2","4","A2",2,1,NA,NA,NA,NA,NA,NA,NA,NA
+"Chenopodium album","2021-07-23","FBF2","4","B",3,1,76,81,NA,28,27,15,50,55
+"Chenopodium album","2021-07-23","FBF2","5","A",3,1,72,82,NA,36,40,42,42,41
+"Chenopodium album","2021-07-23","FBF2","5","B",5,1,72,82,NA,36,40,42,42,41
+"Chenopodium album","2021-07-23","FBF2","6","A",6,1,126,130,NA,25,36,34,60,80
+"Chenopodium album","2021-07-23","FBF2","6","A2",1,1,NA,NA,NA,NA,NA,NA,NA,NA
+"Chenopodium album","2021-07-23","FBF2","6","B",2,1,116,130,NA,25,36,34,60,80
+"Chenopodium album","2021-07-23","FBF2","7","A",1,1,59,62,NA,13,23,25,26,34
+"Chenopodium album","2021-07-23","FBF2","7","B",1,1,59,62,NA,13,23,25,26,34
+"Chenopodium album","2021-07-23","FBF2","8","A",9,1,54,59,NA,18,27,39,35,37
+"Chenopodium album","2021-07-23","FBF2","8","B",3,1,55,59,NA,18,27,39,35,37
+"Chenopodium album","2021-07-23","FBF2","9","A",0,1,94,96,NA,52,75,127,135,88
+"Chenopodium album","2021-07-23","FBF2","9","B",2,1,87,96,NA,52,75,127,135,88
+"Chenopodium album","2021-07-23","FBF2","10","A",6,1,98,101,NA,19,20,18,36,42
+"Chenopodium album","2021-07-23","FBF2","10","B",1,1,91,101,NA,19,20,18,36,42
+"Chenopodium album","2021-07-23","FBF2","11","A",0,1,103,105,NA,36,28,42,45,46
+"Chenopodium album","2021-07-23","FBF2","11","B",1,1,98,105,NA,36,28,42,45,46
+"Chenopodium album","2021-07-23","FBF2","12","A",1,1,81,86,NA,19,38,58,51,66
+"Chenopodium album","2021-07-23","FBF2","12","B",1,1,84,86,NA,19,38,58,51,66
+"Chenopodium album","2021-07-23","FBF2","13","A",2,1,84,92,NA,23,46,56,70,97
+"Chenopodium album","2021-07-23","FBF2","13","B",1,1,86,92,NA,23,46,56,70,97
+"Chenopodium album","2021-07-23","FBF2","14","A",0,1,94,102,NA,64,29,39,76,91
+"Chenopodium album","2021-07-23","FBF2","14","B",1,1,99,102,NA,64,29,39,76,91
+"Chenopodium album","2021-07-23","FBF2","15","A",1,1,106,107,NA,61,78,93,95,93
+"Chenopodium album","2021-07-23","FBF2","15","B",6,1,100,107,NA,61,78,93,95,93
+"Chenopodium album","2021-07-22","FBF","1","A",1,1,78,98,NA,30,50,27,41,94
+"Chenopodium album","2021-07-22","FBF","1","B",1,1,85,98,NA,30,50,27,41,94
+"Chenopodium album","2021-07-22","FBF","2","A",0,1,70,86,NA,8,30,39,47,50
+"Chenopodium album","2021-07-22","FBF","2","B",2,1,82,86,NA,8,30,39,47,50
+"Chenopodium album","2021-07-22","FBF","3","A",NA,1,74,75,NA,27,34,48,60,52
+"Chenopodium album","2021-07-22","FBF","3","B",0,1,63,75,NA,27,34,48,60,52
+"Chenopodium album","2021-07-22","FBF","4","A",3,1,98,102,NA,47,32,33,37,30
+"Chenopodium album","2021-07-22","FBF","4","B",1,1,88,102,NA,47,32,33,37,30
+"Chenopodium album","2021-07-22","FBF","5","A",0,1,108,112,NA,44,43,58,45,51
+"Chenopodium album","2021-07-22","FBF","5","B",1,1,82,112,NA,44,43,58,45,51
+"Chenopodium album","2021-07-22","FBF","6","A",0,1,94,100,NA,15,34,43,47,32
+"Chenopodium album","2021-07-22","FBF","6","B",0,1,74,100,NA,15,34,43,47,32
+"Chenopodium album","2021-07-22","FBF","7","A",7,1,70,80,NA,24,36,21,48,33
+"Chenopodium album","2021-07-22","FBF","7","B",3,1,73,80,NA,24,36,21,48,33
+"Chenopodium album","2021-07-22","FBF","8","A",0,1,65,68,NA,16,38,40,63,43
+"Chenopodium album","2021-07-22","FBF","8","B",2,1,66,68,NA,16,38,40,63,43
+"Chenopodium album","2021-07-22","FBF","9","B1",3,1,NA,NA,NA,NA,NA,NA,NA,NA
+"Chenopodium album","2021-07-22","FBF","9","B2",0,1,NA,NA,NA,NA,NA,NA,NA,NA
+"Chenopodium album","2021-07-22","FBF","10","A",0,1,59,69,NA,40,88,70,92,81
+"Chenopodium album","2021-07-22","FBF","10","B",1,1,57,69,NA,40,88,70,92,81
+"Chenopodium album","2021-07-22","FBF","11","A",0,1,96,99,NA,59,58,70,56,71
+"Chenopodium album","2021-07-22","FBF","11","B",0,1,73,99,NA,59,58,70,56,71
+"Chenopodium album","2021-07-22","FBF","12","A",0,1,94,104,NA,29,41,49,45,33
+"Chenopodium album","2021-07-22","FBF","12","B",0,1,79,104,NA,29,41,49,45,33
+"Chenopodium album","2021-07-22","FBF","13","A",3,1,72,94,NA,33,58,55,64,54
+"Chenopodium album","2021-07-22","FBF","13","B",7,1,92,94,NA,33,58,55,64,54
+"Chenopodium album","2021-07-22","FBF","14","A",3,1,63,85,NA,13,13,30,35,33
+"Chenopodium album","2021-07-22","FBF","14","B",NA,1,83,85,NA,13,13,30,35,33
+"Chenopodium album","2021-07-22","FBF","15","A",1,1,78,84,NA,24,31,69,48,62
+"Chenopodium album","2021-07-22","FBF","15","B",8,1,68,84,NA,24,31,69,48,62
+"Dicanthelium sp 1","2021-06-07","KMW","1","1",12,2,16,NA,NA,9,10,10,20,17
+"Dicanthelium sp 1","2021-06-07","KMW","10","1",0,2,17.5,NA,NA,74,60,111,147,159
+"Dicanthelium sp 1","2021-06-07","KMW","11","1",2,2,18,NA,NA,38,52,56,66,38
+"Dicanthelium sp 1","2021-06-07","KMW","12","1",16,2,18.5,NA,NA,13,15,10,41,35
+"Dicanthelium sp 1","2021-06-07","KMW","13","1",22,2,23,NA,NA,22,44,40,52,90
+"Dicanthelium sp 1","2021-06-07","KMW","2","1",13,2,12.5,NA,NA,13,17,27,26,35
+"Dicanthelium sp 1","2021-06-07","KMW","3","1",48,2,18,NA,NA,16,50,54,39,58
+"Dicanthelium sp 1","2021-06-07","KMW","4","1",13,2,17,NA,NA,27,53,51,56,56
+"Dicanthelium sp 1","2021-06-07","KMW","45","1",23,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 1","2021-06-07","KMW","5","1",9,2,17.5,NA,NA,28,26,42,48,54
+"Dicanthelium sp 1","2021-06-07","KMW","6","1",14,2,17,NA,NA,108,121,140,145,145
+"Dicanthelium sp 1","2021-06-07","KMW","7","1",3,2,13,NA,NA,14,46,94,89,80
+"Dicanthelium sp 1","2021-06-07","KMW","8","1",18,2,10.5,NA,NA,34,107,116,94,113
+"Dicanthelium sp 1","2021-06-07","KMW","9","1",5,2,10,NA,NA,31,25,54,52,56
+"Dicanthelium sp 1","2021-06-09","KMW","1SA1","1",32,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 1","2021-06-09","KMW","1SA2","1",72,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 1","2021-06-09","KMW","1SA3","1",4,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 1","2021-06-09","KMW","1SNA1","1",260,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 1","2021-06-09","KMW","1SNA2","1",53,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 1","2021-06-09","KMW","1SNA3","1",142,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 2","2021-06-20","KME","S1","b1",17,2,31,33.5,30.5,9,16,19,10,14
+"Dicanthelium sp 2","2021-06-20","KME","S1","b2",20,2,31,33.5,30.5,9,16,19,10,14
+"Dicanthelium sp 2","2021-06-20","KME","S1","m1",31,2,32,33.5,30.5,9,16,19,10,14
+"Dicanthelium sp 2","2021-06-20","KME","S1","m2",31,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 2","2021-06-20","KME","S1","t1",26,2,33.5,33.5,30.5,9,16,19,10,14
+"Dicanthelium sp 2","2021-06-20","KME","S1","t2",22,2,33,33.5,30.5,9,16,19,10,14
+"Dicanthelium sp 2","2021-06-20","KME","S2","m1",3,2,37,39.5,35,6,7,8,15,12
+"Dicanthelium sp 2","2021-06-20","KME","S2","t1",26,2,38,39.5,35,6,7,8,15,12
+"Dicanthelium sp 2","2021-06-20","KME","S3","m1",14,2,42.5,47,40,NA,NA,NA,NA,NA
+"Dicanthelium sp 2","2021-06-20","KME","S3","m2",79,2,41.5,47,40,NA,NA,NA,NA,NA
+"Dicanthelium sp 2","2021-06-21","KMW","S1","A",7,2,33.5,31,37,21,38,39,50,45
+"Dicanthelium sp 2","2021-06-21","KMW","S10","A",39,2,31,34.5,29.5,14,22,15,9,15
+"Dicanthelium sp 2","2021-06-21","KMW","S11","A",26,2,46,59,42,12,15,23,23,29
+"Dicanthelium sp 2","2021-06-21","KMW","S12","A",19,2,43,46,40,19,12,8,15,29
+"Dicanthelium sp 2","2021-06-21","KMW","S13","A",8,2,41.5,46,40,10,18,13,16,27
+"Dicanthelium sp 2","2021-06-21","KMW","S14","A",24,2,29,31.5,26.5,20,29,22,22,26
+"Dicanthelium sp 2","2021-06-21","KMW","S15","A",6,2,31.5,33.5,29.5,14,12,32,36,46
+"Dicanthelium sp 2","2021-06-21","KMW","S2","A",24,2,27.5,26,31,41,42,13,29,10
+"Dicanthelium sp 2","2021-06-21","KMW","S3","A",30,2,32.5,29.5,35,13,47,57,45,82
+"Dicanthelium sp 2","2021-06-21","KMW","S4","A",74,2,45,41.5,46.5,20,8,17,22,34
+"Dicanthelium sp 2","2021-06-21","KMW","S5","A",10,2,42,38.5,44.5,20,14,22,29,20
+"Dicanthelium sp 2","2021-06-21","KMW","S6","A",7,2,40.5,38,43,39,32,46,51,42
+"Dicanthelium sp 2","2021-06-21","KMW","S7","A",12,2,42,43.5,38.5,10,15,32,35,43
+"Dicanthelium sp 2","2021-06-21","KMW","S8","A",46,2,22,25.5,20.5,22,35,10,18,33
+"Dicanthelium sp 2","2021-06-21","KMW","S9","A",41,2,30,32.5,28,9,19,12,27,26
+"Dicanthelium sp 2","2021-06-24","KME","20","A",16,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 2","2021-06-24","KME","S1","B",3,2,17,20,16,17,26,25,26,33
+"Dicanthelium sp 2","2021-06-24","KME","S10","A",1,2,27,28,24.5,19,18,14,12,14
+"Dicanthelium sp 2","2021-06-24","KME","S10","B",26,2,25.5,28,24.5,19,18,14,12,14
+"Dicanthelium sp 2","2021-06-24","KME","S11","A",8,2,17.5,18,16,22,24,28,30,39
+"Dicanthelium sp 2","2021-06-24","KME","S12","A",1,2,18.5,18.5,16,7,10,18,9,15
+"Dicanthelium sp 2","2021-06-24","KME","S12","B",5,2,17,18.5,16,7,10,18,9,15
+"Dicanthelium sp 2","2021-06-24","KME","S12","C",NA,2,17.5,18.5,16,7,10,18,9,15
+"Dicanthelium sp 2","2021-06-24","KME","S13","A",0,2,27,29,24.5,7,10,12,19,11
+"Dicanthelium sp 2","2021-06-24","KME","S13","B",2,2,25,29,24.5,7,10,12,19,11
+"Dicanthelium sp 2","2021-06-24","KME","S14","B",17,2,24,28,23.5,15,13,20,19,19
+"Dicanthelium sp 2","2021-06-24","KME","S15","B",5,2,35.5,38.5,33,22,21,22,26,24
+"Dicanthelium sp 2","2021-06-24","KME","S16","A",1,2,14.5,19,14.5,19,15,23,35,37
+"Dicanthelium sp 2","2021-06-24","KME","S17","A",1,2,41,46,41,20,30,37,54,56
+"Dicanthelium sp 2","2021-06-24","KME","S17","B",2,2,41.5,46,41,20,30,37,54,56
+"Dicanthelium sp 2","2021-06-24","KME","S18","A",5,2,40,44,37.5,13,32,13,23,30
+"Dicanthelium sp 2","2021-06-24","KME","S18","B",0,2,40.5,44,37.5,13,32,13,23,30
+"Dicanthelium sp 2","2021-06-24","KME","S19","A",1,2,47,50,45,12,21,32,27,37
+"Dicanthelium sp 2","2021-06-24","KME","S19","B",17,2,46,50,45,12,21,32,27,37
+"Dicanthelium sp 2","2021-06-24","KME","S2","A",7,2,16,17.5,14,17,9,15,9,12
+"Dicanthelium sp 2","2021-06-24","KME","S2","B",4,2,15,17.5,14,17,9,15,9,12
+"Dicanthelium sp 2","2021-06-24","KME","S20","B",12,2,20.5,22.5,19,15,19,15.5,24,43
+"Dicanthelium sp 2","2021-06-24","KME","S21","A",0,2,48.5,53,47.5,22,19,28,21,26
+"Dicanthelium sp 2","2021-06-24","KME","S21","B",0,2,47.5,53,47.5,22,19,28,21,26
+"Dicanthelium sp 2","2021-06-24","KME","S22","A",23,2,42,44.5,39.5,15,18,20,18,26
+"Dicanthelium sp 2","2021-06-24","KME","S22","B",10,2,40,44.5,39.5,15,18,20,18,26
+"Dicanthelium sp 2","2021-06-24","KME","S3","A",4,2,21.5,21.5,19,7,8,8,8,23
+"Dicanthelium sp 2","2021-06-24","KME","S3","B",24,2,20,21.5,19,7,8,8,8,23
+"Dicanthelium sp 2","2021-06-24","KME","S4","A",6,2,14.5,15.5,14,8,9,14,21,24
+"Dicanthelium sp 2","2021-06-24","KME","S5","A",1,2,13,13,12,17,18,24,20,21
+"Dicanthelium sp 2","2021-06-24","KME","S6","A",1,2,19,20,16.5,17,14,20,18,16
+"Dicanthelium sp 2","2021-06-24","KME","S6","B",24,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 2","2021-06-24","KME","S7","A",30,2,30,31.5,27.5,14,8,17,18,19
+"Dicanthelium sp 2","2021-06-24","KME","S7","B",2,2,29,31.5,27.5,14,8,17,18,19
+"Dicanthelium sp 2","2021-06-24","KME","S8","A",0,2,23,24,22.5,9,12,21,19,19
+"Dicanthelium sp 2","2021-06-24","KME","S9","A",10,2,22,25,21.5,10,11,12,10,15
+"Dicanthelium sp 2","2021-06-24","KME","S9","B",4,2,21,25,21.5,10,11,12,10,15
+"Dicanthelium sp 2","2021-06-24","KME","UK1","A",3,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Dicanthelium sp 2","2021-06-24","KME","UK2","A",3,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Plantago lanceolata","2021-07-31","KM","5","1",89,1,NA,22.4,21.5,30,40,78,70,75
+"Plantago lanceolata","2021-07-31","KM","5","2",38,1,NA,22.4,21.5,30,40,78,70,75
+"Plantago lanceolata","2021-07-31","KM","5","3",219,1,NA,22.4,21.5,30,40,78,70,75
+"Plantago lanceolata","2021-07-31","KM","6",NA,NA,1,NA,18.1,17,12,42,29,42,66
+"Plantago lanceolata","2021-07-31","KM","7","1",1,1,NA,20,19,40,53,80,70,50
+"Plantago lanceolata","2021-07-31","KM","7","2",97,1,NA,20,19,40,53,80,70,50
+"Plantago lanceolata","2021-07-31","KM","7","3",55,1,NA,20,19,40,53,80,70,50
+"Plantago lanceolata","2021-07-31","KM","8","1",11,1,NA,13.8,13,24,36,25,39,44
+"Plantago lanceolata","2021-07-31","KM","8","2",75,1,NA,13.8,13,24,36,25,39,44
+"Plantago lanceolata","2021-07-31","KM","8","3",42,1,NA,13.8,13,24,36,25,39,44
+"Plantago lanceolata","2021-07-31","KM","9","1",58,1,NA,16.7,16.4,24,17,35,23,28
+"Plantago lanceolata","2021-07-31","KM","9","2",115,1,NA,16.7,16.4,24,17,35,23,28
+"Plantago lanceolata","2021-07-31","KM","9","3",64,1,NA,16.7,16.4,24,17,35,23,28
+"Plantago lanceolata","2021-07-31","KM","10","1",22,1,NA,19.4,17.8,13,26,24,22,30
+"Plantago lanceolata","2021-07-31","KM","10","2",63,1,NA,19.4,17.8,13,26,24,22,30
+"Plantago lanceolata","2021-07-31","KM","10","3",NA,1,NA,19.4,17.8,13,26,24,22,30
+"Plantago lanceolata","2021-07-31","KM","11","1",68,1,NA,21.1,19.8,29,58,58,61,61
+"Plantago lanceolata","2021-07-31","KM","11","2",32,1,NA,21.1,19.8,29,58,58,61,61
+"Plantago lanceolata","2021-07-31","KM","11","3",149,1,NA,21.1,19.8,29,58,58,61,61
+"Plantago lanceolata","2021-07-31","KM","12","1",53,1,NA,18.3,17.1,41,31,27,39,50
+"Plantago lanceolata","2021-07-31","KM","12","2",9,1,NA,18.3,17.1,41,31,27,39,50
+"Plantago lanceolata","2021-07-31","KM","12","3",53,1,NA,18.3,17.1,41,31,27,39,50
+"Plantago lanceolata","2021-07-31","KM","13","1",33,1,NA,16.4,15.1,40,31,38,44,47
+"Plantago lanceolata","2021-07-31","KM","13","2",11,1,NA,16.4,15.1,40,31,38,44,47
+"Plantago lanceolata","2021-07-31","KM","13","3",18,1,NA,16.4,15.1,40,31,38,44,47
+"Plantago lanceolata","2021-07-31","KM","14","1",2,1,NA,16.8,15.7,22,27,36,45,37
+"Plantago lanceolata","2021-07-31","KM","14","2",3,1,NA,16.8,15.7,22,27,36,45,37
+"Plantago lanceolata","2021-07-31","KM","14","3",NA,1,NA,16.8,15.7,22,27,36,45,37
+"Plantago lanceolata","2021-07-31","KM","14","1",0,1,NA,16.8,15.7,22,27,36,45,37
+"Plantago lanceolata","2021-07-31","KM","14","2",NA,1,NA,16.8,15.7,22,27,36,45,37
+"Plantago lanceolata","2021-07-31","KM","14","3",NA,1,NA,16.8,15.7,22,27,36,45,37
+"Plantago lanceolata","2021-07-31","KM","15","1",196,1,NA,24.5,23.1,16,40,22,31,28
+"Plantago lanceolata","2021-07-31","KM","15","2",28,1,NA,24.5,23.1,16,40,22,31,28
+"Plantago lanceolata","2021-07-31","KM","15","3",81,1,NA,24.5,23.1,16,40,22,31,28
+"Plantago lanceolata","2021-07-31","KM","16","1",72,1,NA,16.3,15.3,22,35,24,31,50
+"Plantago lanceolata","2021-07-31","KM","16","2",93,1,NA,16.3,15.3,22,35,24,31,50
+"Plantago lanceolata","2021-07-31","KM","16","3",65,1,NA,16.3,15.3,22,35,24,31,50
+"Plantago lanceolata","2021-07-31","KM","17","1",13,1,NA,29.8,28.6,22,43,48,55,60
+"Plantago lanceolata","2021-07-31","KM","17","2",20,1,NA,29.8,28.6,22,43,48,55,60
+"Plantago lanceolata","2021-07-31","KM","17","3",5,1,NA,29.8,28.6,22,43,48,55,60
+"Plantago lanceolata","2021-08-18","FBF","1","1",329,1,NA,33.5,33,8,6,6,10,11
+"Plantago lanceolata","2021-08-18","FBF","1","2",78,1,NA,33.5,33,8,6,6,10,11
+"Plantago lanceolata","2021-08-18","FBF","1","3",NA,1,NA,33.5,33,8,6,6,10,11
+"Plantago lanceolata","2021-08-18","FBF","2","1",94,1,NA,22,21.5,2,9,18,14,22
+"Plantago lanceolata","2021-08-18","FBF","2","2",NA,1,NA,22,21.5,2,9,18,14,22
+"Plantago lanceolata","2021-08-18","FBF","2","3",NA,1,NA,22,21.5,2,9,18,14,22
+"Plantago lanceolata","2021-08-18","FBF","3","1",525,1,NA,32.8,31.4,9,14,32,36,37
+"Plantago lanceolata","2021-08-18","FBF","3","2",750,1,NA,32.8,31.4,9,14,32,36,37
+"Plantago lanceolata","2021-08-18","FBF","3","3",NA,1,NA,32.8,31.4,9,14,32,36,37
+"Plantago lanceolata","2021-08-18","FBF","4","1",27,1,NA,22.6,21.2,6,6,7,11,11
+"Plantago lanceolata","2021-08-18","FBF","4","2",27,1,NA,22.6,21.2,6,6,7,11,11
+"Plantago lanceolata","2021-08-18","FBF","4","3",93,1,NA,22.6,21.2,6,6,7,11,11
+"Plantago lanceolata","2021-08-18","FBF","5","1",16,1,NA,38.6,36,4,3,10,9,15
+"Plantago lanceolata","2021-08-18","FBF","5","2",276,1,NA,38.6,36,4,3,10,9,15
+"Plantago lanceolata","2021-08-18","FBF","5","3",71,1,NA,38.6,36,4,3,10,9,15
+"Plantago lanceolata","2021-08-18","FBF","6","1",94,1,NA,34.1,31.5,7,5,7,8,9
+"Plantago lanceolata","2021-08-18","FBF","6","2",77,1,NA,34.1,31.5,7,5,7,8,9
+"Plantago lanceolata","2021-08-18","FBF","6","3",79,1,NA,34.1,31.5,7,5,7,8,9
+"Plantago lanceolata","2021-08-18","FBF","7","1",13,1,NA,32.7,30.4,5,11,5,8,12
+"Plantago lanceolata","2021-08-18","FBF","7","2",97,1,NA,32.7,30.4,5,11,5,8,12
+"Plantago lanceolata","2021-08-18","FBF","7","3",25,1,NA,32.7,30.4,5,11,5,8,12
+"Plantago lanceolata","2021-08-18","FBF","8","1",32,1,NA,27.5,25.5,8,4,10,31,33
+"Plantago lanceolata","2021-08-18","FBF","8","2",177,1,NA,27.5,25.5,8,4,10,31,33
+"Plantago lanceolata","2021-08-18","FBF","8","3",42,1,NA,27.5,25.5,8,4,10,31,33
+"Plantago lanceolata","2021-08-18","FBF","9","1",23,1,NA,30.9,29.1,5,3,4,10,21
+"Plantago lanceolata","2021-08-18","FBF","9","2",33,1,NA,30.9,29.1,5,3,4,10,21
+"Plantago lanceolata","2021-08-18","FBF","9","3",15,1,NA,30.9,29.1,5,3,4,10,21
+"Plantago lanceolata","2021-08-18","FBF","10","1",31,1,NA,21.2,19.9,9,28,32,29,32
+"Plantago lanceolata","2021-08-18","FBF","10","2",218,1,NA,21.2,19.9,9,28,32,29,32
+"Plantago lanceolata","2021-08-18","FBF","10","3",30,1,NA,21.2,19.9,9,28,32,29,32
+"Plantago lanceolata","2021-08-18","FBF","11","1",54,1,NA,32.8,31.2,12,16,15,12,12
+"Plantago lanceolata","2021-08-18","FBF","11","2",278,1,NA,32.8,31.2,12,16,15,12,12
+"Plantago lanceolata","2021-08-18","FBF","11","3",337,1,NA,32.8,31.2,12,16,15,12,12
+"Plantago lanceolata","2021-08-18","FBF","12","1",73,1,NA,37.1,35.3,6,7,7,8,6
+"Plantago lanceolata","2021-08-18","FBF","12","2",152,1,NA,37.1,35.3,6,7,7,8,6
+"Plantago lanceolata","2021-08-18","FBF","12","3",88,1,NA,37.1,35.3,6,7,7,8,6
+"Plantago lanceolata","2021-08-18","FBF","13","1",17,1,NA,20.4,19.5,6,4,3,7,8
+"Plantago lanceolata","2021-08-18","FBF","13","2",77,1,NA,20.4,19.5,6,4,3,7,8
+"Plantago lanceolata","2021-08-18","FBF","13","3",20,1,NA,20.4,19.5,6,4,3,7,8
+"Plantago lanceolata","2021-08-18","FBF","14","4",27,1,NA,33.2,31,2,4,4,5,2
+"Plantago lanceolata","2021-08-18","FBF","14","1",217,1,NA,33.2,31,2,4,4,5,2
+"Plantago lanceolata","2021-08-18","FBF","14","2",23,1,NA,33.2,31,2,4,4,5,2
+"Plantago lanceolata","2021-08-18","FBF","14","3",30,1,NA,33.2,31,2,4,4,5,2
+"Plantago lanceolata","2021-08-18","FBF","15","1",72,1,NA,29.3,28.2,10,8,3,4,10
+"Plantago lanceolata","2021-08-18","FBF","15","2",5,1,NA,29.3,28.2,10,8,3,4,10
+"Plantago lanceolata","2021-08-18","FBF","15","3",7,1,NA,29.3,28.2,10,8,3,4,10
+"Plantago lanceolata","2021-08-20","QMP","1",NA,NA,1,NA,28.7,26.2,7,10,10,11,9
+"Plantago lanceolata","2021-08-20","QMP","2",NA,NA,1,NA,24.4,22.3,3,11,12,15,10
+"Plantago lanceolata","2021-08-20","QMP","3",NA,NA,1,NA,12.6,16.8,7,6,9,11,11
+"Plantago lanceolata","2021-08-20","QMP","4",NA,NA,1,NA,28,26.2,12,15,21,38,39
+"Plantago lanceolata","2021-08-20","QMP","5",NA,NA,1,NA,24,22.6,6,15,11,9,15
+"Plantago lanceolata","2021-08-20","QMP","6",NA,NA,1,NA,26.2,24.2,7,8,12,16,18
+"Plantago lanceolata","2021-08-20","QMP","7",NA,NA,1,NA,35.2,30.7,5,15,12,23,25
+"Plantago lanceolata","2021-08-20","QMP","8",NA,NA,1,NA,19.1,18,3,15,18,26,17
+"Plantago lanceolata","2021-08-20","QMP","9",NA,NA,1,NA,25.9,24.4,6,12,21,43,85
+"Plantago lanceolata","2021-08-20","QMP","10",NA,NA,1,NA,36.3,32.5,5,8,10,18,13
+"Plantago lanceolata","2021-08-20","QMP","11",NA,NA,1,NA,24,22.5,7,4,13,12,17
+"Plantago lanceolata","2021-08-20","QMP","12",NA,NA,1,NA,21.5,20,3,7,7,8,11
+"Plantago lanceolata","2021-08-20","QMP","13",NA,NA,1,NA,39,36.7,5,4,10,8,12
+"Plantago lanceolata","2021-08-20","QMP","14",NA,NA,1,NA,13,11.8,7,7,5,5,6
+"Plantago lanceolata","2021-08-20","QMP","15",NA,NA,1,NA,27.9,25.8,9,8,14,15,17
+"Phleum pratense","2021-07-05","KME","12","A",23,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","15","C",7,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","16","A",20,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","16","B",47,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","16","C",47,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","20","A",6,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","20","B",71,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","20","C",35,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Phleum pratense","2021-07-05","KME","S1","B",24,2,22.5,24,21.5,40,71,71,67,81
+"Phleum pratense","2021-07-05","KME","S1","C",18,2,22,24,21.5,40,71,71,67,81
+"Phleum pratense","2021-07-05","KME","S10","A",15,2,53,55.5,52,41,54,65,75,88
+"Phleum pratense","2021-07-05","KME","S10","B",69,2,54,55.5,52,41,54,65,75,88
+"Phleum pratense","2021-07-05","KME","S10","C",11,2,55.5,55.5,52,41,54,65,75,88
+"Phleum pratense","2021-07-05","KME","S11","A",NA,2,71,75,70.5,62,68,76,55,75
+"Phleum pratense","2021-07-05","KME","S11","B",38,2,72.5,75,70.5,62,68,76,55,75
+"Phleum pratense","2021-07-05","KME","S11","C",22,2,74.5,75,70.5,62,68,76,55,75
+"Phleum pratense","2021-07-05","KME","S12","B",95,2,68,70,66,15,17,35,36,12
+"Phleum pratense","2021-07-05","KME","S12","C",11,2,69,70,66,15,17,35,36,12
+"Phleum pratense","2021-07-05","KME","S13","A",10,2,59.5,61,59,17,16,13,26,50
+"Phleum pratense","2021-07-05","KME","S13","B",0,2,60,61,59,17,16,13,26,50
+"Phleum pratense","2021-07-05","KME","S13","C",25,2,61,61,59,17,16,13,26,50
+"Phleum pratense","2021-07-05","KME","S14","A",18,2,74,78,72.5,24,48,64,60,58
+"Phleum pratense","2021-07-05","KME","S14","B",NA,2,76.5,78,72.5,24,48,64,60,58
+"Phleum pratense","2021-07-05","KME","S14","C",9,2,77,78,72.5,24,48,64,60,58
+"Phleum pratense","2021-07-05","KME","S15","A",25,2,108,111,106,111,111,117,110,125
+"Phleum pratense","2021-07-05","KME","S15","B",26,2,109,111,106,111,111,117,110,125
+"Phleum pratense","2021-07-05","KME","S17","A",169,2,63,64.5,62,39,62,83,86,55
+"Phleum pratense","2021-07-05","KME","S17","B",19,2,63,64.5,62,39,62,83,86,55
+"Phleum pratense","2021-07-05","KME","S17","C",199,2,64.5,64.5,62,39,62,83,86,55
+"Phleum pratense","2021-07-05","KME","S18","A",83,2,43.5,45,43,53,79,88,138,115
+"Phleum pratense","2021-07-05","KME","S18","B",31,2,44,45,43,53,79,88,138,115
+"Phleum pratense","2021-07-05","KME","S18","C",11,2,44.5,45,43,53,79,88,138,115
+"Phleum pratense","2021-07-05","KME","S18","D",53,2,44.5,45,43,53,79,88,138,115
+"Phleum pratense","2021-07-05","KME","S19","B",9,2,91,94.5,87.5,34,40,87,89,32
+"Phleum pratense","2021-07-05","KME","S19","C",0,2,94,94.5,87.5,34,40,87,89,32
+"Phleum pratense","2021-07-05","KME","S2","A",16,2,59.5,60.5,59,10,73,54,100,100
+"Phleum pratense","2021-07-05","KME","S2","B",12,2,59.5,60.5,59,10,73,54,100,100
+"Phleum pratense","2021-07-05","KME","S2","C",7,2,59.5,60.5,59,10,73,54,100,100
+"Phleum pratense","2021-07-05","KME","S3","A",55,2,59.5,63.5,59,55,60,51,87,88
+"Phleum pratense","2021-07-05","KME","S3","B",92,2,61,63.5,59,55,60,51,87,88
+"Phleum pratense","2021-07-05","KME","S3","C",20,2,62.5,63.5,59,55,60,51,87,88
+"Phleum pratense","2021-07-05","KME","S4","A",13,2,85,90,84,18,16,30,76,62
+"Phleum pratense","2021-07-05","KME","S4","B",22,2,87,90,84,18,16,30,76,62
+"Phleum pratense","2021-07-05","KME","S4","C",69,2,87,90,84,18,16,30,76,62
+"Phleum pratense","2021-07-05","KME","S4","D",25,2,89,90,84,18,16,30,76,62
+"Phleum pratense","2021-07-05","KME","S5","A",34,2,71.5,73.5,70,16,12,16,88,89
+"Phleum pratense","2021-07-05","KME","S5","B",36,2,72,73.5,70,16,12,16,88,89
+"Phleum pratense","2021-07-05","KME","S5","C",14,2,72.5,73.5,70,16,12,16,88,89
+"Phleum pratense","2021-07-05","KME","S6","A",226,2,77.5,80.5,77,14,28,15,56,78
+"Phleum pratense","2021-07-05","KME","S6","B",32,2,78.5,80.5,77,14,28,15,56,78
+"Phleum pratense","2021-07-05","KME","S6","C",31,2,78.5,80.5,77,14,28,15,56,78
+"Phleum pratense","2021-07-05","KME","S6","D",56,2,79,80.5,77,14,28,15,56,78
+"Phleum pratense","2021-07-05","KME","S7","A",43,2,70.5,73.5,69,15,15,17,74,87
+"Phleum pratense","2021-07-05","KME","S7","B",50,2,71,73.5,69,15,15,17,74,87
+"Phleum pratense","2021-07-05","KME","S7","C",90,2,71,73.5,69,15,15,17,74,87
+"Phleum pratense","2021-07-05","KME","S7","D",14,2,72,73.5,69,15,15,17,74,87
+"Phleum pratense","2021-07-05","KME","S8","A",57,2,55,56.5,54.5,29,59,48,48,81
+"Phleum pratense","2021-07-05","KME","S8","B",27,2,55.5,56.5,54.5,29,59,48,48,81
+"Phleum pratense","2021-07-05","KME","S8","C",14,2,55.5,56.5,54.5,29,59,48,48,81
+"Phleum pratense","2021-07-05","KME","S8","D",18,2,55.5,56.5,54.5,29,59,48,48,81
+"Phleum pratense","2021-07-05","KME","S8","E",21,2,56,56.5,54.5,29,59,48,48,81
+"Phleum pratense","2021-07-05","KME","S9","B",5,2,54,55.5,52.5,12,44,50,51,94
+"Phleum pratense","2021-07-05","KME","S9","C",21,2,54.5,55.5,52.5,12,44,50,51,94
+"Purple stigma grass","2021-07-16","FBF","1","A",69,2,54,59,52,14,16,16,13,14
+"Purple stigma grass","2021-07-16","FBF","1","B",55,2,55,59,52,14,16,16,13,14
+"Purple stigma grass","2021-07-16","FBF","1","C",56,2,57,59,52,14,16,16,13,14
+"Purple stigma grass","2021-07-16","FBF","10","A",112,2,47.5,53.5,47,8,13,17,21,16
+"Purple stigma grass","2021-07-16","FBF","10","B",72,2,51,53.5,47,8,13,17,21,16
+"Purple stigma grass","2021-07-16","FBF","10","C",30,2,52.5,53.5,47,8,13,17,21,16
+"Purple stigma grass","2021-07-16","FBF","11","A",72,2,38,42.5,37,8,9,10,13,18
+"Purple stigma grass","2021-07-16","FBF","11","B",43,2,39,42.5,37,8,9,10,13,18
+"Purple stigma grass","2021-07-16","FBF","11","C",20,2,40.5,42.5,37,8,9,10,13,18
+"Purple stigma grass","2021-07-16","FBF","12","A",105,2,40.5,45.5,39,15,18,22,20,15
+"Purple stigma grass","2021-07-16","FBF","12","B",63,2,43,45.5,39,15,18,22,20,15
+"Purple stigma grass","2021-07-16","FBF","12","C",65,2,45,45.5,39,15,18,22,20,15
+"Purple stigma grass","2021-07-16","FBF","13","A",67,2,42.5,44.5,41.5,10,14,15,11,14
+"Purple stigma grass","2021-07-16","FBF","13","B",NA,2,41.5,44.5,41.5,10,14,15,11,14
+"Purple stigma grass","2021-07-16","FBF","13","C",109,2,42.5,44.5,41.5,10,14,15,11,14
+"Purple stigma grass","2021-07-16","FBF","14","A",33,2,54,60,53,3,14,11,17,15
+"Purple stigma grass","2021-07-16","FBF","14","B",26,2,56.5,60,53,3,14,11,17,15
+"Purple stigma grass","2021-07-16","FBF","14","C",37,2,59.5,60,53,3,14,11,17,15
+"Purple stigma grass","2021-07-16","FBF","15","A",60,2,41,47,40,15,15,23,23,25
+"Purple stigma grass","2021-07-16","FBF","15","B",75,2,43.5,47,40,15,15,23,23,25
+"Purple stigma grass","2021-07-16","FBF","15","C",111,2,46,47,40,15,15,23,23,25
+"Purple stigma grass","2021-07-16","FBF","16","A",84,2,36,38,30,22,13,25,25,12
+"Purple stigma grass","2021-07-16","FBF","16","B",20,2,32,38,30,22,13,25,25,12
+"Purple stigma grass","2021-07-16","FBF","16","C",54,2,35.5,38,30,22,13,25,25,12
+"Purple stigma grass","2021-07-16","FBF","17","A",41,2,46,47.5,41,17,23,13,7,14
+"Purple stigma grass","2021-07-16","FBF","17","B",10,2,45,47.5,41,17,23,13,7,14
+"Purple stigma grass","2021-07-16","FBF","17","C",64,2,42.5,47.5,41,17,23,13,7,14
+"Purple stigma grass","2021-07-16","FBF","18","A",40,2,37.5,43,35.5,12,13,10,16,11
+"Purple stigma grass","2021-07-16","FBF","18","B",35,2,37.5,43,35.5,12,13,10,16,11
+"Purple stigma grass","2021-07-16","FBF","18","C",25,2,39,43,35.5,12,13,10,16,11
+"Purple stigma grass","2021-07-16","FBF","18","D",85,2,42.5,43,35.5,12,13,10,16,11
+"Purple stigma grass","2021-07-16","FBF","19","A",62,2,49,52.5,46,15,24,32,26,25
+"Purple stigma grass","2021-07-16","FBF","19","B",111,2,46.5,52.5,46,15,24,32,26,25
+"Purple stigma grass","2021-07-16","FBF","19","C",9,2,51,52.5,46,15,24,32,26,25
+"Purple stigma grass","2021-07-16","FBF","2","A",109,2,65,70.5,62,8,9,19,20,17
+"Purple stigma grass","2021-07-16","FBF","2","B",57,2,66.5,70.5,62,8,9,19,20,17
+"Purple stigma grass","2021-07-16","FBF","2","C",74,2,69,70.5,62,8,9,19,20,17
+"Purple stigma grass","2021-07-16","FBF","20","A",143,2,38,42.5,33.5,16,13,12,8,11
+"Purple stigma grass","2021-07-16","FBF","20","B",114,2,40,42.5,33.5,16,13,12,8,11
+"Purple stigma grass","2021-07-16","FBF","20","C",78,2,41.5,42.5,33.5,16,13,12,8,11
+"Purple stigma grass","2021-07-16","FBF","21","A",165,2,37,40.5,36.5,9,12,15,25,16
+"Purple stigma grass","2021-07-16","FBF","21","B",33,2,39,40.5,36.5,9,12,15,25,16
+"Purple stigma grass","2021-07-16","FBF","21","C",37,2,39.5,40.5,36.5,9,12,15,25,16
+"Purple stigma grass","2021-07-16","FBF","22","A",57,2,41.5,47.5,40,7,18,16,19,20
+"Purple stigma grass","2021-07-16","FBF","22","B",22,2,43.5,47.5,40,7,18,16,19,20
+"Purple stigma grass","2021-07-16","FBF","22","C",108,2,46,47.5,40,7,18,16,19,20
+"Purple stigma grass","2021-07-16","FBF","23","A",39,2,48.5,54,48,12,20,19,15,10
+"Purple stigma grass","2021-07-16","FBF","23","B",47,2,51,54,48,12,20,19,15,10
+"Purple stigma grass","2021-07-16","FBF","23","C",24,2,54,54,48,12,20,19,15,10
+"Purple stigma grass","2021-07-16","FBF","24","A",59,2,34.5,40.5,33,14,16,19,27,12
+"Purple stigma grass","2021-07-16","FBF","24","C",13,2,40.5,40.5,33,14,16,19,27,12
+"Purple stigma grass","2021-07-16","FBF","25","A",49,2,42,46.5,40.5,9,13,23,23,25
+"Purple stigma grass","2021-07-16","FBF","25","B",36,2,43,46.5,40.5,9,13,23,23,25
+"Purple stigma grass","2021-07-16","FBF","25","C",74,2,45.5,46.5,40.5,9,13,23,23,25
+"Purple stigma grass","2021-07-16","FBF","26","A",32,2,33.5,38.5,32,15,10,16,17,24
+"Purple stigma grass","2021-07-16","FBF","26","B",33,2,35,38.5,32,15,10,16,17,24
+"Purple stigma grass","2021-07-16","FBF","26","C",12,2,37.5,38.5,32,15,10,16,17,24
+"Purple stigma grass","2021-07-16","FBF","27","A",18,2,36,39.5,32,17,30,24,29,18
+"Purple stigma grass","2021-07-16","FBF","27","B",67,2,37.5,39.5,32,17,30,24,29,18
+"Purple stigma grass","2021-07-16","FBF","27","C",25,2,38.5,39.5,32,17,30,24,29,18
+"Purple stigma grass","2021-07-16","FBF","28","A",NA,2,33,38.5,32,13,22,23,31,32
+"Purple stigma grass","2021-07-16","FBF","28","B",29,2,35,38.5,32,13,22,23,31,32
+"Purple stigma grass","2021-07-16","FBF","28","C",8,2,38.5,38.5,32,13,22,23,31,32
+"Purple stigma grass","2021-07-16","FBF","29","A",101,2,35,40,33,17,18,22,27,25
+"Purple stigma grass","2021-07-16","FBF","29","B",76,2,36,40,33,17,18,22,27,25
+"Purple stigma grass","2021-07-16","FBF","29","C",4,2,38,40,33,17,18,22,27,25
+"Purple stigma grass","2021-07-16","FBF","3","A",60,2,60.5,61,51,13,15,11,21,17
+"Purple stigma grass","2021-07-16","FBF","3","B",153,2,58,61,51,13,15,11,21,17
+"Purple stigma grass","2021-07-16","FBF","3","C",29,2,56,61,51,13,15,11,21,17
+"Purple stigma grass","2021-07-16","FBF","30","A",39,2,32,36,30,12,25,24,45,46
+"Purple stigma grass","2021-07-16","FBF","30","B",33,2,33,36,30,12,25,24,45,46
+"Purple stigma grass","2021-07-16","FBF","30","C",19,2,36,36,30,12,25,24,45,46
+"Purple stigma grass","2021-07-16","FBF","31","A",161,2,50,55,48,10,18,15,16,18
+"Purple stigma grass","2021-07-16","FBF","31","B",74,2,51.5,55,48,10,18,15,16,18
+"Purple stigma grass","2021-07-16","FBF","31","C",75,2,54.5,55,48,10,18,15,16,18
+"Purple stigma grass","2021-07-16","FBF","32","A",92,2,47,53,46,9,21,23,24,26
+"Purple stigma grass","2021-07-16","FBF","32","B",98,2,49,53,46,9,21,23,24,26
+"Purple stigma grass","2021-07-16","FBF","32","C",20,2,51.5,53,46,9,21,23,24,26
+"Purple stigma grass","2021-07-16","FBF","33","A",18,2,48,53,46,23,27,18,28,26
+"Purple stigma grass","2021-07-16","FBF","33","B",22,2,49,53,46,23,27,18,28,26
+"Purple stigma grass","2021-07-16","FBF","33","C",59,2,52.5,53,46,23,27,18,28,26
+"Purple stigma grass","2021-07-16","FBF","34","A",43,2,40,44.5,38,5,8,11,13,20
+"Purple stigma grass","2021-07-16","FBF","34","B",64,2,41,44.5,38,5,8,11,13,20
+"Purple stigma grass","2021-07-16","FBF","34","C",46,2,42.5,44.5,38,5,8,11,13,20
+"Purple stigma grass","2021-07-16","FBF","35","A",188,2,47,53,46,13,11,17,17,19
+"Purple stigma grass","2021-07-16","FBF","35","B",67,2,49,53,46,13,11,17,17,19
+"Purple stigma grass","2021-07-16","FBF","35","C",141,2,52.5,53,46,13,11,17,17,19
+"Purple stigma grass","2021-07-16","FBF","36","B",78,2,38.5,42,35.5,14,18,19,29,26
+"Purple stigma grass","2021-07-16","FBF","36","C",50,2,40,42,35.5,14,18,19,29,26
+"Purple stigma grass","2021-07-16","FBF","37","A",113,2,48.5,53.5,47,4,17,13,20,17
+"Purple stigma grass","2021-07-16","FBF","37","B",16,2,50,53.5,47,4,17,13,20,17
+"Purple stigma grass","2021-07-16","FBF","37","C",17,2,52.5,53.5,47,4,17,13,20,17
+"Purple stigma grass","2021-07-16","FBF","38","A",126,2,44,49,42,15,14,14,13,15
+"Purple stigma grass","2021-07-16","FBF","38","B",19,2,45,49,42,15,14,14,13,15
+"Purple stigma grass","2021-07-16","FBF","38","C",2,2,47.5,49,42,15,14,14,13,15
+"Purple stigma grass","2021-07-16","FBF","39","A",72,2,48,55,46,11,15,30,27,26
+"Purple stigma grass","2021-07-16","FBF","39","B",81,2,50.5,55,46,11,15,30,27,26
+"Purple stigma grass","2021-07-16","FBF","39","C",44,2,54,55,46,11,15,30,27,26
+"Purple stigma grass","2021-07-16","FBF","4","A",42,2,54,61,53.5,5,8,21,11,19
+"Purple stigma grass","2021-07-16","FBF","4","B",125,2,57,61,53.5,5,8,21,11,19
+"Purple stigma grass","2021-07-16","FBF","4","C",49,2,60.5,61,53.5,5,8,21,11,19
+"Purple stigma grass","2021-07-16","FBF","40","A",24,2,33,38,32,12,16,3,13,18
+"Purple stigma grass","2021-07-16","FBF","40","B",37,2,35,38,32,12,16,3,13,18
+"Purple stigma grass","2021-07-16","FBF","40","C",35,2,37.5,38,32,12,16,3,13,18
+"Purple stigma grass","2021-07-16","FBF","41","A",128,2,37.5,43,37,4,20,20,24,35
+"Purple stigma grass","2021-07-16","FBF","41","B",42,2,41,43,37,4,20,20,24,35
+"Purple stigma grass","2021-07-16","FBF","41","C",88,2,42.5,43,37,4,20,20,24,35
+"Purple stigma grass","2021-07-16","FBF","42","A",62,2,49.5,56,48,4,9,16,23,24
+"Purple stigma grass","2021-07-16","FBF","42","B",133,2,52,56,48,4,9,16,23,24
+"Purple stigma grass","2021-07-16","FBF","42","C",51,2,55.5,56,48,4,9,16,23,24
+"Purple stigma grass","2021-07-16","FBF","43","A",53,2,57.5,64,57,26,23,23,20,8
+"Purple stigma grass","2021-07-16","FBF","43","B",39,2,59,64,57,26,23,23,20,8
+"Purple stigma grass","2021-07-16","FBF","43","C",24,2,62,64,57,26,23,23,20,8
+"Purple stigma grass","2021-07-16","FBF","44","A",33,2,41,46.5,40,13,20,19,16,19
+"Purple stigma grass","2021-07-16","FBF","44","B",23,2,43.5,46.5,40,13,20,19,16,19
+"Purple stigma grass","2021-07-16","FBF","44","C",25,2,46,46.5,40,13,20,19,16,19
+"Purple stigma grass","2021-07-16","FBF","45","A",48,2,26.5,30,24.5,21,8,15,20,24
+"Purple stigma grass","2021-07-16","FBF","45","B",34,2,27,30,24.5,21,8,15,20,24
+"Purple stigma grass","2021-07-16","FBF","45","C",36,2,29,30,24.5,21,8,15,20,24
+"Purple stigma grass","2021-07-16","FBF","5","A",76,2,38,42,36,12,14,7,10,11
+"Purple stigma grass","2021-07-16","FBF","5","B",41,2,39,42,36,12,14,7,10,11
+"Purple stigma grass","2021-07-16","FBF","5","C",56,2,41,42,36,12,14,7,10,11
+"Purple stigma grass","2021-07-16","FBF","6","A",58,2,26,28,22,8,8,11,12,13
+"Purple stigma grass","2021-07-16","FBF","6","B",95,2,26,28,22,8,8,11,12,13
+"Purple stigma grass","2021-07-16","FBF","6","C",24,2,27,28,22,8,8,11,12,13
+"Purple stigma grass","2021-07-16","FBF","7","A",11,2,42,46,41,9,12,16,10,15
+"Purple stigma grass","2021-07-16","FBF","7","B",38,2,44,46,41,9,12,16,10,15
+"Purple stigma grass","2021-07-16","FBF","7","C",12,2,46,46,41,9,12,16,10,15
+"Purple stigma grass","2021-07-16","FBF","8","A",72,2,37,42,36,4,8,6,10,15
+"Purple stigma grass","2021-07-16","FBF","8","B",86,2,39,42,36,4,8,6,10,15
+"Purple stigma grass","2021-07-16","FBF","8","C",24,2,41.5,42,36,4,8,6,10,15
+"Purple stigma grass","2021-07-16","FBF","9","A",62,2,52,66.5,51,13,14,14,14,17
+"Purple stigma grass","2021-07-16","FBF","9","C",6,2,53.5,66.5,51,13,14,14,14,17
+"Purple stigma grass","2021-07-16",NA,"11","B2",23,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Purple stigma grass","2021-07-16",NA,"XX","B",165,2,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F1","1",1,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","1",4,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","1",1,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","2",2,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","2",0,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","2",1,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","3",2,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","3",1,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F1","3",2,3,20.1,NA,NA,22,28,24,30,8
+"Rumex acetosella","2021-06-04","KM","F10","1",1,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F10","1",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F10","1",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F10","2",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F10","2",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F2","1",1,3,14.7,NA,NA,15,14,16,18,24
+"Rumex acetosella","2021-06-04","KM","F2","1",0,3,14.7,NA,NA,15,14,16,18,24
+"Rumex acetosella","2021-06-04","KM","F2","1",1,3,14.7,NA,NA,15,14,16,18,24
+"Rumex acetosella","2021-06-04","KM","F2","2",0,3,14.7,NA,NA,15,14,16,18,24
+"Rumex acetosella","2021-06-04","KM","F2","2",0,3,14.7,NA,NA,15,14,16,18,24
+"Rumex acetosella","2021-06-04","KM","F2","2",0,3,14.7,NA,NA,15,14,16,18,24
+"Rumex acetosella","2021-06-04","KM","F3","1",0,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","1",2,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","1",1,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","2",0,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","2",0,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","2",2,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","3",0,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","3",0,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F3","3",0,3,12.1,NA,NA,11,15,21,36,39
+"Rumex acetosella","2021-06-04","KM","F4","1",0,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","1",1,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","1",0,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","2",1,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","3",2,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","3",0,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","4",0,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","4",2,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F4","4",0,3,12,NA,NA,13,18,27,50,49
+"Rumex acetosella","2021-06-04","KM","F5","1",0,3,10.8,NA,NA,7,40,51,29,47
+"Rumex acetosella","2021-06-04","KM","F5","1",1,3,10.8,NA,NA,7,40,51,29,47
+"Rumex acetosella","2021-06-04","KM","F5","1",0,3,10.8,NA,NA,7,40,51,29,47
+"Rumex acetosella","2021-06-04","KM","F5","2",0,3,10.8,NA,NA,7,40,51,29,47
+"Rumex acetosella","2021-06-04","KM","F5","2",0,3,10.8,NA,NA,7,40,51,29,47
+"Rumex acetosella","2021-06-04","KM","F5","2",1,3,10.8,NA,NA,7,40,51,29,47
+"Rumex acetosella","2021-06-04","KM","F7","1",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F7","1",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F7","1",1,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F7","2",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F7","2",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F7","2",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","1",2,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","1",1,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","1",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","2",4,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","2",2,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","2",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","3",2,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","3",1,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-04","KM","F8","3",0,3,NA,NA,NA,NA,NA,NA,NA,NA
+"Rumex acetosella","2021-06-06","WCK","F1","1",0,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","1",1,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","1",0,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","2",0,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","2",0,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","2",0,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","3",1,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","3",1,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F1","3",1,3,8.9,NA,NA,8.5,7.8,6.5,12,16
+"Rumex acetosella","2021-06-06","WCK","F10","1",1,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","1",1,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","1",2,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","2",1,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","2",0,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","2",0,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","3",0,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","3",1,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F10","3",0,3,19.3,NA,NA,18,17,26,43,19.5
+"Rumex acetosella","2021-06-06","WCK","F14","1",0,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","1",1,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","1",2,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","2",1,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","2",0,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","2",0,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","3",2,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","3",1,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F14","3",2,3,17,NA,NA,71,81,24,83,42
+"Rumex acetosella","2021-06-06","WCK","F15","1",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","1",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","1",NA,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","2",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","2",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","2",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","3",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","3",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F15","3",0,3,18.5,NA,NA,82,72,155,89,91
+"Rumex acetosella","2021-06-06","WCK","F5","1",0,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","1",0,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","1",0,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","2",1,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","2",0,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","2",NA,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","3",3,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","3",1,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F5","3",0,3,13.9,NA,NA,57,92,76,93,106
+"Rumex acetosella","2021-06-06","WCK","F8","1",1,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","1",0,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","1",0,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","2",3,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","2",0,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","2",0,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","3",0,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","3",0,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-06","WCK","F8","3",0,3,12.6,NA,NA,51.8,88.5,132.5,162,48.7
+"Rumex acetosella","2021-06-09","KMW","F11","1",3,3,24.7,NA,NA,66,97,120,110,116
+"Rumex acetosella","2021-06-09","KMW","F11","1",1,3,24.7,NA,NA,66,97,120,110,116
+"Rumex acetosella","2021-06-09","KMW","F11","1",0,3,24.7,NA,NA,66,97,120,110,116
+"Rumex acetosella","2021-06-09","KMW","F11","2",1,3,24.7,NA,NA,66,97,120,110,116
+"Rumex acetosella","2021-06-09","KMW","F11","2",0,3,24.7,NA,NA,66,97,120,110,116
+"Rumex acetosella","2021-06-09","KMW","F11","2",0,3,24.7,NA,NA,66,97,120,110,116
+"Rumex acetosella","2021-06-09","KMW","F18","1",2,3,18,NA,NA,168,170,168,174,167
+"Rumex acetosella","2021-06-09","KMW","F18","1",0,3,18,NA,NA,168,170,168,174,167
+"Rumex acetosella","2021-06-09","KMW","F18","1",0,3,18,NA,NA,168,170,168,174,167
+"Rumex acetosella","2021-06-09","KMW","F18","2",0,3,18,NA,NA,168,170,168,174,167
+"Rumex acetosella","2021-06-09","KMW","F18","2",0,3,18,NA,NA,168,170,168,174,167
+"Rumex acetosella","2021-06-09","KMW","F18","2",0,3,18,NA,NA,168,170,168,174,167
+"Rumex acetosella","2021-06-09","KMW","F21","1",0,3,25,NA,NA,43,180,175,170,269
+"Rumex acetosella","2021-06-09","KMW","F21","1",0,3,25,NA,NA,43,180,175,170,269
+"Rumex acetosella","2021-06-09","KMW","F21","1",0,3,25,NA,NA,43,180,175,170,269
+"Rumex acetosella","2021-06-09","KMW","F21","2",0,3,25,NA,NA,43,180,175,170,269
+"Rumex acetosella","2021-06-09","KMW","F21","2",1,3,25,NA,NA,43,180,175,170,269
+"Rumex acetosella","2021-06-09","KMW","F21","2",0,3,25,NA,NA,43,180,175,170,269
+"Rumex acetosella","2021-06-09","KMW","F22","1",0,3,20.1,NA,NA,128,134,83,127,134
+"Rumex acetosella","2021-06-09","KMW","F22","1",0,3,20.1,NA,NA,128,134,83,127,134
+"Rumex acetosella","2021-06-09","KMW","F22","1",0,3,20.1,NA,NA,128,134,83,127,134
+"Rumex acetosella","2021-06-09","KMW","F22","2",0,3,20.1,NA,NA,128,134,83,127,134
+"Rumex acetosella","2021-06-09","KMW","F22","2",0,3,20.1,NA,NA,128,134,83,127,134
+"Rumex acetosella","2021-06-09","KMW","F22","2",0,3,20.1,NA,NA,128,134,83,127,134
+"Rumex acetosella","2021-06-09","KMW","F23","1",0,3,23,NA,NA,49,51,55,54,62
+"Rumex acetosella","2021-06-09","KMW","F23","1",1,3,23,NA,NA,49,51,55,54,62
+"Rumex acetosella","2021-06-09","KMW","F23","1",0,3,23,NA,NA,49,51,55,54,62
+"Rumex acetosella","2021-06-09","KMW","F23","2",0,3,23,NA,NA,49,51,55,54,62
+"Rumex acetosella","2021-06-09","KMW","F23","2",1,3,23,NA,NA,49,51,55,54,62
+"Rumex acetosella","2021-06-09","KMW","F23","2",2,3,23,NA,NA,49,51,55,54,62
+"Rumex acetosella","2021-06-09","KMW","F24","1",2,3,22.8,NA,NA,74,78,81,69,78
+"Rumex acetosella","2021-06-09","KMW","F24","1",1,3,22.8,NA,NA,74,78,81,69,78
+"Rumex acetosella","2021-06-09","KMW","F24","1",1,3,22.8,NA,NA,74,78,81,69,78
+"Rumex acetosella","2021-06-09","KMW","F24","2",0,3,22.8,NA,NA,74,78,81,69,78
+"Rumex acetosella","2021-06-09","KMW","F24","2",0,3,22.8,NA,NA,74,78,81,69,78
+"Rumex acetosella","2021-06-09","KMW","F24","2",0,3,22.8,NA,NA,74,78,81,69,78
+"Rumex acetosella","2021-06-09","KMW","F25","1",0,3,16,NA,NA,36,40,54,40,37
+"Rumex acetosella","2021-06-09","KMW","F25","1",0,3,16,NA,NA,36,40,54,40,37
+"Rumex acetosella","2021-06-09","KMW","F25","1",0,3,16,NA,NA,36,40,54,40,37
+"Rumex acetosella","2021-06-09","KMW","F25","2",0,3,16,NA,NA,36,40,54,40,37
+"Rumex acetosella","2021-06-09","KMW","F25","2",0,3,16,NA,NA,36,40,54,40,37
+"Rumex acetosella","2021-06-09","KMW","F25","2",0,3,16,NA,NA,36,40,54,40,37
+"Rumex acetosella","2021-06-09","KMW","F12","1",0,3,26,NA,NA,101,129,136,132,151
+"Rumex acetosella","2021-06-09","KMW","F12","1",2,3,26,NA,NA,101,129,136,132,151
+"Rumex acetosella","2021-06-09","KMW","F12","1",1,3,26,NA,NA,101,129,136,132,151
+"Rumex acetosella","2021-06-09","KMW","F12","2",0,3,26,NA,NA,101,129,136,132,151
+"Rumex acetosella","2021-06-09","KMW","F12","2",0,3,26,NA,NA,101,129,136,132,151
+"Rumex acetosella","2021-06-09","KMW","F12","2",0,3,26,NA,NA,101,129,136,132,151
+"Rumex acetosella","2021-06-09","KMW","F13","1",0,3,22,NA,NA,105,130,137,142,146
+"Rumex acetosella","2021-06-09","KMW","F13","1",1,3,22,NA,NA,105,130,137,142,146
+"Rumex acetosella","2021-06-09","KMW","F13","1",1,3,22,NA,NA,105,130,137,142,146
+"Rumex acetosella","2021-06-09","KMW","F13","2",2,3,22,NA,NA,105,130,137,142,146
+"Rumex acetosella","2021-06-09","KMW","F13","2",0,3,22,NA,NA,105,130,137,142,146
+"Rumex acetosella","2021-06-09","KMW","F13","2",0,3,22,NA,NA,105,130,137,142,146
+"Rumex acetosella","2021-06-09","KMW","F14","1",5,3,14,NA,NA,57,77,37,46,30
+"Rumex acetosella","2021-06-09","KMW","F14","1",1,3,14,NA,NA,57,77,37,46,30
+"Rumex acetosella","2021-06-09","KMW","F14","1",0,3,14,NA,NA,57,77,37,46,30
+"Rumex acetosella","2021-06-09","KMW","F14","2",2,3,14,NA,NA,57,77,37,46,30
+"Rumex acetosella","2021-06-09","KMW","F14","2",0,3,14,NA,NA,57,77,37,46,30
+"Rumex acetosella","2021-06-09","KMW","F14","2",4,3,14,NA,NA,57,77,37,46,30
+"Rumex acetosella","2021-06-09","KMW","F15","1",4,3,17,NA,NA,75,41,41,43,78
+"Rumex acetosella","2021-06-09","KMW","F15","1",2,3,17,NA,NA,75,41,41,43,78
+"Rumex acetosella","2021-06-09","KMW","F15","1",4,3,17,NA,NA,75,41,41,43,78
+"Rumex acetosella","2021-06-09","KMW","F15","2",2,3,17,NA,NA,75,41,41,43,78
+"Rumex acetosella","2021-06-09","KMW","F15","2",0,3,17,NA,NA,75,41,41,43,78
+"Rumex acetosella","2021-06-09","KMW","F15","2",0,3,17,NA,NA,75,41,41,43,78
+"Rumex acetosella","2021-06-09","KMW","F16","1",2,3,8,NA,NA,38,56,40,35,60
+"Rumex acetosella","2021-06-09","KMW","F16","1",9,3,8,NA,NA,38,56,40,35,60
+"Rumex acetosella","2021-06-09","KMW","F16","1",0,3,8,NA,NA,38,56,40,35,60
+"Rumex acetosella","2021-06-09","KMW","F16","2",0,3,8,NA,NA,38,56,40,35,60
+"Rumex acetosella","2021-06-09","KMW","F16","2",4,3,8,NA,NA,38,56,40,35,60
+"Rumex acetosella","2021-06-09","KMW","F16","2",2,3,8,NA,NA,38,56,40,35,60
+"Rumex acetosella","2021-06-09","KMW","F17","1",0,3,10.5,NA,NA,22,18,72,75,40
+"Rumex acetosella","2021-06-09","KMW","F17","1",2,3,10.5,NA,NA,22,18,72,75,40
+"Rumex acetosella","2021-06-09","KMW","F17","1",1,3,10.5,NA,NA,22,18,72,75,40
+"Rumex acetosella","2021-06-09","KMW","F17","2",2,3,10.5,NA,NA,22,18,72,75,40
+"Rumex acetosella","2021-06-09","KMW","F17","2",1,3,10.5,NA,NA,22,18,72,75,40
+"Rumex acetosella","2021-06-09","KMW","F17","2",1,3,10.5,NA,NA,22,18,72,75,40
+"Rumex acetosella","2021-06-09","KMW","F20","1",4,3,22,NA,NA,27,36,34,29,53
+"Rumex acetosella","2021-06-09","KMW","F20","1",1,3,22,NA,NA,27,36,34,29,53
+"Rumex acetosella","2021-06-09","KMW","F20","1",0,3,22,NA,NA,27,36,34,29,53
+"Rumex acetosella","2021-06-09","KMW","F20","2",1,3,22,NA,NA,27,36,34,29,53
+"Rumex acetosella","2021-06-09","KMW","F20","2",2,3,22,NA,NA,27,36,34,29,53
+"Rumex acetosella","2021-06-09","KMW","F20","2",1,3,22,NA,NA,27,36,34,29,53
+"Rumex acetosella","2021-06-09","KMW","F1","1",3,3,13.2,NA,NA,28,42,46,63,36
+"Rumex acetosella","2021-06-09","KMW","F1","1",3,3,13.2,NA,NA,28,42,46,63,36
+"Rumex acetosella","2021-06-09","KMW","F1","1",1,3,13.2,NA,NA,28,42,46,63,36
+"Rumex acetosella","2021-06-09","KMW","F1","2",0,3,13.2,NA,NA,28,42,46,63,36
+"Rumex acetosella","2021-06-09","KMW","F1","2",2,3,13.2,NA,NA,28,42,46,63,36
+"Rumex acetosella","2021-06-09","KMW","F1","2",2,3,13.2,NA,NA,28,42,46,63,36
+"Rumex acetosella","2021-06-09","KMW","F2","1",0,3,23.5,NA,NA,27,21,26,34,38
+"Rumex acetosella","2021-06-09","KMW","F2","1",0,3,23.5,NA,NA,27,21,26,34,38
+"Rumex acetosella","2021-06-09","KMW","F2","1",1,3,23.5,NA,NA,27,21,26,34,38
+"Rumex acetosella","2021-06-09","KMW","F2","2",6,3,23.5,NA,NA,27,21,26,34,38
+"Rumex acetosella","2021-06-09","KMW","F2","2",1,3,23.5,NA,NA,27,21,26,34,38
+"Rumex acetosella","2021-06-09","KMW","F2","2",2,3,23.5,NA,NA,27,21,26,34,38
+"Rumex acetosella","2021-06-09","KMW","F3","1",0,3,25,NA,NA,28,51,28,27,37
+"Rumex acetosella","2021-06-09","KMW","F3","1",0,3,25,NA,NA,28,51,28,27,37
+"Rumex acetosella","2021-06-09","KMW","F3","1",0,3,25,NA,NA,28,51,28,27,37
+"Rumex acetosella","2021-06-09","KMW","F3","2",0,3,25,NA,NA,28,51,28,27,37
+"Rumex acetosella","2021-06-09","KMW","F3","2",0,3,25,NA,NA,28,51,28,27,37
+"Rumex acetosella","2021-06-09","KMW","F3","2",0,3,25,NA,NA,28,51,28,27,37
+"Rumex acetosella","2021-06-09","KMW","F4","1",0,3,24.7,NA,NA,53,62,64,87,86
+"Rumex acetosella","2021-06-09","KMW","F4","1",0,3,24.7,NA,NA,53,62,64,87,86
+"Rumex acetosella","2021-06-09","KMW","F4","1",2,3,24.7,NA,NA,53,62,64,87,86
+"Rumex acetosella","2021-06-09","KMW","F4","2",0,3,24.7,NA,NA,53,62,64,87,86
+"Rumex acetosella","2021-06-09","KMW","F4","2",0,3,24.7,NA,NA,53,62,64,87,86
+"Rumex acetosella","2021-06-09","KMW","F4","2",1,3,24.7,NA,NA,53,62,64,87,86
+"Rumex acetosella","2021-06-09","KMW","F5","1",1,3,35,NA,NA,33,35,39,22,15
+"Rumex acetosella","2021-06-09","KMW","F5","1",0,3,35,NA,NA,33,35,39,22,15
+"Rumex acetosella","2021-06-09","KMW","F5","1",1,3,35,NA,NA,33,35,39,22,15
+"Rumex acetosella","2021-06-09","KMW","F5","2",0,3,35,NA,NA,33,35,39,22,15
+"Rumex acetosella","2021-06-09","KMW","F5","2",0,3,35,NA,NA,33,35,39,22,15
+"Rumex acetosella","2021-06-09","KMW","F5","2",0,3,35,NA,NA,33,35,39,22,15
+"Rumex acetosella","2021-06-09","KMW","F6","1",1,3,21.3,NA,NA,44,56,60,65,62
+"Rumex acetosella","2021-06-09","KMW","F6","1",2,3,21.3,NA,NA,44,56,60,65,62
+"Rumex acetosella","2021-06-09","KMW","F6","1",1,3,21.3,NA,NA,44,56,60,65,62
+"Rumex acetosella","2021-06-09","KMW","F6","2",5,3,21.3,NA,NA,44,56,60,65,62
+"Rumex acetosella","2021-06-09","KMW","F6","2",0,3,21.3,NA,NA,44,56,60,65,62
+"Rumex acetosella","2021-06-09","KMW","F6","2",0,3,21.3,NA,NA,44,56,60,65,62
+"Rumex acetosella","2021-06-09","KMW","F7","1",0,3,15.5,NA,NA,30,52,51,48,63
+"Rumex acetosella","2021-06-09","KMW","F7","1",0,3,15.5,NA,NA,30,52,51,48,63
+"Rumex acetosella","2021-06-09","KMW","F7","1",0,3,15.5,NA,NA,30,52,51,48,63
+"Rumex acetosella","2021-06-09","KMW","F7","2",1,3,15.5,NA,NA,30,52,51,48,63
+"Rumex acetosella","2021-06-09","KMW","F7","2",0,3,15.5,NA,NA,30,52,51,48,63
+"Rumex acetosella","2021-06-09","KMW","F7","2",0,3,15.5,NA,NA,30,52,51,48,63
+"Rumex acetosella","2021-06-09","KMW","F8","1",0,3,22,NA,NA,231,230,237,236,245
+"Rumex acetosella","2021-06-09","KMW","F8","1",1,3,22,NA,NA,231,230,237,236,245
+"Rumex acetosella","2021-06-09","KMW","F8","1",0,3,22,NA,NA,231,230,237,236,245
+"Rumex acetosella","2021-06-09","KMW","F8","2",2,3,22,NA,NA,231,230,237,236,245
+"Rumex acetosella","2021-06-09","KMW","F8","2",2,3,22,NA,NA,231,230,237,236,245
+"Rumex acetosella","2021-06-09","KMW","F8","2",0,3,22,NA,NA,231,230,237,236,245
+"Rumex acetosella","2021-06-09","KMW","F9","1",0,3,28.5,NA,NA,165,187,174,153,178
+"Rumex acetosella","2021-06-09","KMW","F9","1",2,3,28.5,NA,NA,165,187,174,153,178
+"Rumex acetosella","2021-06-09","KMW","F9","1",4,3,28.5,NA,NA,165,187,174,153,178
+"Rumex acetosella","2021-06-09","KMW","F9","2",0,3,28.5,NA,NA,165,187,174,153,178
+"Rumex acetosella","2021-06-09","KMW","F9","2",0,3,28.5,NA,NA,165,187,174,153,178
+"Rumex acetosella","2021-06-09","KMW","F9","2",1,3,28.5,NA,NA,165,187,174,153,178
+"Rumex acetosella","2021-06-09","KMW","F10","1",0,3,23.5,NA,NA,21,24,28,49,50
+"Rumex acetosella","2021-06-09","KMW","F10","1",0,3,23.5,NA,NA,21,24,28,49,50
+"Rumex acetosella","2021-06-09","KMW","F10","1",0,3,23.5,NA,NA,21,24,28,49,50
+"Rumex acetosella","2021-06-09","KMW","F10","2",4,3,23.5,NA,NA,21,24,28,49,50
+"Rumex acetosella","2021-06-09","KMW","F10","2",1,3,23.5,NA,NA,21,24,28,49,50
+"Rumex acetosella","2021-06-09","KMW","F10","2",1,3,23.5,NA,NA,21,24,28,49,50
+"Rumex acetosella","2021-06-07","KMW","F11","1",3,3,20.6,NA,NA,141,142,144,144,145
+"Rumex acetosella","2021-06-07","KMW","F11","1",4,3,20.6,NA,NA,141,142,144,144,145
+"Rumex acetosella","2021-06-07","KMW","F11","1",1,3,20.6,NA,NA,141,142,144,144,145
+"Rumex acetosella","2021-06-07","KMW","F11","2",3,3,20.6,NA,NA,141,142,144,144,145
+"Rumex acetosella","2021-06-07","KMW","F11","2",1,3,20.6,NA,NA,141,142,144,144,145
+"Rumex acetosella","2021-06-07","KMW","F11","2",3,3,20.6,NA,NA,141,142,144,144,145
+"Rumex acetosella","2021-06-07","KMW","F19","1",1,3,21.6,NA,NA,23,49,63,97,100
+"Rumex acetosella","2021-06-07","KMW","F19","1",0,3,21.6,NA,NA,23,49,63,97,100
+"Rumex acetosella","2021-06-07","KMW","F19","1",0,3,21.6,NA,NA,23,49,63,97,100
+"Rumex acetosella","2021-06-07","KMW","F19","2",0,3,21.6,NA,NA,23,49,63,97,100
+"Rumex acetosella","2021-06-07","KMW","F19","2",0,3,21.6,NA,NA,23,49,63,97,100
+"Rumex acetosella","2021-06-07","KMW","F19","2",0,3,21.6,NA,NA,23,49,63,97,100
+"Rumex acetosella","2021-06-07","KMW","F21","1",0,3,23.2,NA,NA,8,56,59,60,63
+"Rumex acetosella","2021-06-07","KMW","F21","1",0,3,23.2,NA,NA,8,56,59,60,63
+"Rumex acetosella","2021-06-07","KMW","F21","1",1,3,23.2,NA,NA,8,56,59,60,63
+"Rumex acetosella","2021-06-07","KMW","F21","2",0,3,23.2,NA,NA,8,56,59,60,63
+"Rumex acetosella","2021-06-07","KMW","F21","2",1,3,23.2,NA,NA,8,56,59,60,63
+"Rumex acetosella","2021-06-07","KMW","F21","2",0,3,23.2,NA,NA,8,56,59,60,63
+"Rumex acetosella","2021-06-07","KMW","F22","1",0,3,14.8,NA,NA,38,32,42,45,72
+"Rumex acetosella","2021-06-07","KMW","F22","1",0,3,14.8,NA,NA,38,32,42,45,72
+"Rumex acetosella","2021-06-07","KMW","F22","1",1,3,14.8,NA,NA,38,32,42,45,72
+"Rumex acetosella","2021-06-07","KMW","F22","2",0,3,14.8,NA,NA,38,32,42,45,72
+"Rumex acetosella","2021-06-07","KMW","F22","2",0,3,14.8,NA,NA,38,32,42,45,72
+"Rumex acetosella","2021-06-07","KMW","F22","2",0,3,14.8,NA,NA,38,32,42,45,72
+"Rumex acetosella","2021-06-07","KMW","F23","1",0,3,18.9,NA,NA,46,42,43,172,179
+"Rumex acetosella","2021-06-07","KMW","F23","1",3,3,18.9,NA,NA,46,42,43,172,179
+"Rumex acetosella","2021-06-07","KMW","F23","1",0,3,18.9,NA,NA,46,42,43,172,179
+"Rumex acetosella","2021-06-07","KMW","F23","2",2,3,18.9,NA,NA,46,42,43,172,179
+"Rumex acetosella","2021-06-07","KMW","F23","2",2,3,18.9,NA,NA,46,42,43,172,179
+"Rumex acetosella","2021-06-07","KMW","F23","2",1,3,18.9,NA,NA,46,42,43,172,179
+"Rumex acetosella","2021-06-07","KMW","F25","1",1,3,29,NA,NA,52,56,61,75,80
+"Rumex acetosella","2021-06-07","KMW","F25","1",1,3,29,NA,NA,52,56,61,75,80
+"Rumex acetosella","2021-06-07","KMW","F25","1",0,3,29,NA,NA,52,56,61,75,80
+"Rumex acetosella","2021-06-07","KMW","F25","2",2,3,29,NA,NA,52,56,61,75,80
+"Rumex acetosella","2021-06-07","KMW","F25","2",6,3,29,NA,NA,52,56,61,75,80
+"Rumex acetosella","2021-06-07","KMW","F25","2",0,3,29,NA,NA,52,56,61,75,80
+"Rumex acetosella","2021-06-07","KMW","F12","1",0,3,21.5,NA,NA,131,132,132,133,133
+"Rumex acetosella","2021-06-07","KMW","F12","1",1,3,21.5,NA,NA,131,132,132,133,133
+"Rumex acetosella","2021-06-07","KMW","F12","1",NA,3,21.5,NA,NA,131,132,132,133,133
+"Rumex acetosella","2021-06-07","KMW","F12","2",0,3,21.5,NA,NA,131,132,132,133,133
+"Rumex acetosella","2021-06-07","KMW","F12","2",3,3,21.5,NA,NA,131,132,132,133,133
+"Rumex acetosella","2021-06-07","KMW","F12","2",2,3,21.5,NA,NA,131,132,132,133,133
+"Rumex acetosella","2021-06-07","KMW","F13","1",0,3,17.3,NA,NA,45,64,30,29,35
+"Rumex acetosella","2021-06-07","KMW","F13","1",1,3,17.3,NA,NA,45,64,30,29,35
+"Rumex acetosella","2021-06-07","KMW","F13","1",4,3,17.3,NA,NA,45,64,30,29,35
+"Rumex acetosella","2021-06-07","KMW","F13","2",0,3,17.3,NA,NA,45,64,30,29,35
+"Rumex acetosella","2021-06-07","KMW","F13","2",0,3,17.3,NA,NA,45,64,30,29,35
+"Rumex acetosella","2021-06-07","KMW","F13","2",1,3,17.3,NA,NA,45,64,30,29,35
+"Rumex acetosella","2021-06-07","KMW","F14","1",0,3,22.3,NA,NA,69,89,88,52,52
+"Rumex acetosella","2021-06-07","KMW","F14","1",0,3,22.3,NA,NA,69,89,88,52,52
+"Rumex acetosella","2021-06-07","KMW","F14","1",0,3,22.3,NA,NA,69,89,88,52,52
+"Rumex acetosella","2021-06-07","KMW","F14","2",0,3,22.3,NA,NA,69,89,88,52,52
+"Rumex acetosella","2021-06-07","KMW","F14","2",0,3,22.3,NA,NA,69,89,88,52,52
+"Rumex acetosella","2021-06-07","KMW","F14","2",0,3,22.3,NA,NA,69,89,88,52,52
+"Rumex acetosella","2021-06-07","KMW","F15","1",1,3,29.5,NA,NA,58,60,70,70,72
+"Rumex acetosella","2021-06-07","KMW","F15","1",1,3,29.5,NA,NA,58,60,70,70,72
+"Rumex acetosella","2021-06-07","KMW","F15","1",0,3,29.5,NA,NA,58,60,70,70,72
+"Rumex acetosella","2021-06-07","KMW","F15","2",1,3,29.5,NA,NA,58,60,70,70,72
+"Rumex acetosella","2021-06-07","KMW","F15","2",0,3,29.5,NA,NA,58,60,70,70,72
+"Rumex acetosella","2021-06-07","KMW","F15","2",0,3,29.5,NA,NA,58,60,70,70,72
+"Rumex acetosella","2021-06-07","KMW","F16","1",0,3,21.6,NA,NA,45,46,51,55,61
+"Rumex acetosella","2021-06-07","KMW","F16","1",1,3,21.6,NA,NA,45,46,51,55,61
+"Rumex acetosella","2021-06-07","KMW","F16","1",0,3,21.6,NA,NA,45,46,51,55,61
+"Rumex acetosella","2021-06-07","KMW","F16","2",1,3,21.6,NA,NA,45,46,51,55,61
+"Rumex acetosella","2021-06-07","KMW","F16","2",0,3,21.6,NA,NA,45,46,51,55,61
+"Rumex acetosella","2021-06-07","KMW","F16","2",0,3,21.6,NA,NA,45,46,51,55,61
+"Rumex acetosella","2021-06-07","KMW","F17","1",0,3,6.7,NA,NA,34,27,28,28,32
+"Rumex acetosella","2021-06-07","KMW","F17","1",0,3,6.7,NA,NA,34,27,28,28,32
+"Rumex acetosella","2021-06-07","KMW","F17","1",NA,3,6.7,NA,NA,34,27,28,28,32
+"Rumex acetosella","2021-06-07","KMW","F17","2",0,3,6.7,NA,NA,34,27,28,28,32
+"Rumex acetosella","2021-06-07","KMW","F17","2",0,3,6.7,NA,NA,34,27,28,28,32
+"Rumex acetosella","2021-06-07","KMW","F17","2",0,3,6.7,NA,NA,34,27,28,28,32
+"Rumex acetosella","2021-06-07","KMW","F18","1",0,3,7.4,NA,NA,5,4,7,9,42
+"Rumex acetosella","2021-06-07","KMW","F18","1",1,3,7.4,NA,NA,5,4,7,9,42
+"Rumex acetosella","2021-06-07","KMW","F18","1",0,3,7.4,NA,NA,5,4,7,9,42
+"Rumex acetosella","2021-06-07","KMW","F18","2",0,3,7.4,NA,NA,5,4,7,9,42
+"Rumex acetosella","2021-06-07","KMW","F18","2",0,3,7.4,NA,NA,5,4,7,9,42
+"Rumex acetosella","2021-06-07","KMW","F18","2",0,3,7.4,NA,NA,5,4,7,9,42
+"Rumex acetosella","2021-06-07","KMW","F20","1",1,3,11.5,NA,NA,77,60,85,118,121
+"Rumex acetosella","2021-06-07","KMW","F20","1",0,3,11.5,NA,NA,77,60,85,118,121
+"Rumex acetosella","2021-06-07","KMW","F20","1",0,3,11.5,NA,NA,77,60,85,118,121
+"Rumex acetosella","2021-06-07","KMW","F20","2",0,3,11.5,NA,NA,77,60,85,118,121
+"Rumex acetosella","2021-06-07","KMW","F20","2",0,3,11.5,NA,NA,77,60,85,118,121
+"Rumex acetosella","2021-06-07","KMW","F20","2",0,3,11.5,NA,NA,77,60,85,118,121
+"Rumex acetosella","2021-06-07","KMW","F24","1",1,3,23.1,NA,NA,170,164,177,171,140
+"Rumex acetosella","2021-06-07","KMW","F24","1",0,3,23.1,NA,NA,170,164,177,171,140
+"Rumex acetosella","2021-06-07","KMW","F24","1",1,3,23.1,NA,NA,170,164,177,171,140
+"Rumex acetosella","2021-06-07","KMW","F24","2",0,3,23.1,NA,NA,170,164,177,171,140
+"Rumex acetosella","2021-06-07","KMW","F24","2",0,3,23.1,NA,NA,170,164,177,171,140
+"Rumex acetosella","2021-06-07","KMW","F24","2",1,3,23.1,NA,NA,170,164,177,171,140
+"Thalictrum dioicum","2021-05-06","CT","N1","1-1",1,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","1-2",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","1-3",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","1-4",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","1-5",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","1-6",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","1-7",1,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","1-8",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-1",1,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-2",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-3",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-4",1,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-5",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-6",1,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-7",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N1","2-8",0,1,NA,32.385,NA,119.38,266.7,215.9,119.38,180.34
+"Thalictrum dioicum","2021-05-06","CT","N10","1-1",1,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-2",4,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-3",3,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-4",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-5",4,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-6",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-7",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-8",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","1-9",3,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-1",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-2",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-3",3,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-4",1,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-5",0,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-6",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-7",2,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-8",1,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N10","2-9",1,1,NA,34.29,NA,5.08,48.26,27.94,142.24,101.6
+"Thalictrum dioicum","2021-05-06","CT","N11","1-1",1,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-2",3,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-3",2,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-4",3,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-5",1,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-1",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-2",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-3",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-4",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-5",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","1-6",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","2-1",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","2-2",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","2-3",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","2-4",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","2-5",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","3-1",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","3-2",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","3-3",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","3-4",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N11","3-5",0,1,NA,15.875,NA,106.68,53.34,121.92,152.4,165.1
+"Thalictrum dioicum","2021-05-06","CT","N12","1-1",1,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","1-2",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","1-3",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","1-4",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","1-5",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","1-6",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","1-7",1,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-1",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-2",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-3",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-4",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-5",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-6",1,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-7",0,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N12","2-8",1,1,NA,36.83,NA,111.76,162.56,256.54,307.34,342.9
+"Thalictrum dioicum","2021-05-06","CT","N13","1-1",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","1-2",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","1-3",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","1-4",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","1-5",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","1-6",1,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","1-7",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","1-8",5,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","2-1",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","2-2",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","2-3",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","2-4",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","2-5",0,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N13","2-6",2,1,NA,44.45,NA,45.72,129.54,213.36,241.3,185.42
+"Thalictrum dioicum","2021-05-06","CT","N14","1-1",2,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","1-2",0,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","1-3",0,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","1-4",0,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","1-5",0,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","1-6",1,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","1-7",1,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","1-8",1,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-1",0,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-2",2,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-3",3,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-4",2,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-5",3,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-6",3,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-7",4,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N14","2-8",2,1,NA,35.56,NA,116.84,111.76,142.24,198.12,182.88
+"Thalictrum dioicum","2021-05-06","CT","N15","1-1",2,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","1-2",2,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","1-3",0,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","1-4",1,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","1-5",2,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","2-1",4,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","2-2",10,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","2-3",1,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","2-4",2,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N15","2-5",2,1,NA,51.435,NA,261.62,337.82,231.14,317.5,411.48
+"Thalictrum dioicum","2021-05-06","CT","N2","1-1",1,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-2",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-3",4,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-4",2,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-5",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-6",2,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-7",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-8",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-9",1,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-10",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","1-11",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-1",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-2",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-3",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-4",1,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-5",1,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-6",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-7",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-8",0,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N2","2-9",1,1,NA,48.895,NA,68.58,106.68,93.98,149.86,144.78
+"Thalictrum dioicum","2021-05-06","CT","N3","1-1",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","1-2",3,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","1-3",0,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","1-4",0,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","1-5",2,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","1-6",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","1-7",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","1-8",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-1",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-2",0,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-3",2,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-4",2,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-5",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-6",2,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-7",0,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-8",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N3","2-9",1,1,NA,55.245,NA,25.4,48.26,172.72,172.72,160.02
+"Thalictrum dioicum","2021-05-06","CT","N4","1-1",1,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-2",0,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-3",2,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-4",6,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-5",4,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-6",4,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-7",2,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-8",2,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-9",2,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","1-10",0,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-1",0,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-2",2,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-3",1,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-4",1,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-5",2,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-6",5,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-7",5,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-8",2,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N4","2-9",1,1,NA,61.595,NA,53.34,58.42,147.32,144.78,203.2
+"Thalictrum dioicum","2021-05-06","CT","N5","1-1",6,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","1-2",0,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","1-3",1,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","1-4",1,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","1-5",10,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","1-6",0,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","1-7",9,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-1",3,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-2",0,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-3",1,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-4",3,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-5",1,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-6",2,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-7",1,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N5","2-8",3,1,NA,59.3725,NA,91.44,109.22,154.94,218.44,246.38
+"Thalictrum dioicum","2021-05-06","CT","N6","1-1",4,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","1-2",1,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","1-3",1,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","1-4",0,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","1-5",0,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","1-6",2,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","1-7",4,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","1-8",0,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-1",2,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-2",0,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-3",3,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-4",6,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-5",2,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-6",6,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-7",0,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N6","2-8",8,1,NA,28.575,NA,25.4,30.48,38.1,116.84,83.82
+"Thalictrum dioicum","2021-05-06","CT","N7","1-1",2,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-2",1,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-3",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-4",1,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-5",1,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-6",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-7",3,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-8",3,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","1-9",2,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-1",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-2",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-3",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-4",3,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-5",1,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-6",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-7",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","2-8",2,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","3-1",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","3-2",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","3-3",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","3-4",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","3-5",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N7","3-6",0,1,NA,36.83,NA,25.4,96.52,60.96,127,121.92
+"Thalictrum dioicum","2021-05-06","CT","N8","1-1",2,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-2",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-3",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-4",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-5",2,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-6",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-7",2,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-8",1,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","1-9",1,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-1",1,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-2",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-3",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-4",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-5",0,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-6",1,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-7",2,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-8",2,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N8","2-9",1,1,NA,31.115,NA,40.64,81.28,111.76,101.6,116.84
+"Thalictrum dioicum","2021-05-06","CT","N9","1-1",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-2",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-3",1,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-4",1,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-5",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-6",2,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-7",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-8",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","1-9",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-1",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-2",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-3",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-4",2,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-5",1,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-6",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-7",1,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-06","CT","N9","2-8",0,1,NA,43.18,NA,38.1,66.04,73.66,165.1,66.04
+"Thalictrum dioicum","2021-05-07","BI","B1","1-1",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-2",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-3",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-4",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-5",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-6",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-7",1,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-8",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-9",1,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-10",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-11",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-12",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-13",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-14",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","1-15",2,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-1",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-2",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-3",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-4",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-5",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-6",2,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-7",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-8",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-9",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-10",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-11",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-12",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B1","2-13",0,1,NA,44.45,NA,38.1,360.68,373.38,373.38,508
+"Thalictrum dioicum","2021-05-07","BI","B10","1-1",3,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-2",1,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-3",2,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-4",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-5",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-6",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-7",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-8",4,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-9",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","1-10",1,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-1",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-2",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-3",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-4",2,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-5",2,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-6",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-7",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-8",1,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-9",1,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-10",2,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-11",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B10","2-12",0,1,NA,53.34,NA,17.78,40.64,58.42,269.24,233.68
+"Thalictrum dioicum","2021-05-07","BI","B11","1-1",4,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","1-2",1,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","1-3",4,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","1-4",3,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","1-5",6,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","1-6",1,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","1-7",2,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","1-8",0,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-1",7,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-2",3,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-3",3,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-4",10,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-5",6,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-6",0,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-7",1,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-8",4,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-9",6,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B11","2-10",3,1,NA,22.86,NA,231.14,248.92,368.3,378.46,421.64
+"Thalictrum dioicum","2021-05-07","BI","B12","1-1",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-2",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-3",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-4",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-5",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-6",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-7",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-8",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","1-9",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-1",1,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-2",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-3",2,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-4",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-5",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-6",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-7",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B12","2-8",0,1,NA,55.88,NA,50.8,116.84,139.7,106.68,152.4
+"Thalictrum dioicum","2021-05-07","BI","B13","1-1",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-2",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-3",2,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-4",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-5",6,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-6",4,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-7",2,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-8",2,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-9",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-10",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-11",3,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-12",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-13",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-14",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-15",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-16",4,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-17",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","1-18",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-1",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-2",2,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-3",4,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-4",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-5",3,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-6",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-7",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-8",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-9",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-10",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-11",1,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-12",2,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-13",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-14",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-15",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-16",2,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B13","2-17",0,1,NA,68.58,NA,50.8,73.66,81.28,93.98,106.68
+"Thalictrum dioicum","2021-05-07","BI","B14","1-1",1,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-2",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-3",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-4",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-5",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-6",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-7",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-8",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-9",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-10",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","1-11",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-1",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-2",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-3",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-4",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-5",1,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-6",2,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-7",0,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B14","2-8",2,1,NA,45.72,NA,350.52,355.6,406.4,406.4,35.56
+"Thalictrum dioicum","2021-05-07","BI","B15","1-1",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-2",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-3",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-4",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-5",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-6",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-7",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-8",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-9",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","1-10",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-1",1,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-2",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-3",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-4",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-5",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-6",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-7",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-8",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-9",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B15","2-10",0,1,NA,30.48,NA,91.44,134.62,193.04,355.6,698.5
+"Thalictrum dioicum","2021-05-07","BI","B2","1-1",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-2",3,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-3",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-4",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-5",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-6",3,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-7",1,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-8",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-9",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-10",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","1-11",1,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-1",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-2",1,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-3",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-4",4,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-5",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-6",1,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-7",0,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-8",NA,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B2","2-9",2,1,NA,57.15,NA,40.64,76.2,58.42,114.3,584.2
+"Thalictrum dioicum","2021-05-07","BI","B3","1-1",2,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","1-2",2,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","1-3",3,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","1-4",2,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","1-5",0,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","1-6",1,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","1-7",0,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","1-8",1,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-1",1,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-2",2,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-3",2,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-4",1,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-5",2,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-6",1,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-7",4,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-8",0,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B3","2-9",0,1,NA,53.34,NA,38.1,55.88,48.26,111.76,205.74
+"Thalictrum dioicum","2021-05-07","BI","B4","1-1",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-2",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-3",2,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-4",2,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-5",4,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-6",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-7",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-8",0,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","1-9",3,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-1",2,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-2",4,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-3",3,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-4",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-5",0,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-6",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-7",0,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-8",0,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-9",0,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-10",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B4","2-11",1,1,NA,58.42,NA,27.94,48.26,48.26,111.76,48.26
+"Thalictrum dioicum","2021-05-07","BI","B5","1-1",2,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-2",1,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-3",4,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-4",0,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-5",1,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-6",1,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-7",1,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-8",0,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","1-9",0,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-1",4,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-2",0,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-3",3,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-4",3,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-5",2,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-6",3,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-7",1,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-8",1,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-9",4,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B5","2-10",5,1,NA,46.99,NA,40.64,53.34,27.94,68.58,124.46
+"Thalictrum dioicum","2021-05-07","BI","B6","1-1",1,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","1-2",1,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","1-3",0,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","1-4",0,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","1-5",1,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","1-6",0,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","1-7",0,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-1",1,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-2",3,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-3",3,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-4",4,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-5",3,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-6",1,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-7",1,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B6","2-8",6,1,NA,36.83,NA,73.66,27.94,99.06,101.6,88.9
+"Thalictrum dioicum","2021-05-07","BI","B7","1-1",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","1-2",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","1-3",5,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","1-4",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","1-5",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","1-6",1,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","1-7",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-1",1,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-2",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-3",1,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-4",1,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-5",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-6",2,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-7",1,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-8",3,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-9",1,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B7","2-10",0,1,NA,33.02,NA,33.02,30.48,58.42,83.82,129.54
+"Thalictrum dioicum","2021-05-07","BI","B8","1-1",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","1-2",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","1-3",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","1-4",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","1-5",1,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","1-6",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","1-7",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","2-1",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","2-2",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","2-3",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","2-4",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","2-5",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B8","2-6",0,1,NA,38.1,NA,137.16,182.88,193.04,198.12,330.2
+"Thalictrum dioicum","2021-05-07","BI","B9","1-1",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-2",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-3",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-4",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-5",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-6",1,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-7",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-8",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-9",4,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","1-10",1,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","2-1",1,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","2-2",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","2-3",1,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","2-4",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","2-5",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","2-6",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-07","BI","B9","2-7",0,1,NA,41.91,NA,198.12,208.28,292.1,236.22,256.54
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-1",2,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-2",0,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-3",8,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-4",3,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-5",2,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-6",4,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-7",2,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-8",4,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-9",3,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-10",1,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-11",7,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-12",1,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-13",2,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-14",2,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB1","1-15",0,1,NA,20.5,NA,37,117,115,80,143
+"Thalictrum dioicum","2021-05-17","BI","BB10","1-9",4,1,NA,14.5,NA,24,43,22,29,37
+"Thalictrum dioicum","2021-05-17","BI","BB10","1-1",8,1,NA,14.5,NA,24,43,22,29,37
+"Thalictrum dioicum","2021-05-17","BI","BB10","1-2",15,1,NA,14.5,NA,24,43,22,29,37
+"Thalictrum dioicum","2021-05-17","BI","BB10","1-3",11,1,NA,14.5,NA,24,43,22,29,37
+"Thalictrum dioicum","2021-05-17","BI","BB10","1-4",9,1,NA,14.5,NA,24,43,22,29,37
+"Thalictrum dioicum","2021-05-17","BI","BB10","1-5",15,1,NA,14.5,NA,24,43,22,29,37
+"Thalictrum dioicum","2021-05-17","BI","BB11","1-1",13,1,NA,19.5,NA,38,39,46,18,33
+"Thalictrum dioicum","2021-05-17","BI","BB11","1-2",15,1,NA,19.5,NA,38,39,46,18,33
+"Thalictrum dioicum","2021-05-17","BI","BB11","1-3",12,1,NA,19.5,NA,38,39,46,18,33
+"Thalictrum dioicum","2021-05-17","BI","BB11","1-4",12,1,NA,19.5,NA,38,39,46,18,33
+"Thalictrum dioicum","2021-05-17","BI","BB11","1-5",14,1,NA,19.5,NA,38,39,46,18,33
+"Thalictrum dioicum","2021-05-17","BI","BB11","1-6",16,1,NA,19.5,NA,38,39,46,18,33
+"Thalictrum dioicum","2021-05-17","BI","BB11","1-7",15,1,NA,19.5,NA,38,39,46,18,33
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-1",9,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-2",7,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-3",9,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-4",8,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-5",8,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-6",3,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-7",11,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-8",6,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB12","1-9",8,1,NA,31,NA,9,8,9,23,21
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-1",13,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-2",4,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-3",15,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-4",6,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-5",11,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-6",15,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-7",13,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-8",20,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB13","1-9",11,1,NA,25.5,NA,49,56,58,70,58
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-1",26,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-2",29,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-3",30,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-4",21,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-5",26,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-6",26,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-7",25,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB14","1-8",26,1,NA,21.5,NA,11,9,13,14,20
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-1",33,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-2",35,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-3",29,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-4",37,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-5",32,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-6",36,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-7",26,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-8",31,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB16","1-9",32,1,NA,19,NA,20,26,16,26,34
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-1",7,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-2",19,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-3",12,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-4",18,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-5",16,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-6",23,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-7",12,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB17","1-8",16,1,NA,19.5,NA,33,34,24,49,56
+"Thalictrum dioicum","2021-05-17","BI","BB18","1-1",24,1,NA,21,NA,14,8,42,43,46
+"Thalictrum dioicum","2021-05-17","BI","BB18","1-2",39,1,NA,21,NA,14,8,42,43,46
+"Thalictrum dioicum","2021-05-17","BI","BB18","1-3",19,1,NA,21,NA,14,8,42,43,46
+"Thalictrum dioicum","2021-05-17","BI","BB18","1-4",23,1,NA,21,NA,14,8,42,43,46
+"Thalictrum dioicum","2021-05-17","BI","BB18","1-5",15,1,NA,21,NA,14,8,42,43,46
+"Thalictrum dioicum","2021-05-17","BI","BB18","1-6",28,1,NA,21,NA,14,8,42,43,46
+"Thalictrum dioicum","2021-05-17","BI","BB18","1-7",26,1,NA,21,NA,14,8,42,43,46
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-1",27,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-2",39,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-3",26,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-4",22,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-5",27,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-6",37,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-7",17,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB19","1-8",31,1,NA,26,NA,2,22,50,70,74
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-1",3,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-2",2,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-3",2,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-4",3,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-5",0,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-6",2,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-7",1,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-8",3,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB2","1-9",4,1,NA,10.5,NA,17,52,31,49,50
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-1",6,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-2",2,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-3",9,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-4",11,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-5",14,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-6",10,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-7",7,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-8",6,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","1-9",7,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-1",7,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-2",6,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-3",6,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-4",12,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-5",6,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-6",7,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-7",5,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-8",4,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-9",4,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-10",6,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-11",1,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB20","2-12",7,1,NA,25.5,NA,18,19,28,42,41
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-1",3,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-2",1,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-3",2,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-4",0,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-5",0,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-6",1,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-7",1,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","1-8",0,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-1",0,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-2",0,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-3",1,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-4",2,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-5",1,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-6",2,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-7",1,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-8",3,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-9",0,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB21","2-10",2,1,NA,27.5,NA,13,152,152,172,175
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-1",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-2",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-3",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-4",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-5",1,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-6",1,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-7",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-8",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-9",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-10",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","1-11",2,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-1",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-2",1,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-3",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-4",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-5",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-6",1,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-7",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-8",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-9",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-10",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB22","2-11",0,1,NA,24.5,NA,50,36,70,140,140
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-1",13,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-2",2,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-3",5,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-4",6,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-5",3,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-6",4,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-7",5,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","1-8",6,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-1",3,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-2",3,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-3",4,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-4",2,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-5",6,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-6",1,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-7",2,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-8",3,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB23","2-9",2,1,NA,18,NA,90,93,111,125,128
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-1",1,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-2",8,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-3",1,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-4",5,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-5",6,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-6",1,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-7",1,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-8",2,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-9",1,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-10",3,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-11",3,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","1-12",3,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","2-1",13,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","2-2",4,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","2-3",2,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","2-4",6,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","2-5",6,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","2-6",4,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB24","2-7",8,1,NA,24,NA,23,38,26,26,31
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-1",9,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-2",4,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-3",5,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-4",3,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-5",8,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-6",15,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-7",2,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-8",10,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","1-9",5,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-1",3,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-2",3,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-3",6,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-4",7,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-5",8,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-6",9,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-7",4,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-8",6,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB25","2-9",5,1,NA,19.5,NA,19,31,35,39,38
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-1",2,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-2",3,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-3",3,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-4",1,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-5",2,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-6",3,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-7",4,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-8",4,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-9",0,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-10",1,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","1-11",2,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-1",1,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-2",2,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-3",0,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-4",0,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-5",0,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-6",2,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-7",0,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-8",2,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB26","2-9",5,1,NA,22,NA,9,24,40,60,18
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-1",0,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-2",1,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-3",2,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-4",1,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-5",2,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-6",4,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-7",8,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-8",3,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","1-9",2,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-1",1,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-2",1,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-3",0,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-4",2,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-5",1,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-6",4,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-7",0,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB27","2-8",0,1,NA,21,NA,6,9,15,23,23
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-1",1,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-2",4,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-3",1,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-4",3,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-5",1,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-6",2,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-7",6,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-8",2,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-9",1,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","1-10",2,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-1",7,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-2",0,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-3",5,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-4",4,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-5",3,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-6",3,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-7",5,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-8",5,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB28","2-9",3,1,NA,34,NA,23,41,56,62,41
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-1",0,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-2",1,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-3",0,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-4",2,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-5",0,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-6",1,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-7",1,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-8",1,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-9",0,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-10",0,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","1-11",0,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-1",3,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-2",3,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-3",2,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-4",4,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-5",4,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-6",2,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-7",2,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-8",5,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-9",2,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-10",6,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-11",1,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-12",4,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-13",2,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB29","2-14",5,1,NA,38,NA,25,35,31,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-1",27,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-2",18,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-3",14,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-4",30,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-5",18,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-6",32,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-7",37,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-8",18,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB3","1-9",25,1,NA,18.5,NA,34,28,15,15,27
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-1",3,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-2",4,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-3",4,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-4",6,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-5",4,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-6",4,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-7",1,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-8",5,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-9",4,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-10",2,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","1-11",1,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-1",6,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-2",4,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-3",9,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-4",5,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-5",7,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-6",8,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-7",3,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-8",11,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-9",6,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-10",6,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB30","2-11",7,1,NA,18,NA,17,19,11,20,46
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-1",10,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-2",2,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-3",14,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-4",8,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-5",18,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-6",14,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-7",16,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-8",8,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB4","1-9",9,1,NA,13,NA,31,31,20,32,38
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-1",5,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-2",6,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-3",3,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-4",3,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-5",2,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-6",3,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-7",2,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB5","1-8",1,1,NA,10,NA,15,23,34,37,22
+"Thalictrum dioicum","2021-05-17","BI","BB6","1-1",11,1,NA,16.5,NA,13,19,20,10,26
+"Thalictrum dioicum","2021-05-17","BI","BB6","1-2",22,1,NA,16.5,NA,13,19,20,10,26
+"Thalictrum dioicum","2021-05-17","BI","BB6","1-3",18,1,NA,16.5,NA,13,19,20,10,26
+"Thalictrum dioicum","2021-05-17","BI","BB6","1-4",5,1,NA,16.5,NA,13,19,20,10,26
+"Thalictrum dioicum","2021-05-17","BI","BB6","1-5",6,1,NA,16.5,NA,13,19,20,10,26
+"Thalictrum dioicum","2021-05-17","BI","BB6","1-6",2,1,NA,16.5,NA,13,19,20,10,26
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-1",9,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-2",18,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-3",10,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-4",4,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-5",20,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-6",19,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-7",25,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB7","1-8",26,1,NA,24,NA,29,37,39,61,55
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-1",10,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-2",9,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-3",7,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-4",5,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-5",16,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-6",14,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-7",3,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB8","1-8",5,1,NA,19,NA,32,23,23,45,71
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-1",6,1,NA,11,NA,20,25,27,28,33
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-2",3,1,NA,11,NA,20,25,27,28,33
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-3",4,1,NA,11,NA,20,25,27,28,33
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-4",2,1,NA,11,NA,20,25,27,28,33
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-5",8,1,NA,11,NA,20,25,27,28,33
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-6",5,1,NA,11,NA,20,25,27,28,33
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-7",9,1,NA,11,NA,20,25,27,28,33
+"Thalictrum dioicum","2021-05-17","BI","BB9","1-8",6,1,NA,11,NA,20,25,27,28,33
