@@ -123,10 +123,14 @@ SV_pre <- SV %>% mutate(Site = Population, Infl_max=Flower_max, Infl_min=Flower_
 # rbind(PL_pre, SV_pre) # test
 
 # Rumex acetosella
-# Also has N flowers per plant estimate
+# Also has number of flowers per plant estimate
 # View(RA)
-RA_pre <- RA %>% 
-  mutate(Flw_pollen = Pollen, Infl_min=NA, Infl_max=NA, Stigmas_per_flw=3) %>% 
+# This species has three stigmas/ovule and they were counted separately - I'll add them together to get flower-level data
+RA_pre <- RA %>% group_by(Species, Date, Site, Plant, Flower, Flower_height,
+                          D1, D2, D3, D4, D5) %>% #group by everything but the variable I'll sum, Pollen, to keep it all
+  summarise(Flw_pollen = sum(Pollen, na.rm=T)) %>% 
+  mutate(Stigmas_per_flw=3,Infl_max=NA, Infl_min=NA) %>% 
+  ungroup() %>% 
   select(all_of(sel_vec))
 # rbind(SV_pre, RA_pre) # test 
 
