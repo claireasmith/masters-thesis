@@ -43,7 +43,10 @@ JF2001_pre <- JF2001 %>%
 JF2004_pre <- JF2004 %>% 
   mutate(Species=spp, Date=jday, Site=NA, Plant=plant, Flower=position, Flw_pollen=npollen, Stigmas_per_flw=NA, Flower_height=NA, 
          Infl_max=height, Infl_min=NA, D1=d1, D2=d2, D3=d3, D4=d4, D5=d5, Stigma_length=stigl, source="JF2004") %>% 
-  select(all_of(sel_vec))
+  select(all_of(sel_vec)) %>% 
+  distinct() #no duplicate rows
+# nrow(JF2001_pre)
+
 
 # Add in full names for species with shortened names
 # unique(CS2021_pre$Species)
@@ -71,8 +74,9 @@ JF2004_pre <- JF2004_pre %>% # I'll use stringr's str_replace_all for this one b
                                                "R.crispus"="Rumex crispus",
                                                "S.microcar"="Scirpus microcarpus",
                                                "S.purp"="Schizacne purpurascens",
-                                               "T.dioicum"="Thalictrum dioicum" )))
-
+                                               "T.dioicum"="Thalictrum dioicum" ))) %>% 
+  distinct() # make sure there are no duplicate rows
+# nrow(JF2004_pre)
 # Combine all the data together into one complete dataset, stig-all.csv
 stig_all <- rbind(rbind(CS2021_pre, JF2001_pre), JF2004_pre)
 write.csv(stig_all, "processed-data/stig-all.csv", row.names=F)

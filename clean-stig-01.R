@@ -131,8 +131,8 @@ RA_pre <- RA %>%
 # rbind(SV_pre, RA_pre) # test 
 
 # Thalictrum dioicum 
-View(TD)
-glimpse(TD)
+# View(TD)
+# glimpse(TD)
 # has flowering stage estimate 
 # infl max is plant height (height of tallest flower)
 # I mistakenly called each inflorescence a flower - so each "stigma" is really its own flower with its own ovule

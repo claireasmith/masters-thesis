@@ -1,0 +1,123 @@
+---
+title: "Effects of flower height on stigmatic pollen load"
+author: "Claire Smith"
+date: "2023-06-19"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r initialize, message=F}
+# Load packages
+library(tidyverse)
+library(lme4) # for linear mixed effects models
+library(lmerTest)
+# Source files
+source("clean-stig-01.R")
+source("clean-stig-02.R")
+source("theme_cs.R")
+# Load data
+stig <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T)
+```
+
+```{r pre-processing data}
+# Take only entries with flower height data
+stigfh <- stig %>% 
+  filter(!is.na(Flower_height))
+# head(stigfh)
+# summary(stigfh)
+
+# How many species have flower height data? 
+# unique(stigfh$Species) # 7 species
+# [1] Ambrosia artemisiifolia     Amaranthus retroflexus      Dichanthelium linearifolium Dichanthelium implicatum  
+# [5] Phleum pratense             Setaria viridis             Rumex acetosella 
+# View(stigfh)
+
+# Flower is nested within plant - each plant has (potentially) multiple flowers measured within it -- need to 
+# create a unique plant ID for each plant within a species
+stigfh$Ind_ID=paste(stigfh$Date, stigfh$Site, stigfh$Plant, sep = "-")
+#How many unique individuals per species? 
+stigfh %>% group_by(Species) %>%
+  distinct(Ind_ID) %>% 
+  summarize(n=n())
+# Species                         n
+# <fct>                       <int>
+# 1 Amaranthus retroflexus         30
+# 2 Ambrosia artemisiifolia        30
+# 3 Dichanthelium implicatum       40
+# 4 Dichanthelium linearifolium    13
+# 5 Phleum pratense                18
+# 6 Rumex acetosella               50
+# 7 Setaria viridis                45
+# Will exclude Dichanthelium linearifolium from this because it only has 13 entries. 
+
+# I'll go through each species and run a model predicting pollen capture by flower height
+# Since many likely have log-normal distributions of pollen capture, I'll create a log flw pollen variable now to # save time -- but will still check each species individually 
+stigfh$Log_flw_pollen <- log(stigfh$Flw_pollen+1)
+```
+
+### Amaranthus retroflexus (n=30)
+
+```{r pre-fit Amaranthus retroflexus}
+AMRE <- stigfh %>% 
+  filter(Species=="Amaranthus retroflexus")
+# summary(AMRE) # 2 sites, FBF and FBF2
+
+#Taking a look at the data
+hist(AMRE$Flw_pollen) # response variable. looks very right skewed!
+hist(AMRE$Log_flw_pollen) # much more symmetric
+hist(AMRE$Flower_height) # looks a little right-skewed
+hist(log(AMRE$Flower_height+1)) # now a little left-skewed... I'll just use raw flower height
+
+# Look at plot of Log_flw_pollen and Flw_height 
+# looks like no big difference between sites in how much pollen they receive wrt height
+plot(AMRE$Flower_height, AMRE$Log_flw_pollen, col=as.factor(AMRE$Site))
+```
+
+```{r model fit Amaranthus retroflexus}
+#model for height
+AMREmod <- lmer(Log_flw_pollen ~ Flower_height + Site + (1|Ind_ID), data=AMRE)
+summary(AMREmod)
+anova(AMREmod)
+```
+No significant effect of flower height or site on pollen loads in Amaranthus retroflexus. 
+
+### Ambrosia artemisiifolia (n=30)
+
+```{r pre-fit Ambrosia artemisiifolia}
+AMAR <- stigfh %>% 
+  filter(Species=="Ambrosia artemisiifolia")
+summary(AMAR) # 2 sites, FBF and LP
+
+#Taking a look at the data
+hist(AMAR$Flw_pollen) # response variable. looks very right skewed!
+hist(AMAR$Log_flw_pollen) # much more symmetric
+hist(AMAR$Flower_height) # looks ok
+
+# Look at plot of Log_flw_pollen and Flw_height 
+# looks like no big difference between sites in how much pollen they receive wrt height
+plot(AMAR$Flower_height, AMAR$Log_flw_pollen, col=as.factor(AMAR$Site))
+```
+
+```{r model fit Ambrosia artemisiifolia}
+#model for height
+AMARmod <- lmer(Log_flw_pollen ~ Flower_height + Site + (1|Ind_ID), data=AMAR)
+# AMARmod2 <- lmer(Log_flw_pollen ~ Flower_height*Site + (1|Ind_ID), data=AMAR) # no sig interaction
+anova(AMARmod)
+# anova(AMARmod2)
+# anova(AMARmod, AMARmod2) # no sig difference between models
+```
+
+Site has a significant effect on pollen load, but not flower height, in Ambrosia artemisiifolia. No significant interaction of site and flower height. No difference in explanatory power between model with site x flower height interaction vs without. 
+
+```{r Ambrosia artemisiifolia site effects}
+ggplot(data=AMAR, aes(x=Site, y=Log_flw_pollen)) + 
+  geom_violin() + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+# FBF was taken on Sep 14 2021, LP was taken on Sep 20 2021 - maybe an effect of date on pollen capture.
+# View(AMAR)
+```
+
