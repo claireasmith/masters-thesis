@@ -100,7 +100,7 @@ ggplot(data=BRIN, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) +
 #model for height
 # BRINmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=BRIN)
 # no sig quadratic term
-BRINmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=BRIN)
+BRINmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=BRIN)
 summary(BRINmod)
 anova(BRINmod)
 # No significant effect of height on pollen loads in Bromus inermis.  
@@ -135,7 +135,7 @@ CACOmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=CACO)
 summary(CACOmod)
 anova(CACOmod)
 # no sig quadratic term
-CACOmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=CACO)
+CACOmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CACO)
 summary(CACOmod)
 anova(CACOmod)
 # No significant effect of height on pollen loads in Carex communis. 
@@ -170,7 +170,7 @@ CAHImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=CAHI)
 summary(CAHImod)
 anova(CAHImod)
 # no sig quadratic term
-CAHImod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=CAHI)
+CAHImod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CAHI)
 summary(CAHImod)
 anova(CAHImod)
 # No significant effect of height on pollen loads in Carex hirtifolia. 
@@ -246,41 +246,6 @@ anova(CAPLmod)
 # No significant effect of height on pollen loads or date in Carex plantaginea. 
 ```
 
-### Carex pedunculata (n=31)
-
-```{r pre-fit Carex pedunculata}
-CAPE <- stigph %>% 
-  filter(Species=="Carex pedunculata")
-# summary(CAPE) 
-
-#Taking a look at the data
-hist(CAPE$Flw_pollen) # response variable. looks very right skewed!
-hist(CAPE$Log_flw_pollen) # much more symmetric
-hist(CAPE$Infl_max) # looks ok
-```
-
-```{r flower height vs pollen load Carex pedunculata}
-# Look at plot of Log_flw_pollen and Flw_height 
-# Looks like no big differences between sites in flower height or pollen load
-ggplot(data=CAPE, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
-  geom_point(size=3) + 
-  scale_x_continuous(name="Max height") + 
-  scale_y_continuous(name="Log stigmatic pollen load") + 
-  theme_cs()
-```
-
-```{r model fit Carex pedunculata}
-#model for height
-CAPEmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=CAPE)
-summary(CAPEmod)
-anova(CAPEmod)
-# no sig quadratic term
-CAPEmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CAPE)
-summary(CAPEmod)
-anova(CAPEmod)
-# No significant effect of height on pollen loads - but significant effect of date in Carex pedunculata. 
-```
-
 ### Carex stipata (n=142)
 
 ```{r pre-fit Carex stipata}
@@ -311,10 +276,11 @@ CASTmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=CAST)
 summary(CASTmod)
 anova(CASTmod)
 # no sig quadratic term
-CASTmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=CAST)
+CASTmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CAST)
+# boundary (singular) fit
 summary(CASTmod)
 anova(CASTmod)
-# Significant effect of height on pollen loads in Carex stipata. 
+# Significant effect of height and date on pollen loads in Carex stipata. 
 ```
 
 ### Chenopodium album (n=95)
@@ -711,8 +677,9 @@ anova(SEVImod)
 
 ```{r pre-fit Thalictrum dioicum}
 THDI <- stigph %>% 
-  filter(Species=="Thalictrum dioicum")
+  filter(Species=="Thalictrum dioicum" & Date=="2021-05-17")
 # summaryTHDI) 
+# Taking only 17 May data (n=29) because I think the earlier dates were too early - not representative of actual pollen capture
 
 #Taking a look at the data
 hist(THDI$Flw_pollen) # response variable. looks very right skewed!
@@ -732,11 +699,11 @@ ggplot(data=THDI, aes(x=Infl_max, y=Log_flw_pollen, color=Date, shape=Site)) +
 
 ```{r model fit Thalictrum dioicum}
 #model for height
-THDImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=THDI)
+THDImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2)  + (1|Ind_ID), data=THDI)
 summary(THDImod)
 anova(THDImod)
 # no sig quadratic term
-THDImod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=THDI)
+THDImod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=THDI)
 summary(THDImod)
 anova(THDImod)
 # Significant effect of date on pollen loads in Thalictrum dioicum. 

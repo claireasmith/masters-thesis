@@ -1,0 +1,690 @@
+---
+title: "Effects of local density on pollen capture"
+author: "Claire Smith"
+date: "2023-06-20"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r initialize, message=F}
+# Load packages
+library(tidyverse)
+library(lme4) # for linear mixed effects models
+library(lmerTest)
+# Source files
+source("clean-stig-01.R")
+source("clean-stig-02.R")
+source("theme_cs.R")
+# Load data
+stig <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T)
+```
+
+```{r pre-processing data}
+# Take only entries with density data and pollen load data
+stigd <- stig %>% 
+  filter(!is.na(D1)&!is.na(Flw_pollen))
+# head(stigd)
+# summary(stigd)
+
+# How many species have max infl height data? 
+unique(stigd$Species) # 22 species!
+# View(stigd)
+
+# Flower is nested within plant - each plant has (potentially) multiple flowers measured within it -- need to 
+# create a unique plant ID for each plant within a species
+stigd$Ind_ID=paste(stigd$Date, stigd$Site, stigd$Plant, sep = "-")
+#How many unique individuals per species? 
+print(n=22, stigd %>% group_by(Species) %>%
+  distinct(Ind_ID) %>% 
+  summarize(n=n()))
+#    Species                      n
+#    <fct>                    <int>
+#  1 Amaranthus retroflexus         30
+#  2 Ambrosia artemisiifolia        30
+#  3 Bromus inermis                151
+#  4 Carex communis                 81
+#  5 Carex hirtifolia               89
+#  6 Carex pedunculata              31
+#  7 Carex plantaginea              38
+#  8 Carex stipata                 142
+#  9 Chenopodium album              95
+# 10 Dichanthelium implicatum       39
+# 11 Dichanthelium linearifolium    13* not enough samples
+# 12 Elymus innovatus              163
+# 13 Elymus repens                 100
+# 14 Festuca campestris            319
+# 15 Phleum pratense                18
+# 16 Plantago lanceolata            27
+# 17 Rumex acetosella               50
+# 18 Rumex crispus                 108
+# 19 Schizacne purpurascens        154
+# 20 Scirpus microcarpus           137
+# 21 Setaria viridis                45
+# 22 Thalictrum dioicum             59
+
+# I'll go through each species and run a model predicting pollen capture by density
+# Since many likely have log-normal distributions of pollen capture, I'll create a log flw pollen variable now to # save time -- but will still check each species individually 
+stigd$Log_flw_pollen <- log(stigd$Flw_pollen+1)
+
+# I'll also create an estimate of the average distance to a plant's 5 nearest (staminate) neighbours
+stigd <- stigd %>% 
+  mutate(Avg_dist = (D1 + D2 + D3 + D4 + D5)/5)
+```
+
+### Amaranthus retroflexus (n=30)
+
+```{r pre-fit Amaranthus retroflexus}
+AMRE <- stigd %>% 
+  filter(Species=="Amaranthus retroflexus")
+# summary(AMRE) 
+
+#Taking a look at the data
+hist(AMRE$Flw_pollen) # response variable. looks very right skewed!
+hist(AMRE$Log_flw_pollen) # much more symmetric
+hist(AMRE$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Amaranthus retroflexus}
+# Look at plot of Log_flw_pollen and Avg_dist 
+ggplot(data=AMRE, aes(x=Avg_dist, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Amaranthus retroflexus}
+AMREmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=AMRE)
+summary(AMREmod)
+anova(AMREmod)
+# No significant effect of density or date on pollen loads in Amaranthus retroflexus.  
+```
+
+### Ambrosia artemisiifolia (n=30)
+
+```{r pre-fit Ambrosia artemisiifolia}
+AMAR <- stigd %>% 
+  filter(Species=="Ambrosia artemisiifolia")
+# summary(AMAR) 
+
+#Taking a look at the data
+hist(AMAR$Flw_pollen) # response variable. looks very right skewed!
+hist(AMAR$Log_flw_pollen) # much more symmetric
+hist(AMAR$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Ambrosia artemisiifolia}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=AMAR, aes(x=Avg_dist, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Ambrosia artemisiifolia}
+AMARmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=AMAR)
+summary(AMARmod)
+anova(AMARmod)
+# No significant effect of density, sig effect of date on pollen loads in Ambrosia artemisiifolia.  
+```
+
+### Bromus inermis (n=151)
+
+```{r pre-fit Bromus inermis}
+BRIN <- stigd %>% 
+  filter(Species=="Bromus inermis")
+# summary(BRIN) 
+
+#Taking a look at the data
+hist(BRIN$Flw_pollen) # response variable. looks very right skewed!
+hist(BRIN$Log_flw_pollen) # much more symmetric
+hist(BRIN$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Bromus inermis}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=BRIN, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Bromus inermis}
+BRINmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=BRIN)
+summary(BRINmod)
+anova(BRINmod)
+# Significant effect of density, sig effect of date on pollen loads in Bromus inermis.  
+```
+
+### Carex communis (n=81)
+
+```{r pre-fit Carex communis}
+CACO <- stigd %>% 
+  filter(Species=="Carex communis")
+# summary(CACO) 
+
+#Taking a look at the data
+hist(CACO$Flw_pollen) # response variable. looks very right skewed!
+hist(CACO$Log_flw_pollen) # much more symmetric
+hist(CACO$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Carex communis}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=CACO, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex communis}
+CACOmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=CACO)
+summary(CACOmod)
+anova(CACOmod)
+# No significant effect of density, sig effect of date on pollen loads in Carex communis.  
+```
+
+
+
+### Carex hirtifolia (n=89)
+
+```{r pre-fit Carex hirtifolia}
+CAHI <- stigd %>% 
+  filter(Species=="Carex hirtifolia")
+# summary(CAHI) 
+
+#Taking a look at the data
+hist(CAHI$Flw_pollen) # response variable. looks very right skewed!
+hist(CAHI$Log_flw_pollen) # much more symmetric
+hist(CAHI$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Carex hirtifolia}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=CAHI, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex hirtifolia}
+CAHImod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=CAHI)
+summary(CAHImod)
+anova(CAHImod)
+# No significant effect of density, sig effect of date on pollen loads in Carex hirtifolia  
+```
+
+
+### Carex pedunculata (n=31)
+
+```{r pre-fit Carex pedunculata}
+CAPE <- stigd %>% 
+  filter(Species=="Carex pedunculata")
+# summary(CAPE) 
+
+#Taking a look at the data
+hist(CAPE$Flw_pollen) # response variable. looks very right skewed!
+hist(CAPE$Log_flw_pollen) # much more symmetric
+hist(CAPE$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Carex pedunculata}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=CAPE, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex pedunculata}
+CAPEmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=CAPE)
+summary(CAPEmod)
+anova(CAPEmod)
+# No significant effect of density, sig effect of date on pollen loads in Carex pedunculata
+```
+
+
+### Carex plantaginea (n=38)
+
+```{r pre-fit Carex plantaginea}
+CAPL <- stigd %>% 
+  filter(Species=="Carex plantaginea")
+# summary(CAPL) 
+
+#Taking a look at the data
+hist(CAPL$Flw_pollen) # response variable. looks very right skewed!
+hist(CAPL$Log_flw_pollen) # much more symmetric
+hist(CAPL$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Carex plantaginea}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=CAPL, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex plantaginea}
+CAPLmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=CAPL)
+summary(CAPLmod)
+anova(CAPLmod)
+# No significant effect of density, sig effect of date on pollen loads in Carex plantaginea
+```
+
+### Carex stipata (n=142)
+
+```{r pre-fit Carex stipata}
+CAST <- stigd %>% 
+  filter(Species=="Carex stipata")
+# summary(CAST) 
+
+#Taking a look at the data
+hist(CAST$Flw_pollen) # response variable. looks very right skewed!
+hist(CAST$Log_flw_pollen) # much more symmetric
+hist(CAST$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Carex stipata}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=CAST, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex stipata}
+CASTmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=CAST)
+# boundary fit is singluar
+summary(CASTmod)
+anova(CASTmod)
+# Significant effect of density, sig effect of date on pollen loads in Carex stipata
+```
+
+### Chenopodium album (n=95)
+
+```{r pre-fit Chenopodium album}
+CHAL <- stigd %>% 
+  filter(Species=="Chenopodium album")
+# summary(CHAL) 
+
+#Taking a look at the data
+hist(CHAL$Flw_pollen) # response variable. looks very right skewed!
+hist(CHAL$Log_flw_pollen) # much more symmetric
+hist(CHAL$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Chenopodium album}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=CHAL, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Chenopodium album}
+CHALmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=CHAL)
+summary(CHALmod)
+anova(CHALmod)
+# No significant effect of density or date on pollen loads in Chenopodium album
+```
+
+### Dichanthelium implicatum (n=39)
+
+```{r pre-fit Dichanthelium implicatum}
+DIIM <- stigd %>% 
+  filter(Species=="Dichanthelium implicatum")
+# summary(DIIM) 
+
+#Taking a look at the data
+hist(DIIM$Flw_pollen) # response variable. looks very right skewed!
+hist(DIIM$Log_flw_pollen) # much more symmetric
+hist(DIIM$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Dichanthelium implicatum}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=DIIM, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Dichanthelium implicatum}
+DIIMmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=DIIM)
+summary(DIIMmod)
+anova(DIIMmod)
+# No significant effect of density, significant effect of date on pollen loads in Dichanthelium implicatum
+```
+
+### Elymus innovatus (n=163)
+
+```{r pre-fit Elymus innovatus}
+ELIN <- stigd %>% 
+  filter(Species=="Elymus innovatus")
+# summary(ELIN) 
+
+#Taking a look at the data
+hist(ELIN$Flw_pollen) # response variable. looks very right skewed!
+hist(ELIN$Log_flw_pollen) # much more symmetric
+hist(ELIN$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Elymus innovatus}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=ELIN, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Elymus innovatus}
+ELINmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=ELIN)
+summary(ELINmod)
+anova(ELINmod)
+# No significant effect of density, sig effect of date on pollen loads in Elymus innovatus
+```
+
+### Elymus repens (n=100)
+
+```{r pre-fit Elymus repens}
+ELRE <- stigd %>% 
+  filter(Species=="Elymus repens")
+# summary(ELRE) 
+
+#Taking a look at the data
+hist(ELRE$Flw_pollen) # response variable. looks very right skewed!
+hist(ELRE$Log_flw_pollen) # much more symmetric
+hist(ELRE$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Elymus repens}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=ELRE, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Elymus repens}
+ELREmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=ELRE)
+summary(ELREmod)
+anova(ELREmod)
+# No significant effect of density, sig effect of date on pollen loads in Elymus repens
+```
+
+### Festuca campestris (n=319)
+
+```{r pre-fit Festuca campestris}
+FECA <- stigd %>% 
+  filter(Species=="Festuca campestris")
+# summary(FECA) 
+
+#Taking a look at the data
+hist(FECA$Flw_pollen) # response variable. looks very right skewed!
+hist(FECA$Log_flw_pollen) # much more symmetric
+hist(FECA$Avg_dist) # looks ok
+```
+
+```{r flower height vs pollen load Festuca campestris}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=FECA, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Festuca campestris}
+FECAmod <- lmer(Log_flw_pollen ~ Avg_dist + Date + (1|Ind_ID), data=FECA)
+summary(FECAmod)
+anova(FECAmod)
+# No significant effect of density, sig effect of date on pollen loads in Festuca campestris
+```
+
+### Phleum pratense (n=18)
+
+```{r pre-fit Phleum pratense}
+PHPR <- stigd %>% 
+  filter(Species=="Phleum pratense")
+# summary(PHPR) 
+
+#Taking a look at the data
+hist(PHPR$Flw_pollen) # response variable. looks very right skewed!
+hist(PHPR$Log_flw_pollen) # much more symmetric
+hist(PHPR$Avg_dist) 
+```
+
+```{r flower height vs pollen load Phleum pratense}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=PHPR, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Phleum pratense}
+PHPRmod <- lmer(Log_flw_pollen ~ Avg_dist + (1|Ind_ID), data=PHPR)
+summary(PHPRmod)
+anova(PHPRmod)
+# No significant effect of density on pollen loads in Phleum pratense
+```
+
+### Plantago lanceolata (n=27)
+
+```{r pre-fit Plantago lanceolata}
+PLLA <- stigd %>% 
+  filter(Species=="Plantago lanceolata")
+# summary(PLLA) 
+
+#Taking a look at the data
+hist(PLLA$Flw_pollen) # response variable. looks very right skewed!
+hist(PLLA$Log_flw_pollen) # much more symmetric
+hist(PLLA$Avg_dist) 
+```
+
+```{r flower height vs pollen load Plantago lanceolata}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=PLLA, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Plantago lanceolata}
+PLLAmod <- lmer(Log_flw_pollen ~ Avg_dist + Date +  (1|Ind_ID), data=PLLA)
+summary(PLLAmod)
+anova(PLLAmod)
+# No significant effect of density or date on pollen loads in Plantago lanceolata
+```
+
+### Rumex acetosella (n=50)
+
+```{r pre-fit Rumex acetosella}
+RUAC <- stigd %>% 
+  filter(Species=="Rumex acetosella")
+# summary(RUAC) 
+
+#Taking a look at the data
+hist(RUAC$Flw_pollen) # response variable. looks very right skewed!
+hist(RUAC$Log_flw_pollen) # much more symmetric
+hist(RUAC$Avg_dist) 
+```
+
+```{r flower height vs pollen load Rumex acetosella}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=RUAC, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Rumex acetosella}
+RUACmod <- lmer(Log_flw_pollen ~ Avg_dist + Date +  (1|Ind_ID), data=RUAC)
+summary(RUACmod)
+anova(RUACmod)
+# No significant effect of density or date on pollen loads in Rumex acetosella
+```
+
+### Rumex crispus (n=108)
+
+```{r pre-fit Rumex crispus}
+RUCR <- stigd %>% 
+  filter(Species=="Rumex crispus")
+# summary(RUCR) 
+
+#Taking a look at the data
+hist(RUCR$Flw_pollen) # response variable. looks very right skewed!
+hist(RUCR$Log_flw_pollen) # much more symmetric
+hist(RUCR$Avg_dist) 
+```
+
+```{r flower height vs pollen load Rumex crispus}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=RUCR, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Rumex crispus}
+RUCRmod <- lmer(Log_flw_pollen ~ Avg_dist + Date +  (1|Ind_ID), data=RUCR)
+summary(RUCRmod)
+anova(RUCRmod)
+# Significant effect of density, no sig effect of date on pollen loads in Rumex crispus
+```
+
+### Schizacne purpurascens (n=154)
+
+```{r pre-fit Schizacne purpurascens}
+SCPU <- stigd %>% 
+  filter(Species=="Schizacne purpurascens")
+# summary(SCPU) 
+
+#Taking a look at the data
+hist(SCPU$Flw_pollen) # response variable. looks very right skewed!
+hist(SCPU$Log_flw_pollen) # much more symmetric
+hist(SCPU$Avg_dist) 
+```
+
+```{r flower height vs pollen load Schizacne purpurascens}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=SCPU, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Schizacne purpurascens}
+SCPUmod <- lmer(Log_flw_pollen ~ Avg_dist + Date +  (1|Ind_ID), data=SCPU)
+summary(SCPUmod)
+anova(SCPUmod)
+# No significant effect of density, sig effect of date on pollen loads in Schizacne purpurascens
+```
+
+### Scirpus microcarpus (n=137)
+
+```{r pre-fit Scirpus microcarpus}
+SCMI <- stigd %>% 
+  filter(Species=="Scirpus microcarpus")
+# summary(SCMI) 
+
+#Taking a look at the data
+hist(SCMI$Flw_pollen) # response variable. looks very right skewed!
+hist(SCMI$Log_flw_pollen) # much more symmetric
+hist(SCMI$Avg_dist) 
+```
+
+```{r flower height vs pollen load Scirpus microcarpus}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=SCMI, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Scirpus microcarpus}
+SCMImod <- lmer(Log_flw_pollen ~ Avg_dist + Date +  (1|Ind_ID), data=SCMI)
+summary(SCMImod)
+anova(SCMImod)
+# No significant effect of density, sig effect of date on pollen loads in Scirpus microcarpus
+```
+
+### Setaria viridis (n=45)
+
+```{r pre-fit Setaria viridis}
+SEVI <- stigd %>% 
+  filter(Species=="Setaria viridis")
+# summary(SEVI) 
+
+#Taking a look at the data
+hist(SEVI$Flw_pollen) # response variable. looks very right skewed!
+hist(SEVI$Log_flw_pollen) # much more symmetric
+hist(SEVI$Avg_dist) 
+```
+
+```{r flower height vs pollen load Setaria viridis}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=SEVI, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Setaria viridis}
+SEVImod <- lmer(Log_flw_pollen ~ Avg_dist +  (1|Ind_ID), data=SEVI)
+summary(SEVImod)
+anova(SEVImod)
+# No significant effect of density, sig effect of date on pollen loads in Setaria viridis
+```
+
+### Thalictrum dioicum (n=29)
+* 59 total  but 29 when just considering latest date. Looking at just 2021-05-17 rather than 05-5 or 05-6 because I think those were too early, not representative of actual pollen capture. 
+
+```{r pre-fit Thalictrum dioicum}
+THDI <- stigd %>% 
+  filter(Species=="Thalictrum dioicum" & Date=="2021-05-17")
+# summary(THDI) 
+# str(THDI)
+length(unique(THDI$Plant))
+
+#Taking a look at the data
+hist(THDI$Flw_pollen) # response variable. looks very right skewed!
+hist(THDI$Log_flw_pollen) # much more symmetric
+hist(THDI$Avg_dist) 
+```
+
+```{r flower height vs pollen load Thalictrum dioicum}
+# Look at plot of Log_flw_pollen and Avg_dist
+ggplot(data=THDI, aes(x=Avg_dist, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Thalictrum dioicum}
+THDImod <- lmer(Log_flw_pollen ~ Avg_dist + (1|Ind_ID), data=THDI)
+summary(THDImod)
+anova(THDImod)
+# No significant effect of density, sig effect of date on pollen loads in Thalictrum dioicum
+```

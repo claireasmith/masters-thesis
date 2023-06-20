@@ -76,10 +76,35 @@ JF2004_pre <- JF2004_pre %>% # I'll use stringr's str_replace_all for this one b
                                                "S.purp"="Schizacne purpurascens",
                                                "T.dioicum"="Thalictrum dioicum" ))) %>% 
   distinct() # make sure there are no duplicate rows
+
 # nrow(JF2004_pre)
 # Combine all the data together into one complete dataset, stig-all.csv
 stig_all <- rbind(rbind(CS2021_pre, JF2001_pre), JF2004_pre)
-write.csv(stig_all, "processed-data/stig-all.csv", row.names=F)
+# Add sex system info
+stig_all_ss <- stig_all %>% 
+  mutate(Sex_sys = case_when(source == "JF2001" ~ "hermaphroditic",
+                             Species %in% c("Rumex acetosella","Thalictrum dioicum") ~ "dioecious",
+                             Species %in% c("Ambrosia artemisiifolia", "Amaranthus retroflexus", "Carex communis",
+                                        "Carex hirtifolia","Carex plantaginea",
+                                        "Carex pedunculata",
+                                        "Carex stipata",
+                                        "Rumex crispus",
+                                        "Scirpus microcarpus") ~ "monoecious",
+                             Species %in% c("Chenopodium album", "Dichanthelium linearifolium", 
+                                        "Dichanthelium implicatum", "Phleum pratense", 
+                                        "Setaria viridis", "Schizacne purpurascens",
+                                        "Elymus repens", "Agropyron trachycaulum",
+                                        "Festuca rubra", "Festuca pratensis", 
+                                        "Festuca campestris",
+                                        "Avenula hookeri", "Hierochloe odorata",
+                                        "Koeleria cristata","Phalaris arundinacea",
+                                        "Plantago lanceolata", 
+                                        "Poa juncifolia", "Poa secunda subsp. secunda",
+                                        "Stipa columbiana") ~ "hermaphroditic"))
+# Make sure no species were missed -- looks ok now
+# summary(as.factor(stig_all_ss$Sex_sys))
+# stig_all_ss[which(is.na(stig_all_ss$Sex_sys)),]
+# write.csv(stig_all, "processed-data/stig-all.csv", row.names=F)
 
 # I also want a version that has no repeat species. Remove repeats of mine from JF data - except Chenopodium album. Replace
 # the CS2021 C. album with the JF2004 C. album. I collected mine too early. 
@@ -90,5 +115,32 @@ unique(JF2001_norep$Species)
 JF2004_norep <- JF2004_pre %>% filter(!(Species %in% unique(CS2021_norep$Species)))
 unique(JF2004_norep$Species)
 stig_norep <- rbind(rbind(CS2021_norep, JF2001_norep), JF2004_norep)
+
+# Add sex system info
+stig_norep_ss <- stig_norep %>% 
+  mutate(Sex_sys = case_when(source == "JF2001" ~ "hermaphroditic",
+                             Species %in% c("Rumex acetosella","Thalictrum dioicum") ~ "dioecious",
+                             Species %in% c("Ambrosia artemisiifolia", "Amaranthus retroflexus", "Carex communis",
+                                            "Carex hirtifolia","Carex plantaginea",
+                                            "Carex pedunculata",
+                                            "Carex stipata",
+                                            "Rumex crispus",
+                                            "Scirpus microcarpus") ~ "monoecious",
+                             Species %in% c("Chenopodium album", "Dichanthelium linearifolium", 
+                                            "Dichanthelium implicatum", "Phleum pratense", 
+                                            "Setaria viridis", "Schizacne purpurascens",
+                                            "Elymus repens", "Agropyron trachycaulum",
+                                            "Festuca rubra", "Festuca pratensis", 
+                                            "Festuca campestris",
+                                            "Avenula hookeri", "Hierochloe odorata",
+                                            "Koeleria cristata","Phalaris arundinacea",
+                                            "Plantago lanceolata", 
+                                            "Poa juncifolia", "Poa secunda subsp. secunda",
+                                            "Stipa columbiana") ~ "hermaphroditic"))
+# Make sure no species were missed -- looks ok 
+# summary(as.factor(stig_norep_ss$Sex_sys))
+# stig_all_ss[which(is.na(stig_all_ss$Sex_sys)),]
+# write.csv(stig_all, "processed-data/stig-all.csv", row.names=F)
+
 write.csv(stig_norep, "processed-data/stig-no-rep-spp.csv", row.names=F)
 
