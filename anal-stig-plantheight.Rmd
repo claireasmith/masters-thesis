@@ -1,0 +1,743 @@
+---
+title: "Effect of plant height on pollen capture"
+author: "Claire Smith"
+date: "2023-06-19"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r initialize, message=F}
+# Load packages
+library(tidyverse)
+library(lme4) # for linear mixed effects models
+library(lmerTest)
+# Source files
+source("clean-stig-01.R")
+source("clean-stig-02.R")
+source("theme_cs.R")
+# Load data
+stig <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T)
+```
+
+```{r pre-processing data}
+# Take only entries with infl height data and pollen load data
+stigph <- stig %>% 
+  filter(!is.na(Infl_max)&!is.na(Flw_pollen))
+# head(stigph)
+# summary(stigph)
+
+# How many species have max infl height data? 
+unique(stigph$Species) # 18 species!
+#  [1] Dichanthelium implicatum Plantago lanceolata      Phleum pratense          Setaria viridis         
+#  [5] Thalictrum dioicum       Elymus repens            Bromus inermis           Elymus innovatus        
+#  [9] Festuca campestris       Chenopodium album        Carex communis           Carex hirtifolia        
+# [13] Carex pedunculata        Carex plantaginea        Carex stipata            Rumex crispus           
+# [17] Scirpus microcarpus      Schizacne purpurascens 
+# View(stigph)
+
+# Flower is nested within plant - each plant has (potentially) multiple flowers measured within it -- need to 
+# create a unique plant ID for each plant within a species
+stigph$Ind_ID=paste(stigph$Date, stigph$Site, stigph$Plant, sep = "-")
+#How many unique individuals per species? 
+stigph %>% group_by(Species) %>%
+  distinct(Ind_ID) %>% 
+  summarize(n=n())
+#    Species                      n
+#    <fct>                    <int>
+#  1 Bromus inermis             151
+#  2 Carex communis              81
+#  3 Carex hirtifolia            89
+#  4 Carex pedunculata           31
+#  5 Carex plantaginea           38
+#  6 Carex stipata              142
+#  7 Chenopodium album           95
+#  8 Dichanthelium implicatum    40
+#  9 Elymus innovatus           157
+# 10 Elymus repens              100
+# 11 Festuca campestris         319
+# 12 Phleum pratense             18
+# 13 Plantago lanceolata         27
+# 14 Rumex crispus              108
+# 15 Schizacne purpurascens     154
+# 16 Scirpus microcarpus        137
+# 17 Setaria viridis             45
+# 18 Thalictrum dioicum          59
+
+# I'll go through each species and run a model predicting pollen capture by flower height
+# Since many likely have log-normal distributions of pollen capture, I'll create a log flw pollen variable now to # save time -- but will still check each species individually 
+stigph$Log_flw_pollen <- log(stigph$Flw_pollen+1)
+```
+
+### Bromus inermis (n=151)
+
+```{r pre-fit Bromus inermis}
+BRIN <- stigph %>% 
+  filter(Species=="Bromus inermis")
+# summary(BRIN) 
+
+#Taking a look at the data
+hist(BRIN$Flw_pollen) # response variable. looks very right skewed!
+hist(BRIN$Log_flw_pollen) # much more symmetric
+hist(BRIN$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Bromus inermis}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=BRIN, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Bromus inermis}
+#model for height
+# BRINmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=BRIN)
+# no sig quadratic term
+BRINmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=BRIN)
+summary(BRINmod)
+anova(BRINmod)
+# No significant effect of height on pollen loads in Bromus inermis.  
+```
+
+### Carex communis (n=81)
+
+```{r pre-fit Carex communis}
+CACO <- stigph %>% 
+  filter(Species=="Carex communis")
+# summary(CACO) 
+
+#Taking a look at the data
+hist(CACO$Flw_pollen) # response variable. looks very right skewed!
+hist(CACO$Log_flw_pollen) # much more symmetric
+hist(CACO$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Carex communis}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CACO, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max heightt") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex communis}
+#model for height
+CACOmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=CACO)
+summary(CACOmod)
+anova(CACOmod)
+# no sig quadratic term
+CACOmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=CACO)
+summary(CACOmod)
+anova(CACOmod)
+# No significant effect of height on pollen loads in Carex communis. 
+```
+
+### Carex hirtifolia (n=89)
+
+```{r pre-fit Carex hirtifolia}
+CAHI <- stigph %>% 
+  filter(Species=="Carex hirtifolia")
+# summary(CAHI) 
+
+#Taking a look at the data
+hist(CAHI$Flw_pollen) # response variable. looks very right skewed!
+hist(CAHI$Log_flw_pollen) # much more symmetric
+hist(CAHI$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Carex hirtifolia}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CAHI, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex hirtifolia}
+#model for height
+CAHImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=CAHI)
+summary(CAHImod)
+anova(CAHImod)
+# no sig quadratic term
+CAHImod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=CAHI)
+summary(CAHImod)
+anova(CAHImod)
+# No significant effect of height on pollen loads in Carex hirtifolia. 
+```
+
+### Carex pedunculata (n=31)
+
+```{r pre-fit Carex pedunculata}
+CAPE <- stigph %>% 
+  filter(Species=="Carex pedunculata")
+# summary(CAPE) 
+
+#Taking a look at the data
+hist(CAPE$Flw_pollen) # response variable. looks very right skewed!
+hist(CAPE$Log_flw_pollen) # much more symmetric
+hist(CAPE$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Carex pedunculata}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CAPE, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex pedunculata}
+#model for height
+CAPEmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=CAPE)
+summary(CAPEmod)
+anova(CAPEmod)
+# no sig quadratic term
+CAPEmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CAPE)
+summary(CAPEmod)
+anova(CAPEmod)
+# No significant effect of height on pollen loads - but significant effect of date in Carex pedunculata. 
+```
+
+### Carex plantaginea  (n=38)
+
+```{r pre-fit Carex plantaginea }
+CAPL <- stigph %>% 
+  filter(Species=="Carex plantaginea")
+# summary(CAPL) 
+
+#Taking a look at the data
+hist(CAPL$Flw_pollen) # response variable. looks very right skewed!
+hist(CAPL$Log_flw_pollen) # much more symmetric
+hist(CAPL$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Carex plantaginea}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CAPL, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex plantaginea}
+#model for height
+CAPLmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=CAPL)
+summary(CAPLmod)
+anova(CAPLmod)
+# no sig quadratic term
+CAPLmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CAPL)
+summary(CAPLmod)
+anova(CAPLmod)
+# No significant effect of height on pollen loads or date in Carex plantaginea. 
+```
+
+### Carex pedunculata (n=31)
+
+```{r pre-fit Carex pedunculata}
+CAPE <- stigph %>% 
+  filter(Species=="Carex pedunculata")
+# summary(CAPE) 
+
+#Taking a look at the data
+hist(CAPE$Flw_pollen) # response variable. looks very right skewed!
+hist(CAPE$Log_flw_pollen) # much more symmetric
+hist(CAPE$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Carex pedunculata}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CAPE, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex pedunculata}
+#model for height
+CAPEmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=CAPE)
+summary(CAPEmod)
+anova(CAPEmod)
+# no sig quadratic term
+CAPEmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CAPE)
+summary(CAPEmod)
+anova(CAPEmod)
+# No significant effect of height on pollen loads - but significant effect of date in Carex pedunculata. 
+```
+
+### Carex stipata (n=142)
+
+```{r pre-fit Carex stipata}
+CAST <- stigph %>% 
+  filter(Species=="Carex stipata")
+# summary(CAST) 
+
+#Taking a look at the data
+hist(CAST$Flw_pollen) # response variable. looks very right skewed!
+hist(CAST$Log_flw_pollen) # much more symmetric
+hist(CAST$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Carex stipata}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CAST, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Carex stipata}
+#model for height
+CASTmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=CAST)
+# Singular fit with Date
+summary(CASTmod)
+anova(CASTmod)
+# no sig quadratic term
+CASTmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=CAST)
+summary(CASTmod)
+anova(CASTmod)
+# Significant effect of height on pollen loads in Carex stipata. 
+```
+
+### Chenopodium album (n=95)
+
+```{r pre-fit Chenopodium album}
+CHAL <- stigph %>% 
+  filter(Species=="Chenopodium album")
+# summary(CHAL) 
+
+#Taking a look at the data
+hist(CHAL$Flw_pollen) # response variable. looks very right skewed!
+hist(CHAL$Log_flw_pollen) # much more symmetric
+hist(CHAL$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Chenopodium album}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CHAL, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Chenopodium album}
+#model for height
+CHALmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=CHAL)
+summary(CHALmod)
+anova(CHALmod)
+# no sig quadratic term
+CHALmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=CHAL)
+summary(CHALmod)
+anova(CHALmod)
+# No significant effect of height or date on pollen loads in Chenopodium album. 
+```
+
+
+
+### Dichanthelium implicatum (n=40)
+
+```{r pre-fit Dichanthelium implicatum}
+DILI <- stigph %>% 
+  filter(Species=="Dichanthelium implicatum")
+# summary(DILI) 
+
+#Taking a look at the data
+hist(DILI$Flw_pollen) # response variable. looks very right skewed!
+hist(DILI$Log_flw_pollen) # much more symmetric
+hist(DILI$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Dichanthelium implicatum}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=DILI, aes(x=Infl_max, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Dichanthelium implicatum}
+#model for height
+DILImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=DILI)
+summary(DILImod)
+anova(DILImod)
+# no sig quadratic term
+DILImod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=DILI)
+summary(DILImod)
+anova(DILImod)
+# No significant effect of height, significant effect of date on pollen loads in Dichanthelium implicatum. 
+```
+
+### Elymus innovatus (n=157)
+
+```{r pre-fit Elymus innovatus}
+ELIN <- stigph %>% 
+  filter(Species=="Elymus innovatus")
+# summary(ELIN) 
+
+#Taking a look at the data
+hist(ELIN$Flw_pollen) # response variable. looks very right skewed!
+hist(ELIN$Log_flw_pollen) # much more symmetric
+hist(ELIN$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Elymus innovatus}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=ELIN, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Elymus innovatus}
+#model for height
+ELINmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=ELIN)
+summary(ELINmod)
+anova(ELINmod)
+# no sig quadratic term
+ELINmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=ELIN)
+summary(ELINmod)
+anova(ELINmod)
+# No significant effect of height, significant effect of date on pollen loads in Elymus innovatus. 
+```
+
+
+
+### Elymus repens (n=100)
+
+```{r pre-fit Elymus repens}
+ELRE <- stigph %>% 
+  filter(Species=="Elymus repens")
+# summary(ELRE) 
+
+#Taking a look at the data
+hist(ELRE$Flw_pollen) # response variable. looks very right skewed!
+hist(ELRE$Log_flw_pollen) # much more symmetric
+hist(ELRE$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Elymus repens}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=ELRE, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Elymus repens}
+#model for height
+ELREmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=ELRE)
+summary(ELREmod)
+anova(ELREmod)
+# no sig quadratic term
+ELREmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=ELRE)
+summary(ELREmod)
+anova(ELREmod)
+# No significant effect of height, significant effect of date on pollen loads in Elymus repens. 
+```
+
+### Festuca campestris (n=319)
+
+```{r pre-fit Festuca campestris}
+FECA <- stigph %>% 
+  filter(Species=="Festuca campestris")
+# summaryFECA) 
+
+#Taking a look at the data
+hist(FECA$Flw_pollen) # response variable. looks very right skewed!
+hist(FECA$Log_flw_pollen) # much more symmetric
+hist(FECA$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Festuca campestris}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=FECA, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Festuca campestris}
+#model for height
+FECAmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=FECA)
+summary(FECAmod)
+anova(FECAmod)
+# no sig quadratic term
+FECAmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=FECA)
+summary(FECAmod)
+anova(FECAmod)
+# No significant effect of height, significant effect of date on pollen loads in Festuca campestris. 
+```
+
+
+### Phleum pratense (n=18)
+
+```{r pre-fit Phleum pratense}
+PHPR <- stigph %>% 
+  filter(Species=="Phleum pratense")
+# summaryPHPR) 
+
+#Taking a look at the data
+hist(PHPR$Flw_pollen) # response variable. looks very right skewed!
+hist(PHPR$Log_flw_pollen) # much more symmetric
+hist(PHPR$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Phleum pratense}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=PHPR, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Phleum pratense}
+#model for height
+PHPRmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=PHPR)
+summary(PHPRmod)
+anova(PHPRmod)
+# no sig quadratic term
+PHPRmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=PHPR)
+summary(PHPRmod)
+anova(PHPRmod)
+# No significant effect of height on pollen loads in Phleum pratense. 
+```
+
+### Plantago lanceolata (n=27)
+
+```{r pre-fit Plantago lanceolata}
+PLLA <- stigph %>% 
+  filter(Species=="Plantago lanceolata")
+# summaryPLLA) 
+
+#Taking a look at the data
+hist(PLLA$Flw_pollen) # response variable. looks very right skewed!
+hist(PLLA$Log_flw_pollen) # much more symmetric
+hist(PLLA$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Plantago lanceolata}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=PLLA, aes(x=Infl_max, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Plantago lanceolata}
+#model for height
+PLLAmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=PLLA)
+summary(PLLAmod)
+anova(PLLAmod)
+# no sig quadratic term
+PLLAmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=PLLA)
+summary(PLLAmod)
+anova(PLLAmod)
+# No significant effect of height on pollen loads in Plantago lanceolata. 
+```
+
+### Rumex crispus (n=108)
+
+```{r pre-fit Rumex crispus}
+RUCR <- stigph %>% 
+  filter(Species=="Rumex crispus")
+# summaryRUCR) 
+
+#Taking a look at the data
+hist(RUCR$Flw_pollen) # response variable. looks very right skewed!
+hist(RUCR$Log_flw_pollen) # much more symmetric
+hist(RUCR$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Rumex crispus}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=RUCR, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Rumex crispus}
+#model for height
+RUCRmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=RUCR)
+summary(RUCRmod)
+anova(RUCRmod)
+# no sig quadratic term
+RUCRmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=RUCR)
+summary(RUCRmod)
+anova(RUCRmod)
+# No significant effect of height or date on pollen loads in Rumex crispus. 
+```
+
+### Schizacne purpurascens (n=154)
+
+```{r pre-fit Schizacne purpurascens}
+SCPU <- stigph %>% 
+  filter(Species=="Schizacne purpurascens")
+# summarySCPU) 
+
+#Taking a look at the data
+hist(SCPU$Flw_pollen) # response variable. looks very right skewed!
+hist(SCPU$Log_flw_pollen) # much more symmetric
+hist(SCPU$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Schizacne purpurascens}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=SCPU, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Schizacne purpurascens}
+#model for height
+SCPUmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=SCPU)
+summary(SCPUmod)
+anova(SCPUmod)
+# no sig quadratic term
+SCPUmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=SCPU)
+summary(SCPUmod)
+anova(SCPUmod)
+# No significant effect of height, sig effect of date on pollen loads in Schizacne purpurascens. 
+```
+
+### Scirpus microcarpus (n=137)
+
+```{r pre-fit Scirpus microcarpus}
+SCMI <- stigph %>% 
+  filter(Species=="Scirpus microcarpus")
+# summarySCMI) 
+
+#Taking a look at the data
+hist(SCMI$Flw_pollen) # response variable. looks very right skewed!
+hist(SCMI$Log_flw_pollen) # much more symmetric
+hist(SCMI$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Scirpus microcarpus}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=SCMI, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Scirpus microcarpus}
+#model for height
+SCMImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=SCMI)
+summary(SCMImod)
+anova(SCMImod)
+# no sig quadratic term
+SCMImod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=SCMI)
+summary(SCMImod)
+anova(SCMImod)
+# No significant effect of height, sig effect of date on pollen loads in Scirpus microcarpus. 
+```
+
+### Setaria viridis (n=45)
+
+```{r pre-fit Setaria viridis}
+SEVI <- stigph %>% 
+  filter(Species=="Setaria viridis")
+# summarySEVI) 
+
+#Taking a look at the data
+hist(SEVI$Flw_pollen) # response variable. looks very right skewed!
+hist(SEVI$Log_flw_pollen) # much more symmetric
+hist(SEVI$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Setaria viridis}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=SEVI, aes(x=Infl_max, y=Log_flw_pollen, color=Date)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Setaria viridis}
+#model for height
+SEVImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=SEVI)
+summary(SEVImod)
+anova(SEVImod)
+# no sig quadratic term
+SEVImod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=SEVI)
+summary(SEVImod)
+anova(SEVImod)
+# No significant effect of height on pollen loads in Setaria viridis. 
+```
+
+### Thalictrum dioicum (n=59)
+
+```{r pre-fit Thalictrum dioicum}
+THDI <- stigph %>% 
+  filter(Species=="Thalictrum dioicum")
+# summaryTHDI) 
+
+#Taking a look at the data
+hist(THDI$Flw_pollen) # response variable. looks very right skewed!
+hist(THDI$Log_flw_pollen) # much more symmetric
+hist(THDI$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Thalictrum dioicum}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=THDI, aes(x=Infl_max, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Thalictrum dioicum}
+#model for height
+THDImod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + Date + (1|Ind_ID), data=THDI)
+summary(THDImod)
+anova(THDImod)
+# no sig quadratic term
+THDImod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=THDI)
+summary(THDImod)
+anova(THDImod)
+# Significant effect of date on pollen loads in Thalictrum dioicum. 
+```

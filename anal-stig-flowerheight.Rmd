@@ -274,3 +274,45 @@ ggplot(data=RUAC, aes(x=Date, y=Log_flw_pollen, fill=Site)) +
   theme_cs()
 ```
 
+### Setaria viridis (n=45)
+
+```{r pre-fit Setaria viridis}
+SEVI <- stigfh %>% 
+  filter(Species=="Setaria viridis")
+# summary(SEVI) # 1 site, 1 date
+# View(SEVI)
+
+#Taking a look at the data
+hist(SEVI$Flw_pollen) # response variable. looks very right skewed!
+hist(SEVI$Log_flw_pollen) # better
+hist(SEVI$Flower_height) # looks ok
+```
+
+```{r flower height vs pollen load Setaria viridis}
+# Look at plot of Log_flw_pollen and Flw_height 
+# overall doesn't seem to be much of a trend of flower height and pollen load
+ggplot(data=SEVI, aes(x=Flower_height, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Flower height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Setaria viridis}
+# SEVImod <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + (1|Ind_ID), data=SEVI)
+# summary(SEVImod)
+# anova(SEVImod) # quad term not sig
+SEVImod <- lmer(Log_flw_pollen ~ Flower_height + (1|Ind_ID), data=SEVI)
+summary(SEVImod)
+anova(SEVImod) # flower height not sig
+
+# No significant quadratic or linear effect of flower height. 
+```
+
+```{r Setaria viridis site and date effects}
+ggplot(data=SEVI, aes(x=Date, y=Log_flw_pollen, fill=Site)) + 
+  geom_violin() + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
