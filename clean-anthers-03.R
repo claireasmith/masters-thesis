@@ -1,9 +1,10 @@
 ## Combine CS size and number data 
 ## Claire Smith
-## Last updated: 20 June 2023
+## Last updated: 22 June 2023
 
 # Create size-prod-CS2021.csv, which combines size-CS2021.csv and prod-CS2021.csv.
-# Each row is an invidual, containing their average pollen size and number. 
+# Each row is an individual, containing its average pollen diam (in um) and 
+# average pollen count per anther. 
 
 ############################################################################################
 # Load libraries
@@ -54,6 +55,6 @@ sizeprod <- sizeprod %>%
 # 5 Rumex acetosella            9
 # 6 Thalictrum dioicum          7
 
-summary(sizeprod)
+# summary(sizeprod)
 
 write.csv(sizeprod, "processed-data/size-prod-CS2021.csv", row.names=F)

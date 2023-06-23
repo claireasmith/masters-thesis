@@ -1,6 +1,6 @@
 ## Combine CS pollen number data into one file
 ## Claire Smith
-## Last updated: 20 June 2023
+## Last updated: 22 June 2023
 
 # Create prod-CS2021-all.csv, a file with all the CS2021 pollen production data compiled together
 
@@ -34,7 +34,7 @@ aAR <- filter(aAR, !is.na(Pollen_sub))
 aDat_pre <- rbind(aAA, aAR, aCA, aPL, aSV)
 # View(aDat_pre)
 
-# Calculate average per-anther pollen production per individual 
+# Calculate per-anther pollen production from subsample counts
 aDat <- aDat_pre %>% 
   dplyr::mutate(polanth=Pollen_sub/Subsample_vol_uL*Tot_tube_vol_uL/N_anth_tube) 
 
@@ -195,7 +195,8 @@ write.csv(prod, "processed-data/prod-CS2021-within-inds.csv", row.names=F)
 # Calculate per-individual pollen production per anther
 prod_avg <- prod %>% 
   group_by(source, Sex_sys, Species, Date, Site, Label, Observer, Anth_per_flw, count_method) %>% 
-  summarize(Avg_pol_anth=mean(polanth, na.rm=T))
+  summarize(Avg_pol_anth=mean(polanth, na.rm=T),
+            Sd_pol_anth=sd(polanth, na.rm=T))
 
 write.csv(prod_avg, "processed-data/prod-CS2021.csv", row.names=F)
 

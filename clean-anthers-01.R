@@ -1,6 +1,6 @@
 ## Combine CS anther size data into one file
 ## Claire Smith
-## Last updated: 20 June 2023
+## Last updated: 22 June 2023
 
 # Create size-CS2021-all.csv, a file with all the CS2021 pollen size data compiled together
 
@@ -269,7 +269,8 @@ avg_size_dat <- size %>%
   filter(Species != "Setaria viridis") %>% 
   group_by(source, Sex_sys, Species, Site, Ind) %>% 
   summarize(Avg_area = mean(Area, na.rm=T),
-            Avg_diam = mean(Diam, na.rm=T))
+            Avg_diam = mean(Diam, na.rm=T), 
+            Sd_diam = sd(Diam, na.rm=T))
 write.csv(avg_size_dat, "processed-data/size-CS2021.csv", row.names=F)
 
 
