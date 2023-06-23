@@ -249,17 +249,25 @@ size_dat_ss <- size_dat %>%
 # summary(as.factor(size_dat_ss$Sex_sys))
 
 # # Check data
-# size <- size_dat_ss
+size <- size_dat_ss
 # size %>% group_by(Species, Site) %>% 
 #   summarize(n=n())
+
+# Ssome repeat anther measurements for an individual are listed as "1A" and "1B" etc -- remove the A's and B's
+# to get overall individual average pollen size
+# unique(size$Ind)
+size <- size %>% mutate(Ind = gsub("[ABCD]", "", Ind))
+# unique(size$Ind) # looks good!
 
 
 # Write file that has within-individual variation in pollen size
 # Each row is a pollen size measurement within an individual
-write.csv(size_dat_ss, "processed-data/size-CS2021-within-inds.csv", row.names = F)
+write.csv(size, "processed-data/size-CS2021-within-inds.csv", row.names = F)
 
 # Take the mean pollen size per individual, write a file where each individual is a row
-avg_size_dat <- size_dat_ss %>% group_by(Species, Site, Ind) %>% 
+avg_size_dat <- size %>% 
+  filter(Species != "Setaria viridis") %>% 
+  group_by(source, Sex_sys, Species, Site, Ind) %>% 
   summarize(Avg_area = mean(Area, na.rm=T),
             Avg_diam = mean(Diam, na.rm=T))
 write.csv(avg_size_dat, "processed-data/size-CS2021.csv", row.names=F)

@@ -1,520 +1,118 @@
-"Species","Date","Site","Label","Anther","Subsample","Tot_tube_vol_uL","Subsample_vol_uL","Pollen_sub","Observer","N_anth_tube","Anth_per_flw","polanth","count_method","source","Sex_sys"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","1","1","1",600,5,116,"Claire",5,5,2784,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","1","1","2",600,5,114,"Claire",5,5,2736,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","1","1","3",600,5,120,"Claire",5,5,2880,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","1","1","4",600,5,76,"Claire",5,5,1824,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","2","1","1",600,5,109,"Claire",5,5,2616,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","2","1","2",600,5,141,"Claire",5,5,3384,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","2","1","3",600,5,101,"Claire",5,5,2424,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","2","1","4",600,5,131,"Claire",5,5,3144,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","2","1","5",600,5,150,"Claire",5,5,3600,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","2","1","6",600,5,137,"Claire",5,5,3288,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","3","1","1",600,5,128,"Claire",5,5,3072,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","3","1","2",600,5,117,"Claire",5,5,2808,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","3","1","3",600,5,126,"Claire",5,5,3024,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","4","1","1",600,5,129,"Claire",5,5,3096,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","4","1","2",600,5,124,"Claire",5,5,2976,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","4","1","3",600,5,124,"Claire",5,5,2976,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","5","1","1",600,5,108,"Claire",5,5,2592,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","5","1","2",600,5,106,"Claire",5,5,2544,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","20 Sept 2021","LP","5","1","3",600,5,103,"Claire",5,5,2472,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","1","1","1",600,5,138,"Claire",5,5,3312,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","1","1","2",600,5,146,"Claire",5,5,3504,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","1","1","3",600,5,144,"Claire",5,5,3456,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","2","1","1",600,5,184,"Claire",5,5,4416,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","2","1","2",600,5,90,"Claire",5,5,2160,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","2","1","3",600,5,157,"Claire",5,5,3768,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","3","1","1",600,5,154,"Claire",5,5,3696,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","3","1","2",600,5,136,"Claire",5,5,3264,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","3","1","3",600,5,110,"Claire",5,5,2640,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","4","1","1",600,5,121,"Claire",5,5,2904,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","4","1","2",600,5,152,"Claire",5,5,3648,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","4","1","3",600,5,133,"Claire",5,5,3192,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","5","1","1",600,5,110,"Claire",5,5,2640,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","5","1","2",600,5,73,"Claire",5,5,1752,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","5","1","3",600,5,102,"Claire",5,5,2448,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","6","1","1",600,5,120,"Claire",5,5,2880,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","6","1","2",600,5,121,"Claire",5,5,2904,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","6","1","3",600,5,133,"Claire",5,5,3192,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","7","1","1",600,5,129,"Claire",5,5,3096,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","7","1","2",600,5,110,"Claire",5,5,2640,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","7","1","3",600,5,140,"Claire",5,5,3360,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","8","1","1",600,5,106,"Claire",5,5,2544,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","8","1","2",600,5,129,"Claire",5,5,3096,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","8","1","3",600,5,121,"Claire",5,5,2904,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","9","1","1",600,5,100,"Claire",5,5,2400,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","9","1","2",600,5,132,"Claire",5,5,3168,"manual","CS2021","monoecious"
-"Ambrosia artemisiifolia","14 Aug 2021","FBF","9","1","3",600,5,122,"Claire",5,5,2928,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A1","1","1",600,5,28,"Claire",1,5,3360,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A1","1","2",600,5,28,"Claire",1,5,3360,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A1","1","3",600,5,24,"Claire",1,5,2880,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A2","1","1",600,5,26,"Claire",1,5,3120,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A2","1","2",600,5,31,"Claire",1,5,3720,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A2","1","3",600,5,29,"Claire",1,5,3480,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A3","1","1",600,7.5,34,"Claire",1,5,2720,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A3","1","2",600,7.5,35,"Claire",1,5,2800,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A3","1","3",600,7.5,37,"Claire",1,5,2960,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A4","1","1",600,7.5,30,"Claire",1,5,2400,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A4","1","2",600,7.5,37,"Claire",1,5,2960,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A4","1","3",600,7.5,33,"Claire",1,5,2640,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A5","1","1",600,7.5,36,"Claire",1,5,2880,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A5","1","2",600,7.5,34,"Claire",1,5,2720,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A5","1","3",600,7.5,27,"Claire",1,5,2160,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A6","1","1",600,7.5,37,"Claire",1,5,2960,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A6","1","2",600,7.5,35,"Claire",1,5,2800,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","16 Aug 2021","FBF2","A6","1","3",600,7.5,36,"Claire",1,5,2880,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A1","1","1",600,7.5,34,"Claire",1,5,2720,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A1","1","2",600,7.5,28,"Claire",1,5,2240,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A1","1","3",600,7.5,21,"Claire",1,5,1680,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A2","1","1",600,7.5,39,"Claire",1,5,3120,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A2","1","2",600,7.5,28,"Claire",1,5,2240,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A2","1","3",600,7.5,38,"Claire",1,5,3040,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A3","1","1",600,7.5,30,"Claire",1,5,2400,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A3","1","2",600,7.5,30,"Claire",1,5,2400,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A3","1","3",600,7.5,29,"Claire",1,5,2320,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A4","1","1",600,7.5,26,"Claire",1,5,2080,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A4","1","2",600,7.5,35,"Claire",1,5,2800,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A4","1","3",600,7.5,29,"Claire",1,5,2320,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A5","1","1",600,7.5,41,"Claire",1,5,3280,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A5","1","2",600,7.5,42,"Claire",1,5,3360,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A5","1","3",600,7.5,41,"Claire",1,5,3280,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A6","1","1",600,7.5,27,"Claire",1,5,2160,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A6","1","2",600,7.5,25,"Claire",1,5,2000,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A6","1","3",600,7.5,25,"Claire",1,5,2000,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A7","1","1",600,7.5,45,"Jeremiah",1,5,3600,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A7","1","2",600,7.5,23,"Jeremiah",1,5,1840,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A7","1","3",600,7.5,36,"Jeremiah",1,5,2880,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A8","1","1",600,7.5,23,"Jeremiah",1,5,1840,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A8","1","2",600,7.5,16,"Jeremiah",1,5,1280,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A8","1","3",600,7.5,16,"Jeremiah",1,5,1280,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A9","1","1",600,7.5,58,"Jeremiah",1,5,4640,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A9","1","2",600,7.5,42,"Jeremiah",1,5,3360,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A9","1","3",600,7.5,40,"Jeremiah",1,5,3200,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A10","1","1",600,7.5,21,"Jeremiah",1,5,1680,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A10","1","2",600,7.5,27,"Jeremiah",1,5,2160,"manual","CS2021","monoecious"
-"Amaranthus retroflexus","17 Jul 2021","FBF","A10","1","3",600,7.5,14,"Jeremiah",1,5,1120,"manual","CS2021","monoecious"
-"Chenopodium album","23 Jul 2021","FBF2","M1",NA,"1",600,7.5,110,"Jeremiah",5,5,1760,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M1",NA,"2",600,7.5,87,"Jeremiah",5,5,1392,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M1",NA,"3",600,7.5,107,"Jeremiah",5,5,1712,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M2",NA,"1",600,7.5,108,"Jeremiah",5,5,1728,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M2",NA,"2",600,7.5,130,"Jeremiah",5,5,2080,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M2",NA,"3",600,7.5,97,"Jeremiah",5,5,1552,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M3",NA,"1",600,7.5,97,"Jeremiah",5,5,1552,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M3",NA,"2",600,7.5,91,"Jeremiah",5,5,1456,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M3",NA,"3",600,7.5,93,"Jeremiah",5,5,1488,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M4",NA,"1",600,7.5,122,"Jeremiah",5,5,1952,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M4",NA,"2",600,7.5,98,"Jeremiah",5,5,1568,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M4",NA,"3",600,7.5,99,"Jeremiah",5,5,1584,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M5",NA,"1",600,7.5,89,"Jeremiah",5,5,1424,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M5",NA,"2",600,7.5,82,"Jeremiah",5,5,1312,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M5",NA,"3",600,7.5,77,"Jeremiah",5,5,1232,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M6",NA,"1",600,7.5,66,"Jeremiah",5,5,1056,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M6",NA,"2",600,7.5,78,"Jeremiah",5,5,1248,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M6",NA,"3",600,7.5,109,"Jeremiah",5,5,1744,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M7",NA,"1",600,7.5,92,"Jeremiah",5,5,1472,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M7",NA,"2",600,7.5,122,"Jeremiah",5,5,1952,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M7",NA,"3",600,7.5,133,"Jeremiah",5,5,2128,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M8",NA,"1",600,7.5,89,"Jeremiah",5,5,1424,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M8",NA,"2",600,7.5,93,"Jeremiah",5,5,1488,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M8",NA,"3",600,7.5,101,"Jeremiah",5,5,1616,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M9",NA,"1",600,7.5,90,"Jeremiah",5,5,1440,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M9",NA,"2",600,7.5,102,"Jeremiah",5,5,1632,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M9",NA,"3",600,7.5,95,"Jeremiah",5,5,1520,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M10",NA,"1",600,7.5,125,"Jeremiah",5,5,2000,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M10",NA,"2",600,7.5,93,"Jeremiah",5,5,1488,"manual","CS2021","hermaphroditic"
-"Chenopodium album","23 Jul 2021","FBF2","M10",NA,"3",600,7.5,85,"Jeremiah",5,5,1360,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M1",NA,"1",600,7.5,112,"Jeremiah",5,5,1792,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M1",NA,"2",600,7.5,114,"Jeremiah",5,5,1824,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M1",NA,"3",600,7.5,137,"Jeremiah",5,5,2192,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M2",NA,"1",600,7.5,94,"Jeremiah",5,5,1504,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M2",NA,"2",600,7.5,106,"Jeremiah",5,5,1696,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M2",NA,"3",600,7.5,94,"Jeremiah",5,5,1504,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M3",NA,"1",600,7.5,92,"Jeremiah",5,5,1472,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M3",NA,"2",600,7.5,117,"Jeremiah",5,5,1872,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M3",NA,"3",600,7.5,109,"Jeremiah",5,5,1744,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M4",NA,"1",600,7.5,56,"Jeremiah",5,5,896,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M4",NA,"2",600,7.5,76,"Jeremiah",5,5,1216,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M4",NA,"3",600,7.5,73,"Jeremiah",5,5,1168,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M5",NA,"1",600,7.5,102,"Jeremiah",5,5,1632,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M5",NA,"2",600,7.5,99,"Jeremiah",5,5,1584,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M5",NA,"3",600,7.5,88,"Jeremiah",5,5,1408,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M6",NA,"1",600,7.5,59,"Jeremiah",5,5,944,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M6",NA,"2",600,7.5,74,"Jeremiah",5,5,1184,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M6",NA,"3",600,7.5,66,"Jeremiah",5,5,1056,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M7",NA,"1",600,7.5,81,"Jeremiah",5,5,1296,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M7",NA,"2",600,7.5,88,"Jeremiah",5,5,1408,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M7",NA,"3",600,7.5,100,"Jeremiah",5,5,1600,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M8",NA,"1",600,7.5,93,"Jeremiah",5,5,1488,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M8",NA,"2",600,7.5,99,"Jeremiah",5,5,1584,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M8",NA,"3",600,7.5,84,"Jeremiah",5,5,1344,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M9",NA,"1",600,7.5,96,"Jeremiah",5,5,1536,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M9",NA,"2",600,7.5,75,"Jeremiah",5,5,1200,"manual","CS2021","hermaphroditic"
-"Chenopodium album","22 Jul 2021","FBF","M9",NA,"3",600,7.5,91,"Jeremiah",5,5,1456,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A10",NA,"1",600,2.5,71,"Claire",1,4,17040,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A10",NA,"2",600,2.5,67,"Claire",1,4,16080,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A10",NA,"3",600,2.5,82,"Claire",1,4,19680,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A1",NA,"1",600,2.5,59,"Claire",1,4,14160,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A1",NA,"2",600,2.5,44,"Claire",1,4,10560,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A1",NA,"3",600,2.5,52,"Claire",1,4,12480,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","S8",NA,"1",600,2.5,43,"Claire",1,4,10320,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","S8",NA,"2",600,2.5,51,"Claire",1,4,12240,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","S8",NA,"3",600,2.5,47,"Claire",1,4,11280,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A5",NA,"1",600,2.5,65,"Claire",1,4,15600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A5",NA,"2",600,2.5,55,"Claire",1,4,13200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A5",NA,"3",600,2.5,47,"Claire",1,4,11280,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A2",NA,"1",700,2.5,35,"Claire",1,4,9800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A2",NA,"2",700,2.5,23,"Claire",1,4,6440,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A2",NA,"3",700,2.5,28,"Claire",1,4,7840,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A6",NA,"1",600,2.5,55,"Claire",1,4,13200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A6",NA,"2",600,2.5,54,"Claire",1,4,12960,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A6",NA,"3",600,2.5,46,"Claire",1,4,11040,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A9",NA,"1",600,2.5,65,"Claire",1,4,15600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A9",NA,"2",600,2.5,69,"Claire",1,4,16560,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A9",NA,"3",600,2.5,75,"Claire",1,4,18000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A3",NA,"1",600,2.5,58,"Claire",1,4,13920,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A3",NA,"2",600,2.5,54,"Claire",1,4,12960,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A3",NA,"3",600,2.5,59,"Claire",1,4,14160,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A4",NA,"1",600,2.5,53,"Claire",1,4,12720,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A4",NA,"2",600,2.5,63,"Claire",1,4,15120,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A4",NA,"3",600,2.5,75,"Claire",1,4,18000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A7",NA,"1",700,2.5,22,"Claire",1,4,6160,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A7",NA,"2",700,2.5,23,"Claire",1,4,6440,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","18 Aug 2021","FBF","A7",NA,"3",700,2.5,36,"Claire",1,4,10080,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A1",NA,"1",600,2.5,90,"Claire",1,4,21600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A1",NA,"2",600,2.5,68,"Claire",1,4,16320,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A1",NA,"3",600,2.5,88,"Claire",1,4,21120,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A1",NA,"4",600,2.5,74,"Claire",1,4,17760,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A1",NA,"5",600,2.5,54,"Claire",1,4,12960,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A1",NA,"6",600,2.5,38,"Claire",1,4,9120,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A2",NA,"1",600,2.5,46,"Claire",1,4,11040,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A2",NA,"2",600,2.5,38,"Claire",1,4,9120,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A2",NA,"3",600,2.5,46,"Claire",1,4,11040,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A3",NA,"1",600,2.5,41,"Claire",1,4,9840,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A3",NA,"2",600,2.5,50,"Claire",1,4,12000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A3",NA,"3",600,2.5,46,"Claire",1,4,11040,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A4",NA,"1",700,2.5,42,"Claire",1,4,11760,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A4",NA,"2",700,2.5,37,"Claire",1,4,10360,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A4",NA,"3",700,2.5,35,"Claire",1,4,9800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A5",NA,"1",700,5,86,"Claire",1,4,12040,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A5",NA,"2",700,5,86,"Claire",1,4,12040,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A5",NA,"3",700,5,79,"Claire",1,4,11060,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A5",NA,"4",700,5,69,"Claire",1,4,9660,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A6",NA,"1",800,5,98,"Claire",1,4,15680,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A6",NA,"2",800,5,104,"Claire",1,4,16640,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A6",NA,"3",800,5,97,"Claire",1,4,15520,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A7",NA,"1",800,5,77,"Claire",1,4,12320,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A7",NA,"2",800,5,70,"Claire",1,4,11200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A7",NA,"3",800,5,70,"Claire",1,4,11200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A8",NA,"1",800,5,65,"Claire",1,4,10400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A8",NA,"2",800,5,58,"Claire",1,4,9280,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A8",NA,"3",800,5,66,"Claire",1,4,10560,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A8",NA,"4",800,5,54,"Claire",1,4,8640,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A9",NA,"1",800,5,61,"Claire",1,4,9760,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A9",NA,"2",800,5,62,"Claire",1,4,9920,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A9",NA,"3",800,5,47,"Claire",1,4,7520,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A10",NA,"1",800,5,67,"Claire",1,4,10720,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A10",NA,"2",800,5,65,"Claire",1,4,10400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A10",NA,"3",800,5,60,"Claire",1,4,9600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","20 Aug 2021","QMP","A10",NA,"4",800,5,72,"Claire",1,4,11520,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M1",NA,"1",700,5,280,"Claire",4,4,9800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M1",NA,"2",700,5,375,"Claire",4,4,13125,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M1",NA,"3",700,5,342,"Claire",4,4,11970,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M8",NA,"1",700,5,332,"Claire",4,4,11620,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M8",NA,"2",700,5,371,"Claire",4,4,12985,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M8",NA,"3",700,5,341,"Claire",4,4,11935,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M4",NA,"1",650,5,250,"Claire",4,4,8125,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M4",NA,"2",650,5,256,"Claire",4,4,8320,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M4",NA,"3",650,5,231,"Claire",4,4,7507.5,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","1","1",500,5,175,"Claire",1,4,17500,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","1","2",500,5,161,"Claire",1,4,16100,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","1","3",500,5,140,"Claire",1,4,14000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","2","4",500,5,143,"Claire",1,4,14300,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","2","5",500,5,141,"Claire",1,4,14100,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","2","6",500,5,198,"Claire",1,4,19800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","7",500,5,137,"Claire",1,4,13700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","8",500,5,136,"Claire",1,4,13600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","9",500,5,130,"Claire",1,4,13000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","1","1",500,5,150,"Claire",1,4,15000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","1","2",500,5,176,"Claire",1,4,17600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","1","3",500,5,207,"Claire",1,4,20700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","2","4",500,5,115,"Claire",1,4,11500,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","2","5",500,5,111,"Claire",1,4,11100,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","2","6",500,5,89,"Claire",1,4,8900,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","7",500,5,152,"Claire",1,4,15200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","8",500,5,174,"Claire",1,4,17400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","9",500,5,178,"Claire",1,4,17800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","10",500,5,175,"Claire",1,4,17500,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","11",500,5,166,"Claire",1,4,16600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M2","3","12",500,5,148,"Claire",1,4,14800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M3","1","1",500,5,103,"Claire",1,4,10300,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M3","1","2",500,5,122,"Claire",1,4,12200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M3","1","3",500,5,114,"Claire",1,4,11400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M3","2","4",500,5,105,"Claire",1,4,10500,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M3","2","5",500,5,101,"Claire",1,4,10100,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M3","2","6",500,5,109,"Claire",1,4,10900,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M11","1","1",500,5,47,"Claire",1,4,4700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M11","1","2",500,5,46,"Claire",1,4,4600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M11","1","3",500,5,48,"Claire",1,4,4800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M11","2","4",500,5,72,"Claire",1,4,7200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M11","2","5",500,5,82,"Claire",1,4,8200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M11","2","6",500,5,66,"Claire",1,4,6600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","1","1",500,5,129,"Claire",1,4,12900,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","1","2",500,5,127,"Claire",1,4,12700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","1","3",500,5,116,"Claire",1,4,11600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","2","4",500,5,126,"Claire",1,4,12600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","2","5",500,5,126,"Claire",1,4,12600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","2","6",500,5,127,"Claire",1,4,12700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","3","7",500,5,113,"Claire",1,4,11300,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","3","8",500,5,102,"Claire",1,4,10200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M7","3","9",500,5,104,"Claire",1,4,10400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","1","1",500,5,120,"Claire",1,4,12000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","1","2",500,5,112,"Claire",1,4,11200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","1","3",500,5,110,"Claire",1,4,11000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","2","4",500,5,122,"Claire",1,4,12200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","2","5",500,5,100,"Claire",1,4,10000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","2","6",500,5,103,"Claire",1,4,10300,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","3","7",500,5,103,"Claire",1,4,10300,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","3","8",500,5,106,"Claire",1,4,10600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","3","9",500,5,109,"Claire",1,4,10900,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","4","10",500,5,88,"Claire",1,4,8800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","4","11",500,5,96,"Claire",1,4,9600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M12","4","12",500,5,77,"Claire",1,4,7700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M10","1","1",500,5,140,"Claire",1,4,14000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M10","1","2",500,5,135,"Claire",1,4,13500,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M10","1","3",500,5,114,"Claire",1,4,11400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M10","2","4",500,5,146,"Claire",1,4,14600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M10","2","5",500,5,138,"Claire",1,4,13800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M10","2","6",500,5,137,"Claire",1,4,13700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","1","1",500,5,93,"Claire",1,4,9300,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","1","2",500,5,89,"Claire",1,4,8900,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","1","3",500,5,75,"Claire",1,4,7500,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","2","4",500,5,124,"Claire",1,4,12400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","2","5",500,5,110,"Claire",1,4,11000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","2","6",500,5,102,"Claire",1,4,10200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","3","7",500,5,105,"Claire",1,4,10500,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","3","8",500,5,107,"Claire",1,4,10700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","3","9",500,5,91,"Claire",1,4,9100,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","4","10",500,5,98,"Claire",1,4,9800,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","4","11",500,5,96,"Claire",1,4,9600,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M13","4","12",500,5,117,"Claire",1,4,11700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M5","1","1",500,5,117,"Claire",1,4,11700,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M5","1","2",500,5,120,"Claire",1,4,12000,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M5","1","3",500,5,124,"Claire",1,4,12400,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M5","2","4",500,5,122,"Claire",1,4,12200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M5","2","5",500,5,102,"Claire",1,4,10200,"manual","CS2021","hermaphroditic"
-"Plantago lanceolata","31 Jul 2021","KM","M5","2","6",500,5,118,"Claire",1,4,11800,"manual","CS2021","hermaphroditic"
-"Purple stigma grass","18 Jul 2021","FBF","1",NA,"1",600,7.5,17,"Claire",3,3,453.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","1",NA,"2",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","1",NA,"3",600,7.5,14,"Claire",3,3,373.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","2",NA,"1",600,7.5,7,"Claire",3,3,186.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","2",NA,"2",600,7.5,6,"Claire",3,3,160,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","2",NA,"3",600,7.5,15,"Claire",3,3,400,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","3",NA,"1",600,7.5,10,"Claire",3,3,266.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","3",NA,"2",600,7.5,12,"Claire",3,3,320,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","3",NA,"3",600,7.5,9,"Claire",3,3,240,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","4",NA,"1",600,7.5,24,"Claire",3,3,640,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","4",NA,"2",600,7.5,18,"Claire",3,3,480,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","4",NA,"3",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","4",NA,"4",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","5",NA,"1",600,7.5,10,"Claire",3,3,266.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","5",NA,"2",600,7.5,10,"Claire",3,3,266.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","5",NA,"3",600,7.5,11,"Claire",3,3,293.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","5",NA,"4",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","6",NA,"1",600,7.5,25,"Claire",3,3,666.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","6",NA,"2",600,7.5,11,"Claire",3,3,293.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","6",NA,"3",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","6",NA,"4",600,7.5,12,"Claire",3,3,320,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","7",NA,"1",600,7.5,12,"Claire",3,3,320,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","7",NA,"2",600,7.5,14,"Claire",3,3,373.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","7",NA,"3",600,7.5,9,"Claire",3,3,240,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","7",NA,"4",600,7.5,9,"Claire",3,3,240,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","8",NA,"1",600,7.5,19,"Claire",3,3,506.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","8",NA,"2",600,7.5,28,"Claire",3,3,746.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","8",NA,"3",600,7.5,22,"Claire",3,3,586.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","8",NA,"4",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","9",NA,"1",600,7.5,12,"Claire",3,3,320,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","9",NA,"2",600,7.5,12,"Claire",3,3,320,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","9",NA,"3",600,7.5,10,"Claire",3,3,266.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","10",NA,"1",600,7.5,10,"Claire",3,3,266.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","10",NA,"2",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","10",NA,"3",600,7.5,10,"Claire",3,3,266.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","10",NA,"4",600,7.5,10,"Claire",3,3,266.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","11",NA,"1",600,7.5,8,"Claire",3,3,213.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","11",NA,"2",600,7.5,20,"Claire",3,3,533.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","11",NA,"3",600,7.5,12,"Claire",3,3,320,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","11",NA,"4",600,7.5,16,"Claire",3,3,426.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","12",NA,"1",600,7.5,14,"Claire",3,3,373.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","12",NA,"2",600,7.5,16,"Claire",3,3,426.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","12",NA,"3",600,7.5,19,"Claire",3,3,506.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","12",NA,"4",600,7.5,13,"Claire",3,3,346.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","13",NA,"1",600,7.5,8,"Claire",3,3,213.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","13",NA,"2",600,7.5,6,"Claire",3,3,160,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","13",NA,"3",600,7.5,7,"Claire",3,3,186.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","13",NA,"4",600,7.5,5,"Claire",3,3,133.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","14",NA,"1",600,7.5,19,"Claire",3,3,506.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","14",NA,"2",600,7.5,18,"Claire",3,3,480,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","14",NA,"3",600,7.5,18,"Claire",3,3,480,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","14",NA,"4",600,7.5,19,"Claire",3,3,506.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","17",NA,"1",600,7.5,16,"Claire",3,3,426.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","17",NA,"2",600,7.5,16,"Claire",3,3,426.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","17",NA,"3",600,7.5,8,"Claire",3,3,213.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","18",NA,"1",600,7.5,20,"Claire",3,3,533.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","18",NA,"2",600,7.5,23,"Claire",3,3,613.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","18",NA,"3",600,7.5,29,"Claire",3,3,773.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","18",NA,"4",600,7.5,11,"Claire",3,3,293.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","19",NA,"1",600,7.5,15,"Claire",3,3,400,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","19",NA,"2",600,7.5,20,"Claire",3,3,533.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","19",NA,"3",600,7.5,22,"Claire",3,3,586.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","19",NA,"4",600,7.5,22,"Claire",3,3,586.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","20",NA,"1",600,7.5,21,"Claire",3,3,560,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","20",NA,"2",600,7.5,16,"Claire",3,3,426.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","20",NA,"3",600,7.5,16,"Claire",3,3,426.666666666667,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","20",NA,"4",600,7.5,17,"Claire",3,3,453.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","21",NA,"1",600,7.5,14,"Claire",3,3,373.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","21",NA,"2",600,7.5,14,"Claire",3,3,373.333333333333,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","21",NA,"3",600,7.5,6,"Claire",3,3,160,"manual","CS2021",NA
-"Purple stigma grass","18 Jul 2021","FBF","21",NA,"4",600,7.5,19,"Claire",3,3,506.666666666667,"manual","CS2021",NA
-"Rumex acetosella","8 July 2022","KM","10","a","1",250,2,382,"Jeremiah",6,6,7958.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","10","a","2",250,2,364,"Jeremiah",6,6,7583.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","10","a","3",250,2,354,"Jeremiah",6,6,7375,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","10","b","1",250,2,261,"Jeremiah",6,6,5437.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","10","b","2",250,2,214,"Jeremiah",6,6,4458.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","10","b","3",250,2,283,"Jeremiah",6,6,5895.83333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","a","1",250,2,361,"Jeremiah",6,6,7520.83333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","a","2",250,2,354,"Jeremiah",6,6,7375,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","a","3",250,2,263,"Jeremiah",6,6,5479.16666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","b","1",250,2,358,"Jeremiah",6,6,7458.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","b","2",250,2,345,"Jeremiah",6,6,7187.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","b","3",250,2,799,"Jeremiah",6,6,16645.8333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","c","1",250,2,431,"Jeremiah",6,6,8979.16666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","c","2",250,2,777,"Jeremiah",6,6,16187.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","1","c","3",250,2,837,"Jeremiah",6,6,17437.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","2","a","1",250,2,761,"Jeremiah",6,6,15854.1666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","2","a","2",250,2,704,"Jeremiah",6,6,14666.6666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","2","a","3",250,2,689,"Jeremiah",6,6,14354.1666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","3","a","1",250,2,293,"Jeremiah",6,6,6104.16666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","3","a","2",250,2,296,"Jeremiah",6,6,6166.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","3","a","3",250,2,299,"Jeremiah",6,6,6229.16666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","a","1",250,2,549,"Jeremiah",6,6,11437.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","a","2",250,2,516,"Jeremiah",6,6,10750,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","a","3",250,2,547,"Jeremiah",6,6,11395.8333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","b","1",250,2,392,"Jeremiah",6,6,8166.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","b","2",250,2,386,"Jeremiah",6,6,8041.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","b","3",250,2,423,"Jeremiah",6,6,8812.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","c","1",250,2,475,"Jeremiah",6,6,9895.83333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","c","2",250,2,475,"Jeremiah",6,6,9895.83333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","4","c","3",250,2,420,"Jeremiah",6,6,8750,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","a","1",250,2,408,"Jeremiah",6,6,8500,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","a","2",250,2,394,"Jeremiah",6,6,8208.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","a","3",250,2,494,"Jeremiah",6,6,10291.6666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","b","1",250,2,377,"Jeremiah",6,6,7854.16666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","b","2",250,2,416,"Jeremiah",6,6,8666.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","b","3",250,2,609,"Jeremiah",6,6,12687.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","c","1",250,2,447,"Jeremiah",6,6,9312.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","c","2",250,2,459,"Jeremiah",6,6,9562.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","5","c","3",250,2,497,"Jeremiah",6,6,10354.1666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","a","1",250,2,388,"Jeremiah",6,6,8083.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","a","2",250,2,345,"Jeremiah",6,6,7187.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","a","3",250,2,391,"Jeremiah",6,6,8145.83333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","b","1",250,2,447,"Jeremiah",6,6,9312.5,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","b","2",250,2,458,"Jeremiah",6,6,9541.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","b","3",250,2,506,"Jeremiah",6,6,10541.6666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","c","1",250,2,308,"Jeremiah",6,6,6416.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","c","2",250,2,302,"Jeremiah",6,6,6291.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","6","c","3",250,2,391,"Jeremiah",6,6,8145.83333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","7","b","1",250,2,220,"Jeremiah",6,6,4583.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","7","b","2",250,2,172,"Jeremiah",6,6,3583.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","7","b","3",250,2,156,"Jeremiah",6,6,3250,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","7","c","1",250,2,290,"Jeremiah",6,6,6041.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","7","c","2",250,2,342,"Jeremiah",6,6,7125,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","7","c","3",250,2,310,"Jeremiah",6,6,6458.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","a","1",250,2,292,"Jeremiah",6,6,6083.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","a","2",250,2,250,"Jeremiah",6,6,5208.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","a","3",250,2,353,"Jeremiah",6,6,7354.16666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","b","1",250,2,228,"Jeremiah",6,6,4750,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","b","2",250,2,226,"Jeremiah",6,6,4708.33333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","b","3",250,2,227,"Jeremiah",6,6,4729.16666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","c","1",250,2,230,"Jeremiah",6,6,4791.66666666667,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","c","2",250,2,277,"Jeremiah",6,6,5770.83333333333,"auto","CS2021","dioecious"
-"Rumex acetosella","8 July 2022","KM","9","c","3",250,2,307,"Jeremiah",6,6,6395.83333333333,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","1","1",450,2.5,127,"Jeremiah",1,26,22860,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","1","2",450,2.5,127,"Jeremiah",1,26,22860,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","1","3",450,2.5,130,"Jeremiah",1,26,23400,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","2","1",450,2.5,119,"Jeremiah",1,26,21420,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","2","2",450,2.5,114,"Jeremiah",1,26,20520,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","2","3",450,2.5,119,"Jeremiah",1,26,21420,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","3","1",450,2.5,114,"Jeremiah",1,26,20520,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","3","2",450,2.5,191,"Jeremiah",1,26,34380,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","10","3","3",450,2.5,152,"Jeremiah",1,26,27360,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","1","1",450,2.5,146,"Jeremiah",1,28,26280,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","1","2",450,2.5,121,"Jeremiah",1,28,21780,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","1","3",450,2.5,146,"Jeremiah",1,28,26280,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","2","1",450,2.5,106,"Jeremiah",1,28,19080,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","2","2",450,2.5,155,"Jeremiah",1,28,27900,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","2","3",450,2.5,179,"Jeremiah",1,28,32220,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","3","1",450,2.5,159,"Jeremiah",1,28,28620,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","3","2",450,2.5,153,"Jeremiah",1,28,27540,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","1","3","3",450,2.5,111,"Jeremiah",1,28,19980,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","1","1",450,2.5,125,"Jeremiah",1,32,22500,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","1","2",450,2.5,126,"Jeremiah",1,32,22680,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","1","3",450,2.5,84,"Jeremiah",1,32,15120,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","2","1",450,2.5,92,"Jeremiah",1,32,16560,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","2","2",450,2.5,113,"Jeremiah",1,32,20340,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","2","3",450,2.5,143,"Jeremiah",1,32,25740,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","3","1",450,2.5,144,"Jeremiah",1,32,25920,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","3","2",450,2.5,122,"Jeremiah",1,32,21960,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","2","3","3",450,2.5,175,"Jeremiah",1,32,31500,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","1","1",450,2.5,200,"Jeremiah",1,26,36000,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","1","2",450,2.5,164,"Jeremiah",1,26,29520,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","1","3",450,2.5,167,"Jeremiah",1,26,30060,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","2","1",450,2.5,139,"Jeremiah",1,26,25020,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","2","2",450,2.5,130,"Jeremiah",1,26,23400,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","2","3",450,2.5,197,"Jeremiah",1,26,35460,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","3","1",450,2.5,202,"Jeremiah",1,26,36360,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","3","2",450,2.5,193,"Jeremiah",1,26,34740,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","3","3","3",450,2.5,187,"Jeremiah",1,26,33660,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","1","1",450,2.5,102,"Jeremiah",1,19,18360,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","1","2",450,2.5,138,"Jeremiah",1,19,24840,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","1","3",450,2.5,143,"Jeremiah",1,19,25740,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","2","1",450,2.5,93,"Jeremiah",1,19,16740,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","2","2",450,2.5,82,"Jeremiah",1,19,14760,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","2","3",450,2.5,82,"Jeremiah",1,19,14760,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","3","1",450,2.5,107,"Jeremiah",1,19,19260,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","3","2",450,2.5,75,"Jeremiah",1,19,13500,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","4","3","3",450,2.5,61,"Jeremiah",1,19,10980,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","1","1",450,2.5,112,"Jeremiah",1,22,20160,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","1","2",450,2.5,113,"Jeremiah",1,22,20340,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","1","3",450,2.5,89,"Jeremiah",1,22,16020,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","2","1",450,2.5,97,"Jeremiah",1,22,17460,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","2","2",450,2.5,109,"Jeremiah",1,22,19620,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","2","3",450,2.5,94,"Jeremiah",1,22,16920,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","3","1",450,2.5,82,"Jeremiah",1,22,14760,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","3","2",450,2.5,99,"Jeremiah",1,22,17820,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","5","3","3",450,2.5,108,"Jeremiah",1,22,19440,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","1","1",450,2.5,68,"Jeremiah",1,27,12240,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","1","2",450,2.5,77,"Jeremiah",1,27,13860,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","1","3",450,2.5,86,"Jeremiah",1,27,15480,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","2","1",450,2.5,68,"Jeremiah",1,27,12240,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","2","2",450,2.5,69,"Jeremiah",1,27,12420,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","2","3",450,2.5,58,"Jeremiah",1,27,10440,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","3","1",450,2.5,81,"Jeremiah",1,27,14580,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","3","2",450,2.5,78,"Jeremiah",1,27,14040,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","6","3","3",450,2.5,66,"Jeremiah",1,27,11880,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","1","1",450,2.5,98,"Jeremiah",1,16,17640,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","1","2",450,2.5,74,"Jeremiah",1,16,13320,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","1","3",450,2.5,102,"Jeremiah",1,16,18360,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","2","1",450,2.5,68,"Jeremiah",1,16,12240,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","2","2",450,2.5,76,"Jeremiah",1,16,13680,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","2","3",450,2.5,63,"Jeremiah",1,16,11340,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","3","1",450,2.5,91,"Jeremiah",1,16,16380,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","3","2",450,2.5,114,"Jeremiah",1,16,20520,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","8","3","3",450,2.5,107,"Jeremiah",1,16,19260,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","1","1",450,2.5,126,"Jeremiah",1,27,22680,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","1","2",450,2.5,167,"Jeremiah",1,27,30060,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","1","3",450,2.5,137,"Jeremiah",1,27,24660,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","2","1",450,2.5,144,"Jeremiah",1,27,25920,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","2","2",450,2.5,158,"Jeremiah",1,27,28440,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","2","3",450,2.5,159,"Jeremiah",1,27,28620,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","3","1",450,2.5,148,"Jeremiah",1,27,26640,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","3","2",450,2.5,128,"Jeremiah",1,27,23040,"auto","CS2021","dioecious"
-"Thalictrum dioicum","7 May 2022","BI","9","3","3",450,2.5,182,"Jeremiah",1,27,32760,"auto","CS2021","dioecious"
+"source","Sex_sys","Species","Date","Site","Label","Observer","Anth_per_flw","count_method","Avg_pol_anth"
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","1","Jeremiah",6,"auto",10474.537037037
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","10","Jeremiah",6,"auto",6451.38888888889
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","2","Jeremiah",6,"auto",14958.3333333333
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","3","Jeremiah",6,"auto",6166.66666666667
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","4","Jeremiah",6,"auto",9682.87037037037
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","5","Jeremiah",6,"auto",9493.05555555555
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","6","Jeremiah",6,"auto",8185.18518518519
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","7","Jeremiah",6,"auto",5173.61111111111
+"CS2021","dioecious","Rumex acetosella","8 July 2022","KM","9","Jeremiah",6,"auto",5532.40740740741
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","1","Jeremiah",28,"auto",25520
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","10","Jeremiah",26,"auto",23860
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","2","Jeremiah",32,"auto",22480
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","3","Jeremiah",26,"auto",31580
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","4","Jeremiah",19,"auto",17660
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","5","Jeremiah",22,"auto",18060
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","6","Jeremiah",27,"auto",13020
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","8","Jeremiah",16,"auto",15860
+"CS2021","dioecious","Thalictrum dioicum","7 May 2022","BI","9","Jeremiah",27,"auto",26980
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M1","Jeremiah",5,"manual",1936
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M2","Jeremiah",5,"manual",1568
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M3","Jeremiah",5,"manual",1696
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M4","Jeremiah",5,"manual",1093.33333333333
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M5","Jeremiah",5,"manual",1541.33333333333
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M6","Jeremiah",5,"manual",1061.33333333333
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M7","Jeremiah",5,"manual",1434.66666666667
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M8","Jeremiah",5,"manual",1472
+"CS2021","hermaphroditic","Chenopodium album","22 Jul 2021","FBF1","M9","Jeremiah",5,"manual",1397.33333333333
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M1","Jeremiah",5,"manual",1621.33333333333
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M10","Jeremiah",5,"manual",1616
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M2","Jeremiah",5,"manual",1786.66666666667
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M3","Jeremiah",5,"manual",1498.66666666667
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M4","Jeremiah",5,"manual",1701.33333333333
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M5","Jeremiah",5,"manual",1322.66666666667
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M6","Jeremiah",5,"manual",1349.33333333333
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M7","Jeremiah",5,"manual",1850.66666666667
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M8","Jeremiah",5,"manual",1509.33333333333
+"CS2021","hermaphroditic","Chenopodium album","23 Jul 2021","FBF2","M9","Jeremiah",5,"manual",1530.66666666667
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A1","Claire",4,"manual",12400
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A10","Claire",4,"manual",17600
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A2","Claire",4,"manual",8026.66666666667
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A3","Claire",4,"manual",13680
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A4","Claire",4,"manual",15280
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A5","Claire",4,"manual",13360
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A6","Claire",4,"manual",12400
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A7","Claire",4,"manual",7560
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","A9","Claire",4,"manual",16720
+"CS2021","hermaphroditic","Plantago lanceolata","18 Aug 2021","FBF","S8","Claire",4,"manual",11280
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A1","Claire",4,"manual",16480
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A10","Claire",4,"manual",10560
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A2","Claire",4,"manual",10400
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A3","Claire",4,"manual",10960
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A4","Claire",4,"manual",10640
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A5","Claire",4,"manual",11200
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A6","Claire",4,"manual",15946.6666666667
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A7","Claire",4,"manual",11573.3333333333
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A8","Claire",4,"manual",9720
+"CS2021","hermaphroditic","Plantago lanceolata","20 Aug 2021","QMP","A9","Claire",4,"manual",9066.66666666667
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M1","Claire",4,"manual",11631.6666666667
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M10","Claire",4,"manual",13500
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M11","Claire",4,"manual",6016.66666666667
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M12","Claire",4,"manual",10383.3333333333
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M13","Claire",4,"manual",10058.3333333333
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M2","Claire",4,"manual",15247.619047619
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M3","Claire",4,"manual",10900
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M4","Claire",4,"manual",7984.16666666667
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M5","Claire",4,"manual",11716.6666666667
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M7","Claire",4,"manual",11888.8888888889
+"CS2021","hermaphroditic","Plantago lanceolata","31 Jul 2021","KM","M8","Claire",4,"manual",12180
+"CS2021","monoecious","Amaranthus retroflexus","16 Aug 2021","FBF2","A1","Claire",5,"manual",3200
+"CS2021","monoecious","Amaranthus retroflexus","16 Aug 2021","FBF2","A2","Claire",5,"manual",3440
+"CS2021","monoecious","Amaranthus retroflexus","16 Aug 2021","FBF2","A3","Claire",5,"manual",2826.66666666667
+"CS2021","monoecious","Amaranthus retroflexus","16 Aug 2021","FBF2","A4","Claire",5,"manual",2666.66666666667
+"CS2021","monoecious","Amaranthus retroflexus","16 Aug 2021","FBF2","A5","Claire",5,"manual",2586.66666666667
+"CS2021","monoecious","Amaranthus retroflexus","16 Aug 2021","FBF2","A6","Claire",5,"manual",2880
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A1","Claire",5,"manual",2213.33333333333
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A10","Jeremiah",5,"manual",1653.33333333333
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A2","Claire",5,"manual",2800
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A3","Claire",5,"manual",2373.33333333333
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A4","Claire",5,"manual",2400
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A5","Claire",5,"manual",3306.66666666667
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A6","Claire",5,"manual",2053.33333333333
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A7","Jeremiah",5,"manual",2773.33333333333
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A8","Jeremiah",5,"manual",1466.66666666667
+"CS2021","monoecious","Amaranthus retroflexus","17 Jul 2021","FBF","A9","Jeremiah",5,"manual",3733.33333333333
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","1","Claire",5,"manual",3424
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","2","Claire",5,"manual",3448
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","3","Claire",5,"manual",3200
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","4","Claire",5,"manual",3248
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","5","Claire",5,"manual",2280
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","6","Claire",5,"manual",2992
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","7","Claire",5,"manual",3032
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","8","Claire",5,"manual",2848
+"CS2021","monoecious","Ambrosia artemisiifolia","14 Aug 2021","FBF","9","Claire",5,"manual",2832
+"CS2021","monoecious","Ambrosia artemisiifolia","20 Sept 2021","LP","1","Claire",5,"manual",2556
+"CS2021","monoecious","Ambrosia artemisiifolia","20 Sept 2021","LP","2","Claire",5,"manual",3076
+"CS2021","monoecious","Ambrosia artemisiifolia","20 Sept 2021","LP","3","Claire",5,"manual",2968
+"CS2021","monoecious","Ambrosia artemisiifolia","20 Sept 2021","LP","4","Claire",5,"manual",3016
+"CS2021","monoecious","Ambrosia artemisiifolia","20 Sept 2021","LP","5","Claire",5,"manual",2536
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","1","Claire",3,"manual",391.111111111111
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","10","Claire",3,"manual",286.666666666667
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","11","Claire",3,"manual",373.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","12","Claire",3,"manual",413.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","13","Claire",3,"manual",173.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","14","Claire",3,"manual",493.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","17","Claire",3,"manual",355.555555555556
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","18","Claire",3,"manual",553.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","19","Claire",3,"manual",526.666666666667
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","2","Claire",3,"manual",248.888888888889
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","20","Claire",3,"manual",466.666666666667
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","21","Claire",3,"manual",353.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","3","Claire",3,"manual",275.555555555556
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","4","Claire",3,"manual",453.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","5","Claire",3,"manual",293.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","6","Claire",3,"manual",406.666666666667
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","7","Claire",3,"manual",293.333333333333
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","8","Claire",3,"manual",546.666666666667
+"CS2021",NA,"Setaria viridis","18 Jul 2021","FBF","9","Claire",3,"manual",302.222222222222

@@ -151,10 +151,10 @@ aDat_full_ss <- aDat_full %>%
 
 # Check data
 prod <- aDat_full_ss
-prod %>% group_by(Species, Site, Date, Label) %>% 
-  summarize(n=n()) %>% 
-  group_by(Species, Site, Date) %>% 
-  summarize(n=n())
+# prod %>% group_by(Species, Site, Date, Label) %>% 
+#   summarize(n=n()) %>% 
+#   group_by(Species, Site, Date) %>% 
+#   summarize(n=n())
 
 # Some species have multiple sampling dates from the same sites. I know that some of the numbers repeat - I want
 # to make sure individuals from the same site but different dates don't get combined. I also know in the
@@ -162,33 +162,40 @@ prod %>% group_by(Species, Site, Date, Label) %>%
 # later A. retro entry (16 Aug 2021) needs to become FBF2, later C. album entry (23 Jul 2021) needs to become FBF2
 
 prod$Site[which(prod$Species=="Amaranthus retroflexus"&prod$Date=="16 Aug 2021")] <- "FBF2"
+prod$Site[which(prod$Species=="Chenopodium album"&prod$Date=="22 Jul 2021")] <- "FBF1"
 prod$Site[which(prod$Species=="Chenopodium album"&prod$Date=="23 Jul 2021")] <- "FBF2"
+# Replace full site names (Lemoine Point, Fruition Berry Farm) with their codes for consistency
+# unique(aDat$Site)
+sites1 <- gsub("Lemoine Point", "LP", prod$Site)
+# unique(sites1)
+prod$Site <- sites1
+sites2 <- gsub("Fruition Berry Farm", "FBF", prod$Site)
+# unique(sites2)
+prod$Site <- sites2
 
 # Species names:
 # unique(aDat$Species)
 # Replace code "Purple stigma grass" with actual species name, "Setaria viridis"
-test <- gsub("Purple stigma grass", "Setaria viridis", aDat$Species)
+spec <- gsub("Purple stigma grass", "Setaria viridis", prod$Species)
 # unique(test)
-aDat$Species <- test
+prod$Species <- spec
 
-# Sites: 
-unique(aDat$Site)
-# Replace full site names (Lemoine Point, Fruition Berry Farm) with their codes for consistency
-sites1 <- gsub("Lemoine Point", "LP", aDat$Site)
-# unique(sites1)
-aDat$Site <- sites1
-sites2 <- gsub("Fruition Berry Farm", "FBF", aDat$Site)
-# unique(sites2)
-aDat$Site <- sites2
+# Check it all worked: 
+# prod %>% group_by(Species, Site, Date, Label) %>% 
+#   summarize(n=n()) %>% 
+#   group_by(Species, Site, Date) %>% 
+#   summarize(n=n())
 
+# Add source = "CS2021" to data
+prod <- prod %>% mutate(source="CS2021")
 
 # Write file that includes within-individual variation in pollen prod
-write.csv(aDat_full, "processed-data/prod-CS2021-within-inds.csv", row.names=F)
+write.csv(prod, "processed-data/prod-CS2021-within-inds.csv", row.names=F)
 
 # Calculate per-individual pollen production per anther
-aDat_avg <- aDat_full %>% 
-  group_by(Species, Date, Site, Label, Observer, Anth_per_flw, count_method) %>% 
+prod_avg <- prod %>% 
+  group_by(source, Sex_sys, Species, Date, Site, Label, Observer, Anth_per_flw, count_method) %>% 
   summarize(Avg_pol_anth=mean(polanth, na.rm=T))
 
-write.csv(aDat_avg, "processed-data/prod-CS2021.csv", row.names=F)
+write.csv(prod_avg, "processed-data/prod-CS2021.csv", row.names=F)
 
