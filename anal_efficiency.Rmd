@@ -108,7 +108,7 @@ pdat$Species <- factor(pdat$Species, levels = unique(pdat$Species), ordered = T)
 
 Plots
 
-```{r plot efficiency, fig.dim = c(8, 6)}
+```{r plot efficiency, fig.dim = c(10, 6)}
 pdat %>% 
   ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys) ) + 
   geom_point(size=5, alpha=0.8) + 
