@@ -104,7 +104,8 @@ stig_all_ss <- stig_all %>%
 # Make sure no species were missed -- looks ok now
 # summary(as.factor(stig_all_ss$Sex_sys))
 # stig_all_ss[which(is.na(stig_all_ss$Sex_sys)),]
-# write.csv(stig_all, "processed-data/stig-all.csv", row.names=F)
+write.csv(stig_all_ss, "processed-data/stig-all.csv", row.names=F)
+
 
 # I also want a version that has no repeat species. Remove repeats of mine from JF data - except Chenopodium album. Replace
 # the CS2021 C. album with the JF2004 C. album. I collected mine too early. 
@@ -140,7 +141,6 @@ stig_norep_ss <- stig_norep %>%
 # Make sure no species were missed -- looks ok 
 # summary(as.factor(stig_norep_ss$Sex_sys))
 # stig_all_ss[which(is.na(stig_all_ss$Sex_sys)),]
-# write.csv(stig_all, "processed-data/stig-all.csv", row.names=F)
 
-write.csv(stig_norep, "processed-data/stig-no-rep-spp.csv", row.names=F)
+write.csv(stig_norep_ss, "processed-data/stig-no-rep-spp.csv", row.names=F)
 

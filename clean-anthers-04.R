@@ -82,15 +82,15 @@ sp_all <- rbind(JF2001_2004_pre, CS2021_pre)
 
 ### Cleaning up joined pollen number data
 
-# Keep only species with at least 5 individuals
-sp_sum <- sp_all %>% group_by(Species) %>% dplyr::summarize(n=n())
-keep_vec <- sp_sum$Species[which(sp_sum$n>=5)]
-
-sp_all_5ormore <- sp_all[sp_all$Species %in% keep_vec,]
-sp_dat <- sp_all_5ormore
+# # Keep only species with at least 5 individuals
+# sp_sum <- sp_all %>% group_by(Species) %>% dplyr::summarize(n=n())
+# keep_vec <- sp_sum$Species[which(sp_sum$n>=5)]
+# 
+# sp_all_5ormore <- sp_all[sp_all$Species %in% keep_vec,]
+# sp_dat <- sp_all_5ormore
 
 # Update names to full species names to full versions
-sp_dat <- sp_dat %>% 
+sp_dat <- sp_all %>% 
   mutate(Species=stringr::str_replace_all(Species, c("A.artemisi"="Ambrosia artemisiifolia",
                                              "Binermis"="Bromus inermis",
                                              "C.album"="Chenopodium album",
@@ -99,7 +99,7 @@ sp_dat <- sp_dat %>%
                                              "C.peduncul"="Carex pedunculata",
                                              "C.stipata"="Carex stipata",
                                              "C.plantagi"="Carex plantaginea",
-                                             "Einnovatus"="Leymus innovatus",
+                                             "Einnovatus"="Elymus innovatus",
                                              "Fcampestris"="Festuca campestris",
                                              "P.lanceola"="Plantago lanceolata",
                                              "Ppratense"="Phleum pratense",
@@ -174,3 +174,5 @@ sp_dat3 <- sp_dat2 %>% mutate(Pol_flw = Avg_pol_anth*Anth_per_flw,
                             Sd_pol_flw = Sd_pol_anth*Anth_per_flw)
 
 write.csv(sp_dat3, "processed-data/size-prod-all.csv", row.names = F)
+
+# unique(sp_dat3$Species)
