@@ -150,6 +150,52 @@ TD_pre <- TD %>%
 # combine all species data together
 stig_CS2021 <- rbind(AA_pre, AR_pre, CA_pre, DL_pre, DI_pre, PL_pre,PP_pre, SV_pre, RA_pre, TD_pre)
 
+## Check data
+stig <- stig_CS2021
+# head(stig)
+# summary(stig)
+stig[which(is.na(stig$Flw_pollen)),] # looks like all the population data from the QMP pop of P. lanceolata
+# is there but pollen counts are missing! I'll pull up the original stigma data file for P. lanceolata and add that in now
+PL_stig <- read.csv("raw-data/Plantago_lanceolata_stigmas.csv", stringsAsFactors = T)
+head(PL_stig)
+summary(PL_stig) # QMP is the site I'm looking for
+PL_site <- read.csv("raw-data/Plantago_lanceolata_site.csv", stringsAsFactors = T)
+head(PL_site)
+summary(PL_site) # QMP is called "QU" here - I'll replace it with QMP
+PL_site$Population <- as.factor(gsub("QU", "QMP", PL_site$Population))
+# I just want the QMP sites...
+PL_stig_QMP <- PL_stig %>% filter(Site=="QMP")
+PL_site_QMP <- PL_site %>% filter(Population=="QMP")
+# the individuals in "stig" have an S in front of them, which will get in the way when I join them together
+PL_stig_QMP$Plant <- gsub("S", "", PL_stig_QMP$Plant)
+PL_site_QMP$Plant <- as.character(PL_site_QMP$Plant)
+# join them together
+PL_QMP <- full_join(PL_stig_QMP, PL_site_QMP, by=c("Species", "Date", "Site"="Population", "Plant"))
+PL_QMP <- PL_QMP %>% 
+  mutate(Flw_pollen = Pollen, Stigmas_per_flw=1, Flower_height=NA, Infl_min=Min, Infl_max=Max) %>% 
+  select(all_of(sel_vec))
+# now take out old PL QMP data from "stig"
+stig_noqmp <- stig %>% filter(Site != "QMP")
+stig_newqmp <- rbind(stig_noqmp, PL_QMP)
+
+# Add in Plantago major
+PM_stig <- read.csv("raw-data/Plantago_major_stigmas.csv", stringsAsFactors = T)
+head(PM_stig)
+summary(PM_stig) 
+PM_site <- read.csv("raw-data/Plantago_major_site.csv", stringsAsFactors = T)
+head(PM_site)
+summary(PM_site) # QMP is called "QU" here - I'll replace it with QMP
+# join them together
+PM_site$Plant <- as.character(PM_site$Plant)
+PM_stig$Plant <- as.character(PM_stig$Plant)
+PM_stig$Site <- "Biosci"
+PM <- full_join(PM_stig, PM_site, by=c("Species", "Site"="Population", "Plant", "Flower"))
+PM_pre <- PM %>% 
+  mutate(Flw_pollen = Pollen, Stigmas_per_flw=1, Infl_min=Flower_min, Infl_max=Flower_max, Date=Date.x) %>% 
+  select(all_of(sel_vec))
+# join this onto stig_newqmp 
+stig_pre <- rbind(stig_newqmp, PM_pre)
+
 # write to a csv
-write.csv(stig_CS2021, "processed-data/stig-CS2021.csv", row.names = F)
+write.csv(stig_pre, "processed-data/stig-CS2021.csv", row.names = F)
 

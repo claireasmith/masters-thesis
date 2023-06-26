@@ -98,7 +98,7 @@ stig_all_ss <- stig_all %>%
                                         "Festuca campestris",
                                         "Avenula hookeri", "Hierochloe odorata",
                                         "Koeleria cristata","Phalaris arundinacea",
-                                        "Plantago lanceolata", 
+                                        "Plantago lanceolata", "Plantago major", 
                                         "Poa juncifolia", "Poa secunda subsp. secunda",
                                         "Stipa columbiana") ~ "hermaphroditic"))
 # Make sure no species were missed -- looks ok now
@@ -135,7 +135,7 @@ stig_norep_ss <- stig_norep %>%
                                             "Festuca campestris",
                                             "Avenula hookeri", "Hierochloe odorata",
                                             "Koeleria cristata","Phalaris arundinacea",
-                                            "Plantago lanceolata", 
+                                            "Plantago lanceolata", "Plantago major",
                                             "Poa juncifolia", "Poa secunda subsp. secunda",
                                             "Stipa columbiana") ~ "hermaphroditic"))
 # Make sure no species were missed -- looks ok 
