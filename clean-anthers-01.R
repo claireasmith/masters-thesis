@@ -270,7 +270,8 @@ avg_size_dat <- size %>%
   group_by(source, Sex_sys, Species, Site, Ind) %>% 
   summarize(Avg_area = mean(Area, na.rm=T),
             Avg_diam = mean(Diam, na.rm=T), 
-            Sd_diam = sd(Diam, na.rm=T))
+            Sd_diam = sd(Diam, na.rm=T),
+            N_diam = n())
 write.csv(avg_size_dat, "processed-data/size-CS2021.csv", row.names=F)
 
 

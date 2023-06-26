@@ -32,12 +32,12 @@ stigph <- stig %>%
 # summary(stigph)
 
 # How many species have max infl height data? 
-unique(stigph$Species) # 18 species!
+unique(stigph$Species) # 19 species!
 #  [1] Dichanthelium implicatum Plantago lanceolata      Phleum pratense          Setaria viridis         
-#  [5] Thalictrum dioicum       Elymus repens            Bromus inermis           Elymus innovatus        
-#  [9] Festuca campestris       Chenopodium album        Carex communis           Carex hirtifolia        
-# [13] Carex pedunculata        Carex plantaginea        Carex stipata            Rumex crispus           
-# [17] Scirpus microcarpus      Schizacne purpurascens 
+#  [5] Thalictrum dioicum       Plantago major           Elymus repens            Bromus inermis          
+#  [9] Elymus innovatus         Festuca campestris       Chenopodium album        Carex communis          
+# [13] Carex hirtifolia         Carex pedunculata        Carex plantaginea        Carex stipata           
+# [17] Rumex crispus            Scirpus microcarpus      Schizacne purpurascens 
 # View(stigph)
 
 # Flower is nested within plant - each plant has (potentially) multiple flowers measured within it -- need to 
@@ -61,12 +61,13 @@ stigph %>% group_by(Species) %>%
 # 10 Elymus repens              100
 # 11 Festuca campestris         319
 # 12 Phleum pratense             18
-# 13 Plantago lanceolata         27
-# 14 Rumex crispus              108
-# 15 Schizacne purpurascens     154
-# 16 Scirpus microcarpus        137
-# 17 Setaria viridis             45
-# 18 Thalictrum dioicum          59
+# 13 Plantago lanceolata         42
+# 14 Plantago major              15
+# 15 Rumex crispus              108
+# 16 Schizacne purpurascens     154
+# 17 Scirpus microcarpus        137
+# 18 Setaria viridis             45
+# 19 Thalictrum dioicum          59
 
 # I'll go through each species and run a model predicting pollen capture by flower height
 # Since many likely have log-normal distributions of pollen capture, I'll create a log flw pollen variable now to # save time -- but will still check each species individually 
@@ -391,7 +392,6 @@ anova(ELINmod)
 ```
 
 
-
 ### Elymus repens (n=100)
 
 ```{r pre-fit Elymus repens}
@@ -531,6 +531,41 @@ PLLAmod <- lmer(Log_flw_pollen ~ Infl_max + Date + (1|Ind_ID), data=PLLA)
 summary(PLLAmod)
 anova(PLLAmod)
 # No significant effect of height on pollen loads in Plantago lanceolata. 
+```
+
+### Plantago major (n=15)
+
+```{r pre-fit Plantago major}
+PLMA <- stigph %>% 
+  filter(Species=="Plantago major")
+# summaryPLMA) 
+
+#Taking a look at the data
+hist(PLMA$Flw_pollen) # response variable. looks very right skewed!
+hist(PLMA$Log_flw_pollen) # much more symmetric
+hist(PLMA$Infl_max) # looks ok
+```
+
+```{r flower height vs pollen load Plantago major}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=PLMA, aes(x=Infl_max, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Max height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Plantago major}
+#model for height
+PLMAmod <- lmer(Log_flw_pollen ~ poly(Infl_max, 2) + (1|Ind_ID), data=PLMA)
+summary(PLMAmod)
+anova(PLMAmod)
+# no sig quadratic term
+PLMAmod <- lmer(Log_flw_pollen ~ Infl_max + (1|Ind_ID), data=PLMA)
+summary(PLMAmod)
+anova(PLMAmod)
+# No significant effect of height on pollen loads in Plantago major. 
 ```
 
 ### Rumex crispus (n=108)

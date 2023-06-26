@@ -32,9 +32,10 @@ stigfh <- stig %>%
 # summary(stigfh)
 
 # How many species have flower height data? 
-# unique(stigfh$Species) # 7 species
+# unique(stigfh$Species) # 8 species
 # [1] Ambrosia artemisiifolia     Amaranthus retroflexus      Dichanthelium linearifolium Dichanthelium implicatum  
 # [5] Phleum pratense             Setaria viridis             Rumex acetosella 
+# Plantago major
 # View(stigfh)
 
 # Flower is nested within plant - each plant has (potentially) multiple flowers measured within it -- need to 
@@ -51,8 +52,9 @@ stigfh %>% group_by(Species) %>%
 # 3 Dichanthelium implicatum       40
 # 4 Dichanthelium linearifolium    13
 # 5 Phleum pratense                18
-# 6 Rumex acetosella               50
-# 7 Setaria viridis                45
+# 6 Plantago major                 15
+# 7 Rumex acetosella               50
+# 8 Setaria viridis                45
 # Will exclude Dichanthelium linearifolium from this because it only has 13 entries. 
 
 # I'll go through each species and run a model predicting pollen capture by flower height
@@ -224,6 +226,39 @@ PHPRmod <- lmer(Log_flw_pollen ~ Flower_height + (1|Ind_ID), data=PHPR)
 summary(PHPRmod)
 anova(PHPRmod) # no sig effect of flower height
 ```
+
+### Plantago major (n=15)
+
+```{r pre-fit Plantago major}
+PLMA <- stigfh %>% 
+  filter(Species=="Plantago major")
+# summary(PLMA) # 1 site, 1 date
+
+#Taking a look at the data
+hist(PLMA$Flw_pollen) # response variable. looks very right skewed!
+hist(PLMA$Log_flw_pollen) # much more symmetric
+hist(PLMA$Flower_height) # looks ok
+```
+
+```{r flower height vs pollen load Plantago major}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Much fewer points from KMW than KME, but they seemed to have received more pollen and were taller and less variable in height than KMW plants
+ggplot(data=PLMA, aes(x=Flower_height, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Flower height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+```{r model fit Plantago major}
+#model for height and site
+# PLMAmod <- lmer(Log_flw_pollen ~ poly(Flower_height, 2) + (1|Ind_ID), data=PLMA)
+# # quad term not sig
+PLMAmod <- lmer(Log_flw_pollen ~ Flower_height + (1|Ind_ID), data=PLMA)
+summary(PLMAmod)
+anova(PLMAmod) # no sig effect of flower height
+```
+
 
 ### Rumex acetosella (n=50)
 

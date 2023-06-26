@@ -55,8 +55,8 @@ JF2001_2004$count_method = "particle counter" # keep track of how pollen was cou
 # names(JF2001_2004)
 # [1] "spp"          "ind"          "nanthers"     "polcnt"       "pollmsize"    "sdsize"  "source"       "count_method"
 
-sel_vec <- c("source", "Sex_sys", "Species", "Site", "Ind", "Label", "Avg_diam", "Sd_diam", "Avg_area", 
-             "Avg_pol_anth", "Sd_pol_anth", "Anth_per_flw", "count_method", "Anth_per_sample")
+sel_vec <- c("source", "Sex_sys", "Species", "Site", "Ind", "Label", "Avg_diam", "Sd_diam", "N_diam",
+             "Avg_area", "Avg_pol_anth", "Sd_pol_anth", "Anth_per_flw", "count_method", "Anth_per_sample")
 
 JF2001_2004_pre <- JF2001_2004 %>% 
   mutate(Sex_sys=NA, #fix this later
@@ -69,6 +69,8 @@ JF2001_2004_pre <- JF2001_2004 %>%
          Label = NA, 
          Avg_diam = pollmsize, 
          Sd_diam = sdsize, 
+         N_diam = polcnt, # since all grains counted and measured, the # of grains diam is measured from 
+         # is just the number of grains in the sample
          Avg_area = NA,
          Anth_per_sample = nanthers) %>% # could add this in per species later 
   select(all_of(sel_vec))
