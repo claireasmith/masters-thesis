@@ -1,0 +1,189 @@
+---
+title: "Stigma pollen by sex sys PGLS"
+author: "Claire Smith"
+date: "2023-06-27"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+Based on tutorial by Roger Mundry from the Chapter 6 practical material from Modern Phylogenetic Comparative Methods and Their Application in Evolutionary Biology (Springer 2014). Link: https://www.mpcm-evolution.com/practice/online-practical-material-chapter-6/chapter-6-1exercises-testing-assumptions-statistical-issues-framework-phylogenetic-generalized-least-squares
+
+Analysing the relationship between average stigmatic pollen loads and sex system across 22 wind-pollinated flowering plant species species. 
+
+```{r initialize, message=F}
+# Load packages
+library(dplyr)
+library(car)
+library(V.PhyloMaker2)
+library(ape)
+library(dplyr)
+library(caper)
+```
+
+
+#### Question
+
+Is there an effect of sex system on pollen load, across species? 
+
+stigmatic pollen load ~ sex system + collector
+
+- stigmatic pollen load is the response variable (continuous numeric), the mean pollen load per stigma per species 
+- sex system is a categorical test predictor with 3 levels (dioecious, monoecious, hermaphroditic)
+- collector is a categorical control predictor with 2 levels (CS, JF), to control for any effects on pollen load depending on who collected the data
+
+
+```{r prepare tree data}
+#read the phylogeny into an R object
+stig_tree <- read.tree("processed-data/capture_tree.nwk")
+#inspect the tree
+str(stig_tree)
+#sn.tree is a tree with 22 tips and 20 internal nodes
+#plot the tree:
+plot.phylo(x=stig_tree, cex=0.7, direction="upwards", no.margin=TRUE)
+```
+
+
+```{r prepare trait data}
+## read in data with stigmatic pollen capture and potential covariates
+stig <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T) 
+# head(stig)
+# summary(stig)
+
+# I want the data to be at the species level -- I'll take species-wide averages
+stig_sp <- stig %>% group_by(Sex_sys, Species, source) %>% 
+  filter(!is.na(Flw_pollen)) %>% 
+  summarize(mean_poll = mean(Flw_pollen))
+# head(stig_sp)
+# summary(stig_sp)
+# str(stig_sp)
+# View(stig_sp)
+
+# Add some helpful columns
+stig_sp <- stig_sp %>% 
+  # Correct the spelling of "Schizachne purpurascens"
+  mutate(Species = gsub("Schizacne purpurascens", "Schizachne purpurascens", Species)) %>% 
+  # Update "Elymus innovatus" to "Leymus innovatus"
+  mutate(Species = gsub("Elymus innovatus", "Leymus innovatus", Species)) %>% 
+  # create column "Species_" so that species names in this dataset match tip labels in the tree
+  mutate(Species_ = gsub(" ", "_", Species)) %>% 
+  # create column "Collector" describing who took the data
+  mutate(collector = as.factor(case_when(source == "CS2021" ~ "CS",
+                               source == "JF2001" ~ "JF",
+                               source == "JF2004" ~ "JF"))) %>% 
+  as.data.frame()
+
+# Inspect
+# str(stig_sp) # 23 species 
+# "mean_poll" - mean stigmatic pollen load per species
+# "collector" - a factor with 2 levels to control for who collected the data (CS or JF)
+# "Sex_sys" - a factor with 3 levels specifying a species' sex system (dioecious, monoecious, or hermaphroditic). 
+# check whether there are any missing values:
+sum(is.na(stig_sp)) # no missing values
+```
+
+Pre model-fitting checks:
+
+```{r inspect distributions}
+#frequency distributions of categorical predictors
+table(stig_sp$collector) #CS is represented by 10 species, JF is represented by 13
+table(stig_sp$Sex_sys) #there are only 2 dioecious species, but 12 hermaphroditic species and 9 monoecious species. This might be an issue - the dioecious species may be overly influential and also not a great representation of this sex system. 
+
+#inspect the distribution of the response:
+hist(stig_sp$mean_poll) #this is very skewed!
+# I'll check whether this looks more symmetrical after a log-transformation (to avoid influential cases)
+#first I'll check if this contains any 0s...
+min(stig_sp$mean_poll) #it's 2.26... which is >0 so a simple log-transform is safe
+hist(log(stig_sp$mean_poll)) #looks better (not heavily skewed, no outliers)
+stig_sp$log.mean_poll <- log(stig_sp$mean_poll) #add log-transformed response to dataset
+```
+
+
+```{r checking for collinearity}
+#run a linear model wwith all predictors
+lm.res <- lm(log.mean_poll ~ Sex_sys + collector, data=stig_sp)
+vif(mod=lm.res) # variance inflation factors from package "car"
+#generalized inflation factors are pretty small (under 10) -- probably no big collinearity issues
+```
+
+Model fitting: 
+
+Fitting a PGLS model using the function pgls() from the package "caper" (Orme et al. 2013):
+
+```{r fit ML PGLS model}
+#the function pgls() needs the data and the tree to be combined into a single object, do this with the function comparative.data() from "caper"
+# note!!!: trait data CANNOT be a tibble, make sure to convert it to a dataframe or you will get an error!
+test.data=comparative.data(phy=stig_tree, data=stig_sp, names.col=Species_, vcv=TRUE, na.omit=FALSE, warn.dropped=TRUE)
+# Check for mismatched names:
+# stig_tree$tip.label[!(stig_tree$tip.label %in% stig_sp$Species_)]
+# -> fixed spelling of Schizachne purpurascens, updated Elymus innovatus to Leymus innovatus
+
+#were any species dropped?
+test.data$dropped # no!
+
+#now fit the PGLS model with maximum likelihood estimated lambda
+full <- pgls(log.mean_poll ~ Sex_sys + collector, dat=test.data, lambda="ML")
+#the argument lambda="ML" means that lambda, the scaling parameter of the variance-covariance matrix is estimated (using maximum likelihood)
+summary(full)
+anova(full)
+
+#drop collector since it's not significant
+full2 <- pgls(log.mean_poll ~ Sex_sys, dat=test.data, lambda="ML")
+summary(full2)
+anova(full2)
+
+# PGLS branch length output from summary()
+# Branch length transformations:
+# kappa  [Fix]  : 1.000
+# lambda [ ML]  : 0.738
+#    lower bound : 0.000, p = 0.50889
+#    upper bound : 1.000, p = 0.0046432
+#    95.0% CI   : (NA, 0.977)
+# delta  [Fix]  : 1.000
+# From the above - the branch scaling parameter lambda isn't significantly different from 0 but it is significantly different from 1. Lambda=0 is equivalent to an OLS model/a "star" phylogeny where no species are more related to each other than others. Lambda=1 represents a Brownian model of evolution. In terms of this model, might mean that PGLS model is no more appropriate than an OLS model because the differences in average pollen load between species aren't particularly affected by where they sit on a phylogeny. 
+# I will take a look at lambda's likelihood profile: 
+plot(pgls.profile(full2, "lambda"))
+# looks pretty flat, a small peak near 0.8 but another local peak around lambda = 0. 
+# according to this tutorial (https://wiki.duke.edu/download/attachments/131173232/Randi_PGLStutorial.docx?version=1&modificationDate=1518578568000&api=v2)
+# this might be also because we have a small dataset, which they define as 20-30 species -- we have 23! They recommend in this case doing 2 analyses: 1 OLS (equivalent to lambda=0) and one PGLS with lambda = 1. 
+```
+
+Fitting OLS model and PGLS model with lambda=1:
+
+```{r fit final models}
+#OLS model 
+# OLS_stig <- lm(log.mean_poll ~ Sex_sys + collector, dat=stig_sp)
+# summary(OLS_stig)
+# anova(OLS_stig) # again, I'll remove collector since it's not significant and I didn't expect it to have an impact
+OLS_stig <- lm(log.mean_poll ~ Sex_sys, dat=stig_sp)
+summary(OLS_stig)
+anova(OLS_stig)
+
+#PGLS model with lambda=1
+PGLS_stig <- pgls(log.mean_poll ~ Sex_sys, dat=test.data, lambda=1)
+summary(PGLS_stig)
+anova(PGLS_stig)
+```
+
+When using an OLS model, sex system has a significant effect on log mean pollen load (F20,2 = 9.22, p=0.0015). However, using the PGLS model with lambda=1 this effect appears much weaker (F19,2=0.80, p=0.4636). 
+
+Post model-fitting checks:
+
+```{r check residuals}
+## OLS
+#normality of residuals
+hist(OLS_stig$residuals) #looks ok
+qqnorm(OLS_stig$residuals) 
+qqline(OLS_stig$residuals) #looks okay
+#homogeneity of residuals
+plot(x=fitted(OLS_stig), y=OLS_stig$residuals, pch=19) #potentially an issue here with so few dioecious species. The two dioecious species have much lower fitted values, appear to be less variable (but hard to say because there's only 2!)
+
+#PGLS
+#normality of phylogenetic residuals:
+hist(PGLS_stig$phyres) #not bad
+qqnorm(PGLS_stig$phyres) 
+qqline(PGLS_stig$phyres) #look ok
+#inspect phylogenetic residuals for homogeneity:
+plot(x=fitted(PGLS_stig), y=PGLS.pc$phyres, pch=19)
+#again -- two dioecious species have much lower fitted values, appear to be less variable (but hard to say because there's only 2!)
+```
