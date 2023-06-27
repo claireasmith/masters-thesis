@@ -8,11 +8,7 @@ Claire Smith
 library(tidyverse)
 library(ggplot2)
 library(ggridges)
-```
 
-    ## Warning: package 'ggridges' was built under R version 4.3.1
-
-``` r
 ## Source files
 # custom
 source("theme_cs.R")
@@ -22,44 +18,30 @@ source("clean-anthers-04.R") # calls 1, 2, 3 within itself
 
 ``` r
 # Pollen production (and size)
-sizenum.dat <- read.csv("processed-data/size-prod-all.csv", stringsAsFactors = T)
+sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
+# Take data with no reps between JF and CS data
 # head(sizenum.dat)
 # str(sizenum.dat)
 ```
 
 ``` r
 prod_spp <- sizenum.dat
-# Some species were collected by both me and Jannice. She used automated pollen counting 
-# with a particle counter. It counts all particles that go through it vs small subsample I 
-# counted in mine, makes less assumptions about how uniformly pollen is suspended in the sample -- I'll keep her data where there's overlap. 
-# A very long line of code to find out if there are any species in my production data NOT also included in the JF data: 
-(unique(prod_spp$Species[which(prod_spp$source == "CS2021")]))[!(unique(prod_spp$Species[which(prod_spp$source == "CS2021")])) %in% unique(prod_spp$Species[which(prod_spp$source == "JF2001" | prod_spp$source == "JF2004" )])]
-```
-
-    ## [1] Amaranthus retroflexus
-    ## 36 Levels: Acristata Adasyd Agropyron trachycaulum ... Thalictrum dioicum
-
-``` r
-# Amaranthus retroflexus is the only one
-# Exclude all pollen production data from CS2021 except Amaranthus retroflexus
-prod_spp_filt <- prod_spp %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
-
 # Re-order levels in sex system column 
-prod_spp_filt$Sex_sys <- as.character(prod_spp_filt$Sex_sys)
-prod_spp_filt$Sex_sys <- factor(prod_spp_filt$Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))
+prod_spp$Sex_sys <- as.character(prod_spp$Sex_sys)
+prod_spp$Sex_sys <- factor(prod_spp$Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))
 
 # Arrange data so that species are grouped by sex system and ordered alphabetically
-prod_spp_filt <- arrange(prod_spp_filt, Sex_sys, Species)
-prod_spp_filt$Species <- factor(prod_spp_filt$Species, levels = unique(prod_spp_filt$Species), ordered = T)
+prod_spp <- arrange(prod_spp, Sex_sys, Species)
+prod_spp$Species <- factor(prod_spp$Species, levels = unique(prod_spp$Species), ordered = T)
 
 # Remove NAs
-prod_spp_filt <- prod_spp_filt %>% 
+prod_spp <- prod_spp %>% 
   filter(!is.na(Avg_pol_anth))
 
 # Keep only species with at least 5 individuals
-p_sum <- prod_spp_filt %>% group_by(Species) %>% dplyr::summarize(n=n())
+p_sum <- prod_spp %>% group_by(Species) %>% dplyr::summarize(n=n())
 keep_vec <- p_sum$Species[which(p_sum$n>=5)]
-p_all_5ormore <- prod_spp_filt[prod_spp_filt$Species %in% keep_vec,]
+p_all_5ormore <- prod_spp[prod_spp$Species %in% keep_vec,]
 
 prodfull <- p_all_5ormore %>% droplevels()
 
@@ -77,7 +59,10 @@ prod_sum <- prodfull_filt %>%
   summarize(Avg_prod_anth_sp = mean(Avg_pol_anth, na.rm=T),
             Sd_prod_anth_sp = sd(Avg_pol_anth, na.rm=T),
             n_prod_anth = n(),
-            SE_prod_anth_sp = Sd_prod_anth_sp/n_prod_anth) %>% 
+            SE_prod_anth_sp = Sd_prod_anth_sp/n_prod_anth, 
+            Max_prod_anth = max(Avg_pol_anth, na.rm=T),
+            Min_prod_anth = min(Avg_pol_anth, na.rm=T),
+            CV_prod_anth = Sd_prod_anth_sp/Avg_prod_anth_sp) %>% 
   filter(n_prod_anth>=5) %>% 
   droplevels()
 ```
@@ -89,7 +74,7 @@ prod_sum <- prodfull_filt %>%
 print(prod_sum, n=27)
 ```
 
-    ## # A tibble: 27 × 7
+    ## # A tibble: 27 × 10
     ## # Groups:   Species, Sex_sys [27]
     ##    Species           Sex_sys source Avg_prod_anth_sp Sd_prod_anth_sp n_prod_anth
     ##    <ord>             <fct>   <fct>             <dbl>           <dbl>       <int>
@@ -120,7 +105,13 @@ print(prod_sum, n=27)
     ## 25 Poa juncifolia    hermap… JF2001            2426.          1037.            6
     ## 26 Schizachne purpu… hermap… JF2004             287.            99.4          12
     ## 27 Stipa columbiana  hermap… JF2001             673.           387.           10
-    ## # ℹ 1 more variable: SE_prod_anth_sp <dbl>
+    ## # ℹ 4 more variables: SE_prod_anth_sp <dbl>, Max_prod_anth <dbl>,
+    ## #   Min_prod_anth <dbl>, CV_prod_anth <dbl>
+
+``` r
+# write it to a file
+write.csv(prod_sum, "processed-data/pollen-prod-table.csv", row.names=F)
+```
 
 ``` r
 prod_ridges <- prodfull_filt %>% 

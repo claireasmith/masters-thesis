@@ -22,38 +22,30 @@ source("clean-anthers-04.R") # calls 1, 2, 3 within itself
 
 ```{r}
 # Pollen production (and size)
-sizenum.dat <- read.csv("processed-data/size-prod-all.csv", stringsAsFactors = T)
+sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
+# Take data with no reps between JF and CS data
 # head(sizenum.dat)
 # str(sizenum.dat)
 ```
 
 ```{r prepare data}
 prod_spp <- sizenum.dat
-# Some species were collected by both me and Jannice. She used automated pollen counting 
-# with a particle counter. It counts all particles that go through it vs small subsample I 
-# counted in mine, makes less assumptions about how uniformly pollen is suspended in the sample -- I'll keep her data where there's overlap. 
-# A very long line of code to find out if there are any species in my production data NOT also included in the JF data: 
-(unique(prod_spp$Species[which(prod_spp$source == "CS2021")]))[!(unique(prod_spp$Species[which(prod_spp$source == "CS2021")])) %in% unique(prod_spp$Species[which(prod_spp$source == "JF2001" | prod_spp$source == "JF2004" )])]
-# Amaranthus retroflexus is the only one
-# Exclude all pollen production data from CS2021 except Amaranthus retroflexus
-prod_spp_filt <- prod_spp %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
-
 # Re-order levels in sex system column 
-prod_spp_filt$Sex_sys <- as.character(prod_spp_filt$Sex_sys)
-prod_spp_filt$Sex_sys <- factor(prod_spp_filt$Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))
+prod_spp$Sex_sys <- as.character(prod_spp$Sex_sys)
+prod_spp$Sex_sys <- factor(prod_spp$Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))
 
 # Arrange data so that species are grouped by sex system and ordered alphabetically
-prod_spp_filt <- arrange(prod_spp_filt, Sex_sys, Species)
-prod_spp_filt$Species <- factor(prod_spp_filt$Species, levels = unique(prod_spp_filt$Species), ordered = T)
+prod_spp <- arrange(prod_spp, Sex_sys, Species)
+prod_spp$Species <- factor(prod_spp$Species, levels = unique(prod_spp$Species), ordered = T)
 
 # Remove NAs
-prod_spp_filt <- prod_spp_filt %>% 
+prod_spp <- prod_spp %>% 
   filter(!is.na(Avg_pol_anth))
 
 # Keep only species with at least 5 individuals
-p_sum <- prod_spp_filt %>% group_by(Species) %>% dplyr::summarize(n=n())
+p_sum <- prod_spp %>% group_by(Species) %>% dplyr::summarize(n=n())
 keep_vec <- p_sum$Species[which(p_sum$n>=5)]
-p_all_5ormore <- prod_spp_filt[prod_spp_filt$Species %in% keep_vec,]
+p_all_5ormore <- prod_spp[prod_spp$Species %in% keep_vec,]
 
 prodfull <- p_all_5ormore %>% droplevels()
 
