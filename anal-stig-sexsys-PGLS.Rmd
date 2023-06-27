@@ -184,3 +184,50 @@ qqline(PGLS_stig$phyres) #look ok
 plot(x=fitted(PGLS_stig), y=PGLS.pc$phyres, pch=19)
 #again -- two dioecious species have much lower fitted values, appear to be less variable (but hard to say because there's only 2!)
 ```
+
+Since lambda was not significantly different from 0 or 1, I'll also do a linear mixed effects model on pollen receipt by sex system with species as random effect.
+
+```{r stig mixed mod}
+## Mixed effects mod
+# I'll use the data that's not grouped by species - sizenum
+stig_filt <- stig %>% 
+  filter(!is.na(Flw_pollen)) %>% 
+  # Make log mean poll column %>% 
+  mutate(Log_avg_poll = log(Flw_pollen + 1)) %>% 
+  # Make new column, collector
+  mutate(collector = ifelse(source == "CS2021", "CS", "JF")) %>% 
+  # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(desc(Sex_sys), desc(Species)) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) 
+
+stig_mixmod <- lmer(Log_avg_poll ~ Sex_sys + collector + (1|Species/Plant), data = stig_filt)
+summary(stig_mixmod)
+anova(stig_mixmod)
+```
+
+From the mixed effects model, sex system has a significant effect on stigmatic pollen load. I'll use emmeans to run a Tukey's HSD to determine which groups are significantly different from each other and the direction of the difference(s). 
+
+```{r stig mixed mod emmeans}
+emmeans(stig_mixmod , ~Sex_sys)
+emmeans(stig_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")
+# plot(emmeans(size_mixmod , ~Sex_sys))
+em_stig <- emmeans(stig_mixmod , ~Sex_sys) %>%  as.data.frame()
+# Plot estimated marginal means: 
+ggplot(data=em_stig, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=pmax(0,asymp.LCL), ymax=asymp.UCL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=log(8)), label="A") + 
+  geom_text(aes(x=2, y=log(17)), label="A") + 
+  geom_text(aes(x=3, y=log(44)), label="B") + 
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+                     limits=c(0,NA)) +
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
+In the mixed effects model, sex system does have a significant effect on stigmatic pollen loads. A Tukey's HSD test shows that hermaphroditic species capture significantly more pollen than dioecious or monoecious species, but pollen capture is not significantly different between dioecious and monoecious species. 
