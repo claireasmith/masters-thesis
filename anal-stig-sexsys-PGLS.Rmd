@@ -21,7 +21,6 @@ library(dplyr)
 library(caper)
 ```
 
-
 #### Question
 
 Is there an effect of sex system on pollen load, across species? 
@@ -32,7 +31,6 @@ stigmatic pollen load ~ sex system + collector
 - sex system is a categorical test predictor with 3 levels (dioecious, monoecious, hermaphroditic)
 - collector is a categorical control predictor with 2 levels (CS, JF), to control for any effects on pollen load depending on who collected the data
 
-
 ```{r prepare tree data}
 #read the phylogeny into an R object
 stig_tree <- read.tree("processed-data/capture_tree.nwk")
@@ -42,7 +40,6 @@ str(stig_tree)
 #plot the tree:
 plot.phylo(x=stig_tree, cex=0.7, direction="upwards", no.margin=TRUE)
 ```
-
 
 ```{r prepare trait data}
 ## read in data with stigmatic pollen capture and potential covariates

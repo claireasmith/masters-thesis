@@ -144,6 +144,7 @@ aDat_full_ss <- aDat_full %>%
                                             "Koeleria cristata","Phalaris arundinacea",
                                             "Plantago lanceolata", 
                                             "Poa juncifolia", "Poa secunda subsp. secunda",
+                                            "Purple stigma grass",
                                             "Stipa columbiana") ~ "hermaphroditic"))
 # Make sure no species were missed -- looks ok 
 # summary(as.factor(aDat_full_ss$Sex_sys))

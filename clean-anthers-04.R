@@ -175,6 +175,13 @@ sp_dat2 <- sp_dat_distinct %>%
 sp_dat3 <- sp_dat2 %>% mutate(Pol_flw = Avg_pol_anth*Anth_per_flw,
                             Sd_pol_flw = Sd_pol_anth*Anth_per_flw)
 
+# After looking at ridgeplot distributions of pollen production it looks like there are some clear outliers in some species - like Phleum pratense
+# prodfull %>% filter(Species == "Phleum pratense")
+# looks like Ind C11 is the one, with 16161 grains/anther! The rest are all <10,000. I'll
+# remove it
+sp_dat3 <- sp_dat3 %>% filter(!(Species=="Phleum pratense" & Ind == "C11"))
+# prodfull_filt %>% filter(Species == "Phleum pratense") # make sure it's gone
+
 write.csv(sp_dat3, "processed-data/size-prod-all.csv", row.names = F)
 
 # Some species were collected by both me and Jannice. She used automated pollen counting 

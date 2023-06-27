@@ -49,13 +49,6 @@ p_all_5ormore <- prod_spp[prod_spp$Species %in% keep_vec,]
 
 prodfull <- p_all_5ormore %>% droplevels()
 
-# After looking at ridgeplot distributions of pollen production it looks like there are some clear outliers in some species - like Phleum pratense
-# prodfull %>% filter(Species == "Phleum pratense")
-# looks like Ind C11 is the one, with 16161 grains/anther! The rest are all <10,000. I'll
-# remove it
-prodfull_filt <- prodfull %>% filter(!(Species=="Phleum pratense" & Ind == "C11"))
-# prodfull_filt %>% filter(Species == "Phleum pratense") # make sure it's gone
-
 ```
 
 ```{r}
