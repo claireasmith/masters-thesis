@@ -47,86 +47,6 @@ sizefull <- sf_all_5ormore %>% droplevels()
 ```
 
 ``` r
-size_ridges <- sizefull %>% 
-  # Arrange species in order of sex system and alphabetically by species
-  mutate(Sex_sys = as.character(Sex_sys),
-         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
-  arrange(desc(Sex_sys), desc(Species)) %>% 
-  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
-  
-  ggplot(aes(x=Avg_diam, y=Species, fill=Sex_sys)) +
-  geom_density_ridges2() + 
-  scale_fill_manual(values=c("#66C2A5","#8DA0CB","#FC8D62"),
-                    labels=c("Dioecious", "Monoecious", "Hermaphroditic")) +
-  scale_x_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
-
-  scale_y_discrete() +
-  ylab(label="") + 
-  guides(fill="none") + 
-  theme_cs(font="sans", fontsize=15) + 
-  theme(axis.text.y = element_text(face = "italic"),
-        axis.ticks.y = element_line())
-
-size_ridges
-```
-
-    ## Picking joint bandwidth of 0.512
-
-![](anal-size-summary_files/figure-gfm/plot%20size%20distributions-1.png)<!-- -->
-
-``` r
-size_box <- sizefull %>% 
-    # Arrange species in order of sex system and alphabetically by species
-  mutate(Sex_sys = as.character(Sex_sys),
-         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
-  arrange(Sex_sys, Species) %>% 
-  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
-  
-  ggplot() + 
-  geom_boxplot(aes(x=Species, y=Avg_diam, fill=Sex_sys)) + 
-
-  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
-  scale_x_discrete(name = "") + 
-  
-  guides(fill="none") + 
-  scale_fill_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
-                    values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
-  theme_cs(fontsize=15, font="sans") + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, face="italic"))
-
-size_box
-```
-
-![](anal-size-summary_files/figure-gfm/size%20box%20plots-1.png)<!-- -->
-
-``` r
-size_box_ss <- sizefull %>% 
-  # Arrange species in order of sex system and alphabetically by species
-  mutate(Sex_sys = as.character(Sex_sys),
-         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
-  arrange(Sex_sys, Species) %>% 
-  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
-  
-  ggplot() + 
-  geom_boxplot(aes(x=Sex_sys, y=Avg_diam, fill=Sex_sys),
-               width=0.4) + 
-  
-  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
-  scale_x_discrete(name = "", labels = NULL) + 
-  
-  guides(fill=guide_legend(title="Sex system")) + 
-  scale_fill_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
-                    values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
-  theme_cs(fontsize=15, font="sans") + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
-        legend.position = "right")
-
-size_box_ss
-```
-
-![](anal-size-summary_files/figure-gfm/sex%20sys%20size%20box%20plots-1.png)<!-- -->
-
-``` r
 size_sum <- sizefull %>% group_by(Sex_sys, Species) %>% 
   summarize(df = N_diam-1,
             s2 = Sd_diam^2,
@@ -223,6 +143,82 @@ size_sum_ss
 write.csv(size_sum_ss, "processed-data/pollen-size-table-ss.csv", row.names=F)
 ```
 
-write.csv(size_sum, “Data/clean/size_summary.csv”, row.names = F)
-write.csv(size_sum_ss, “Tables/size_summary_sexsys_table.csv”,
-row.names=F)
+``` r
+size_ridges <- sizefull %>% 
+  # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(desc(Sex_sys), desc(Species)) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
+  
+  ggplot(aes(x=Avg_diam, y=Species, fill=Sex_sys)) +
+  geom_density_ridges2() + 
+  scale_fill_manual(values=c("#66C2A5","#8DA0CB","#FC8D62"),
+                    labels=c("Dioecious", "Monoecious", "Hermaphroditic")) +
+  scale_x_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+
+  scale_y_discrete() +
+  ylab(label="") + 
+  guides(fill="none") + 
+  theme_cs(font="sans", fontsize=15) + 
+  theme(axis.text.y = element_text(face = "italic"),
+        axis.ticks.y = element_line())
+
+size_ridges
+```
+
+    ## Picking joint bandwidth of 0.512
+
+![](anal-size-summary_files/figure-gfm/plot%20size%20distributions-1.png)<!-- -->
+
+``` r
+size_box <- sizefull %>% 
+    # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(Sex_sys, Species) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
+  
+  ggplot() + 
+  geom_boxplot(aes(x=Species, y=Avg_diam, fill=Sex_sys)) + 
+
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+  scale_x_discrete(name = "") + 
+  
+  guides(fill="none") + 
+  scale_fill_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
+                    values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
+  theme_cs(fontsize=15, font="sans") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, face="italic"))
+
+size_box
+```
+
+![](anal-size-summary_files/figure-gfm/size%20box%20plots-1.png)<!-- -->
+
+``` r
+size_box_ss <- sizefull %>% 
+  # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(Sex_sys, Species) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
+  
+  ggplot() + 
+  geom_boxplot(aes(x=Sex_sys, y=Avg_diam, fill=Sex_sys),
+               width=0.4) + 
+  
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+  scale_x_discrete(name = "", labels = NULL) + 
+  
+  guides(fill=guide_legend(title="Sex system")) + 
+  scale_fill_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
+                    values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
+  theme_cs(fontsize=15, font="sans") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        legend.position = "right")
+
+size_box_ss
+```
+
+![](anal-size-summary_files/figure-gfm/sex%20sys%20size%20box%20plots-1.png)<!-- -->

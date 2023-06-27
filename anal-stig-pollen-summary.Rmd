@@ -22,14 +22,39 @@ source("theme_cs.R")
 ```{r load data}
 # Load data
 stig <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T)
-
 ```
 
 ```{r check data}
 # head(stig)
 # summary(stig)
-stig[which(is.na(stig$Flw_pollen)),] # some NAs from when the data was joined - some individuals had 
+# check for NAs
+# stig[which(is.na(stig$Flw_pollen)),] # some NAs from when the data was joined - some individuals had 
 ```
+
+```{r table pollen loads}
+pollen_load_tab <- stig %>% group_by(source, Sex_sys, Species, Plant) %>% 
+  group_by(Sex_sys, Species, source) %>% 
+  summarize(mean_poll = mean(Flw_pollen, na.rm=T),
+            sd_poll = sd(Flw_pollen, na.rm=T),
+            n_poll_count = n(),
+            se_poll = sd_poll/sqrt(n_poll_count),
+            CV_poll = sd_poll/mean_poll,
+            max_poll = max(Flw_pollen, na.rm=T),
+            min_poll = min(Flw_pollen, na.rm=T))
+
+
+n_plants_stig <- stig %>% group_by(Sex_sys, Species, source, Plant) %>% 
+  summarize(g=n()) %>%
+  group_by(Sex_sys, Species, source) %>% 
+  summarize(nplants = n())
+
+pollen_load_tab$stig_nplants = n_plants_stig$nplants
+# names(pollen_load_tab)
+pollen_load_tab
+
+write.csv(pollen_load_tab, "processed-data/pollen-loads-table.csv", row.names=F)
+```
+
 
 Visualize distributions of pollen loads across species
 
@@ -114,28 +139,4 @@ stig_box_ss <- stig %>%
 stig_box_ss
 ```
 
-
-```{r table pollen loads}
-pollen_load_tab <- stig %>% group_by(source, Sex_sys, Species, Plant) %>% 
-  group_by(Sex_sys, Species, source) %>% 
-  summarize(mean_poll = mean(Flw_pollen, na.rm=T),
-            sd_poll = sd(Flw_pollen, na.rm=T),
-            n_poll_count = n(),
-            se_poll = sd_poll/sqrt(n_poll_count),
-            CV_poll = sd_poll/mean_poll,
-            max_poll = max(Flw_pollen, na.rm=T),
-            min_poll = min(Flw_pollen, na.rm=T))
-
-
-n_plants_stig <- stig %>% group_by(Sex_sys, Species, source, Plant) %>% 
-  summarize(g=n()) %>%
-  group_by(Sex_sys, Species, source) %>% 
-  summarize(nplants = n())
-
-pollen_load_tab$stig_nplants = n_plants_stig$nplants
-# names(pollen_load_tab)
-pollen_load_tab
-
-write.csv(pollen_load_tab, "processed-data/pollen-loads-table.csv", row.names=F)
-```
 
