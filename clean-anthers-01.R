@@ -266,7 +266,7 @@ write.csv(size, "processed-data/size-CS2021-within-inds.csv", row.names = F)
 
 # Take the mean pollen size per individual, write a file where each individual is a row
 avg_size_dat <- size %>% 
-  filter(Species != "Setaria viridis") %>% 
+  filter(Species != "Setaria viridis") %>% # S viridis doesn't have individual-level info - I'll take it out
   group_by(source, Sex_sys, Species, Site, Ind) %>% 
   summarize(Avg_area = mean(Area, na.rm=T),
             Avg_diam = mean(Diam, na.rm=T), 
@@ -274,4 +274,11 @@ avg_size_dat <- size %>%
             N_diam = n())
 write.csv(avg_size_dat, "processed-data/size-CS2021.csv", row.names=F)
 
-
+# Save S. viridis data in its own file to attach to later species-level tables and analyses
+SV_sp_dat <- size %>% filter(Species == "Setaria viridis") %>% 
+  group_by(source, Sex_sys, Species) %>% 
+  summarize(Avg_area = mean(Area, na.rm=T),
+            Avg_diam = mean(Diam, na.rm=T), 
+            Sd_diam = sd(Diam, na.rm=T),
+            N_diam = n())
+write.csv(SV_sp_dat, "processed-data/SV-sp-dat.csv", row.names=F)
