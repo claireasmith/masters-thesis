@@ -177,4 +177,14 @@ sp_dat3 <- sp_dat2 %>% mutate(Pol_flw = Avg_pol_anth*Anth_per_flw,
 
 write.csv(sp_dat3, "processed-data/size-prod-all.csv", row.names = F)
 
-# unique(sp_dat3$Species)
+# Some species were collected by both me and Jannice. She used automated pollen counting 
+# with a particle counter. It counts all particles that go through it vs small subsample I 
+# counted in mine, makes less assumptions about how uniformly pollen is suspended in the sample -- I'll keep her data where there's overlap. 
+
+# A very long line of code to find out if there are any species in my production data NOT also included in the JF data: 
+(unique(sp_dat3$Species[which(sp_dat3$source == "CS2021")]))[!(unique(sp_dat3$Species[which(sp_dat3$source == "CS2021")])) %in% unique(sp_dat3$Species[which(sp_dat3$source == "JF2001" | sp_dat3$source == "JF2004" )])]
+# Amaranthus retroflexus is the only one
+# Exclude all pollen production data from CS2021 except Amaranthus retroflexus
+sizeprod_norep <- sp_dat3 %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
+
+write.csv(sizeprod_norep, "processed-data/size-prod-norep.csv", row.names = F)
