@@ -1,0 +1,275 @@
+---
+title: "Relationship between pollen load, size, and number PGLS"
+author: "Claire Smith"
+date: "2023-06-26"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r initialize}
+# Load packages
+library(dplyr)
+library(car)
+library(V.PhyloMaker2)
+library(ape)
+library(dplyr)
+library(caper)
+```
+
+#### Combine the stigmatic pollen load and size/number trait datasets. 
+
+Load in stigmatic pollen data. 
+
+```{r}
+## read in data with stigmatic pollen capture and potential covariates
+stig <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T) 
+# head(stig)
+# summary(stig)
+
+# I want the data to be at the species level -- I'll take species-wide averages
+stig_sp <- stig %>% group_by(Sex_sys, Species, source) %>% 
+  filter(!is.na(Flw_pollen)) %>% 
+  summarize(mean_poll = mean(Flw_pollen))
+# head(stig_sp)
+# summary(stig_sp)
+# View(stig_sp)
+
+# Add some helpful columns
+stig_sp <- stig_sp %>% 
+  # create column "Species_" so that species names in this dataset match tip labels in the tree
+  mutate(Species_ = gsub(" ", "_", Species)) %>% 
+  # create column "Collector" describing who took the data
+  mutate(collector = as.factor(case_when(source == "CS2021" ~ "CS",
+                               source == "JF2001" ~ "JF",
+                               source == "JF2004" ~ "JF")))
+# Inspect
+# str(stig_sp) # 23 species 
+# "mean_poll" - mean stigmatic pollen load per species
+# "collector" - a factor with 2 levels to control for who collected the data (CS or JF)
+# "Sex_sys" - a factor with 3 levels specifying a species' sex system (dioecious, monoecious, or hermaphroditic). 
+# check whether there are any missing values:
+sum(is.na(stig_sp)) # no missing values
+```
+
+Load in pollen size and number data. 
+
+```{r}
+## read in data with pollen size/number 
+sizenum <- read.csv("processed-data/size-prod-all.csv", stringsAsFactors = T)
+head(sizenum)
+summary(sizenum)
+
+# I want the data to be at the species level -- I'll take species-wide averages
+sizenum_sp <- sizenum %>% group_by(Sex_sys, Species, source) %>% 
+  filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth)) %>% 
+  summarize(Avg_pol_anth = mean(Avg_pol_anth),
+            Avg_diam = mean(Avg_diam),
+            N = n()) %>% 
+  filter(N>=5) %>% # Keep only species with at least 5 individuals
+  droplevels()
+# head(sizenum_sp)
+# summary(sizenum_sp)
+# View(sizenum_sp)
+
+# Add useful columns..
+sizenum_sp <- sizenum_sp %>% 
+  # Species_ to match style of species names in phylogeny
+  mutate(Species_ = gsub(" ", "_", Species)) %>% 
+  # create column "Collector" describing who took the data
+  mutate(collector = as.factor(case_when(source == "CS2021" ~ "CS",
+                               source == "JF2001" ~ "JF",
+                               source == "JF2004" ~ "JF")))
+  
+#inspect sizenum.data
+str(sizenum_sp) # 27 species 
+# Key variables:
+#"Avg_pol_anth" - mean pollen production per anther, per species
+#"Avg_diam" - the mean pollen diameter (per flower) per species in nm, averaged within individuals then across individuals to get a species-wide mean
+#"collector" - a factor with 2 levels to control for who collected the data (CS or JF)
+#"Sex_sys" - a factor with 3 levels specifying a species' sex system (dioecious, monoecious, or hermaphroditic). 
+#check whether there are any missing values in "sn.dat.sel":
+# sum(is.na(sizenum_sp)) # no missing data
+```
+
+Combine trait data into one complete dataframe, dropping species with no overlap. 
+
+```{r}
+fulldat <- full_join(stig_sp, sizenum_sp, by=c("Species_", "Sex_sys"))
+head(fulldat)
+View(fulldat)
+# str(fulljoined.pc.sn)
+#Take only rows with complete data
+full.pc.sn.complete <- fulljoined.pc.sn[complete.cases(fulljoined.pc.sn),]
+full.pc.sn.dropped <- fulljoined.pc.sn[!complete.cases(fulljoined.pc.sn),]
+#What species were dropped from the stigmatic pollen capture data? 
+pc.dat$Species_[pc.dat$Species_ %in% full.pc.sn.dropped$Species_]
+#3 species dropped: "Dichanthelium_implicatum", "Dichanthelium_linearifolium", "Carex_plantaginea" 
+sn.dat$Species_[sn.dat$Species_ %in% full.pc.sn.dropped$Species_] #10 species dropped
+# str(full.pc.sn.complete) # 19 species, 16 variables 
+#View(fulljoined.pc.sn) #look at data to see if number of dropped species makes sense...
+#rename dataset to something easier
+pc.sn.dat <- full.pc.sn.complete
+```
+
+3 species were dropped from the pollen capture dataset: Dichanthelium_implicatum, Dichanthelium_linearifolium, and Carex_plantaginea. 10 species were dropped from the pollen size and number dataset. The resulting dataset has 19 species. 
+
+#### Pre model-fitting checks
+
+*Inspecting distributions of predictors and response variable*
+
+```{r}
+#inspect distributions of predictors
+names(pc.sn.dat)
+#  [1] "Sex_sys"      "mean_poll"    "sd_poll"      "n_poll_count" "se_poll"      "CV_poll"      "max_poll"    
+#  [8] "min_poll"     "stig_nplants" "collector.x"  "Species_"     "collector.y"  "mean_diam"    "mean_polflw" 
+# [15] "n"            "est.pol.area"
+table(pc.sn.dat$Sex_sys) #2 dioecious, 8 monoecious, 9 hermaphroditic
+#collector was not significant in either stigmatic pollen load or pollen size/number analyses so I will ignore
+hist(pc.sn.dat$est.pol.area) #looks a little skewed, will see if a log transform looks more symmetrical 
+hist(log(pc.sn.dat$est.pol.area)) #looks better
+pc.sn.dat$log.est.pol.area <- log(pc.sn.dat$est.pol.area) #add log-transformed pollen area to dataset
+# hist(pc.sn.dat$log.est.pol.area) #make sure hist still looks ok, no typos
+hist(pc.sn.dat$mean_polflw) #looks skewed
+min(log(pc.sn.dat$mean_polflw)) #min is >0
+hist(log(pc.sn.dat$mean_polflw)) #looks better
+pc.sn.dat$log.mean_polflw <- log(pc.sn.dat$mean_polflw) #add log-transformed pollen number per flower to dataset
+# hist(pc.sn.dat$log.mean_polflw) #make sure hist still looks ok
+
+#inspect the distribution of the response:
+hist(pc.sn.dat$mean_poll) #this is very skewed!
+min(pc.sn.dat$mean_poll) #it's 2.25... which is >0 so a simple log-transform is safe
+hist(log(pc.sn.dat$mean_poll)) #looks better (not heavily skewed, no outliers)
+pc.sn.dat$log.mean_poll <- log(pc.sn.dat$mean_poll) #add log-transformed response to dataset
+# hist(pc.sn.dat$log.mean_poll) #make sure hist looks ok still
+```
+
+*Checking for collinearity*
+
+```{r message=F}
+#run a linear model wwith all predictors
+lm.res <- lm(log.mean_poll ~ Sex_sys + log.est.pol.area + log.mean_polflw, data=pc.sn.dat)
+#load library car to look at variance inflation factors
+library(car)
+vif(mod=lm.res)
+#generalized inflation factors are all under 10 - though sex sys is around 6... probably no big collinearity issues but should look into what sex sys is so collinear with
+```
+#### Preparing tree data 
+
+Build tree with both capture and size/num data:
+
+```{r}
+#load relevant packages 
+library(V.PhyloMaker2)
+library(ape)
+library(dplyr)
+# Read in stigmatic pollen capture data list of species, genera, families...
+capture.sp.list <- read.csv("../../Data/species_list_capture.csv")
+# Read in list of size number data species, genera, families...
+sizenum.sp.list <- read.csv("../../Data/species_list_sizenum.csv")
+full.sp.list <- inner_join(capture.sp.list, sizenum.sp.list, by=c("species","genus","family"))
+#19 species - same as in trait data
+# Create phylogeny using V.Phylomaker2
+pc.sn.phylo <- V.PhyloMaker2::phylo.maker(full.sp.list, tree = GBOTB.extended.TPL)
+# scenarios:
+# ..."Specifically, S.PhyloMaker was implemented with three approaches (scenarios) 
+# of adding genera and species that are absent from the PhytoPhylo megaphylogeny: 
+# (i) adding genera or species as basal polytomies within their families or genera (Scenario 1),
+# (ii) adding genera or species randomly within their families or genera (Scenario 2) and 
+# (iii) adding genera or species to their families or genera using the same approach implemented 
+# in Phylomatic and BLADJ (Scenario 3). (Qian & Jin 2016)
+pc.sn.tree <- pc.sn.phylo$scenario.3
+pc.sn.tree$node.label<-NULL # without this caper:pgls throws an error
+
+write.tree(pc.sn.tree, file = "../../Data/pc.sn_tree.nwk")
+```
+
+Read tree in. 
+
+```{r}
+#read the pc phylogeny into an R object
+pc.sn.tree <- read.tree("../../Data/pc.sn_tree.nwk")
+#inspect the tree
+str(pc.sn.tree)
+#sn.tree is a tree with 19 tips and 18 internal nodes
+#plot the tree:
+plot.phylo(x=pc.sn.tree, cex=0.7, direction="upwards", no.margin=TRUE)
+```
+
+#### Model fitting
+
+Fitting the PGLS model using the function pgls() from the package "caper" (Orme et al. 2013):
+
+```{r message=F}
+#the function pgls() needs the data and the tree to be combined into a single object, do this with the function comparative.data() from "caper":
+library(caper)
+test.data=comparative.data(phy=pc.sn.tree, data=pc.sn.dat, names.col=Species_, vcv=TRUE, na.omit=FALSE, warn.dropped=TRUE)
+#were any species dropped?
+test.data$dropped #no
+
+#now fit the PGLS model:
+full <- pgls(log.mean_poll ~ Sex_sys + log.mean_polflw + log.est.pol.area, dat=test.data, lambda="ML")
+#the argument lambda="ML" means that lambda, the scaling parameter of the variance-covariance matrix is estimated (using maximum likelihood)
+summary(full)
+anova(full)
+#The pgls model summary output above shows the branch scaling parameter lambda isn't significantly different from either 0 (lower bound: 0, p=1) but it is from 1 (upper bound: 1.000, p = 0.0109, 95.0% CI   : (NA, 0.950).
+# (Lambda=0 is equivalent to an OLS model/a "star" phylogeny where no species are more related to each other than others, lambda=1 for a Brownian model of evolution.) I will take a look at lambda's likelihood profile to see what's going on...
+plot(pgls.profile(full, "lambda"))
+# kind of flat likelihood surface for lambda, looks like the peak is at 0. 
+# maybe evidence there is no phylogenetic signal in the data for pollen load at least
+
+# this might be because we have a small dataset, which they define as 20-30 species -- we have 19 
+# suggestion to do two analyses from this tutorial on PGLS:  (https://wiki.duke.edu/download/attachments/131173232/Randi_PGLStutorial.docx?version=1&modificationDate=1518578568000&api=v2)
+# they suggest doing lambda=0 and lambda=1
+```
+
+Fitting OLS model and PGLS model with lambda=1: 
+
+```{r}
+#OLS model 
+OLS.pc.sn <- lm(log.mean_poll ~ Sex_sys + log.mean_polflw + log.est.pol.area, dat=pc.sn.dat)
+summary(OLS.pc.sn)
+anova(OLS.pc.sn)# again, I'll remove collector since it's not significant
+
+#PGLS model with lambda=1
+PGLS.pc.sn <- pgls(log.mean_poll ~ Sex_sys + log.mean_polflw + log.est.pol.area, dat=test.data, lambda=1)
+summary(PGLS.pc.sn)
+anova(PGLS.pc.sn)
+```
+
+When using an OLS model, sex system has a significant effect on log mean pollen load (F14,2=7.0487 p=0.007625). However, using the PGLS model with lambda=1 this effect is not significant (F14,2=2.2949, p=0.1374). 
+
+#### Post model-fitting checks
+
+Residuals:
+
+```{r}
+## OLS
+#normality of residuals
+hist(OLS.pc.sn$residuals) #looks pretty normal!
+qqnorm(OLS.pc.sn$residuals) 
+qqline(OLS.pc.sn$residuals) #looks okay...
+#homogeneity of residuals
+plot(x=fitted(OLS.pc.sn), y=PGLS.pc.sn$residuals, pch=19) #potentially an issue here with so few dioecious species. The two dioecious species have much lower fitted values, appear to be less variable (but hard to say because there's only 2!)
+
+#PGLS
+#normality of phylogenetic residuals:
+hist(PGLS.pc.sn$phyres) #looks pretty normal
+qqnorm(PGLS.pc.sn$phyres) 
+qqline(PGLS.pc.sn$phyres) #upper points don't really fall on line, lower points are ok
+#inspect phylogenetic residuals for homogeneity:
+plot(x=fitted(PGLS.pc.sn), y=PGLS.pc.sn$phyres, pch=19)
+#again -- two dioecious species have much lower fitted values, appear to be less variable (but hard to say because there's only 2!)
+```
+
+
+See "Phylo capture by sex sys, size... outlier checks" for full outlier analysis. 
+
+```{r}
+
+```
+
