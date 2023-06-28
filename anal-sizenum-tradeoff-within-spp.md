@@ -22,8 +22,27 @@ prodfull <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
 # summary(prodfull)
 ```
 
+First I’ll take a look at the data and make any adjustments that I want
+to carry throughout the whole script. In later plots I identified two
+obvious outliers – I’ll remove these.
+
 ``` r
-prod_summary <- prodfull  %>% group_by(Species, source, Sex_sys) %>% 
+# head(prodfull)
+# summary(prodfull)
+prod <- prodfull %>% 
+  filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth)) %>% # want only entries with both size and prod values
+  # remove outliers
+  filter(!(Species=="Phleum pratense"&Ind=="C11")) %>% 
+  filter(!(Species=="Elymus innovatus"&Ind=="EI01"))
+```
+
+First I’ll take a look at a summary of the pollen size and number data -
+means, standard deviations, and CVs so that I can compare how variable
+species area relative to each other. I’ll remove any species with less
+than 5 points.
+
+``` r
+prod_summary <- prod  %>% group_by(Species, source, Sex_sys) %>% 
   summarize(mean_diam = mean(Avg_diam, na.rm=T), 
             sd_diam = sd(Avg_diam, na.rm=T),
             cv_diam = sd_diam/mean_diam,
@@ -41,39 +60,26 @@ prod_summary <- prodfull  %>% group_by(Species, source, Sex_sys) %>%
     ## the `.groups` argument.
 
 ``` r
+# This will be made into a table - I'll add columns with mean +/- sd for that future table
 prod_summary$anth_msd <- paste0(round(prod_summary$mean_polanth,0)," \U00B1 ",round(prod_summary$sd_polanth,0))
 prod_summary$diam_msd <- paste0(round(prod_summary$mean_diam,0)," \U00B1 ",round(prod_summary$sd_diam,0))
+```
 
+I’ll save this summary data to a file.
+
+``` r
 prod_summary_filt <- prod_summary 
 #write it to a file I will make a table with 
 write.csv(prod_summary_filt, "processed-data/sizeprod-summary.csv", row.names = F, fileEncoding = "UTF-8")
+```
 
-# how variable is pollen vol/num across species? 
+``` r
+# how variable is pollen size/num across species? 
 # Pollen size seems much less variable - I'll run a t test of mean cv for diameter vs mean cv for pollen per anther to determine if pollen size is significantly less variable than pollen production
-mean(prod_summary$cv_diam)
-```
-
-    ## [1] 0.04286847
-
-``` r
-sd(prod_summary$cv_diam)
-```
-
-    ## [1] 0.01997849
-
-``` r
-mean(prod_summary$cv_polanth)
-```
-
-    ## [1] 0.3684211
-
-``` r
-sd(prod_summary$cv_polanth)
-```
-
-    ## [1] 0.1613425
-
-``` r
+# mean(prod_summary$cv_diam)
+# sd(prod_summary$cv_diam)
+# mean(prod_summary$cv_polanth)
+# sd(prod_summary$cv_polanth)
 cvtest <- prod_summary %>% select(cv_diam, cv_polanth)
 t.test(x=cvtest$cv_polanth, y=cvtest$cv_diam, paired=T) # t test across all species
 ```
@@ -82,94 +88,21 @@ t.test(x=cvtest$cv_polanth, y=cvtest$cv_diam, paired=T) # t test across all spec
     ##  Paired t-test
     ## 
     ## data:  cvtest$cv_polanth and cvtest$cv_diam
-    ## t = 10.683, df = 26, p-value = 5.267e-11
+    ## t = 10.885, df = 26, p-value = 3.523e-11
     ## alternative hypothesis: true mean difference is not equal to 0
     ## 95 percent confidence interval:
-    ##  0.2629104 0.3881948
+    ##  0.2572843 0.3770755
     ## sample estimates:
     ## mean difference 
-    ##       0.3255526
+    ##       0.3171799
 
 Pollen diameter is less variable than pollen size. The CV for pollen
 diameter is significantly less than the CV for pollen production per
 anther.
 
-``` r
-head(prodfull)
-```
-
-    ##   source        Sex_sys       Species Site Ind Label Avg_diam  Sd_diam N_diam
-    ## 1 JF2001 hermaphroditic     Acristata <NA>   1  <NA> 21.18655 6.260917  15230
-    ## 2 JF2001 hermaphroditic     Acristata <NA>   2  <NA> 22.58325 5.632595  14830
-    ## 3 JF2001 hermaphroditic        Adasyd <NA>   1  <NA> 24.94907 7.320320   3648
-    ## 4 JF2001 hermaphroditic Elymus repens <NA> A01  <NA> 38.30692 2.009918  14823
-    ## 5 JF2001 hermaphroditic Elymus repens <NA> A02  <NA> 37.85869 2.367872  15265
-    ## 6 JF2001 hermaphroditic Elymus repens <NA> A03  <NA> 38.05908 2.905632  14821
-    ##   Avg_area Avg_pol_anth Sd_pol_anth Anth_per_flw     count_method
-    ## 1       NA     5076.667          NA            3 particle counter
-    ## 2       NA     4943.333          NA            3 particle counter
-    ## 3       NA     1824.000          NA            3 particle counter
-    ## 4       NA     4941.000          NA            3 particle counter
-    ## 5       NA     5088.333          NA            3 particle counter
-    ## 6       NA     4940.333          NA            3 particle counter
-    ##   Anth_per_sample Pol_flw Sd_pol_flw
-    ## 1               3   15230         NA
-    ## 2               3   14830         NA
-    ## 3               2    5472         NA
-    ## 4               3   14823         NA
-    ## 5               3   15265         NA
-    ## 6               3   14821         NA
-
-``` r
-summary(prodfull)
-```
-
-    ##     source              Sex_sys                  Species      Site    
-    ##  CS2021: 16   dioecious     : 44   Hierochloe odorata: 67   FBF : 10  
-    ##  JF2001:358   hermaphroditic:416   Festuca campestris: 60   FBF2:  6  
-    ##  JF2004:252   monoecious    :166   Carex stipata     : 36   NA's:610  
-    ##                                    Elymus innovatus  : 35             
-    ##                                    Elymus repens     : 33             
-    ##                                    Bromus inermis    : 30             
-    ##                                    (Other)           :365             
-    ##       Ind          Label        Avg_diam        Sd_diam           N_diam      
-    ##  1      : 10   A1     :  2   Min.   :15.88   Min.   :0.1445   Min.   :     2  
-    ##  2      :  9   A2     :  2   1st Qu.:22.89   1st Qu.:1.5343   1st Qu.:  3947  
-    ##  a      :  9   A3     :  2   Median :25.17   Median :1.9706   Median :  9074  
-    ##  3      :  8   A4     :  2   Mean   :26.55   Mean   :2.3518   Mean   : 14025  
-    ##  4      :  7   A5     :  2   3rd Qu.:30.19   3rd Qu.:2.6167   3rd Qu.: 18551  
-    ##  (Other):571   (Other):  6   Max.   :40.41   Max.   :9.4961   Max.   :141705  
-    ##  NA's   : 12   NA's   :610   NA's   :17      NA's   :17                       
-    ##     Avg_area      Avg_pol_anth      Sd_pol_anth      Anth_per_flw   
-    ##  Min.   :379.7   Min.   :   46.0   Min.   : 46.19   Min.   : 3.000  
-    ##  1st Qu.:442.3   1st Qu.:  627.7   1st Qu.:114.75   1st Qu.: 3.000  
-    ##  Median :458.1   Median : 1859.1   Median :312.65   Median : 3.000  
-    ##  Mean   :483.8   Mean   : 2774.8   Mean   :344.80   Mean   : 4.683  
-    ##  3rd Qu.:530.2   3rd Qu.: 4123.3   3rd Qu.:495.09   3rd Qu.: 3.000  
-    ##  Max.   :622.3   Max.   :15583.5   Max.   :884.84   Max.   :31.000  
-    ##  NA's   :610                       NA's   :610      NA's   :4       
-    ##            count_method Anth_per_sample      Pol_flw         Sd_pol_flw    
-    ##  manual          : 16   Min.   :  2.000   Min.   :   138   Min.   : 230.9  
-    ##  particle counter:610   1st Qu.:  3.000   1st Qu.:  2321   1st Qu.: 573.7  
-    ##                         Median :  3.000   Median :  6915   Median :1563.3  
-    ##                         Mean   :  9.551   Mean   : 11925   Mean   :1724.0  
-    ##                         3rd Qu.:  8.000   3rd Qu.: 16447   3rd Qu.:2475.5  
-    ##                         Max.   :109.000   Max.   :141705   Max.   :4424.2  
-    ##                         NA's   :16        NA's   :4        NA's   :610
-
-``` r
-prod <- prodfull %>% 
-  filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth)) %>% # want only entries with both size and prod values
-  # remove outliers
-  filter(!(Species=="Phleum pratense"&Ind=="C11")) %>% 
-  filter(!(Species=="Elymus innovatus"&Ind=="EI01"))
-# summary(prod)
-```
-
 Now I want to build a model for each species. First I’ll go through each
-species and look at the distributions of pollen size and number, as well
-as if they have any other explanatory variables (like site) that might
-be useful
+species and look at the distributions of pollen size and number to see
+how symmetric they are and if there are any obvious outliers.
 
 ``` r
 #nest data by species to make it easier to handle
@@ -192,18 +125,34 @@ checkfun <- function(df,i){
   hist(log(df[i,]$data[[1]]$Avg_pol_anth), main=paste(spec, "n=",n), xlab="Log mean pollen per anther")
 }
 
-checkfun(by_spp,2)
+# checkfun(by_spp,2)
 ```
 
-![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-1.png)<!-- -->![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-2.png)<!-- -->![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-3.png)<!-- -->![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-4.png)<!-- -->
+I’ll plot all the data as pollen production vs size to get an idea of
+what it looks like, and if there’s any clear outliers or potential
+grouping in the data.
 
 ``` r
-#run through species and record in an excel file "within species size number tradeoff pre model fit sum.xlsx"
+prod %>% 
+  filter(Species %in% by_spp$Species) %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  facet_wrap(~Species, scales = "free") + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans") + 
+  theme(strip.background = element_rect(linewidth = NULL,
+                                        linetype = NULL,
+                                        colour = "white"))
 ```
 
-### LINEAR REGRESSION MODELS AND FIGURES
+    ## `geom_smooth()` using formula = 'y ~ x'
 
-Run linear models and plot them
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/all%20tradeoff%20plots-1.png)<!-- -->
+
+Now I’ll run linear models predicting pollen production by pollen size,
+and pull out the ones with a significant relationship.
 
 ``` r
 #define function to run model 
@@ -344,15 +293,10 @@ write.csv(tidytab_write, "processed-data/tradeoff-reg-model-coefs.csv", row.name
 # print(tidytab, n=Inf)
 
 #take a look at r.squared values
-# glance %>% 
-#   ggplot(aes(spp, r.squared)) + 
-#   geom_point() + 
-#   theme(axis.text = element_text(angle=90))
-# take a look at all data
-# prod %>% filter(spp %in% keepspp) %>% 
-#   ggplot(aes(x=polvol, y=polanth)) +
+# glance %>%
+#   ggplot(aes(Species, r.squared)) +
 #   geom_point() +
-#   facet_wrap(.~spp, scales="free")
+#   theme(axis.text = element_text(angle=90))
 ```
 
 ``` r
@@ -361,6 +305,10 @@ sigsub <- glance %>% filter(p.value<0.05) #7 species
 #Plot relationship between size and number for the 7 species with a significant relationship
 # sigsub$Species
 ```
+
+7 species have significant relationships between pollen size and number:
+Bromus inermis, Elymus innovatus, Festuca campestris, Festuca pratensis,
+Koeleria cristata, Plantago lanceolata, and Amaranthus retroflexus.
 
 ``` r
 # Bromus inermis
@@ -475,7 +423,121 @@ sigsub[which(sigsub$Species=="Amaranthus retroflexus"),]$data %>%
 ![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Amaranthus%20retroflexus%20tradeoff-1.png)<!-- -->
 
 Found a significantly negative relationship between pollen volume and
-number (i.e. size-number trade-off) in 4/15 species (only taking species
-with at least 15 entries for pollen size/number). Found a significantly
-positive relationship between size and number in 1 species (Leymus
-innovatus).
+number (i.e. size-number trade-off) in 6/15 species (only taking species
+with at least 15 entries for pollen size/number). I found a
+significantly positive relationship between size and number in 1 species
+(Leymus innovatus).
+
+I’ll also run another set of plots with “Date” as a grouping variable.
+
+``` r
+# Bromus inermis
+sigsub[which(sigsub$Species=="Bromus inermis"),]$data %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans")
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Bromus%20inermis%20tradeoff%20date-1.png)<!-- -->
+
+``` r
+# Elymus innovatus
+sigsub[which(sigsub$Species=="Elymus innovatus"),]$data %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans")
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Elymus%20innovatus%20tradeoff%20date-1.png)<!-- -->
+
+``` r
+#Festuca campestris
+sigsub[which(sigsub$Species=="Festuca campestris"),]$data %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans")
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Festuca%20campestris%20tradeoff%20date-1.png)<!-- -->
+
+``` r
+# Festuca pratensis
+sigsub[which(sigsub$Species=="Festuca pratensis"),]$data %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans")
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Festuca%20pratensis%20tradeoff%20date-1.png)<!-- -->
+
+``` r
+# Koeleria cristata
+sigsub[which(sigsub$Species=="Koeleria cristata"),]$data %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans")
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Koeleria%20cristata%20tradeoff%20date-1.png)<!-- -->
+
+``` r
+# Plantago lanceolata
+sigsub[which(sigsub$Species=="Plantago lanceolata"),]$data %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans")
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Plantago%20lanceolata%20tradeoff%20date-1.png)<!-- -->
+
+``` r
+#Amaranthus retroflexus
+sigsub[which(sigsub$Species=="Amaranthus retroflexus"),]$data %>% 
+  as.data.frame() %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=F) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans")
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/Amaranthus%20retroflexus%20tradeoff%20date-1.png)<!-- -->

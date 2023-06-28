@@ -24,24 +24,30 @@ spJF2001raw <- read_xls("raw-data/JF2001_pollen.xls")
 spJF2004raw <- read_xls("raw-data/JF_2004_anthers_all_spp.xls")
 # head(spJF2004raw)
 
+sel_vec1 <- c("spp", "ind", "nanthers","polcnt","pollmsize","sdsize", "source", "Date")
 # 2001 data
 spJF2001 <- spJF2001raw %>% 
   # keep only relevant columns
-  dplyr::select(spp, ind, nanthers, polcnt, pollmsize, sdsize, nanthers) %>% 
+  dplyr::select(spp, ind, nanthers, polcnt, pollmsize, sdsize, nanthers, date) %>% 
   # keep track of which dataset they came from 
-  mutate(source = "JF2001") %>% 
-  filter(!is.na(polcnt))
+  mutate(source = "JF2001",
+         Date = as.character(date)) %>% 
+  filter(!is.na(polcnt)) %>% 
+  select(all_of(sel_vec1))
 # head(spJF2001)
 # names(spJF2001)
 
 # 2004 data
 spJF2004 <- spJF2004raw %>% 
-  dplyr::select(spp, ind, nanth, polcnt, meansize, sdsize, nanth) %>% 
-  mutate(source = "JF2004") %>% 
-  filter(!is.na(polcnt))
+  dplyr::select(spp, ind, nanth, polcnt, meansize, sdsize, nanth, jday) %>% 
+  mutate(source = "JF2004",
+         Date = as.character(jday),
+         # Keep col names consistent with JF2001
+         nanthers = nanth,
+         pollmsize=meansize) %>% 
+  filter(!is.na(polcnt)) %>% 
+  select(all_of(sel_vec1))
 # head(spJF2004)
-# Keep col names consistent with JF2001
-names(spJF2004) <- c("spp", "ind", "nanthers", "polcnt", "pollmsize", "sdsize", "source")
 
 # Join JF datasets together
 JF2001_2004 <- rbind(spJF2001, spJF2004)
@@ -56,7 +62,8 @@ JF2001_2004$count_method = "particle counter" # keep track of how pollen was cou
 # [1] "spp"          "ind"          "nanthers"     "polcnt"       "pollmsize"    "sdsize"  "source"       "count_method"
 
 sel_vec <- c("source", "Sex_sys", "Species", "Site", "Ind", "Label", "Avg_diam", "Sd_diam", "N_diam",
-             "Avg_area", "Avg_pol_anth", "Sd_pol_anth", "Anth_per_flw", "count_method", "Anth_per_sample")
+             "Avg_area", "Avg_pol_anth", "Sd_pol_anth", "Anth_per_flw", "count_method", "Anth_per_sample",
+             "Date")
 
 JF2001_2004_pre <- JF2001_2004 %>% 
   mutate(Sex_sys=NA, #fix this later
@@ -76,7 +83,8 @@ JF2001_2004_pre <- JF2001_2004 %>%
   select(all_of(sel_vec))
 
 CS2021_pre <- spCS2021 %>% 
-  mutate(Anth_per_sample = NA) %>% 
+  mutate(Anth_per_sample = NA,
+         Date = as.character(Date)) %>% 
   select(all_of(sel_vec))
 
 # Bind them together
@@ -195,3 +203,4 @@ write.csv(sp_dat3, "processed-data/size-prod-all.csv", row.names = F)
 sizeprod_norep <- sp_dat3 %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
 
 write.csv(sizeprod_norep, "processed-data/size-prod-norep.csv", row.names = F)
+
