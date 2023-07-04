@@ -46,9 +46,13 @@ prod_summary <- prod  %>% group_by(Species, source, Sex_sys) %>%
   summarize(mean_diam = mean(Avg_diam, na.rm=T), 
             sd_diam = sd(Avg_diam, na.rm=T),
             cv_diam = sd_diam/mean_diam,
+            min_diam = min(Avg_diam, na.rm=T),
+            max_diam = max(Avg_diam, na.rm=T),
             mean_polanth = mean(Avg_pol_anth, na.rm=T),
             sd_polanth = sd(Avg_pol_anth, na.rm=T),
             cv_polanth = sd_polanth/mean_polanth,
+            min_polanth = min(Avg_pol_anth, na.rm=T),
+            max_polanth = max(Avg_pol_anth, na.rm=T),
             n=n()) %>%  
   filter(n>=5) %>% 
   droplevels() %>% 
@@ -62,7 +66,7 @@ prod_summary <- prod  %>% group_by(Species, source, Sex_sys) %>%
 ``` r
 # This will be made into a table - I'll add columns with mean +/- sd for that future table
 prod_summary$anth_msd <- paste0(round(prod_summary$mean_polanth,0)," \U00B1 ",round(prod_summary$sd_polanth,0))
-prod_summary$diam_msd <- paste0(round(prod_summary$mean_diam,0)," \U00B1 ",round(prod_summary$sd_diam,0))
+prod_summary$diam_msd <- paste0(round(prod_summary$mean_diam,1)," \U00B1 ",round(prod_summary$sd_diam,1))
 ```
 
 I’ll save this summary data to a file.
@@ -76,10 +80,30 @@ write.csv(prod_summary_filt, "processed-data/sizeprod-summary.csv", row.names = 
 ``` r
 # how variable is pollen size/num across species? 
 # Pollen size seems much less variable - I'll run a t test of mean cv for diameter vs mean cv for pollen per anther to determine if pollen size is significantly less variable than pollen production
-# mean(prod_summary$cv_diam)
-# sd(prod_summary$cv_diam)
-# mean(prod_summary$cv_polanth)
-# sd(prod_summary$cv_polanth)
+mean(prod_summary$cv_diam)
+```
+
+    ## [1] 0.0428852
+
+``` r
+sd(prod_summary$cv_diam)
+```
+
+    ## [1] 0.01998206
+
+``` r
+mean(prod_summary$cv_polanth)
+```
+
+    ## [1] 0.3600651
+
+``` r
+sd(prod_summary$cv_polanth)
+```
+
+    ## [1] 0.1525034
+
+``` r
 cvtest <- prod_summary %>% select(cv_diam, cv_polanth)
 t.test(x=cvtest$cv_polanth, y=cvtest$cv_diam, paired=T) # t test across all species
 ```
@@ -98,7 +122,7 @@ t.test(x=cvtest$cv_polanth, y=cvtest$cv_diam, paired=T) # t test across all spec
 
 Pollen diameter is less variable than pollen size. The CV for pollen
 diameter is significantly less than the CV for pollen production per
-anther.
+anther (t = 10.885, df = 26, p-value = 3.523e-11)
 
 Now I want to build a model for each species. First I’ll go through each
 species and look at the distributions of pollen size and number to see
@@ -124,9 +148,24 @@ checkfun <- function(df,i){
   hist(df[i,]$data[[1]]$Avg_pol_anth, main=paste(spec, "n=",n), xlab="Mean pollen per anther")
   hist(log(df[i,]$data[[1]]$Avg_pol_anth), main=paste(spec, "n=",n), xlab="Log mean pollen per anther")
 }
-
-# checkfun(by_spp,2)
+by_spp$Species
 ```
+
+    ##  [1] Rumex acetosella        Thalictrum dioicum      Agropyron trachycaulum 
+    ##  [4] Bromus inermis          Chenopodium album       Elymus innovatus       
+    ##  [7] Elymus repens           Festuca campestris      Festuca pratensis      
+    ## [10] Hierochloe odorata      Koeleria cristata       Phleum pratense        
+    ## [13] Plantago lanceolata     Schizachne purpurascens Stipa columbiana       
+    ## [16] Amaranthus retroflexus  Ambrosia artemisiifolia Carex communis         
+    ## [19] Carex hirtifolia        Carex pedunculata       Carex stipata          
+    ## [22] Rumex crispus           Scirpus microcarpus    
+    ## 36 Levels: Acristata Adasyd Agropyron trachycaulum ... Thalictrum dioicum
+
+``` r
+checkfun(by_spp,10)
+```
+
+![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-1.png)<!-- -->![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-2.png)<!-- -->![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-3.png)<!-- -->![](anal-sizenum-tradeoff-within-spp_files/figure-gfm/prepare%20data%20for%20models-4.png)<!-- -->
 
 I’ll plot all the data as pollen production vs size to get an idea of
 what it looks like, and if there’s any clear outliers or potential
@@ -138,13 +177,14 @@ prod %>%
   ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
   geom_point() + 
   geom_smooth(method="lm", se=F) + 
-  facet_wrap(~Species, scales = "free") + 
+  facet_wrap(~Species, scales = "free", ncol=4) + 
   scale_y_continuous(name="Pollen production per anther") + 
   scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans") + 
+  theme_cs(font = "sans", fontsize=20) + 
   theme(strip.background = element_rect(linewidth = NULL,
                                         linetype = NULL,
-                                        colour = "white"))
+                                        colour = "white"),
+        strip.text = element_text(size = 18, face="italic"))
 ```
 
     ## `geom_smooth()` using formula = 'y ~ x'
@@ -291,6 +331,7 @@ tidytab_write <- tidy %>% select(-c(data, model)) %>%
 write.csv(tidytab_write, "processed-data/tradeoff-reg-model-coefs.csv", row.names = F)
 #take a look
 # print(tidytab, n=Inf)
+
 
 #take a look at r.squared values
 # glance %>%

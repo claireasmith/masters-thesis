@@ -2,7 +2,7 @@
 # Claire Smith 17 Nov 2022
 # Based off this tutorial: https://rpubs.com/mclaire19/ggplot2-custom-themes
 
-theme_cs <- function(fontsize=12, font = "sans"){ 
+theme_cs <- function(fontsize=12, font = "sans", face="plain"){ 
   # font <- "serif"   #assign font family up front
   
   theme_classic() %+replace%    #replace elements we want to change
@@ -47,7 +47,12 @@ theme_cs <- function(fontsize=12, font = "sans"){
       
       legend.text = element_text(
         family = font,
-        size = fontsize)
+        size = fontsize),
       
-    )
+      strip.background = element_rect(linewidth = NULL,
+                                            linetype = NULL,
+                                            colour = "white"),
+            strip.text = element_text(size = fontsize-2, face=face))
+      
+    
 }

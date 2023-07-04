@@ -1,0 +1,301 @@
+---
+title: "Full pollen load model, including stig length"
+author: "Claire Smith"
+date: "2023-06-19"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+ *** very much in progress!!! ***
+
+```{r initialize, message=F}
+# Load packages
+library(tidyverse)
+library(lme4) # for linear mixed effects models
+library(lmerTest)
+library(emmeans)
+library(car)
+# Source files
+source("clean-stig-01.R")
+source("clean-stig-02.R")
+source("theme_cs.R")
+# Load data
+stig <- read.csv("processed-data/stig-all.csv", stringsAsFactors = T)
+stig$Date <- as.Date(stig$Date)
+stig$Sex_sys <- as.factor(stig$Sex_sys)
+stig$source <- as.factor(stig$source)
+summary(stig)
+```
+
+I think stigma length is probably an important covariate for determining pollen load. I'll pull out only the species that have stigma length measurements. I'll run a full model to predict pollen load: pollen load ~ stigma length + density + height. These will all be JF species so the measure for height will be inflorescence max height. 
+
+```{r pre-processing data}
+
+# I'll go through each species and run a model predicting pollen capture by flower height
+
+# Since many likely have log-normal distributions of pollen capture, I'll create a log flw pollen variable now to # save time -- but will still check each species individually 
+stigl <- stig %>% 
+  mutate(Log_flw_pollen=log(Flw_pollen + 1)) %>% 
+  rowwise %>% 
+  mutate(Avg_dist = mean(c_across(c('D1', 'D2', 'D3', 'D4', 'D5')), na.rm=TRUE)) %>% 
+  # Take only entries stigma length data
+  filter(!is.na(Flw_pollen) & !is.na(Infl_max) & !is.na(Avg_dist) &!is.na(Stigma_length) )
+
+# How many species have max infl height and stigma length? 
+unique(stigl$Species) #  13 species 
+# [1] Ambrosia artemisiifolia Chenopodium album       Carex communis          Carex hirtifolia       
+#  [5] Carex pedunculata       Carex plantaginea       Carex stipata           Plantago lanceolata    
+#  [9] Rumex acetosella        Rumex crispus           Scirpus microcarpus     Schizacne purpurascens 
+# [13] Thalictrum dioicum
+# View(stigl)
+
+# Flower is nested within plant - each plant has (potentially) multiple flowers measured within it -- need to 
+# create a unique plant ID for each plant within a species
+stigl$Ind_ID=paste(stigl$Date, stigl$Site, stigl$Plant, sep = "-")
+#How many unique individuals per species? 
+stigl %>% group_by(Species) %>%
+  distinct(Ind_ID) %>% 
+  summarize(n=n())
+#   Species                     n
+#    <fct>                   <int>
+#  1 Ambrosia artemisiifolia    30
+#  2 Carex communis             22
+#  3 Carex hirtifolia           25
+#  4 Carex pedunculata          15
+#  5 Carex plantaginea          19
+#  6 Carex stipata              30
+#  7 Chenopodium album          29
+#  8 Plantago lanceolata        30
+#  9 Rumex acetosella           30
+# 10 Rumex crispus              25
+# 11 Schizacne purpurascens     30
+# 12 Scirpus microcarpus        30
+# 13 Thalictrum dioicum         20
+
+```
+
+### Ambrosia artemisiifolia (n=30)
+
+```{r AMAR pre-fit}
+AMAR <- stigl %>% 
+  filter(Species=="Ambrosia artemisiifolia") %>% 
+  as.data.frame()
+# summary(AMAR) 
+
+#Taking a look at the data
+hist(AMAR$Flw_pollen) # response variable. looks very right skewed!
+hist(AMAR$Log_flw_pollen) # much more symmetric
+hist(AMAR$Infl_max) # looks ok
+hist(AMAR$Stigma_length)
+hist(log(AMAR$Stigma_length))
+# min(AMAR$Stigma_length) #0.6
+AMAR$Log_stigma_length <- log(AMAR$Stigma_length)
+hist(AMAR$Avg_dist)
+table(AMAR$Date)
+```
+
+```{r AMAR covariates and pollen load}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=AMAR, aes(x=Infl_max, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Plant height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+    geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=AMAR, aes(x=Log_stigma_length, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Log stigma length") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=AMAR, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=AMAR, aes(x=Date, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs() # dates are in number format
+
+```
+
+```{r AMAR model fit }
+#model for height
+summary(AMARmod)
+AMARmod <- lmer(Log_flw_pollen ~ Infl_max*Date + Log_stigma_length*Date + Avg_dist + (1|Plant), data=AMAR)
+summary(AMARmod)
+anova(AMARmod)
+# No significant effect of density or max inflorescence height - significant effect of stigma length. Longer stigmas capture more pollen. 
+# plot(AMARmod)
+```
+
+
+```{r}
+AMARmod.fit <- AMAR
+fit.AMARmod <- fitted(AMARmod)
+AMARmod.fit <- mutate(AMARmod.fit, fit.AMARmod)
+emmsAMAR <- emmip(AMARmod, ~ Log_stigma_length, cov.reduce=range,
+              type="response", plotit=F)
+```
+
+```{r AMAR fitted values plot, dpi=200}
+# emmip_ggplot(emms) #plots predicted slope
+ggplot() + 
+  geom_point(data = AMARmod.fit, aes(x=Log_stigma_length, y=fit.AMARmod)) + 
+  geom_smooth(data=AMARmod.fit, aes(x=Log_stigma_length, y=fit.AMARmod),
+              method="lm",
+              formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+                     limits=c(log(10)+1,NA)) +
+  scale_x_continuous(name = "Stigma length (cm)",
+                     breaks = log(c(0.5, 1, 2, 5)),
+                     labels = c(0.5, 1, 2, 5),
+                     limits=c(log(0.5),log(5))) +
+  theme_cs()
+```
+
+```{r AMAR fitted slope raw values plot, dpi=200}
+ggplot() + 
+  geom_point(data = AMAR, aes(x=Log_stigma_length, y=Log_flw_pollen)) + 
+  geom_line(data= emmsAMAR, aes(xvar, yvar), linewidth=0.7) + 
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+                     limits=c(0,NA)) +
+  # scale_x_continuous(name = "Stigma length (cm)",
+  #                    breaks = log(c(0, 0.1, 0.2, 0.5 , 1, 2, 5)),
+  #                    labels = c(0, 0.1, 0.2, 0.5, 1, 2, 5)) + 
+    scale_x_continuous(name = "Stigma length (cm)",
+                     breaks = log(c(0.5, 1, 2, 5)),
+                     labels = c(0.5, 1, 2, 5),
+                     limits=c(log(0.5),log(5))) +
+  theme_cs()
+
+# max(AMAR$Stigma_length)
+```
+
+### Carex communis (n=81)
+
+```{r CACO pre-fit}
+CACO <- stigl %>% 
+  filter(Species=="Carex communis") %>% 
+  as.data.frame()
+# summary(CACO) 
+
+#Taking a look at the data
+hist(CACO$Flw_pollen) # response variable. looks very right skewed!
+hist(CACO$Log_flw_pollen) # much more symmetric
+hist(CACO$Infl_max) # looks ok
+hist(CACO$Stigma_length) # looks ok
+# hist(log(CACO$Stigma_length))
+# min(CACO$Stigma_length) #1.7
+# CACO$Log_stigma_length <- log(AMAR$Stigma_length)
+hist(CACO$Avg_dist)
+table(CACO$Date)
+```
+
+```{r CACO covariates and pollen load}
+# Look at plot of Log_flw_pollen and Flw_height 
+# Looks like no big differences between sites in flower height or pollen load
+ggplot(data=CACO, aes(x=Infl_max, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Plant height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+    geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=CACO, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Log stigma length") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=CACO, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=CACO, aes(x=Date, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
+```
+
+```{r CACO model fit }
+# fit full model with all terms
+CACOmod <- lm(Log_flw_pollen ~ Infl_max*Date + Stigma_length*Date + Avg_dist, data=CACO)
+summary(CACOmod)
+anova(CACOmod)
+# Check for collinearity between predictors
+vif(mod=CACOmod, type="predictor") # variance inflation factors from package "car"
+# super high GVIFs for Infl max and Stigma length with date! maybe because later in the
+# year plants get taller and stigmas get longer? 
+CACO %>% 
+  ggplot(aes(x=Date, y=Infl_max, colour=Plant)) + 
+  geom_point()
+
+# significant effect of date and stigma length on pollen capture
+
+CACOmod2 <- lm(Log_flw_pollen ~ Infl_max + Stigma_length + Avg_dist, data=CACO)
+
+```
+
+```{r}
+ggplot(data=CACO) + 
+  geom_point(aes(x=Date, y=Stigma_length))
+cor.test(x=as.numeric(CACO$Date), y=CACO$Stigma_length)
+
+
+vif(mod=CACOmod, type="predictor") # variance inflation factors from package "car"
+
+# No significant effect of density or max inflorescence height - significant effect of stigma length. Longer stigmas capture more pollen. 
+CACOmod.fit <- CACO
+fit.CACOmod <- fitted(CACOmod)
+CACOmod.fit <- mutate(CACOmod.fit, fit.CACOmod)
+emms <- emmip(CACOmod, ~ Stigma_length, cov.reduce=range,
+              type="response", plotit=F)
+```
+
+Significant effect of stigma length on log pollen load - no significant effect of height or density on pollen loads. 
+
+```{r AMAR fitted values plot, dpi=200}
+# emmip_ggplot(emms) #plots predicted slope
+ggplot() + 
+  geom_point(data = CACOmod.fit, aes(x=Stigma_length, y=fit.CACOmod)) + 
+  geom_smooth(data=CACOmod.fit, aes(x=Stigma_length, y=fit.CACOmod),
+              method="lm",
+              formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+  scale_x_continuous(name = "Stigma length (cm)") +
+  theme_cs()
+```
+
+```{r AMAR fitted slope raw values plot, dpi=200}
+ggplot() + 
+  geom_point(data = CACO, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+  geom_line(data= emms, aes(xvar, yvar), linewidth=0.7) + 
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+                     limits=c(0,NA)) +
+  scale_x_continuous(name = "Stigma length (cm)") + 
+
+    # scale_x_continuous(name = "Stigma length (cm)",
+    #                  breaks = log(c(0.5, 1, 2, 5)),
+    #                  labels = c(0.5, 1, 2, 5),
+    #                  limits=c(log(0.5),log(5))) +
+  theme_cs()
+
+max(AMAR$Stigma_length)
+```

@@ -7,17 +7,7 @@ Claire Smith
 # Load packages
 library(tidyverse)
 library(lme4) # for linear mixed effects models
-```
-
-    ## Warning: package 'lme4' was built under R version 4.3.1
-
-``` r
 library(lmerTest)
-```
-
-    ## Warning: package 'lmerTest' was built under R version 4.3.1
-
-``` r
 # Source files
 source("clean-stig-01.R")
 source("clean-stig-02.R")
@@ -34,9 +24,10 @@ stigfh <- stig %>%
 # summary(stigfh)
 
 # How many species have flower height data? 
-# unique(stigfh$Species) # 7 species
+# unique(stigfh$Species) # 8 species
 # [1] Ambrosia artemisiifolia     Amaranthus retroflexus      Dichanthelium linearifolium Dichanthelium implicatum  
 # [5] Phleum pratense             Setaria viridis             Rumex acetosella 
+# Plantago major
 # View(stigfh)
 
 # Flower is nested within plant - each plant has (potentially) multiple flowers measured within it -- need to 
@@ -48,7 +39,7 @@ stigfh %>% group_by(Species) %>%
   summarize(n=n())
 ```
 
-    ## # A tibble: 7 × 2
+    ## # A tibble: 8 × 2
     ##   Species                         n
     ##   <fct>                       <int>
     ## 1 Amaranthus retroflexus         30
@@ -56,8 +47,9 @@ stigfh %>% group_by(Species) %>%
     ## 3 Dichanthelium implicatum       40
     ## 4 Dichanthelium linearifolium    13
     ## 5 Phleum pratense                18
-    ## 6 Rumex acetosella               50
-    ## 7 Setaria viridis                45
+    ## 6 Plantago major                 15
+    ## 7 Rumex acetosella               50
+    ## 8 Setaria viridis                45
 
 ``` r
 # Species                         n
@@ -67,8 +59,9 @@ stigfh %>% group_by(Species) %>%
 # 3 Dichanthelium implicatum       40
 # 4 Dichanthelium linearifolium    13
 # 5 Phleum pratense                18
-# 6 Rumex acetosella               50
-# 7 Setaria viridis                45
+# 6 Plantago major                 15
+# 7 Rumex acetosella               50
+# 8 Setaria viridis                45
 # Will exclude Dichanthelium linearifolium from this because it only has 13 entries. 
 
 # I'll go through each species and run a model predicting pollen capture by flower height
@@ -190,9 +183,9 @@ summary(AMAR) # 2 sites, FBF and LP
     ##  Ambrosia artemisiifolia:88   2021-09-14:44   FBF    :44   1      : 6  
     ##  Amaranthus retroflexus : 0   2021-09-20:44   LP     :44   10     : 6  
     ##  Bromus inermis         : 0   1189      : 0   BI     : 0   11     : 6  
-    ##  Carex communis         : 0   1190      : 0   CT     : 0   12     : 6  
-    ##  Carex hirtifolia       : 0   1191      : 0   FBF2   : 0   13     : 6  
-    ##  Carex pedunculata      : 0   1192      : 0   KM     : 0   14     : 6  
+    ##  Carex communis         : 0   1190      : 0   Biosci : 0   12     : 6  
+    ##  Carex hirtifolia       : 0   1191      : 0   CT     : 0   13     : 6  
+    ##  Carex pedunculata      : 0   1192      : 0   FBF2   : 0   14     : 6  
     ##  (Other)                : 0   (Other)   : 0   (Other): 0   (Other):52  
     ##      Flower     Flw_pollen     Stigmas_per_flw Flower_height      Infl_max  
     ##  A      :30   Min.   :  0.00   Min.   :2       Min.   :10.00   Min.   : NA  
@@ -210,21 +203,21 @@ summary(AMAR) # 2 sites, FBF and LP
     ##  3rd Qu.: NA   3rd Qu.: 80.00   3rd Qu.: 95.00   3rd Qu.: 85.00  
     ##  Max.   : NA   Max.   :215.00   Max.   :165.00   Max.   :200.00  
     ##  NA's   :88                                                      
-    ##        D4               D5         Stigma_length    source      Ind_ID         
-    ##  Min.   : 15.00   Min.   : 19.00   Min.   : NA   CS2021:88   Length:88         
-    ##  1st Qu.: 37.00   1st Qu.: 36.00   1st Qu.: NA   JF2001: 0   Class :character  
-    ##  Median : 83.00   Median : 92.00   Median : NA   JF2004: 0   Mode  :character  
-    ##  Mean   : 85.22   Mean   : 95.65   Mean   :NaN                                 
-    ##  3rd Qu.:119.00   3rd Qu.:130.00   3rd Qu.: NA                                 
-    ##  Max.   :240.00   Max.   :216.00   Max.   : NA                                 
-    ##                                    NA's   :88                                  
-    ##  Log_flw_pollen 
-    ##  Min.   :0.000  
-    ##  1st Qu.:2.485  
-    ##  Median :3.178  
-    ##  Mean   :3.233  
-    ##  3rd Qu.:4.266  
-    ##  Max.   :6.133  
+    ##        D4               D5         Stigma_length    source  
+    ##  Min.   : 15.00   Min.   : 19.00   Min.   : NA   CS2021:88  
+    ##  1st Qu.: 37.00   1st Qu.: 36.00   1st Qu.: NA   JF2001: 0  
+    ##  Median : 83.00   Median : 92.00   Median : NA   JF2004: 0  
+    ##  Mean   : 85.22   Mean   : 95.65   Mean   :NaN              
+    ##  3rd Qu.:119.00   3rd Qu.:130.00   3rd Qu.: NA              
+    ##  Max.   :240.00   Max.   :216.00   Max.   : NA              
+    ##                                    NA's   :88               
+    ##            Sex_sys      Ind_ID          Log_flw_pollen 
+    ##  dioecious     : 0   Length:88          Min.   :0.000  
+    ##  hermaphroditic: 0   Class :character   1st Qu.:2.485  
+    ##  monoecious    :88   Mode  :character   Median :3.178  
+    ##                                         Mean   :3.233  
+    ##                                         3rd Qu.:4.266  
+    ##                                         Max.   :6.133  
     ## 
 
 ``` r
@@ -337,51 +330,8 @@ ggplot(data=AMAR, aes(x=Site, y=Log_flw_pollen, fill=Date)) +
 ``` r
 DIIM <- stigfh %>% 
   filter(Species=="Dichanthelium implicatum")
-summary(DIIM) # 2 sites, KME and KMW, tho 3x the entries in KME than KMW
-```
+# summary(DIIM) # 2 sites, KME and KMW, tho 3x the entries in KME than KMW
 
-    ##                      Species           Date         Site        Plant   
-    ##  Dichanthelium implicatum:58   2021-06-24:34   KME    :43   S1     : 7  
-    ##  Amaranthus retroflexus  : 0   2021-06-21:15   KMW    :15   S2     : 5  
-    ##  Ambrosia artemisiifolia : 0   2021-06-20: 9   BI     : 0   S3     : 5  
-    ##  Bromus inermis          : 0   1189      : 0   CT     : 0   S10    : 3  
-    ##  Carex communis          : 0   1190      : 0   FBF    : 0   S12    : 3  
-    ##  Carex hirtifolia        : 0   1191      : 0   FBF2   : 0   S13    : 3  
-    ##  (Other)                 : 0   (Other)   : 0   (Other): 0   (Other):32  
-    ##      Flower     Flw_pollen    Stigmas_per_flw Flower_height      Infl_max    
-    ##  A      :33   Min.   : 0.00   Min.   :2       Min.   :13.00   Min.   :13.00  
-    ##  B      :16   1st Qu.: 2.25   1st Qu.:2       1st Qu.:22.00   1st Qu.:25.00  
-    ##  m1     : 3   Median : 8.00   Median :2       Median :31.00   Median :33.00  
-    ##  t1     : 2   Mean   :14.55   Mean   :2       Mean   :31.09   Mean   :33.32  
-    ##  b1     : 1   3rd Qu.:23.75   3rd Qu.:2       3rd Qu.:40.88   3rd Qu.:43.88  
-    ##  b2     : 1   Max.   :79.00   Max.   :2       Max.   :48.50   Max.   :59.00  
-    ##  (Other): 2                                                                  
-    ##     Infl_min           D1              D2              D3       
-    ##  Min.   :12.00   Min.   : 6.00   Min.   : 7.00   Min.   : 8.00  
-    ##  1st Qu.:21.50   1st Qu.: 9.00   1st Qu.:10.75   1st Qu.:13.00  
-    ##  Median :30.50   Median :14.00   Median :16.00   Median :19.00  
-    ##  Mean   :29.93   Mean   :14.79   Mean   :18.05   Mean   :20.29  
-    ##  3rd Qu.:39.50   3rd Qu.:19.00   3rd Qu.:21.00   3rd Qu.:23.25  
-    ##  Max.   :47.50   Max.   :41.00   Max.   :47.00   Max.   :57.00  
-    ##                  NA's   :2       NA's   :2       NA's   :2      
-    ##        D4              D5        Stigma_length    source      Ind_ID         
-    ##  Min.   : 8.00   Min.   :10.00   Min.   : NA   CS2021:58   Length:58         
-    ##  1st Qu.:11.50   1st Qu.:14.75   1st Qu.: NA   JF2001: 0   Class :character  
-    ##  Median :19.00   Median :23.50   Median : NA   JF2004: 0   Mode  :character  
-    ##  Mean   :21.45   Mean   :25.79   Mean   :NaN                                 
-    ##  3rd Qu.:26.25   3rd Qu.:33.00   3rd Qu.: NA                                 
-    ##  Max.   :54.00   Max.   :82.00   Max.   : NA                                 
-    ##  NA's   :2       NA's   :2       NA's   :58                                  
-    ##  Log_flw_pollen 
-    ##  Min.   :0.000  
-    ##  1st Qu.:1.171  
-    ##  Median :2.197  
-    ##  Mean   :2.153  
-    ##  3rd Qu.:3.209  
-    ##  Max.   :4.382  
-    ## 
-
-``` r
 #Taking a look at the data
 hist(DIIM$Flw_pollen) # response variable. looks very right skewed!
 ```
@@ -414,104 +364,12 @@ ggplot(data=DIIM, aes(x=Flower_height, y=Log_flw_pollen, color=Date, shape=Site)
 
 ``` r
 #model for height and site
-DIIMmod <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Site + (1|Ind_ID), data=DIIM)
-summary(DIIMmod)
-```
-
-    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
-    ## lmerModLmerTest]
-    ## Formula: Log_flw_pollen ~ poly(Flower_height, 2) + Site + (1 | Ind_ID)
-    ##    Data: DIIM
-    ## 
-    ## REML criterion at convergence: 162.9
-    ## 
-    ## Scaled residuals: 
-    ##      Min       1Q   Median       3Q      Max 
-    ## -1.61828 -0.67683  0.06548  0.50260  1.99780 
-    ## 
-    ## Random effects:
-    ##  Groups   Name        Variance Std.Dev.
-    ##  Ind_ID   (Intercept) 0.3145   0.5608  
-    ##  Residual             0.7945   0.8913  
-    ## Number of obs: 58, groups:  Ind_ID, 40
-    ## 
-    ## Fixed effects:
-    ##                         Estimate Std. Error      df t value Pr(>|t|)    
-    ## (Intercept)               1.8300     0.1864 29.9655   9.815 7.14e-11 ***
-    ## poly(Flower_height, 2)1   0.2218     1.1831 38.2477   0.187  0.85227    
-    ## poly(Flower_height, 2)2  -1.9877     1.1742 38.4250  -1.693  0.09858 .  
-    ## SiteKMW                   1.0786     0.3531 42.3669   3.055  0.00389 ** 
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Correlation of Fixed Effects:
-    ##             (Intr) p(F_,2)1 p(F_,2)2
-    ## ply(Fl_,2)1  0.202                  
-    ## ply(Fl_,2)2 -0.168 -0.049           
-    ## SiteKMW     -0.591 -0.316    0.232
-
-``` r
-anova(DIIMmod) # quad term not sig, site sig
-```
-
-    ## Type III Analysis of Variance Table with Satterthwaite's method
-    ##                        Sum Sq Mean Sq NumDF  DenDF F value   Pr(>F)   
-    ## poly(Flower_height, 2) 2.2855  1.1427     2 38.291  1.4384 0.249844   
-    ## Site                   7.4140  7.4140     1 42.367  9.3321 0.003885 **
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-``` r
-DIIMmod2 <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Date + (1|Ind_ID), data=DIIM)
-summary(DIIMmod2)
-```
-
-    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
-    ## lmerModLmerTest]
-    ## Formula: Log_flw_pollen ~ poly(Flower_height, 2) + Date + (1 | Ind_ID)
-    ##    Data: DIIM
-    ## 
-    ## REML criterion at convergence: 153.2
-    ## 
-    ## Scaled residuals: 
-    ##      Min       1Q   Median       3Q      Max 
-    ## -1.70738 -0.73107  0.01275  0.56363  1.81219 
-    ## 
-    ## Random effects:
-    ##  Groups   Name        Variance Std.Dev.
-    ##  Ind_ID   (Intercept) 0.06562  0.2562  
-    ##  Residual             0.84646  0.9200  
-    ## Number of obs: 58, groups:  Ind_ID, 40
-    ## 
-    ## Fixed effects:
-    ##                         Estimate Std. Error       df t value Pr(>|t|)    
-    ## (Intercept)              3.02815    0.36715  8.43593   8.248 2.56e-05 ***
-    ## poly(Flower_height, 2)1 -0.87828    1.06964 31.02446  -0.821  0.41786    
-    ## poly(Flower_height, 2)2 -0.94778    1.07701 35.25512  -0.880  0.38482    
-    ## Date2021-06-21          -0.01146    0.42798 13.70045  -0.027  0.97903    
-    ## Date2021-06-24          -1.49094    0.43024 10.95354  -3.465  0.00532 ** 
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Correlation of Fixed Effects:
-    ##             (Intr) p(F_,2)1 p(F_,2)2 D2021-06-21
-    ## ply(Fl_,2)1 -0.219                              
-    ## ply(Fl_,2)2  0.284 -0.161                       
-    ## D2021-06-21 -0.796  0.021   -0.119              
-    ## D2021-06-24 -0.908  0.313   -0.367    0.694
-
-``` r
-anova(DIIMmod2) # quad term not sig, date sig
-```
-
-    ## Type III Analysis of Variance Table with Satterthwaite's method
-    ##                         Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)    
-    ## poly(Flower_height, 2)  1.4609  0.7305     2 32.182  0.8629 0.4314492    
-    ## Date                   19.4216  9.7108     2 15.432 11.4723 0.0008855 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-``` r
+# DIIMmod <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Site + (1|Ind_ID), data=DIIM)
+# summary(DIIMmod)
+# anova(DIIMmod) # quad term not sig, site sig
+# DIIMmod2 <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Date + (1|Ind_ID), data=DIIM)
+# summary(DIIMmod2)
+# anova(DIIMmod2) # quad term not sig, date sig
 DIIMmod3 <- lmer(Log_flw_pollen ~ Flower_height + Site + (1|Ind_ID), data=DIIM)
 summary(DIIMmod3)
 ```
@@ -623,51 +481,8 @@ ggplot(data=DIIM, aes(x=Date, y=Log_flw_pollen, fill=Site)) +
 ``` r
 PHPR <- stigfh %>% 
   filter(Species=="Phleum pratense")
-summary(PHPR) # 1 site, 1 date
-```
+# summary(PHPR) # 1 site, 1 date
 
-    ##                     Species           Date         Site        Plant   
-    ##  Phleum pratense        :53   2021-07-05:53   KME    :53   S8     : 5  
-    ##  Amaranthus retroflexus : 0   1189      : 0   BI     : 0   S18    : 4  
-    ##  Ambrosia artemisiifolia: 0   1190      : 0   CT     : 0   S4     : 4  
-    ##  Bromus inermis         : 0   1191      : 0   FBF    : 0   S6     : 4  
-    ##  Carex communis         : 0   1192      : 0   FBF2   : 0   S7     : 4  
-    ##  Carex hirtifolia       : 0   1194      : 0   KM     : 0   S10    : 3  
-    ##  (Other)                : 0   (Other)   : 0   (Other): 0   (Other):29  
-    ##      Flower     Flw_pollen     Stigmas_per_flw Flower_height   
-    ##  B      :17   Min.   :  0.00   Min.   :2       Min.   : 22.00  
-    ##  C      :17   1st Qu.: 14.00   1st Qu.:2       1st Qu.: 55.50  
-    ##  A      :13   Median : 24.00   Median :2       Median : 63.00  
-    ##  D      : 5   Mean   : 39.81   Mean   :2       Mean   : 66.06  
-    ##  E      : 1   3rd Qu.: 50.00   3rd Qu.:2       3rd Qu.: 74.50  
-    ##  1      : 0   Max.   :226.00   Max.   :2       Max.   :109.00  
-    ##  (Other): 0                                                    
-    ##     Infl_max         Infl_min            D1              D2        
-    ##  Min.   : 24.00   Min.   : 21.50   Min.   : 10.0   Min.   : 12.00  
-    ##  1st Qu.: 56.50   1st Qu.: 54.50   1st Qu.: 15.0   1st Qu.: 16.00  
-    ##  Median : 64.50   Median : 62.00   Median : 24.0   Median : 54.00  
-    ##  Mean   : 67.74   Mean   : 64.16   Mean   : 31.6   Mean   : 46.72  
-    ##  3rd Qu.: 78.00   3rd Qu.: 72.50   3rd Qu.: 41.0   3rd Qu.: 62.00  
-    ##  Max.   :111.00   Max.   :106.00   Max.   :111.0   Max.   :111.00  
-    ##                                                                    
-    ##        D3               D4              D5         Stigma_length    source  
-    ##  Min.   : 13.00   Min.   : 26.0   Min.   : 12.00   Min.   : NA   CS2021:53  
-    ##  1st Qu.: 17.00   1st Qu.: 55.0   1st Qu.: 62.00   1st Qu.: NA   JF2001: 0  
-    ##  Median : 50.00   Median : 75.0   Median : 81.00   Median : NA   JF2004: 0  
-    ##  Mean   : 50.68   Mean   : 74.3   Mean   : 78.06   Mean   :NaN              
-    ##  3rd Qu.: 71.00   3rd Qu.: 88.0   3rd Qu.: 89.00   3rd Qu.: NA              
-    ##  Max.   :117.00   Max.   :138.0   Max.   :125.00   Max.   : NA              
-    ##                                                    NA's   :53               
-    ##     Ind_ID          Log_flw_pollen 
-    ##  Length:53          Min.   :0.000  
-    ##  Class :character   1st Qu.:2.708  
-    ##  Mode  :character   Median :3.219  
-    ##                     Mean   :3.240  
-    ##                     3rd Qu.:3.932  
-    ##                     Max.   :5.425  
-    ## 
-
-``` r
 #Taking a look at the data
 hist(PHPR$Flw_pollen) # response variable. looks very right skewed!
 ```
@@ -700,100 +515,136 @@ ggplot(data=PHPR, aes(x=Flower_height, y=Log_flw_pollen)) +
 
 ``` r
 #model for height and site
-PHPRmod <- lmer(Log_flw_pollen ~ poly(Flower_height, 2) + (1|Ind_ID), data=PHPR)
-# quad term not sig
+# PHPRmod <- lmer(Log_flw_pollen ~ poly(Flower_height, 2) + (1|Ind_ID), data=PHPR)
+# # quad term not sig
+PHPRmod <- lmer(Log_flw_pollen ~ Flower_height + (1|Ind_ID), data=PHPR)
 summary(PHPRmod)
 ```
 
     ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
     ## lmerModLmerTest]
-    ## Formula: Log_flw_pollen ~ poly(Flower_height, 2) + (1 | Ind_ID)
+    ## Formula: Log_flw_pollen ~ Flower_height + (1 | Ind_ID)
     ##    Data: PHPR
     ## 
-    ## REML criterion at convergence: 147.3
+    ## REML criterion at convergence: 159.6
     ## 
     ## Scaled residuals: 
     ##      Min       1Q   Median       3Q      Max 
-    ## -2.76379 -0.59924  0.01586  0.41845  1.83401 
+    ## -2.76423 -0.58578  0.02765  0.45288  1.87071 
     ## 
     ## Random effects:
     ##  Groups   Name        Variance Std.Dev.
-    ##  Ind_ID   (Intercept) 0.3706   0.6088  
-    ##  Residual             0.7955   0.8919  
+    ##  Ind_ID   (Intercept) 0.3449   0.5873  
+    ##  Residual             0.7950   0.8916  
     ## Number of obs: 53, groups:  Ind_ID, 18
     ## 
     ## Fixed effects:
-    ##                         Estimate Std. Error      df t value Pr(>|t|)    
-    ## (Intercept)               3.1963     0.1912 13.6720  16.719 1.71e-10 ***
-    ## poly(Flower_height, 2)1  -0.5437     1.3200 16.4450  -0.412    0.686    
-    ## poly(Flower_height, 2)2  -0.7419     1.2635 18.5310  -0.587    0.564    
+    ##               Estimate Std. Error       df t value Pr(>|t|)    
+    ## (Intercept)    3.47684    0.72123 17.05174   4.821 0.000158 ***
+    ## Flower_height -0.00432    0.01049 17.57674  -0.412 0.685391    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
     ## Correlation of Fixed Effects:
-    ##             (Intr) p(F_,2)1
-    ## ply(Fl_,2)1 -0.021         
-    ## ply(Fl_,2)2 -0.056  0.001
+    ##             (Intr)
+    ## Flower_hght -0.966
 
 ``` r
 anova(PHPRmod) # no sig effect of flower height
 ```
 
     ## Type III Analysis of Variance Table with Satterthwaite's method
-    ##                         Sum Sq Mean Sq NumDF  DenDF F value Pr(>F)
-    ## poly(Flower_height, 2) 0.40894 0.20447     2 17.418   0.257 0.7762
+    ##                Sum Sq Mean Sq NumDF  DenDF F value Pr(>F)
+    ## Flower_height 0.13488 0.13488     1 17.577  0.1697 0.6854
+
+### Plantago major (n=15)
+
+``` r
+PLMA <- stigfh %>% 
+  filter(Species=="Plantago major")
+# summary(PLMA) # 1 site, 1 date
+
+#Taking a look at the data
+hist(PLMA$Flw_pollen) # response variable. looks very right skewed!
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/pre-fit%20Plantago%20major-1.png)<!-- -->
+
+``` r
+hist(PLMA$Log_flw_pollen) # much more symmetric
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/pre-fit%20Plantago%20major-2.png)<!-- -->
+
+``` r
+hist(PLMA$Flower_height) # looks ok
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/pre-fit%20Plantago%20major-3.png)<!-- -->
+
+``` r
+# Look at plot of Log_flw_pollen and Flw_height 
+# Much fewer points from KMW than KME, but they seemed to have received more pollen and were taller and less variable in height than KMW plants
+ggplot(data=PLMA, aes(x=Flower_height, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Flower height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/flower%20height%20vs%20pollen%20load%20Plantago%20major-1.png)<!-- -->
+
+``` r
+#model for height and site
+# PLMAmod <- lmer(Log_flw_pollen ~ poly(Flower_height, 2) + (1|Ind_ID), data=PLMA)
+# # quad term not sig
+PLMAmod <- lmer(Log_flw_pollen ~ Flower_height + (1|Ind_ID), data=PLMA)
+summary(PLMAmod)
+```
+
+    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
+    ## lmerModLmerTest]
+    ## Formula: Log_flw_pollen ~ Flower_height + (1 | Ind_ID)
+    ##    Data: PLMA
+    ## 
+    ## REML criterion at convergence: 134.3
+    ## 
+    ## Scaled residuals: 
+    ##     Min      1Q  Median      3Q     Max 
+    ## -1.6227 -0.5140  0.0474  0.4973  1.8123 
+    ## 
+    ## Random effects:
+    ##  Groups   Name        Variance Std.Dev.
+    ##  Ind_ID   (Intercept) 2.7412   1.6556  
+    ##  Residual             0.4626   0.6801  
+    ## Number of obs: 44, groups:  Ind_ID, 15
+    ## 
+    ## Fixed effects:
+    ##               Estimate Std. Error       df t value Pr(>|t|)    
+    ## (Intercept)    3.51403    0.98241 41.10883   3.577 0.000907 ***
+    ## Flower_height  0.07203    0.14921 32.42825   0.483 0.632517    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Correlation of Fixed Effects:
+    ##             (Intr)
+    ## Flower_hght -0.894
+
+``` r
+anova(PLMAmod) # no sig effect of flower height
+```
+
+    ## Type III Analysis of Variance Table with Satterthwaite's method
+    ##               Sum Sq Mean Sq NumDF  DenDF F value Pr(>F)
+    ## Flower_height 0.1078  0.1078     1 32.428   0.233 0.6325
 
 ### Rumex acetosella (n=50)
 
 ``` r
 RUAC <- stigfh %>% 
   filter(Species=="Rumex acetosella")
-summary(RUAC) # 3 sites, 4 dates from June 4 to 9 2021
-```
-
-    ##                     Species            Date         Site        Plant   
-    ##  Rumex acetosella       :110   2021-06-09:48   KMW    :78   F1     : 8  
-    ##  Amaranthus retroflexus :  0   2021-06-07:30   WCK    :18   F14    : 7  
-    ##  Ambrosia artemisiifolia:  0   2021-06-06:18   KM     :14   F15    : 7  
-    ##  Bromus inermis         :  0   2021-06-04:14   BI     : 0   F5     : 7  
-    ##  Carex communis         :  0   1189      : 0   CT     : 0   F4     : 6  
-    ##  Carex hirtifolia       :  0   1190      : 0   FBF    : 0   F10    : 5  
-    ##  (Other)                :  0   (Other)   : 0   (Other): 0   (Other):70  
-    ##      Flower     Flw_pollen     Stigmas_per_flw Flower_height      Infl_max  
-    ##  1      :50   Min.   : 0.000   Min.   :3       Min.   : 6.70   Min.   : NA  
-    ##  2      :50   1st Qu.: 0.000   1st Qu.:3       1st Qu.:13.90   1st Qu.: NA  
-    ##  3      : 9   Median : 1.000   Median :3       Median :19.30   Median : NA  
-    ##  4      : 1   Mean   : 2.273   Mean   :3       Mean   :18.61   Mean   :NaN  
-    ##  1-1    : 0   3rd Qu.: 4.000   3rd Qu.:3       3rd Qu.:22.95   3rd Qu.: NA  
-    ##  1-10   : 0   Max.   :11.000   Max.   :3       Max.   :35.00   Max.   : NA  
-    ##  (Other): 0                                                    NA's   :110  
-    ##     Infl_min         D1               D2               D3        
-    ##  Min.   : NA   Min.   :  5.00   Min.   :  4.00   Min.   :  6.50  
-    ##  1st Qu.: NA   1st Qu.: 22.25   1st Qu.: 29.00   1st Qu.: 28.00  
-    ##  Median : NA   Median : 45.00   Median : 56.00   Median : 52.50  
-    ##  Mean   :NaN   Mean   : 56.74   Mean   : 67.49   Mean   : 70.63  
-    ##  3rd Qu.: NA   3rd Qu.: 71.00   3rd Qu.: 88.50   3rd Qu.: 87.25  
-    ##  Max.   : NA   Max.   :231.00   Max.   :230.00   Max.   :237.00  
-    ##  NA's   :110                                                     
-    ##        D4              D5         Stigma_length    source       Ind_ID         
-    ##  Min.   :  9.0   Min.   :  8.00   Min.   : NA   CS2021:110   Length:110        
-    ##  1st Qu.: 36.0   1st Qu.: 39.00   1st Qu.: NA   JF2001:  0   Class :character  
-    ##  Median : 60.0   Median : 61.00   Median : NA   JF2004:  0   Mode  :character  
-    ##  Mean   : 77.4   Mean   : 77.86   Mean   :NaN                                  
-    ##  3rd Qu.:110.0   3rd Qu.:106.00   3rd Qu.: NA                                  
-    ##  Max.   :236.0   Max.   :269.00   Max.   : NA                                  
-    ##                                   NA's   :110                                  
-    ##  Log_flw_pollen  
-    ##  Min.   :0.0000  
-    ##  1st Qu.:0.0000  
-    ##  Median :0.6931  
-    ##  Mean   :0.9272  
-    ##  3rd Qu.:1.6094  
-    ##  Max.   :2.4849  
-    ## 
-
-``` r
-View(RUAC)
+# summary(RUAC) # 3 sites, 4 dates from June 4 to 9 2021
+# View(RUAC)
 
 #Taking a look at the data
 hist(RUAC$Flw_pollen) # response variable. looks very right skewed!
@@ -826,105 +677,13 @@ ggplot(data=RUAC, aes(x=Flower_height, y=Log_flw_pollen, color=Date, shape=Site)
 ![](anal-stig-flowerheight_files/figure-gfm/flower%20height%20vs%20pollen%20load%20Rumex%20acetosella-1.png)<!-- -->
 
 ``` r
-#model for height and site
-RUACmod <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Site + (1|Ind_ID), data=RUAC)
-summary(RUACmod)
-```
-
-    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
-    ## lmerModLmerTest]
-    ## Formula: Log_flw_pollen ~ poly(Flower_height, 2) + Site + (1 | Ind_ID)
-    ##    Data: RUAC
-    ## 
-    ## REML criterion at convergence: 231.4
-    ## 
-    ## Scaled residuals: 
-    ##      Min       1Q   Median       3Q      Max 
-    ## -1.70233 -0.72381  0.00467  0.66810  1.78050 
-    ## 
-    ## Random effects:
-    ##  Groups   Name        Variance Std.Dev.
-    ##  Ind_ID   (Intercept) 0.2193   0.4683  
-    ##  Residual             0.3309   0.5752  
-    ## Number of obs: 110, groups:  Ind_ID, 50
-    ## 
-    ## Fixed effects:
-    ##                          Estimate Std. Error        df t value Pr(>|t|)   
-    ## (Intercept)              0.953569   0.271374 36.431212   3.514   0.0012 **
-    ## poly(Flower_height, 2)1  0.048982   0.981627 45.141445   0.050   0.9604   
-    ## poly(Flower_height, 2)2 -0.629233   0.892121 45.207063  -0.705   0.4842   
-    ## SiteKMW                  0.009856   0.296330 37.807076   0.033   0.9736   
-    ## SiteWCK                 -0.222550   0.352103 34.881507  -0.632   0.5315   
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Correlation of Fixed Effects:
-    ##             (Intr) p(F_,2)1 p(F_,2)2 SitKMW
-    ## ply(Fl_,2)1  0.261                         
-    ## ply(Fl_,2)2  0.019  0.015                  
-    ## SiteKMW     -0.938 -0.325   -0.034         
-    ## SiteWCK     -0.729 -0.045    0.037    0.671
-
-``` r
-anova(RUACmod) # quad term not sig, site not sig
-```
-
-    ## Type III Analysis of Variance Table with Satterthwaite's method
-    ##                         Sum Sq  Mean Sq NumDF  DenDF F value Pr(>F)
-    ## poly(Flower_height, 2) 0.16582 0.082909     2 45.155  0.2506 0.7794
-    ## Site                   0.25820 0.129098     2 36.535  0.3902 0.6797
-
-``` r
-RUACmod2 <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Date + (1|Ind_ID), data=RUAC)
-summary(RUACmod2)
-```
-
-    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
-    ## lmerModLmerTest]
-    ## Formula: Log_flw_pollen ~ poly(Flower_height, 2) + Date + (1 | Ind_ID)
-    ##    Data: RUAC
-    ## 
-    ## REML criterion at convergence: 231.7
-    ## 
-    ## Scaled residuals: 
-    ##      Min       1Q   Median       3Q      Max 
-    ## -1.75828 -0.68082 -0.00278  0.62374  1.72532 
-    ## 
-    ## Random effects:
-    ##  Groups   Name        Variance Std.Dev.
-    ##  Ind_ID   (Intercept) 0.2188   0.4678  
-    ##  Residual             0.3308   0.5752  
-    ## Number of obs: 110, groups:  Ind_ID, 50
-    ## 
-    ## Fixed effects:
-    ##                         Estimate Std. Error       df t value Pr(>|t|)   
-    ## (Intercept)              0.94482    0.27130 35.66907   3.483  0.00133 **
-    ## poly(Flower_height, 2)1 -0.07474    0.98817 44.16360  -0.076  0.94005   
-    ## poly(Flower_height, 2)2 -0.59710    0.89203 44.24594  -0.669  0.50674   
-    ## Date2021-06-06          -0.22006    0.35183 34.14844  -0.625  0.53583   
-    ## Date2021-06-07          -0.10956    0.31772 38.05055  -0.345  0.73211   
-    ## Date2021-06-09           0.10363    0.30962 37.62096   0.335  0.73972   
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Correlation of Fixed Effects:
-    ##             (Intr) p(F_,2)1 p(F_,2)2 D2021-06-06 D2021-06-07
-    ## ply(Fl_,2)1  0.263                                          
-    ## ply(Fl_,2)2  0.018  0.011                                   
-    ## D2021-06-06 -0.729 -0.046    0.037                          
-    ## D2021-06-07 -0.863 -0.257   -0.045    0.623                 
-    ## D2021-06-09 -0.906 -0.344   -0.023    0.644       0.785
-
-``` r
-anova(RUACmod2) # quad term not sig, date not sig
-```
-
-    ## Type III Analysis of Variance Table with Satterthwaite's method
-    ##                         Sum Sq  Mean Sq NumDF  DenDF F value Pr(>F)
-    ## poly(Flower_height, 2) 0.14976 0.074881     2 44.191  0.2264 0.7984
-    ## Date                   0.61402 0.204673     3 38.492  0.6187 0.6071
-
-``` r
+# #model for height and site
+# RUACmod <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Site + (1|Ind_ID), data=RUAC)
+# summary(RUACmod)
+# anova(RUACmod) # quad term not sig, site not sig
+# RUACmod2 <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + Date + (1|Ind_ID), data=RUAC)
+# summary(RUACmod2)
+# anova(RUACmod2) # quad term not sig, date not sig
 RUACmod3 <- lmer(Log_flw_pollen ~ Flower_height + Site + (1|Ind_ID), data=RUAC)
 summary(RUACmod3)
 ```
@@ -1030,3 +789,98 @@ ggplot(data=RUAC, aes(x=Date, y=Log_flw_pollen, fill=Site)) +
 ```
 
 ![](anal-stig-flowerheight_files/figure-gfm/Rumex%20acetosella%20site%20and%20date%20effects-1.png)<!-- -->
+
+### Setaria viridis (n=45)
+
+``` r
+SEVI <- stigfh %>% 
+  filter(Species=="Setaria viridis")
+# summary(SEVI) # 1 site, 1 date
+# View(SEVI)
+
+#Taking a look at the data
+hist(SEVI$Flw_pollen) # response variable. looks very right skewed!
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/pre-fit%20Setaria%20viridis-1.png)<!-- -->
+
+``` r
+hist(SEVI$Log_flw_pollen) # better
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/pre-fit%20Setaria%20viridis-2.png)<!-- -->
+
+``` r
+hist(SEVI$Flower_height) # looks ok
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/pre-fit%20Setaria%20viridis-3.png)<!-- -->
+
+``` r
+# Look at plot of Log_flw_pollen and Flw_height 
+# overall doesn't seem to be much of a trend of flower height and pollen load
+ggplot(data=SEVI, aes(x=Flower_height, y=Log_flw_pollen, color=Date, shape=Site)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Flower height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/flower%20height%20vs%20pollen%20load%20Setaria%20viridis-1.png)<!-- -->
+
+``` r
+# SEVImod <- lmer(Log_flw_pollen ~ poly(Flower_height,2) + (1|Ind_ID), data=SEVI)
+# summary(SEVImod)
+# anova(SEVImod) # quad term not sig
+SEVImod <- lmer(Log_flw_pollen ~ Flower_height + (1|Ind_ID), data=SEVI)
+summary(SEVImod)
+```
+
+    ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
+    ## lmerModLmerTest]
+    ## Formula: Log_flw_pollen ~ Flower_height + (1 | Ind_ID)
+    ##    Data: SEVI
+    ## 
+    ## REML criterion at convergence: 303.8
+    ## 
+    ## Scaled residuals: 
+    ##     Min      1Q  Median      3Q     Max 
+    ## -3.6236 -0.5654  0.0955  0.6547  1.7611 
+    ## 
+    ## Random effects:
+    ##  Groups   Name        Variance Std.Dev.
+    ##  Ind_ID   (Intercept) 0.03472  0.1863  
+    ##  Residual             0.52171  0.7223  
+    ## Number of obs: 131, groups:  Ind_ID, 45
+    ## 
+    ## Fixed effects:
+    ##                Estimate Std. Error        df t value Pr(>|t|)    
+    ## (Intercept)    3.549545   0.357963 43.094898   9.916 1.09e-12 ***
+    ## Flower_height  0.006542   0.007890 43.143571   0.829    0.412    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Correlation of Fixed Effects:
+    ##             (Intr)
+    ## Flower_hght -0.981
+
+``` r
+anova(SEVImod) # flower height not sig
+```
+
+    ## Type III Analysis of Variance Table with Satterthwaite's method
+    ##                Sum Sq Mean Sq NumDF  DenDF F value Pr(>F)
+    ## Flower_height 0.35867 0.35867     1 43.144  0.6875 0.4116
+
+``` r
+# No significant quadratic or linear effect of flower height. 
+```
+
+``` r
+ggplot(data=SEVI, aes(x=Date, y=Log_flw_pollen, fill=Site)) + 
+  geom_violin() + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  theme_cs()
+```
+
+![](anal-stig-flowerheight_files/figure-gfm/Setaria%20viridis%20site%20and%20date%20effects-1.png)<!-- -->

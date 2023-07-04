@@ -7,15 +7,12 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r initialize, message=F}
 # Load packages
 library(tidyverse)
 library(lme4) # for linear mixed effects models
 library(lmerTest)
+library(emmeans)
 # Source files
 source("clean-stig-01.R")
 source("clean-stig-02.R")
@@ -98,6 +95,10 @@ AMREmod <- lmer(Log_flw_pollen ~ Flower_height + Site + (1|Ind_ID), data=AMRE)
 summary(AMREmod)
 anova(AMREmod)
 # No significant effect of flower height or site on pollen loads in Amaranthus retroflexus. 
+
+AMRE_emm <- emtrends()
+AMRE_fitted <- fitted(AMREmod)
+AMRE_fitdat <- mutate(AMRE, AMRE_fitted)
 
 ```
 

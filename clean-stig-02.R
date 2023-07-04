@@ -17,6 +17,7 @@ JF2004 <- read_xls("raw-data/JF2004-all.xls")
 CS2021_pre <- CS2021 %>% mutate(Stigma_length=NA, source="CS2021")
 sel_vec <- names(CS2021_pre) # I want the columns in the JF datasets to eventually match the ones in the CS one - plus stigma length
 # which is in the JF2004 dataset
+CS2021_pre$Date <- as.Date(CS2021_pre$Date)
 
 # I'll go through both JF2001 and JF2004, rename columns that match those in sel_vec
 # sel_vec
@@ -36,6 +37,34 @@ JF2001_pre <- JF2001 %>%
          Infl_max=H1, Infl_min=H2, Stigma_length=NA, source="JF2001") %>% 
   select(all_of(sel_vec))
 
+summary(JF2001_pre$Date)
+# There are dates from 2001 and 2002 in the JF2001 dataset - each have a prefix of either 1 or 2 respectively
+# I'll separate the data into 2001 and 2002 data, then rejoin it all together
+JF2001_1 <- JF2001_pre[grepl("^1",as.character(JF2001_pre$Date)),]
+JF2001_2 <- JF2001_pre[grepl("^2",as.character(JF2001_pre$Date)),]
+# nrow(JF2001_1) + nrow(JF2001_2)
+# nrow(JF2001_pre)
+# Take year prefix off dates
+JF2001_1_jday <- as.numeric(gsub("^1", "", as.character(JF2001_1$Date))) # dates are julian dates with prefix 1
+JF2001_2_jday <- as.numeric(gsub("^2", "", as.character(JF2001_2$Date))) # dates are julian dates with prefix 2
+# Convert Julian dates to dates
+JF2001_1_date <- as.Date(JF2001_1_jday, origin = as.Date("2001-01-01"))
+# summary(JF2001_1_date) # looks reasonable
+JF2001_2_date <- as.Date(JF2001_2_jday, origin = as.Date("2002-01-01"))
+# summary(JF2001_2_date) # also looks okay
+# Add dates back to sub dataframes
+JF2001_1_pre <- JF2001_1
+JF2001_1_pre$Date <- as.Date(JF2001_1_date)
+JF2001_2_pre <- JF2001_2
+JF2001_2_pre$Date <- as.Date(JF2001_2_date)
+
+JF2001_pre2 <- rbind(JF2001_1_pre, JF2001_2_pre)
+# nrow(JF2001_pre2)
+# summary(JF2001_pre2)
+# summary(JF2001_pre) # look the same except for date!
+head(JF2001_pre)
+head(JF2001_pre2)
+
 # JF2004: 
 # head(JF2004)
 # names(JF2004)
@@ -47,6 +76,16 @@ JF2004_pre <- JF2004 %>%
   distinct() #no duplicate rows
 # nrow(JF2001_pre)
 
+# Convert dates from jday to date
+# JF2004_pre$Date
+# summary(JF2004_pre$Date)
+d2004 <- as.character(JF2004_pre$Date)
+d2004_jday <- as.numeric(gsub("^4", "", d2004)) # I think they are julian dates with a prefix "4"
+d2004_date <- as.Date(d2004_jday,    # Convert Julian day to date
+                   origin = as.Date("2004-01-01"))
+JF2004_pre2 <- JF2004_pre
+JF2004_pre2$Date <- as.Date(d2004_date) # add back to original dataframe
+
 
 # Add in full names for species with shortened names
 # unique(CS2021_pre$Species)
@@ -54,14 +93,14 @@ CS2021_pre$Species <- gsub("Purple stigma grass", "Setaria viridis", CS2021_pre$
 CS2021_pre$Species <- gsub("Amaranthus sp", "Amaranthus retroflexus", CS2021_pre$Species)
 CS2021_pre$Species <- gsub("Dicanthelium sp 1", "Dichanthelium linearifolium", CS2021_pre$Species)
 CS2021_pre$Species <- gsub("Dicanthelium sp 2", "Dichanthelium implicatum", CS2021_pre$Species)
-# unique(JF2001_pre$Species)
-JF2001_pre$Species <- gsub("arepens", "Elymus repens", JF2001_pre$Species)
-JF2001_pre$Species <- gsub("binermis", "Bromus inermis", JF2001_pre$Species)
-JF2001_pre$Species <- gsub("einnovatus", "Elymus innovatus", JF2001_pre$Species)
-JF2001_pre$Species <- gsub("fcamp", "Festuca campestris", JF2001_pre$Species)
-JF2001_pre$Species <- gsub("ppratense", "Phleum pratense", JF2001_pre$Species)
-# unique(JF2004_pre$Species)
-JF2004_pre <- JF2004_pre %>% # I'll use stringr's str_replace_all for this one because there are so many!
+# unique(JF2001_pre2$Species)
+JF2001_pre2$Species <- gsub("arepens", "Elymus repens", JF2001_pre2$Species)
+JF2001_pre2$Species <- gsub("binermis", "Bromus inermis", JF2001_pre2$Species)
+JF2001_pre2$Species <- gsub("einnovatus", "Elymus innovatus", JF2001_pre2$Species)
+JF2001_pre2$Species <- gsub("fcamp", "Festuca campestris", JF2001_pre2$Species)
+JF2001_pre2$Species <- gsub("ppratense", "Phleum pratense", JF2001_pre2$Species)
+# unique(JF2004_pre2$Species)
+JF2004_pre2 <- JF2004_pre2 %>% # I'll use stringr's str_replace_all for this one because there are so many!
   mutate(Species=stringr::str_replace_all(Species, c("A.artemisi"="Ambrosia artemisiifolia",
                                                "C.album"="Chenopodium album",
                                                "C.communis"="Carex communis",
@@ -77,9 +116,8 @@ JF2004_pre <- JF2004_pre %>% # I'll use stringr's str_replace_all for this one b
                                                "T.dioicum"="Thalictrum dioicum" ))) %>% 
   distinct() # make sure there are no duplicate rows
 
-# nrow(JF2004_pre)
 # Combine all the data together into one complete dataset, stig-all.csv
-stig_all <- rbind(rbind(CS2021_pre, JF2001_pre), JF2004_pre)
+stig_all <- rbind(rbind(CS2021_pre, JF2001_pre2), JF2004_pre2)
 # Add sex system info
 stig_all_ss <- stig_all %>% 
   mutate(Sex_sys = case_when(source == "JF2001" ~ "hermaphroditic",
@@ -104,6 +142,14 @@ stig_all_ss <- stig_all %>%
 # Make sure no species were missed -- looks ok now
 # summary(as.factor(stig_all_ss$Sex_sys))
 # stig_all_ss[which(is.na(stig_all_ss$Sex_sys)),]
+
+# Check on dates - what's missing
+stig_all_ss$Date <- as.Date(stig_all_ss$Date)
+# summary(stig_all_ss)
+
+# View(stig_all_ss[which(is.na(stig_all_ss$Date)),]) # a few species just dont have dates
+
+# Write data to file - this version has all the data, no repeats removed
 write.csv(stig_all_ss, "processed-data/stig-all.csv", row.names=F)
 
 
