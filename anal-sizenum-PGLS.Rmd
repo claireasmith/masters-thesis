@@ -2,7 +2,7 @@
 title: "PGLS pollen size by sex system"
 author: "Claire Smith"
 date: "2023-06-27"
-output: html_document
+output: github_document
 editor_options: 
   chunk_output_type: console
 ---
@@ -210,8 +210,6 @@ vif(mod=testmod) # use vif() from "car"
 # no! (not over 10)"
 ```
 
-## Fitting models
-
 #### Combine data
 
 To do the phylogenetic least squares analysis (PGLS), the function pgls() needs the data and the tree to be combined into a single object, do this with the function comparative.data() from "caper":
@@ -222,8 +220,9 @@ test.data=comparative.data(phy=sizenum_tree, data=sizenum_sp, names.col=Species_
 test.data$dropped # "Setaria_viridis"
 ```
 
+## Effect of sex system on pollen number
 
-#### A. Is there an effect of sex system on pollen number? Do we see a size-number tradeoff across species (i.e. is there an effect of pollen size on number)?
+A. Is there an effect of sex system on pollen number? Do we see a size-number tradeoff across species (i.e. is there an effect of pollen size on number)?
 
 Take a look at the data before running the model - it looks like there could be a positive trend - or two groups? 
 
@@ -242,13 +241,13 @@ First I'll fit the full model with branch length parameter lambda estimated usin
 # fit the PGLS model:
 fullA <- pgls(Log_avg_pol_anth ~ Avg_diam + Sex_sys, dat=test.data, lambda="ML")
 summary(fullA)
-kable(summary(fullA)$coefficients)
+# kable(summary(fullA)$coefficients)
 # ML lambda estimate is 0, not significantly different from 0, significantly different from 1. 
-anova(fullA) # sig effect of diam and sex sys
+# anova(fullA) # sig effect of diam and sex sys
 kable(anova(fullA))
 ```
 
-PGLS model showed that size and sex system both have a significant effect on pollen production at alpha=0.05. 
+The PGLS model showed that size and sex system both have a significant effect on pollen production at alpha=0.05. 
 
 Take a look at likelihood surface for lambda. 
 
@@ -264,11 +263,11 @@ I'll inspect the residuals for normality and homogeneity.
 
 ```{r}
 #inspect the phylogenetic residuals for normality:
-hist(modA_PGLS$phyres) #looks pretty normal
-qqnorm(modA_PGLS$phyres) 
-qqline(modA_PGLS$phyres) #looks okay? deviates from the line at the extremes but is otherwise pretty close
+hist(fullA$phyres) #looks pretty normal
+qqnorm(fullA$phyres) 
+qqline(fullA$phyres) #looks okay? deviates from the line at the extremes but is otherwise pretty close
 #inspect phylogenetic residuals for homogeneity:
-plot(x=fitted(modA_PGLS), y=modA_PGLS$phyres, pch=19)
+plot(x=fitted(fullA), y=fullA$phyres, pch=19)
 # only 2 dieocious species - 
 ```
 
@@ -286,8 +285,8 @@ keep_spp <- spp_over10$Species
 
 sizenum_filt <- sizenum %>% group_by(Sex_sys, Species) %>% 
   filter(Species %in% keep_spp)
-sizenum_filt %>% 
-  group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
+# sizenum_filt %>% 
+#   group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
 
 #   Sex_sys            n
 #   <fct>          <int>
@@ -300,7 +299,7 @@ sizenum_filt %>%
 
 ```
 
-```{r inspect distributions mixed mod}
+```{r inspect distributions mixed mod, include=F}
 # pollen size: 
 ggplot(sizenum_filt) + 
   geom_histogram(aes(x=Avg_diam)) + 
@@ -351,19 +350,25 @@ Fit the mixed effects model:
 ```{r fit size mixed model}
 prodsize_mixmod <- lmer(Log_avg_pol_anth ~ Avg_diam + Sex_sys + (1|Species), data = sizenum_filt)
 summary(prodsize_mixmod)
-anova(prodsize_mixmod) # sig effects of diam and sex system
+# anova(prodsize_mixmod) # sig effects of diam and sex system
 kable(anova(prodsize_mixmod))
 ```
 
 Calculate marginal means, test for pairwise differences between sex systems.
 
 ```{r prod by sex system marginal means}
-emmeans(prodsize_mixmod , ~Sex_sys)
-emmeans(prodsize_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")
+# emmeans(prodsize_mixmod , ~Sex_sys)
+# emmeans(prodsize_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")
 kable(emmeans(prodsize_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwise differences of Sex_sys`)
 # plot(emmeans(prodsize_mixmod , ~Sex_sys))
 em_prodsize <- emmeans(prodsize_mixmod , ~Sex_sys) %>%  as.data.frame()
+```
 
+A post hoc Tukey test showed that hermaphroditic species produce significantly more pollen than monoecious species at p<0.05. Pollen production in monoecious species did not differ signifcantly from that of dioecious or hermaphroditic species. 
+
+Now I'll plot the estimated marginal means for pollen production by sex system, with error bars as CIs. 
+
+```{r plot estimated marginal means for pollen production}
 # Plot estimated marginal means for pollen production: 
 ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) + 
   geom_point(size=3) + 
@@ -381,12 +386,11 @@ ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) +
 ```
 
 
-A post hoc Tukey test showed that hermaphroditic species produce significantly more pollen than monoecious species at p<0.05. Pollen production in monoecious species did not differ signifcantly from that of dioecious or hermaphroditic species. 
+```{r plot pollen number by size to visualize tradeoff, include=F}
+# **not currently working! **
 
-Plot pollen number by size to visualize tradeoff. 
-*** How???
-
-```{r}
+# Plot pollen number by size to visualize tradeoff. 
+# *** How???
 mod.fit <- sizenum_filt %>% as.data.frame()
 fit.mod <- fitted(prodsize_mixmod)
 mod.fit <- mutate(mod.fit, fit.mod)
@@ -394,9 +398,7 @@ emms <- emmip(prodsize_mixmod, ~ Avg_diam | Sex_sys, cov.reduce=range,
               type="response", plotit=T)
 emmip(prodsize_mixmod, ~ Avg_diam, cov.reduce=range,
               type="response", plotit=T)
-```
 
-```{r AMAR fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = mod.fit, aes(x=Avg_diam, y=fit.mod)) 
@@ -417,19 +419,20 @@ ggplot() +
 #   theme_cs()
 ```
 
-### B. Effect of sex system on pollen size 
+## Effect of sex system on pollen size 
 
-Does pollen size vary in wind-pollinated species according to their sex system? Specifically, do dioecious species make smaller pollen (to facilitate long-distance dispersal) and hermaphroditic species make larger pollen? 
+B. Does pollen size vary in wind-pollinated species according to their sex system? Specifically, do dioecious species make smaller pollen (to facilitate long-distance dispersal) and hermaphroditic species make larger pollen? 
 
-#### Pollen size PGLS model
+### Pollen size PGLS model
 
 First, I'll run a PGLS model where I predict the optimal branch length parameter lambda using maximum-likelihood, to test if there is phylogenetic signal in the data. 
 
 ```{r ML lambda PGLS size}
 modB <- pgls(Avg_diam ~ Sex_sys, dat=test.data, lambda="ML")
 summary(modB) # estimated lambda is 0.988, significantly diff from 0 but not 1. 
-anova(modB) # no sig effect of sex system
+# anova(modB) # no sig effect of sex system
 kable(anova(modB))
+# take a look at the likelihood surface for lambda
 plot(pgls.profile(modB, "lambda")) # kind of strange looking, peak near 1
 ```
 
@@ -437,29 +440,29 @@ The ML lambda was estimated to be 0.988, significantly different from 0 but not 
 
 Check post-fit assumptions of PGLS model:
 
-```{r PGLS size post fit assumptions}
+```{r PGLS size post fit assumptions, include=F}
 # test PGLS assumptions post fit
 #inspect the phylogenetic residuals for normality:
-hist(modB_PGLS$phyres) #looks pretty normal
-qqnorm(modB_PGLS$phyres) 
-qqline(modB_PGLS$phyres) #looks okay...
+hist(modB$phyres) #looks pretty normal
+qqnorm(modB$phyres) 
+qqline(modB$phyres) #looks okay...
 #inspect phylogenetic residuals for homogeneity:
-plot(x=fitted(modB_PGLS), y=modB_PGLS$phyres, pch=19)
+plot(x=fitted(modB), y=modB$phyres, pch=19)
 # only 2 dioecious species - might give them undue influence and not represent their sex system well. Also much more variable in hermaphroditic category. 
 ```
 
 Residuals look relatively normal but not homoskedastic among sex system categories. This is probably mostly due to the fact that there are only 2 dioecious species, so they are necessarily less variable than the other sex systems. There only being 2 dioecious species may give these points undue influence and may mean this isn't a great representation of that sex system, which could reduce the validity of these models. 
 
-#### Pollen size OLS model (lambda=0). 
+### Pollen size linear mixed effects model  
 
 I'll also do a linear mixed effects model on pollen size by sex system with species as random effect. I'll use individual-level data instead of the species-level data necessary for the PGLS. 
 
 ```{r size mixed mod}
 # Prepare individual-level data
-sizenum_filt # I already filtered this data for the mixed model analysis for pollen production, there should be no species with fewer
+# sizenumb_filt -- I already filtered this data for the mixed model analysis for pollen production, there should be no species with fewer
 # than 10 members
 # sample size per species
-print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(n=n()), n=Inf) 
+# print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(n=n()), n=Inf) 
 
 size_mixmod <- lmer(Avg_diam ~ Sex_sys + (1|Species), data = sizenum_filt)
 summary(size_mixmod)
@@ -468,12 +471,30 @@ kable(anova(size_mixmod))
 
 From the mixed effects model, sex system has a significant effect on pollen size. I'll use emmeans to run a Tukey's HSD to determine which groups are significantly different from each other and the direction of the difference(s). 
 
+First, check model assumptions post-fit:
+
+```{r test size mixed model assumptions}
+#normality of residuals
+hist(residuals(size_mixmod))
+qqnorm(residuals(size_mixmod))
+qqline(residuals(size_mixmod))
+# homogeneity
+plot(size_mixmod)
+```
+
+Calculate marginal means, do Tukey's HSD post hoc test between sex systems
+
 ```{r size mixed mod emmeans}
-emmeans(size_mixmod , ~Sex_sys)
-emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")
+# emmeans(size_mixmod , ~Sex_sys)
+# emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")
 kable(emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwise differences of Sex_sys`)
 # plot(emmeans(size_mixmod , ~Sex_sys))
 em_size <- emmeans(size_mixmod , ~Sex_sys) %>%  as.data.frame()
+```
+
+Plot estimated marginal means for pollen size per sex system:
+
+```{r plot estimated marginal means pollen size by sex system}
 # Plot estimated marginal means: 
 ggplot(data=em_size, aes(x=Sex_sys, y=emmean)) + 
   geom_point(size=3) + 
