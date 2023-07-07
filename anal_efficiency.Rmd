@@ -34,7 +34,7 @@ pc.dat <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T)
 #Fix a typo in stigma data
 pc.dat$Species <- gsub("Schizacne purpurascens", "Schizachne purpurascens", pc.dat$Species)
 # Pollen production (and size)
-sizenum.dat <- read.csv("processed-data/size-prod-all.csv", stringsAsFactors = T)
+sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
 # head(sizenum.dat)
 # str(sizenum.dat)
 ```
@@ -73,19 +73,21 @@ prod_spp <- sizenum.dat %>%
             Sd_prod_anth_sp = sd(Avg_pol_anth, na.rm=T),
             n_prod_anth = n(),
             SE_prod_anth_sp = Sd_prod_anth_sp/n_prod_anth)
+
 # View(prod_spp)
 # Join data for plotting - use inner_join() because not all species have both capture and prod data
 # Keep JF data for pollen production when species overlap - I trust the automated counting with the
 # particle counter more than my subsampling counting. It counts all the particles that go through it
 # vs I only count a fraction of the total pollen and assume it's uniformly distributed within the sample.
-prod_spp$Species[which(prod_spp$source == "CS2021")]
+# prod_spp$Species[which(prod_spp$source == "CS2021")]
+# prod_spp_filt <- prod_spp %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
 
 
-prod_spp_filt <- prod_spp %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
-
-pdat <- inner_join(stig_spp, prod_spp_filt, by = c("Species", "Sex_sys"))
-anti_pdat <- anti_join(stig_spp, prod_spp_filt, by = c("Species"))
-anti_pdat2 <- anti_join(prod_spp_filt, stig_spp, by = c("Species"))
+pdat <- inner_join(stig_spp, prod_spp, by = c("Species", "Sex_sys"))
+# which species didn't make it from the stigma data?
+anti_pdat <- anti_join(stig_spp, prod_spp, by = c("Species"))
+# which species didn't make it from the prod data?
+anti_pdat2 <- anti_join(prod_spp, stig_spp, by = c("Species"))
 # head(pdat)
 # summary(pdat)
 # View(pdat)
@@ -126,6 +128,27 @@ pdat %>%
 
 ```
 
+A plot with labels, for reference (zoom into saved file)
+
+```{r plot efficiency w labels, fig.dim = c(28,20)}
+pdat %>% 
+  ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys, label=Species) ) + 
+  geom_point(size=3, alpha=0.8) + 
+  geom_errorbar(aes(ymin = pmax(0,Avg_stig_sp - Sd_stig_sp), ymax = Avg_stig_sp + Sd_stig_sp), color="black") + 
+  geom_errorbarh(aes(xmin = Avg_prod_anth_sp - Sd_prod_anth_sp, xmax = Avg_prod_anth_sp + Sd_prod_anth_sp), color="black") + 
+  geom_label(size=2) + 
+  
+  scale_x_continuous(name = expression("Pollen production per anther"), na.value=0) + 
+  scale_y_continuous(name = "Pollen capture per flower", na.value = 0) + 
+  guides(shape=guide_legend(title="Sex system"), color=guide_legend(title="Sex system")) + 
+  scale_shape_manual(values = c(15, 16, 17),
+                     labels=c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  scale_color_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
+                     values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
+  # geom_text(aes(label=Species), size=2, color="black") + 
+  theme_cs(font="sans", fontsize=20)
+
+```
 Tables
 
 ```{r}
