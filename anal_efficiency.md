@@ -183,7 +183,7 @@ print(eff_tab, width = 90)
     ## 15 hermaphroditic Elymus repens                 84.3       69.9 
     ## 16 hermaphroditic Festuca campestris            17.9       35.7 
     ## 17 hermaphroditic Phleum pratense               38.8       43.6 
-    ## 18 hermaphroditic Plantago lanceolata           87.0      119.  
+    ## 18 hermaphroditic Plantago lanceolata           95.0      107.  
     ## 19 hermaphroditic Schizachne purpurascens       92.3      121.  
     ##    Avg_prod_anth_sp Sd_prod_anth_sp polleff
     ##               <dbl>           <dbl>   <dbl>
@@ -203,8 +203,8 @@ print(eff_tab, width = 90)
     ## 14            7802.          2754.    1.38 
     ## 15            4995.          1848.    1.69 
     ## 16            6518.          1947.    0.274
-    ## 17            2163.          2663.    1.79 
-    ## 18            2749.           768.    3.17 
+    ## 17            1697.           595.    2.29 
+    ## 18            2749.           768.    3.46 
     ## 19             287.            99.4  32.1
 
 ``` r
