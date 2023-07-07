@@ -37,7 +37,6 @@ JF2001_pre <- JF2001 %>%
          Infl_max=H1, Infl_min=H2, Stigma_length=NA, source="JF2001") %>% 
   select(all_of(sel_vec))
 
-summary(JF2001_pre$Date)
 # There are dates from 2001 and 2002 in the JF2001 dataset - each have a prefix of either 1 or 2 respectively
 # I'll separate the data into 2001 and 2002 data, then rejoin it all together
 JF2001_1 <- JF2001_pre[grepl("^1",as.character(JF2001_pre$Date)),]
@@ -62,8 +61,8 @@ JF2001_pre2 <- rbind(JF2001_1_pre, JF2001_2_pre)
 # nrow(JF2001_pre2)
 # summary(JF2001_pre2)
 # summary(JF2001_pre) # look the same except for date!
-head(JF2001_pre)
-head(JF2001_pre2)
+# head(JF2001_pre)
+# head(JF2001_pre2)
 
 # JF2004: 
 # head(JF2004)
@@ -157,9 +156,9 @@ write.csv(stig_all_ss, "processed-data/stig-all.csv", row.names=F)
 # the CS2021 C. album with the JF2004 C. album. I collected mine too early. 
 CS2021_norep <- CS2021_pre %>% filter(Species != "Chenopodium album")
 unique(CS2021_norep$Species)
-JF2001_norep <- JF2001_pre %>% filter(!(Species %in% unique(CS2021_norep$Species)))
+JF2001_norep <- JF2001_pre2 %>% filter(!(Species %in% unique(CS2021_norep$Species)))
 unique(JF2001_norep$Species)
-JF2004_norep <- JF2004_pre %>% filter(!(Species %in% unique(CS2021_norep$Species)))
+JF2004_norep <- JF2004_pre2 %>% filter(!(Species %in% unique(CS2021_norep$Species)))
 unique(JF2004_norep$Species)
 stig_norep <- rbind(rbind(CS2021_norep, JF2001_norep), JF2004_norep)
 

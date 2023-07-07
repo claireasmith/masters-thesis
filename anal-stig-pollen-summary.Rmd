@@ -50,7 +50,7 @@ n_plants_stig <- stig %>% group_by(Sex_sys, Species, source, Plant) %>%
 
 pollen_load_tab$stig_nplants = n_plants_stig$nplants
 # names(pollen_load_tab)
-pollen_load_tab
+# pollen_load_tab %>% filter(stig_nplants>=10)
 
 write.csv(pollen_load_tab, "processed-data/pollen-loads-table.csv", row.names=F)
 ```
@@ -58,7 +58,7 @@ write.csv(pollen_load_tab, "processed-data/pollen-loads-table.csv", row.names=F)
 
 Visualize distributions of pollen loads across species
 
-```{r stigma ridgeplots, fig.dim=c(14,10), dpi=200}
+```{r stigma ridgeplots, fig.dim=c(14,14), dpi=200}
 stig_ridges <- stig %>% 
   # Arrange species in order of sex system and alphabetically by species
   mutate(Sex_sys = as.character(Sex_sys),
