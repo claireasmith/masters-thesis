@@ -2,11 +2,10 @@
 title: "Full pollen load model, including stig length"
 author: "Claire Smith"
 date: "2023-06-19"
-output: html_document
+output: github_document
 editor_options: 
   chunk_output_type: console
 ---
- *** very much in progress!!! ***
 
 ```{r initialize, message=F}
 # Load packages
@@ -15,6 +14,7 @@ library(lme4) # for linear mixed effects models
 library(lmerTest)
 library(emmeans)
 library(car)
+library(knitr)
 # Source files
 source("clean-stig-01.R")
 source("clean-stig-02.R")
@@ -42,7 +42,9 @@ stigl <- stig %>%
   mutate(Avg_dist = mean(c_across(c('D1', 'D2', 'D3', 'D4', 'D5')), na.rm=TRUE)) %>% 
   # Take only entries stigma length data
   filter(!is.na(Flw_pollen) & !is.na(Infl_max) & !is.na(Avg_dist) &!is.na(Stigma_length) & !is.na(Date))
+```
 
+```{r take a look at data, include=F}
 # How many species have max infl height and stigma length? 
 unique(stigl$Species) #  13 species 
 # [1] Ambrosia artemisiifolia Chenopodium album       Carex communis          Carex hirtifolia       
@@ -85,22 +87,26 @@ stigl %>% group_by(Species, Plant) %>%
 
 ### Ambrosia artemisiifolia (n=30)
 
-```{r AMAR pre-fit}
+```{r AMAR pre-fit, include=F}
 AMAR <- stigl %>% 
   filter(Species=="Ambrosia artemisiifolia") %>% 
   as.data.frame()
 # summary(AMAR) 
+AMAR$Inv_avg_dist <- 1/(AMAR$Avg_dist)
+```
 
+```{r AMAR take a look, include=F}
 #Taking a look at the data
 hist(AMAR$Flw_pollen) # response variable. looks very right skewed!
 hist(AMAR$Log_flw_pollen) # much more symmetric
 hist(AMAR$Infl_max) # looks ok
 hist(AMAR$Stigma_length)
 hist(AMAR$Avg_dist)
+hist(AMAR$Inv_avg_dist)
 table(AMAR$Date)
 ```
 
-```{r AMAR covariates and pollen load}
+```{r AMAR covariates and pollen load, include=F}
 # Look at plot of Log_flw_pollen and Flw_height 
 # Looks like no big differences between sites in flower height or pollen load
 ggplot(data=AMAR, aes(x=Infl_max, y=Log_flw_pollen)) + 
@@ -128,76 +134,79 @@ ggplot(data=AMAR, aes(x=Date, y=Log_flw_pollen)) +
   geom_smooth(method="lm", se=F) + 
   theme_cs() # dates are in number format
 
-summary(AMAR)
+# summary(AMAR)
 ```
 
 ```{r AMAR model fit }
 #model for height
-AMARmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=AMAR)
+AMARmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=AMAR)
 summary(AMARmod)
-anova(AMARmod)
+kable(anova(AMARmod))
 # No significant effect of density or max inflorescence height - significant effect of stigma length. Longer stigmas capture more pollen. 
 # plot(AMARmod)
 ```
 
-```{r test AMAR model assumptions}
+No significant effect of anything on pollen capture
+
+```{r test AMAR model assumptions, include=F}
 #normality of residuals
 hist(residuals(AMARmod)) 
 qqnorm(residuals(AMARmod))
 qqline(residuals(AMARmod))
 # homogeneity
 plot(AMARmod)
+# No obvious deviations from normality - variance in residuals does seem to decrease with increased fitted values. 
 ```
 
-No obvious deviations from normality - variance in residuals does seem to decrease with increased fitted values. 
-
-
-```{r}
+```{r AMAR calculate marginal means}
 AMARmod.fit <- AMAR
 fit.AMARmod <- fitted(AMARmod)
 AMARmod.fit <- mutate(AMARmod.fit, fit.AMARmod)
 emmsAMAR <- emmip(AMARmod, ~ Stigma_length, cov.reduce=range,
               type="response", plotit=F)
-length(fit.AMARmod)
 ```
+
+Fitted values with line of best fit: 
 
 ```{r AMAR fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
-ggplot() + 
-  geom_point(data = AMARmod.fit, aes(x=Stigma_length, y=fit.AMARmod)) + 
-  geom_smooth(data=AMARmod.fit, aes(x=Stigma_length, y=fit.AMARmod),
-              method="lm",
-              formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(log(10)+1,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)",
-                     breaks = log(c(0.5, 1, 2, 5)),
-                     labels = c(0.5, 1, 2, 5),
-                     limits=c(0.5,5)) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = AMARmod.fit, aes(x=Stigma_length, y=fit.AMARmod)) + 
+#   geom_smooth(data=AMARmod.fit, aes(x=Stigma_length, y=fit.AMARmod),
+#               method="lm",
+#               formula = y ~ x, linetype=1, colour="blue", se=F, linewidth=0.7) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(log(10)+1,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)",
+#                      breaks = log(c(0.5, 1, 2, 5)),
+#                      labels = c(0.5, 1, 2, 5),
+#                      limits=c(0.5,5)) +
+#   theme_cs()
 ```
 
+Raw data with emmip slope: 
+
 ```{r AMAR fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = AMAR, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsAMAR, aes(xvar, yvar), linewidth=0.7) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  # scale_x_continuous(name = "Stigma length (cm)",
-  #                    breaks = log(c(0, 0.1, 0.2, 0.5 , 1, 2, 5)),
-  #                    labels = c(0, 0.1, 0.2, 0.5, 1, 2, 5)) + 
-    scale_x_continuous(name = "Stigma length (cm)") + 
-
-                     # breaks = log(c(0.5, 1, 2, 5)),
-                     # labels = c(0.5, 1, 2, 5),
-                     # limits=c(0.5,5)) +
-  theme_cs()
-
-# max(AMAR$Stigma_length)
+# ggplot() + 
+#   geom_point(data = AMAR, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsAMAR, aes(xvar, yvar), linewidth=0.7) + # emmip slope
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   # scale_x_continuous(name = "Stigma length (cm)",
+#   #                    breaks = log(c(0, 0.1, 0.2, 0.5 , 1, 2, 5)),
+#   #                    labels = c(0, 0.1, 0.2, 0.5, 1, 2, 5)) + 
+#     scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#                      # breaks = log(c(0.5, 1, 2, 5)),
+#                      # labels = c(0.5, 1, 2, 5),
+#                      # limits=c(0.5,5)) +
+#   theme_cs()
+# 
+# # max(AMAR$Stigma_length)
 ```
 
 ### Carex communis (n=22)
@@ -207,7 +216,10 @@ CACO <- stigl %>%
   filter(Species=="Carex communis") %>% 
   as.data.frame()
 # summary(CACO) 
+CACO$Inv_avg_dist <- 1/(CACO$Avg_dist)
+```
 
+```{r look at data, include=F}
 #Taking a look at the data
 hist(CACO$Flw_pollen) # response variable. looks very right skewed!
 hist(CACO$Log_flw_pollen) # much more symmetric
@@ -217,10 +229,11 @@ hist(CACO$Stigma_length) # looks ok
 # min(CACO$Stigma_length) #1.7
 # CACO$Log_stigma_length <- log(AMAR$Stigma_length)
 hist(CACO$Avg_dist)
+hist(CACO$Inv_avg_dist)
 table(CACO$Date)
 ```
 
-```{r CACO covariates and pollen load}
+```{r CACO covariates and pollen load, include=F}
 # Look at plot of Log_flw_pollen and Flw_height 
 # Looks like no big differences between sites in flower height or pollen load
 ggplot(data=CACO, aes(x=Infl_max, y=Log_flw_pollen)) + 
@@ -235,7 +248,7 @@ ggplot(data=CACO, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
-ggplot(data=CACO, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+ggplot(data=CACO, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
   scale_y_continuous(name="Log stigmatic pollen load") + 
@@ -251,25 +264,24 @@ ggplot(data=CACO, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r CACO model fit}
 # fit full model with all terms
-CACOmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=CACO)
+CACOmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=CACO)
 summary(CACOmod)
-anova(CACOmod)
-# Check for collinearity between predictors
-vif(mod=CACOmod, type="predictor") # variance inflation factors from package "car"
+kable(anova(CACOmod))
 ```
 
 Significant effect of stigma length on pollen capture. 
 
-```{r test CACO model assumptions}
+```{r test CACO model assumptions, include=F}
+# Check for collinearity between predictors
+vif(mod=CACOmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
 hist(residuals(CACOmod)) 
 qqnorm(residuals(CACOmod))
 qqline(residuals(CACOmod))
 # homogeneity
 plot(CACOmod)
+# No obvious deviations from normality or homogeneity of residuals. 
 ```
-
-No obvious deviations from normality or homogeneity of residuals. 
 
 ```{r CACO estimate marginal means}
 CACOmod.fit <- CACO
@@ -279,13 +291,13 @@ emmsCACO <- emmip(CACOmod, ~ Stigma_length, cov.reduce=range,
               type="response", plotit=F)
 ```
 
-```{r CACO fitted values plot, dpi=200}
+```{r CACO stig length fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = CACOmod.fit, aes(x=Stigma_length, y=fit.CACOmod)) + 
   geom_smooth(data=CACOmod.fit, aes(x=Stigma_length, y=fit.CACOmod),
               method="lm",
-              formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+              formula = y ~ x, linetype=1, colour="blue", se=F, linewidth=0.7) + 
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
@@ -294,23 +306,22 @@ ggplot() +
 ```
 
 ```{r CACO fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = CACO, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsCACO, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = CACO, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = CACO, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsCACO, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = CACO, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
-
 
 ### Carex hirtifolia (n=25)
 
@@ -319,13 +330,17 @@ CAHI <- stigl %>%
   filter(Species=="Carex hirtifolia") %>% 
   as.data.frame()
 # summary(CAHI) 
+CAHI$Inv_avg_dist <- 1/(CAHI$Avg_dist)
+```
 
+```{r CAHI take a look, include=F}
 #Taking a look at the data
 hist(CAHI$Flw_pollen) # response variable. looks very right skewed!
 hist(CAHI$Log_flw_pollen) # much more symmetric
 hist(CAHI$Infl_max) # looks ok
 hist(CAHI$Stigma_length) # looks ok - looks like one very small? 
 hist(CAHI$Avg_dist)
+hist(CAHI$Inv_avg_dist)
 table(CAHI$Date)
 
 # remove outlier identified below...
@@ -333,7 +348,7 @@ table(CAHI$Date)
 CAHI <- CAHI %>% filter(Stigma_length>0.5)
 ```
 
-```{r CAHI covariates and pollen load}
+```{r CAHI covariates and pollen load, include=F}
 ggplot(data=CAHI, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -363,25 +378,25 @@ ggplot(data=CAHI, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r CAHI model fit}
 # fit full model with all terms
-CAHImod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=CAHI)
+CAHImod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=CAHI)
 summary(CAHImod)
-anova(CAHImod)
-# Check for collinearity between predictors
-vif(mod=CAHImod, type="predictor") # variance inflation factors from package "car"
+# anova(CAHImod)
+kable(anova(CAHImod))
 ```
 
 Significant effect of stigma length on pollen capture. 
 
-```{r test CAHI model assumptions}
+```{r test CAHI model assumptions, include=F}
+# Check for collinearity between predictors
+vif(mod=CAHImod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
 hist(residuals(CAHImod)) 
 qqnorm(residuals(CAHImod))
 qqline(residuals(CAHImod))
 # homogeneity
 plot(CAHImod)
+# No obvious deviations from normality or homogeneity of residuals. 
 ```
-
-No obvious deviations from normality or homogeneity of residuals. 
 
 ```{r CAHI estimate marginal means}
 CAHImod.fit <- CAHI
@@ -391,13 +406,13 @@ emmsCAHI <- emmip(CAHImod, ~ Stigma_length, cov.reduce=range,
               type="response", plotit=F)
 ```
 
-```{r CAHI fitted values plot, dpi=200}
+```{r CAHI stig length fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = CAHImod.fit, aes(x=Stigma_length, y=fit.CAHImod)) + 
   geom_smooth(data=CAHImod.fit, aes(x=Stigma_length, y=fit.CAHImod),
               method="lm",
-              formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+              formula = y ~ x, linetype=1, colour="blue", se=F, linewidth=0.7) + 
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
@@ -406,23 +421,22 @@ ggplot() +
 ```
 
 ```{r CAHI fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = CAHI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsCAHI, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = CAHI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = CAHI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsCAHI, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = CAHI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
-
 
 ### Carex pedunculata (n=15)
 
@@ -431,17 +445,21 @@ CAPE <- stigl %>%
   filter(Species=="Carex pedunculata") %>% 
   as.data.frame()
 # summary(CAPE) 
+CAPE$Inv_avg_dist <- 1/(CAPE$Avg_dist)
+```
 
+```{r CAPE take a look, include=F}
 #Taking a look at the data
 hist(CAPE$Flw_pollen) # response variable. looks very right skewed!
 hist(CAPE$Log_flw_pollen) # much more symmetric
 hist(CAPE$Infl_max) # looks ok
 hist(CAPE$Stigma_length) # looks ok 
 hist(CAPE$Avg_dist)
+hist(CAPE$Inv_avg_dist)
 table(CAPE$Date)
 ```
 
-```{r CAPE covariates and pollen load}
+```{r CAPE covariates and pollen load, include=F}
 ggplot(data=CAPE, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -454,7 +472,7 @@ ggplot(data=CAPE, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
-ggplot(data=CAPE, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+ggplot(data=CAPE, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
   scale_y_continuous(name="Log stigmatic pollen load") + 
@@ -470,25 +488,25 @@ ggplot(data=CAPE, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r CAPE model fit}
 # fit full model with all terms
-CAPEmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=CAPE)
+CAPEmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=CAPE)
 summary(CAPEmod)
-anova(CAPEmod)
-# Check for collinearity between predictors
-vif(mod=CAPEmod, type="predictor") # variance inflation factors from package "car"
+# anova(CAPEmod)
+kable(anova(CAPEmod))
 ```
 
 Significant effect of stigma length on pollen capture. 
 
-```{r test CAPE model assumptions}
+```{r test CAPE model assumptions, include=F}
+# Check for collinearity between predictors
+vif(mod=CAPEmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
 hist(residuals(CAPEmod))
 qqnorm(residuals(CAPEmod))
 qqline(residuals(CAPEmod))
 # homogeneity
 plot(CAPEmod)
+# No obvious deviations from normality or homogeneity of residuals. 
 ```
-
-No obvious deviations from normality or homogeneity of residuals. 
 
 ```{r CAPE estimate marginal means}
 CAPEmod.fit <- CAPE
@@ -498,13 +516,13 @@ emmsCAPE <- emmip(CAPEmod, ~ Stigma_length, cov.reduce=range,
               type="response", plotit=F)
 ```
 
-```{r CAPE fitted values plot, dpi=200}
+```{r CAPE stig length fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = CAPEmod.fit, aes(x=Stigma_length, y=fit.CAPEmod)) + 
-  geom_smooth(data=CAPEmod.fit, aes(x=Stigma_length, y=fit.CAPEmod),
-              method="lm",
-              formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  # geom_smooth(data=CAPEmod.fit, aes(x=Stigma_length, y=fit.CAPEmod),
+  #             method="lm",
+  #             formula = y ~ x, linetype=1, colour="blue", se=F, linewidth=0.7) + 
   geom_line(data= emmsCAPE, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
@@ -514,21 +532,21 @@ ggplot() +
 ```
 
 ```{r CAPE fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = CAPE, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsCAPE, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = CAPE, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = CAPE, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsCAPE, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = CAPE, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
 
 ### Carex plantaginea (n=19)
@@ -538,17 +556,21 @@ CAPL <- stigl %>%
   filter(Species=="Carex plantaginea") %>% 
   as.data.frame()
 # summary(CAPL) 
+CAPL$Inv_avg_dist <- 1/(CAPL$Avg_dist)
+```
 
+```{r CAPL take a look, include=F}
 #Taking a look at the data
 hist(CAPL$Flw_pollen) # response variable. looks very right skewed!
 hist(CAPL$Log_flw_pollen) # much more symmetric
 hist(CAPL$Infl_max) # looks ok
 hist(CAPL$Stigma_length) # looks ok
 hist(CAPL$Avg_dist)
+hist(CAPL$Inv_avg_dist)
 table(CAPL$Date)
 ```
 
-```{r CAPL covariates and pollen load}
+```{r CAPL covariates and pollen load, include=F}
 ggplot(data=CAPL, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -561,7 +583,7 @@ ggplot(data=CAPL, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
-ggplot(data=CAPL, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+ggplot(data=CAPL, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
   scale_y_continuous(name="Log stigmatic pollen load") + 
@@ -577,14 +599,15 @@ ggplot(data=CAPL, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r CAPL model fit}
 # fit full model with all terms
-CAPLmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=CAPL)
+CAPLmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=CAPL)
 summary(CAPLmod)
-anova(CAPLmod)
+# anova(CAPLmod)
+kable(anova(CAPLmod))
 ```
 
 Significant effect of date on pollen capture. 
 
-```{r test CAPL model assumptions}
+```{r test CAPL model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=CAPLmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -593,9 +616,8 @@ qqnorm(residuals(CAPLmod))
 qqline(residuals(CAPLmod))
 # homogeneity
 plot(CAPLmod)
+# Values seem to diverge from qqline near positive extreme. No clear violation of homoskedasticity. 
 ```
-
-Values seem to diverge from qqline near positive extreme. No clear violation of homoskedasticity. 
 
 ```{r CAPL estimate marginal means}
 CAPLmod.fit <- CAPL
@@ -603,41 +625,64 @@ fit.CAPLmod <- fitted(CAPLmod)
 CAPLmod.fit <- mutate(CAPLmod.fit, fit.CAPLmod)
 emmsCAPL <- emmip(CAPLmod, ~ Stigma_length, cov.reduce=range,
               type="response", plotit=F)
+
+CAPLmod.fit2 <- CAPL
+fit.CAPLmod2 <- fitted(CAPLmod)
+CAPLmod.fit2 <- mutate(CAPLmod.fit2, fit.CAPLmod2)
+emmsCAPL2 <- emmip(CAPLmod, ~ Date, cov.reduce=range,
+              type="response", plotit=F)
 ```
 
-```{r CAPL fitted values plot, dpi=200}
+```{r CAPL date fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
-  geom_point(data = CAPLmod.fit, aes(x=Stigma_length, y=fit.CAPLmod)) + 
-  geom_smooth(data=CAPLmod.fit, aes(x=Stigma_length, y=fit.CAPLmod),
-              method="lm",
-              formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
-  geom_line(data= emmsCAPL, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  geom_point(data = CAPLmod.fit2, aes(x=Date, y=fit.CAPLmod2)) + 
+  # geom_smooth(data=CAPLmod.fit2, aes(x=Date, y=fit.CAPLmod2),
+  #             method="lm",
+  #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  geom_line(data= emmsCAPL2, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
-  scale_x_continuous(name = "Stigma length (cm)") +
-  theme_cs()
+  scale_x_continuous(name = "Date", labels=as.character(unique(CAPLmod.fit2$Date)),
+                     breaks=unique(CAPLmod.fit2$Date)) +
+  theme_cs() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
 ```
 
-```{r CAPL fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = CAPL, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsCAPL, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = CAPL, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+```{r CAPL stig length fitted values plot, dpi=200}
+# # emmip_ggplot(emms) #plots predicted slope
+# ggplot() + 
+#   geom_point(data = CAPLmod.fit, aes(x=Stigma_length, y=fit.CAPLmod)) + 
+#   # geom_smooth(data=CAPLmod.fit, aes(x=Stigma_length, y=fit.CAPLmod),
+#   #             method="lm",
+#   #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+#   geom_line(data= emmsCAPL, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+#   scale_x_continuous(name = "Stigma length (cm)") +
+#   theme_cs()
 ```
 
+```{r CAPL stig length fitted slope raw values plot, dpi=200}
+# ggplot() + 
+#   geom_point(data = CAPL, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsCAPL, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+#   # geom_smooth(method="lm", data = CAPL, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
+```
 
 ### Carex stipata (n=30)
 
@@ -646,7 +691,9 @@ CAST <- stigl %>%
   filter(Species=="Carex stipata") %>% 
   as.data.frame()
 # summary(CAST) 
+```
 
+```{r CAST take a look, include=F}
 #Taking a look at the data
 hist(CAST$Flw_pollen) # response variable. probably a lot of 0s here!
 hist(CAST$Log_flw_pollen) # still very right skewed...
@@ -656,7 +703,7 @@ hist(CAST$Avg_dist)
 table(CAST$Date)
 ```
 
-```{r CAST covariates and pollen load}
+```{r CAST covariates and pollen load, include=F}
 ggplot(data=CAST, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -687,13 +734,14 @@ ggplot(data=CAST, aes(x=Date, y=Log_flw_pollen)) +
 # fit full model with all terms
 CASTmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=CAST)
 summary(CASTmod)
-anova(CASTmod)
+# anova(CASTmod)
+kable(anova(CASTmod))
 ```
 
 boundary (singular) fit: see help('isSingular')...
 Significant effect of height, date, stigma length, and avg distance - but is it valid? 
 
-```{r test CAST model assumptions}
+```{r test CAST model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=CASTmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -702,26 +750,31 @@ qqnorm(residuals(CASTmod))
 qqline(residuals(CASTmod))
 # homogeneity
 plot(CASTmod)
+#Values don't fit qqline very well, seems like there's some clear structure in the residuals vs fitted values plot...
 ```
-
-Values don't fit qqline very well, seems like there's some clear structure in the residuals vs fitted values plot...
 
 ```{r CAST estimate marginal means}
 CASTmod.fit <- CAST
 fit.CASTmod <- fitted(CASTmod)
 CASTmod.fit <- mutate(CASTmod.fit, fit.CASTmod)
-emmsCAST <- emmip(CASTmod, ~ Stigma_length, cov.reduce=range,
+emmsCAST_stiglength <- emmip(CASTmod, ~ Stigma_length, cov.reduce=range,
+              type="response", plotit=F)
+emmsCAST_date <- emmip(CASTmod, ~ Date, cov.reduce=range,
+              type="response", plotit=F)
+emmsCAST_avgdist <- emmip(CASTmod, ~ Avg_dist, cov.reduce=range,
+              type="response", plotit=F)
+emmsCAST_inflmax <- emmip(CASTmod, ~ Infl_max, cov.reduce=range,
               type="response", plotit=F)
 ```
 
-```{r CAST fitted values plot, dpi=200}
+```{r CAST stig length fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = CASTmod.fit, aes(x=Stigma_length, y=fit.CASTmod)) + 
   # geom_smooth(data=CASTmod.fit, aes(x=Stigma_length, y=fit.CASTmod),
   #             method="lm",
   #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
-  geom_line(data= emmsCAST, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  geom_line(data= emmsCAST_stiglength, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
@@ -729,10 +782,56 @@ ggplot() +
   theme_cs()
 ```
 
-```{r CAST fitted slope raw values plot, dpi=200}
+```{r CAST date fitted values plot, dpi=200}
+# emmip_ggplot(emms) #plots predicted slope
+ggplot() + 
+  geom_point(data = CASTmod.fit, aes(x=Date, y=fit.CASTmod)) + 
+  # geom_smooth(data=CASTmod.fit, aes(x=Stigma_length, y=fit.CASTmod),
+  #             method="lm",
+  #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  geom_line(data= emmsCAST_date, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+  scale_x_continuous(name = "Date", labels=as.character(unique(CASTmod.fit$Date)),
+                     breaks=unique(CASTmod.fit$Date)) +
+  theme_cs()
+```
+
+```{r CAST infl max fitted values plot, dpi=200}
+# emmip_ggplot(emms) #plots predicted slope
+ggplot() + 
+  geom_point(data = CASTmod.fit, aes(x=Infl_max, y=fit.CASTmod)) + 
+  # geom_smooth(data=CASTmod.fit, aes(x=Stigma_length, y=fit.CASTmod),
+  #             method="lm",
+  #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  geom_line(data= emmsCAST_inflmax, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+  scale_x_continuous(name = "Plant height") +
+  theme_cs()
+```
+
+```{r CAST avg dist fitted values plot, dpi=200}
+# emmip_ggplot(emms) #plots predicted slope
+ggplot() + 
+  geom_point(data = CASTmod.fit, aes(x=Avg_dist, y=fit.CASTmod)) + 
+  # geom_smooth(data=CASTmod.fit, aes(x=Stigma_length, y=fit.CASTmod),
+  #             method="lm",
+  #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  geom_line(data= emmsCAST_avgdist, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+  scale_x_continuous(name = "Average distance to 5 nearest pollen-producing neighbours") +
+  theme_cs()
+```
+
+```{r CAST stig length fitted slope raw values plot, dpi=200}
 ggplot() + 
   geom_point(data = CAST, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsCAST, aes(xvar, yvar), linewidth=0.7) +
+  geom_line(data= emmsCAST_stiglength, aes(xvar, yvar), linewidth=0.7) +
   # geom_smooth(method="lm", colour="blue", data = CAST, aes(x=Stigma_length, y=Log_flw_pollen)) + 
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
@@ -754,7 +853,9 @@ CHAL <- stigl %>%
   filter(Species=="Chenopodium album") %>% 
   as.data.frame()
 # summary(CHAL) 
+```
 
+```{r CHAL take a look, include=F}
 #Taking a look at the data
 hist(CHAL$Flw_pollen) # response variable. lots of 0s!
 hist(CHAL$Log_flw_pollen) # more symmetric but still very right-skewed
@@ -764,7 +865,7 @@ hist(CHAL$Avg_dist)
 table(CHAL$Date)
 ```
 
-```{r CHAL covariates and pollen load}
+```{r CHAL covariates and pollen load, include=F}
 ggplot(data=CHAL, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -795,14 +896,15 @@ ggplot(data=CHAL, aes(x=Date, y=Log_flw_pollen)) +
 # fit full model with all terms
 CHALmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=CHAL)
 summary(CHALmod)
-anova(CHALmod)
+# anova(CHALmod)
+kable(anova(CHALmod))
 ```
 
 boundary (singular) fit: see help('isSingular')...
 
 Significant effect of stigma length - but not sure it's valid 
 
-```{r test CHAL model assumptions}
+```{r test CHAL model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=CHALmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -811,9 +913,8 @@ qqnorm(residuals(CHALmod))
 qqline(residuals(CHALmod))
 # homogeneity
 plot(CHALmod)
+#Values don't fit qqline well near extremes, seems like there's some clear structure in the residuals vs fitted values plot...
 ```
-
-Values don't fit qqline well near extremes, seems like there's some clear structure in the residuals vs fitted values plot...
 
 ```{r CHAL estimate marginal means}
 CHALmod.fit <- CHAL
@@ -856,7 +957,6 @@ ggplot() +
   theme_cs()
 ```
 
-
 ### Plantago lanceolata (n=30)
 
 ```{r PLLA pre-fit}
@@ -864,7 +964,9 @@ PLLA <- stigl %>%
   filter(Species=="Plantago lanceolata") %>% 
   as.data.frame()
 # summary(PLLA) 
+```
 
+```{r PLLA take a look, include=F}
 #Taking a look at the data
 hist(PLLA$Flw_pollen) # response variable. right-skewed
 hist(PLLA$Log_flw_pollen) # more symmetric 
@@ -874,7 +976,7 @@ hist(PLLA$Avg_dist)
 table(PLLA$Date) # lots of dates
 ```
 
-```{r PLLA covariates and pollen load}
+```{r PLLA covariates and pollen load, include=F}
 ggplot(data=PLLA, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -905,12 +1007,13 @@ ggplot(data=PLLA, aes(x=Date, y=Log_flw_pollen)) +
 # fit full model with all terms
 PLLAmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=PLLA)
 summary(PLLAmod)
-anova(PLLAmod)
+# anova(PLLAmod)
+kable(anova(PLLAmod))
 ```
 
 Significant effect of date and stigma length
 
-```{r test PLLA model assumptions}
+```{r test PLLA model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=PLLAmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -919,26 +1022,27 @@ qqnorm(residuals(PLLAmod))
 qqline(residuals(PLLAmod))
 # homogeneity
 plot(PLLAmod)
+# Values don't fit qqline very well near extremes
 ```
-
-Values don't fit qqline very well near extremes
 
 ```{r PLLA estimate marginal means}
 PLLAmod.fit <- PLLA
 fit.PLLAmod <- fitted(PLLAmod) 
 PLLAmod.fit <- mutate(PLLAmod.fit, fit.PLLAmod)
-emmsPLLA <- emmip(PLLAmod, ~ Stigma_length, cov.reduce=range,
+emmsPLLA_stiglength <- emmip(PLLAmod, ~ Stigma_length, cov.reduce=range,
+              type="response", plotit=F)
+emmsPLLA_date <- emmip(PLLAmod, ~ Date, cov.reduce=range,
               type="response", plotit=F)
 ```
 
-```{r PLLA fitted values plot, dpi=200}
+```{r PLLA stig length fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = PLLAmod.fit, aes(x=Stigma_length, y=fit.PLLAmod)) + 
   # geom_smooth(data=PLLAmod.fit, aes(x=Stigma_length, y=fit.PLLAmod),
   #             method="lm",
   #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
-  geom_line(data= emmsPLLA, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  geom_line(data= emmsPLLA_stiglength, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
@@ -946,24 +1050,40 @@ ggplot() +
   theme_cs()
 ```
 
-```{r PLLA fitted slope raw values plot, dpi=200}
+```{r PLLA date fitted values plot, dpi=200}
+# emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
-  geom_point(data = PLLA, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsPLLA, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = PLLA, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+  geom_point(data = PLLAmod.fit, aes(x=Date, y=fit.PLLAmod)) + 
+  # geom_smooth(data=PLLAmod.fit, aes(x=Stigma_length, y=fit.PLLAmod),
+  #             method="lm",
+  #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  geom_line(data= emmsPLLA_date, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+  scale_x_continuous(name = "Date", labels=as.character(unique(PLLAmod.fit$Date)), 
+                     breaks=unique(PLLAmod.fit$Date)) +
+  theme_cs() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 ```
 
+```{r PLLA fitted slope raw values plot, dpi=200}
+# ggplot() + 
+#   geom_point(data = PLLA, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsPLLA, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = PLLA, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
+```
 
 ### Rumex acetosella (n=30)
 
@@ -971,18 +1091,22 @@ ggplot() +
 RUAC <- stigl %>% 
   filter(Species=="Rumex acetosella") %>% 
   as.data.frame()
-# summary(RUAC) 
+# summary(RUAC)
+RUAC$Inv_avg_dist <-1/RUAC$Avg_dist
+```
 
+```{r RUAC take a look, include=F}
 #Taking a look at the data
 hist(RUAC$Flw_pollen) # response variable. right-skewed
 hist(RUAC$Log_flw_pollen) # more symmetric 
 hist(RUAC$Infl_max) # looks ok, kind of right skewed
 hist(RUAC$Stigma_length) # looks ok  
 hist(RUAC$Avg_dist)
+hist(RUAC$Inv_avg_dist)
 table(RUAC$Date) # lots of dates
 ```
 
-```{r RUAC covariates and pollen load}
+```{r RUAC covariates and pollen load, include=F}
 ggplot(data=RUAC, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -995,7 +1119,7 @@ ggplot(data=RUAC, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
-ggplot(data=RUAC, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+ggplot(data=RUAC, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
   scale_y_continuous(name="Log stigmatic pollen load") + 
@@ -1011,14 +1135,15 @@ ggplot(data=RUAC, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r RUAC model fit}
 # fit full model with all terms
-RUACmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=RUAC)
+RUACmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=RUAC)
 summary(RUACmod)
 anova(RUACmod)
+kable(anova(RUACmod))
 ```
 
 Significant effect of date, stigma length, and avg dist. 
 
-```{r test RUAC model assumptions}
+```{r test RUAC model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=RUACmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -1027,26 +1152,30 @@ qqnorm(residuals(RUACmod))
 qqline(residuals(RUACmod))
 # homogeneity
 plot(RUACmod)
-```
+# No obvious deviations from normality, looks like some structure in the residuals vs fitted values
 
-No obvious deviations from normality, looks like some structure in the residuals vs fitted values
+```
 
 ```{r RUAC estimate marginal means}
 RUACmod.fit <- RUAC
 fit.RUACmod <- fitted(RUACmod) 
 RUACmod.fit <- mutate(RUACmod.fit, fit.RUACmod)
-emmsRUAC <- emmip(RUACmod, ~ Stigma_length, cov.reduce=range,
+emmsRUAC_stiglength <- emmip(RUACmod, ~ Stigma_length, cov.reduce=range,
               type="response", plotit=F)
+emmsRUAC_date <- emmip(RUACmod, ~ Date, cov.reduce=range,
+              type="response", plotit=F)
+# emmsRUAC_avgdist <- emmip(RUACmod, ~ Avg_dist, cov.reduce=range,
+#               type="response", plotit=F)
 ```
 
-```{r RUAC fitted values plot, dpi=200}
+```{r RUAC stig length fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = RUACmod.fit, aes(x=Stigma_length, y=fit.RUACmod)) + 
   # geom_smooth(data=RUACmod.fit, aes(x=Stigma_length, y=fit.RUACmod),
   #             method="lm",
   #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
-  geom_line(data= emmsRUAC, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  geom_line(data= emmsRUAC_stiglength, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
@@ -1054,22 +1183,55 @@ ggplot() +
   theme_cs()
 ```
 
-```{r RUAC fitted slope raw values plot, dpi=200}
+```{r RUAC date fitted values plot, dpi=200}
+# emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
-  geom_point(data = RUAC, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsRUAC, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = RUAC, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+  geom_point(data = RUACmod.fit, aes(x=Date, y=fit.RUACmod)) + 
+  # geom_smooth(data=RUACmod.fit, aes(x=Stigma_length, y=fit.RUACmod),
+  #             method="lm",
+  #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+  geom_line(data= emmsRUAC_date, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+  scale_x_continuous(name = "Date", labels=as.character(unique(RUACmod.fit$Date)), 
+                     breaks=unique(RUACmod.fit$Date)) +
+  theme_cs() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+```
 
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+```{r RUAC avg dist fitted values plot, dpi=200}
+# converted avg_dist to inv_avg_dist -- not significant now
+# # emmip_ggplot(emms) #plots predicted slope
+# ggplot() + 
+#   geom_point(data = RUACmod.fit, aes(x=Avg_dist, y=fit.RUACmod)) + 
+#   # geom_smooth(data=RUACmod.fit, aes(x=Stigma_length, y=fit.RUACmod),
+#   #             method="lm",
+#   #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
+#   geom_line(data= emmsRUAC_avgdist, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
+#   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+#   theme_cs()
+```
+
+```{r RUAC fitted slope raw values plot, dpi=200}
+# ggplot() + 
+#   geom_point(data = RUAC, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsRUAC, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = RUAC, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
 
 
@@ -1080,17 +1242,21 @@ RUCR <- stigl %>%
   filter(Species=="Rumex crispus") %>% 
   as.data.frame()
 # summary(RUCR) 
+RUCR$Inv_avg_dist <- 1/(RUCR$Avg_dist)
+```
 
+```{r RUCR take a look, include=F}
 #Taking a look at the data
 hist(RUCR$Flw_pollen) # response variable. right-skewed
 hist(RUCR$Log_flw_pollen) # more symmetric 
 hist(RUCR$Infl_max) # looks ok, kind of right skewed
 hist(RUCR$Stigma_length) # looks ok  
-hist(RUCR$Avg_dist)
+hist(RUCR$Avg_dist) # not very symmetric at all!
+hist(RUCR$Inv_avg_dist) # more symmetric 
 table(RUCR$Date) # lots of dates
 ```
 
-```{r RUCR covariates and pollen load}
+```{r RUCR covariates and pollen load, include=F}
 ggplot(data=RUCR, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -1103,7 +1269,7 @@ ggplot(data=RUCR, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
-ggplot(data=RUCR, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+ggplot(data=RUCR, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
   scale_y_continuous(name="Log stigmatic pollen load") + 
@@ -1119,14 +1285,15 @@ ggplot(data=RUCR, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r RUCR model fit}
 # fit full model with all terms
-RUCRmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=RUCR)
+RUCRmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=RUCR)
 summary(RUCRmod)
-anova(RUCRmod)
+# anova(RUCRmod)
+kable(anova(RUCRmod))
 ```
 
 Significant effect of stigma length
 
-```{r test RUCR model assumptions}
+```{r test RUCR model assumptions, include=FALSE}
 # Check for collinearity between predictors
 vif(mod=RUCRmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -1135,9 +1302,8 @@ qqnorm(residuals(RUCRmod))
 qqline(residuals(RUCRmod))
 # homogeneity
 plot(RUCRmod)
+# No obvious deviations from normality, looks like some structure in the residuals vs fitted values
 ```
-
-No obvious deviations from normality, looks like some structure in the residuals vs fitted values
 
 ```{r RUCR estimate marginal means}
 RUCRmod.fit <- RUCR
@@ -1147,7 +1313,7 @@ emmsRUCR <- emmip(RUCRmod, ~ Stigma_length, cov.reduce=range,
               type="response", plotit=F)
 ```
 
-```{r RUCR fitted values plot, dpi=200}
+```{r RUCR stig length fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
   geom_point(data = RUCRmod.fit, aes(x=Stigma_length, y=fit.RUCRmod)) + 
@@ -1163,21 +1329,21 @@ ggplot() +
 ```
 
 ```{r RUCR fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = RUCR, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsRUCR, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = RUCR, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = RUCR, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsRUCR, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = RUCR, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
 
 
@@ -1188,17 +1354,21 @@ SCPU <- stigl %>%
   filter(Species=="Schizacne purpurascens") %>% 
   as.data.frame()
 # summary(SCPU) 
+SCPU$Inv_avg_dist <- 1/(SCPU$Avg_dist)
+```
 
+```{r SCPU take a look, include=F}
 #Taking a look at the data
 hist(SCPU$Flw_pollen) # response variable. right-skewed
 hist(SCPU$Log_flw_pollen) # more symmetric 
 hist(SCPU$Infl_max) # looks ok, kind of right skewed
 hist(SCPU$Stigma_length) # looks ok  
 hist(SCPU$Avg_dist)
+hist(SCPU$Inv_avg_dist)
 table(SCPU$Date) 
 ```
 
-```{r SCPU covariates and pollen load}
+```{r SCPU covariates and pollen load, include=F}
 ggplot(data=SCPU, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -1211,7 +1381,7 @@ ggplot(data=SCPU, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
-ggplot(data=SCPU, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+ggplot(data=SCPU, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
   scale_y_continuous(name="Log stigmatic pollen load") + 
@@ -1227,14 +1397,14 @@ ggplot(data=SCPU, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r SCPU model fit}
 # fit full model with all terms
-SCPUmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=SCPU)
+SCPUmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=SCPU)
 summary(SCPUmod)
 anova(SCPUmod)
 ```
 
-No significant effect of anything 
+No significant effect of anything - gives a warning that some predictors are on very different scales? weird that only this one gives me that error.
 
-```{r test SCPU model assumptions}
+```{r test SCPU model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=SCPUmod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -1271,23 +1441,22 @@ ggplot() +
 ```
 
 ```{r SCPU fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = SCPU, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsSCPU, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = SCPU, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = SCPU, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsSCPU, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = SCPU, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
-
 
 ### Scirpus microcarpus (n=30)
 
@@ -1296,17 +1465,21 @@ SCMI <- stigl %>%
   filter(Species=="Scirpus microcarpus") %>% 
   as.data.frame()
 # summary(SCMI) 
+SCMI$Inv_avg_dist <- 1/(SCMI$Avg_dist)
+```
 
+```{r SCMI take a look, include=F}
 #Taking a look at the data
 hist(SCMI$Flw_pollen) # response variable. right-skewed
 hist(SCMI$Log_flw_pollen) # more symmetric 
 hist(SCMI$Infl_max) # looks ok, kind of right skewed
 hist(SCMI$Stigma_length) # looks ok  
 hist(SCMI$Avg_dist)
+hist(SCMI$Inv_avg_dist)
 table(SCMI$Date) 
 ```
 
-```{r SCMI covariates and pollen load}
+```{r SCMI covariates and pollen load, include=F}
 ggplot(data=SCMI, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -1342,7 +1515,7 @@ anova(SCMImod)
 
 Significant effect of Date on pollen loads
 
-```{r test SCMI model assumptions}
+```{r test SCMI model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=SCMImod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -1351,49 +1524,51 @@ qqnorm(residuals(SCMImod))
 qqline(residuals(SCMImod))
 # homogeneity
 plot(SCMImod)
-```
+#No obvious deviations from normality, some structure in the residuals vs fitted values plot.
 
-No obvious deviations from normality, some structure in the residuals vs fitted values plot.
+```
 
 ```{r SCMI estimate marginal means}
 SCMImod.fit <- SCMI
 fit.SCMImod <- fitted(SCMImod) 
 SCMImod.fit <- mutate(SCMImod.fit, fit.SCMImod)
-emmsSCMI <- emmip(SCMImod, ~ Stigma_length, cov.reduce=range,
+emmsSCMI_date <- emmip(SCMImod, ~ Date, cov.reduce=range,
               type="response", plotit=F)
 ```
 
-```{r SCMI fitted values plot, dpi=200}
+```{r SCMI date fitted values plot, dpi=200}
 # emmip_ggplot(emms) #plots predicted slope
 ggplot() + 
-  geom_point(data = SCMImod.fit, aes(x=Stigma_length, y=fit.SCMImod)) + 
+  geom_point(data = SCMImod.fit, aes(x=Date, y=fit.SCMImod)) + 
   # geom_smooth(data=SCMImod.fit, aes(x=Stigma_length, y=fit.SCMImod),
   #             method="lm",
   #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
-  geom_line(data= emmsSCMI, aes(xvar, yvar), linewidth=0.7, colour="blue") +
+  geom_line(data= emmsSCMI_date, aes(xvar, yvar), linewidth=0.7, colour="blue") +
   scale_y_continuous(name="Stigmatic pollen load",
                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500)) +
-  scale_x_continuous(name = "Stigma length (cm)") +
-  theme_cs()
+  scale_x_continuous(name = "Date", labels=as.character(unique(SCMImod.fit$Date)), 
+                     breaks=unique(SCMImod.fit$Date)) +
+  theme_cs() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 ```
 
 ```{r SCMI fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = SCMI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsSCMI, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = SCMI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = SCMI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsSCMI, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = SCMI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
 
 
@@ -1404,17 +1579,21 @@ THDI <- stigl %>%
   filter(Species=="Thalictrum dioicum") %>% 
   as.data.frame()
 # summary(THDI) 
+THDI$Inv_avg_dist <- 1/(THDI$Avg_dist)
+```
 
+```{r THDI take a look, include=F}
 #Taking a look at the data
 hist(THDI$Flw_pollen) # response variable. right-skewed
 hist(THDI$Log_flw_pollen) # more symmetric 
 hist(THDI$Infl_max) # looks ok, kind of right skewed
 hist(THDI$Stigma_length) # looks ok  
 hist(THDI$Avg_dist)
+hist(THDI$Inv_avg_dist)
 table(THDI$Date) 
 ```
 
-```{r THDI covariates and pollen load}
+```{r THDI covariates and pollen load, include=F}
 ggplot(data=THDI, aes(x=Infl_max, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Plant height") + 
@@ -1427,9 +1606,9 @@ ggplot(data=THDI, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
-ggplot(data=THDI, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+ggplot(data=THDI, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
-  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_x_continuous(name="Inverse average distance to 5 nearest neighbours") + 
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
@@ -1443,14 +1622,14 @@ ggplot(data=THDI, aes(x=Date, y=Log_flw_pollen)) +
 
 ```{r THDI model fit}
 # fit full model with all terms
-THDImod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Avg_dist + (1|Plant), data=THDI)
+THDImod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=THDI)
 summary(THDImod)
 anova(THDImod)
 ```
 
-Significant effect of stigma length and average distance
+Significant effect of stigma length
 
-```{r test THDI model assumptions}
+```{r test THDI model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=THDImod, type="predictor") # variance inflation factors from package "car"
 #normality of residuals
@@ -1487,19 +1666,21 @@ ggplot() +
 ```
 
 ```{r THDI fitted slope raw values plot, dpi=200}
-ggplot() + 
-  geom_point(data = THDI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  geom_line(data= emmsTHDI, aes(xvar, yvar), linewidth=0.7) +
-  # geom_smooth(method="lm", colour="blue", data = THDI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
-  scale_y_continuous(name="Stigmatic pollen load",
-                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-                     limits=c(0,NA)) +
-  scale_x_continuous(name = "Stigma length (cm)") + 
-
-    # scale_x_continuous(name = "Stigma length (cm)",
-    #                  breaks = log(c(0.5, 1, 2, 5)),
-    #                  labels = c(0.5, 1, 2, 5),
-    #                  limits=c(log(0.5),log(5))) +
-  theme_cs()
+# ggplot() + 
+#   geom_point(data = THDI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   geom_line(data= emmsTHDI, aes(xvar, yvar), linewidth=0.7) +
+#   # geom_smooth(method="lm", colour="blue", data = THDI, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+#   scale_y_continuous(name="Stigmatic pollen load",
+#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+#                      limits=c(0,NA)) +
+#   scale_x_continuous(name = "Stigma length (cm)") + 
+# 
+#     # scale_x_continuous(name = "Stigma length (cm)",
+#     #                  breaks = log(c(0.5, 1, 2, 5)),
+#     #                  labels = c(0.5, 1, 2, 5),
+#     #                  limits=c(log(0.5),log(5))) +
+#   theme_cs()
 ```
+
+
