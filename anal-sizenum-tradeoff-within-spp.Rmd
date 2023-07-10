@@ -105,8 +105,8 @@ checkfun <- function(df,i){
   hist(df[i,]$data[[1]]$Avg_pol_anth, main=paste(spec, "n=",n), xlab="Mean pollen per anther")
   hist(log(df[i,]$data[[1]]$Avg_pol_anth), main=paste(spec, "n=",n), xlab="Log mean pollen per anther")
 }
-by_spp$Species
-checkfun(by_spp,10)
+# by_spp$Species
+# checkfun(by_spp,10)
 ```
 
 I'll plot all the data as pollen production vs size to get an idea of what it looks like, and if there's any clear outliers or potential grouping in the data. 
