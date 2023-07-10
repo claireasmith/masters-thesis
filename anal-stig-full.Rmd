@@ -1119,6 +1119,12 @@ ggplot(data=RUAC, aes(x=Stigma_length, y=Log_flw_pollen)) +
   scale_y_continuous(name="Log stigmatic pollen load") + 
   geom_smooth(method="lm", se=F) + 
   theme_cs()
+ggplot(data=RUAC, aes(x=Avg_dist, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
 ggplot(data=RUAC, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
   geom_point(size=3) + 
   scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
@@ -1552,6 +1558,7 @@ ggplot() +
   theme_cs() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 ```
+
 
 ```{r SCMI fitted slope raw values plot, dpi=200}
 # ggplot() + 
