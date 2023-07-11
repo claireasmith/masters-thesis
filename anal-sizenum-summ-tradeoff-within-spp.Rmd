@@ -34,7 +34,14 @@ prod <- prodfull %>%
   filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth)) %>% # want only entries with both size and prod values
   # remove outliers
   filter(!(Species=="Phleum pratense"&Ind=="C11")) %>% 
-  filter(!(Species=="Elymus innovatus"&Ind=="EI01"))
+  filter(!(Species=="Elymus innovatus"&Ind=="EI01")) %>% 
+  # Update species names 
+  # Agropyron trachycaulum => Elymus trachycaulus
+  # Elymus innovatus => Leymus innovatus
+  mutate(Species = gsub("Agropyron trachycaulum", "Elymus trachycaulus", Species),
+         Species = gsub("Elymus innovatus", "Leymus innovatus", Species)) %>% 
+  mutate(Species = gsub("Bcarianatus", "Bromus carinatus", Species),
+         Species = gsub("Astolonifera", "Agrostis stolonifera", Species)) 
 ```
 
 First I'll take a look at a summary of the pollen size and number data - means, standard deviations, and CVs so that I can compare how variable species area relative to each other. I'll remove any species with less than 5 points. 
@@ -52,7 +59,7 @@ prod_summary <- prod  %>% group_by(Species, source, Sex_sys) %>%
             min_polanth = min(Avg_pol_anth, na.rm=T),
             max_polanth = max(Avg_pol_anth, na.rm=T),
             n=n()) %>%  
-  filter(n>=5) %>% 
+  filter(n>=3) %>% 
   droplevels() %>% 
   arrange(Sex_sys, Species) %>% 
   as.data.frame()
@@ -67,7 +74,7 @@ I'll save this summary data to a file.
 ```{r save summary data to file}
 prod_summary_filt <- prod_summary 
 #write it to a file I will make a table with 
-write.csv(prod_summary_filt, "processed-data/sizeprod-summary.csv", row.names = F, fileEncoding = "UTF-8")
+write.csv(prod_summary_filt, "summary-data/sizeprod-summary.csv", row.names = F, fileEncoding = "UTF-8")
 ```
 
 ```{r t test variance in pollen size vs number}
