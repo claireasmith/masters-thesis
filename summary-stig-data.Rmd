@@ -1,0 +1,51 @@
+---
+title: "Untitled"
+author: "Claire Smith"
+date: "2023-07-12"
+output: html_document
+---
+
+```{r}
+stig_all <- read.csv("processed-data/stig-all.csv")
+stig_norep <- read.csv("processed-data/stig-no-rep-spp.csv")
+stig_CS <- read.csv("processed-data/stig-CS2021.csv")
+```
+
+
+```{r}
+stig_allCS <- stig_all %>% filter(source=="CS2021")
+stig_allJF <- stig_all %>% filter(source!="CS2021")
+
+stig_allCS <- stig_allCS %>% mutate(PlantID = paste(Site, Plant, sep="-"))
+stig_allJF <- stig_allJF %>% mutate(PlantID = Plant)
+
+stig_all2 <- rbind(stig_allCS, stig_allJF)
+
+
+stig_all_sum <- stig_all2 %>% 
+  # Correct the spelling of "Schizachne purpurascens"
+  mutate(Species = gsub("Schizacne purpurascens", "Schizachne purpurascens", Species)) %>% 
+  # Update "Elymus innovatus" to "Leymus innovatus"
+  mutate(Species = gsub("Elymus innovatus", "Leymus innovatus", Species)) %>% 
+  as.data.frame() %>% 
+  group_by(Species, Sex_sys, source, PlantID) %>% 
+  summarize(n_flw = n()) %>% 
+  group_by(Species, Sex_sys, source) %>% 
+  summarize(n_ind = n()) %>%
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))) %>% 
+  arrange(Sex_sys, Species) %>% 
+  filter(n_ind>=3) %>% 
+  droplevels()
+
+# print(stig_all_sum, n=Inf) 
+# unique(stig_all_sum$Species) # 23 unique species
+
+csspp <- stig_all_sum %>% filter(source=="CS2021") # 11 species from CS2021 in kingston
+jfspp <- stig_all_sum %>% filter(source!="CS2021") # 18 species from JF2001 or 2004
+
+# write it to a file
+write.csv(stig_all_sum, "summary-data/stig_all_sum.csv", row.names = F)
+
+stig_all_sum %>% group_by(Species, Sex_sys) %>% summarize(N=n()) %>% group_by(Sex_sys) %>% summarize(N=n())
+```

@@ -1,0 +1,80 @@
+---
+title: "Untitled"
+author: "Claire Smith"
+date: "2023-07-11"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+sizeprod_all <- read.csv("processed-data/size-prod-all.csv")
+sizeprod_norep <- read.csv("processed-data/size-prod-norep.csv")
+prod_CS <- read.csv("processed-data/prod-CS2021-within-inds.csv")
+size_CS <- read.csv("processed-data/size-CS2021-within-inds.csv")
+```
+
+
+```{r}
+sizeprod_all_sum <- sizeprod_all %>% 
+  group_by(Species, Sex_sys, source) %>% 
+  summarize(n_ind = n()) %>% 
+  droplevels() %>% 
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))) %>% 
+  arrange(Sex_sys, Species) %>% 
+  filter(n_ind>=3) %>% 
+  droplevels()
+
+print(sizeprod_all_sum, n=Inf) # 32 species
+# write it to a file
+write.csv(sizeprod_all_sum, "summary-data/sizeprod_all_sum.csv", row.names = F)
+length(unique(sizeprod_all_sum$Species))
+
+sizeprod_all_sum %>% group_by(Species, Sex_sys) %>% summarize(N=n()) %>% group_by(Sex_sys) %>% summarize(N=n())
+```
+
+```{r}
+sizeprod_norep_sum <- sizeprod_norep %>% 
+  group_by(Species, Sex_sys, source) %>% 
+  summarize(n_ind = n()) %>%
+  droplevels() %>% 
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))) %>% 
+  arrange(Sex_sys, Species) %>% 
+  filter(n_ind>=3)
+print(sizeprod_norep_sum, n=Inf)
+# write it to a file
+write.csv(sizeprod_norep_sum, "summary-data/sizeprod_norep_sum.csv", row.names = F)
+```
+
+```{r}
+prod_CS_sum <- prod_CS %>% 
+  group_by(Species, Sex_sys, source, Date, Site, Label) %>% 
+  summarize(n_ind = n()) %>% 
+  group_by(Species, Sex_sys, source) %>% 
+  summarize(n_ind=n()) %>% 
+  droplevels() %>% 
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))) %>% 
+  arrange(Sex_sys, Species)
+print(prod_CS_sum, n=Inf)
+# write it to a file
+write.csv(prod_CS_sum, "summary-data/prod_CS_sum.csv", row.names = F)
+```
+
+```{r}
+size_CS_sum <- size_CS %>% 
+  group_by(Species, Sex_sys, source, Site, Ind) %>% 
+  summarize(n_ind = n()) %>% 
+  group_by(Species, Sex_sys, source) %>% 
+  summarize(n_ind=n()) %>% 
+  droplevels() %>% 
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))) %>% 
+  arrange(Sex_sys, Species)
+print(size_CS_sum, n=Inf)
+# write it to a file
+write.csv(size_CS_sum, "summary-data/size_CS_sum.csv", row.names = F)
+```
+
