@@ -52,6 +52,9 @@ pollen_load_tab$stig_nplants = n_plants_stig$nplants
 # names(pollen_load_tab)
 # pollen_load_tab %>% filter(stig_nplants>=10)
 
+# pollen_load_tab %>% group_by(Sex_sys) %>% summarize(N=n())
+# pollen_load_tab %>% group_by(Species) %>% summarize(N=n()) %>% print(n=Inf)
+
 write.csv(pollen_load_tab, "processed-data/pollen-loads-table.csv", row.names=F)
 ```
 
