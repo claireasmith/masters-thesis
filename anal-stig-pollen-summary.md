@@ -65,7 +65,7 @@ write.csv(pollen_load_tab, "processed-data/pollen-loads-table.csv", row.names=F)
 Visualize distributions of pollen loads across species
 
 ``` r
-stig_ridges <- stig %>% 
+stig %>% 
   # Arrange species in order of sex system and alphabetically by species
   mutate(Sex_sys = as.character(Sex_sys),
          Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
@@ -86,8 +86,6 @@ stig_ridges <- stig %>%
   theme_cs(font="sans", fontsize=18) + 
   theme(axis.text.y = element_text(face = "italic"),
         axis.ticks.y = element_line())
-
-stig_ridges
 ```
 
     ## Picking joint bandwidth of 0.358
@@ -96,6 +94,46 @@ stig_ridges
     ## (`stat_density_ridges()`).
 
 ![](anal-stig-pollen-summary_files/figure-gfm/stigma%20ridgeplots-1.png)<!-- -->
+
+Make this more readable - add sex system to label
+
+``` r
+stig %>% 
+  mutate(SS = case_when(Sex_sys == "hermaphroditic" ~ "H",
+                        Sex_sys == "monoecious" ~ "M",
+                        Sex_sys == "dioecious" ~ "D"),
+         Species_SS = as.factor(paste0(Species, " (", SS, ")"))) %>% 
+  
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"),
+                          ordered=T) ) %>% 
+
+  arrange(desc(Sex_sys), desc(Species_SS)) %>% 
+
+  mutate(Species_SS =  factor(Species_SS, levels = unique(Species_SS), ordered = T)) %>% 
+
+  ggplot(aes(x=log(Flw_pollen+1), y=Species_SS, fill=Sex_sys)) +
+  geom_density_ridges2() + 
+  scale_fill_manual(values=c("#66C2A5","#8DA0CB","#FC8D62"),
+                    labels=c("Dioecious", "Monoecious", "Hermaphroditic")) +
+  scale_x_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+                     limits=c(0,NA)) +
+  scale_y_discrete() +
+  ylab(label="") + 
+  guides(fill="none") + 
+  theme_cs(font="sans", fontsize=18) + 
+  theme(axis.text.y = element_text(face = "italic"),
+        axis.ticks.y = element_line())
+```
+
+    ## Picking joint bandwidth of 0.358
+
+    ## Warning: Removed 19 rows containing non-finite values
+    ## (`stat_density_ridges()`).
+
+![](anal-stig-pollen-summary_files/figure-gfm/stigma%20ss%20labeled%20ridgeplots-1.png)<!-- -->
 
 ``` r
 stig %>% 
