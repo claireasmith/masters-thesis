@@ -1,92 +1,66 @@
-"Species","Sex_sys","effect","group","term","estimate","std.error","statistic","df","p.value"
-"Rumex acetosella","dioecious","fixed",NA,"(Intercept)","-7.573755e+02","9.426961e+01"," -8.0341422","255.324247","3.491659e-14"
-"Rumex acetosella","dioecious","fixed",NA,"Infl_max","-1.366207e-02","8.582144e-03"," -1.5919178"," 39.562882","1.193629e-01"
-"Rumex acetosella","dioecious","fixed",NA,"Stigma_length"," 1.312447e+00","3.939571e-01","  3.3314463","253.807855","9.925440e-04"
-"Rumex acetosella","dioecious","fixed",NA,"Date"," 6.025514e-02","7.503624e-03","  8.0301384","255.329337","3.583612e-14"
-"Rumex acetosella","dioecious","fixed",NA,"Inv_avg_dist"," 1.472627e+01","5.412583e+00","  2.7207464"," 35.307368","1.004254e-02"
-"Rumex acetosella","dioecious","ran_pars","Plant","sd__(Intercept)"," 2.489238e-01",NA,NA,NA,NA
-"Rumex acetosella","dioecious","ran_pars","Residual","sd__Observation"," 5.541474e-01",NA,NA,NA,NA
-"Thalictrum dioicum","dioecious","fixed",NA,"(Intercept)","-1.810467e+03","3.963975e+02"," -4.5673019"," 89.901543","1.564525e-05"
-"Thalictrum dioicum","dioecious","fixed",NA,"Infl_max"," 2.176987e-02","1.485318e-02","  1.4656703"," 12.613800","1.672179e-01"
-"Thalictrum dioicum","dioecious","fixed",NA,"Stigma_length"," 3.406590e-01","1.355258e-01","  2.5136096"," 89.947813","1.372991e-02"
-"Thalictrum dioicum","dioecious","fixed",NA,"Date"," 1.442591e-01","3.158124e-02","  4.5678731"," 89.903299","1.561041e-05"
-"Thalictrum dioicum","dioecious","fixed",NA,"Inv_avg_dist"," 6.282723e+00","1.870186e+01","  0.3359411"," 11.608426","7.429092e-01"
-"Thalictrum dioicum","dioecious","ran_pars","Plant","sd__(Intercept)"," 3.515361e-01",NA,NA,NA,NA
-"Thalictrum dioicum","dioecious","ran_pars","Residual","sd__Observation"," 6.353685e-01",NA,NA,NA,NA
-"Chenopodium album","hermaphroditic","fixed",NA,"(Intercept)"," 3.181009e+02","6.597998e+02","  0.4821174","144.000000","6.304545e-01"
-"Chenopodium album","hermaphroditic","fixed",NA,"Infl_max","-3.794523e-03","3.792833e-03"," -1.0004457","144.000000","3.187730e-01"
-"Chenopodium album","hermaphroditic","fixed",NA,"Stigma_length"," 2.577587e+00","5.743553e-01","  4.4877929","144.000000","1.462252e-05"
-"Chenopodium album","hermaphroditic","fixed",NA,"Date","-2.517527e-02","5.227634e-02"," -0.4815807","144.000000","6.308349e-01"
-"Chenopodium album","hermaphroditic","fixed",NA,"Inv_avg_dist","-2.880020e+00","4.444775e+00"," -0.6479563","144.000000","5.180450e-01"
-"Chenopodium album","hermaphroditic","ran_pars","Plant","sd__(Intercept)"," 0.000000e+00",NA,NA,NA,NA
-"Chenopodium album","hermaphroditic","ran_pars","Residual","sd__Observation"," 7.798779e-01",NA,NA,NA,NA
-"Plantago lanceolata","hermaphroditic","fixed",NA,"(Intercept)","-1.811869e+03","2.586780e+02"," -7.0043409","254.451965","2.209083e-11"
-"Plantago lanceolata","hermaphroditic","fixed",NA,"Infl_max","-8.832709e-03","1.843220e-02"," -0.4791999"," 26.700335","6.356980e-01"
-"Plantago lanceolata","hermaphroditic","fixed",NA,"Stigma_length"," 6.056895e-01","1.320673e-01","  4.5862174","265.392184","6.962106e-06"
-"Plantago lanceolata","hermaphroditic","fixed",NA,"Date"," 1.442722e-01","2.055940e-02","  7.0173357","254.455194","2.043598e-11"
-"Plantago lanceolata","hermaphroditic","fixed",NA,"Inv_avg_dist","-1.263264e+01","1.513323e+01"," -0.8347618"," 26.833152","4.112226e-01"
-"Plantago lanceolata","hermaphroditic","ran_pars","Plant","sd__(Intercept)"," 5.390228e-01",NA,NA,NA,NA
-"Plantago lanceolata","hermaphroditic","ran_pars","Residual","sd__Observation"," 1.173608e+00",NA,NA,NA,NA
-"Schizacne purpurascens","hermaphroditic","fixed",NA,"(Intercept)"," 3.080671e+03","6.308767e+02","  4.8831583","220.649761","2.003309e-06"
-"Schizacne purpurascens","hermaphroditic","fixed",NA,"Infl_max"," 2.250641e-02","2.476254e-02","  0.9088896"," 27.766064","3.712305e-01"
-"Schizacne purpurascens","hermaphroditic","fixed",NA,"Stigma_length"," 1.068016e-01","3.050499e-01","  0.3501119","233.668212","7.265701e-01"
-"Schizacne purpurascens","hermaphroditic","fixed",NA,"Date","-2.450642e-01","5.020381e-02"," -4.8813860","220.625691","2.019758e-06"
-"Schizacne purpurascens","hermaphroditic","fixed",NA,"Inv_avg_dist"," 6.677495e+01","4.830969e+01","  1.3822269"," 29.481682","1.772853e-01"
-"Schizacne purpurascens","hermaphroditic","ran_pars","Plant","sd__(Intercept)"," 3.927148e-01",NA,NA,NA,NA
-"Schizacne purpurascens","hermaphroditic","ran_pars","Residual","sd__Observation"," 1.451590e+00",NA,NA,NA,NA
-"Ambrosia artemisiifolia","monoecious","fixed",NA,"(Intercept)","-1.491453e+02","2.842076e+02"," -0.5247759","212.371149","6.002863e-01"
-"Ambrosia artemisiifolia","monoecious","fixed",NA,"Infl_max","-7.063654e-04","3.969514e-03"," -0.1779476"," 23.885948","8.602647e-01"
-"Ambrosia artemisiifolia","monoecious","fixed",NA,"Stigma_length"," 2.181450e-01","1.376711e-01","  1.5845370","208.547911","1.145868e-01"
-"Ambrosia artemisiifolia","monoecious","fixed",NA,"Date"," 1.208570e-02","2.245769e-02","  0.5381541","212.406949","5.910341e-01"
-"Ambrosia artemisiifolia","monoecious","fixed",NA,"Inv_avg_dist"," 4.667904e+00","4.344969e+00","  1.0743240"," 24.304238","2.932282e-01"
-"Ambrosia artemisiifolia","monoecious","ran_pars","Plant","sd__(Intercept)"," 4.654297e-01",NA,NA,NA,NA
-"Ambrosia artemisiifolia","monoecious","ran_pars","Residual","sd__Observation"," 8.327735e-01",NA,NA,NA,NA
-"Carex communis","monoecious","fixed",NA,"(Intercept)","-3.972973e+03","4.537985e+02"," -8.7549280","185.031609","1.267547e-15"
-"Carex communis","monoecious","fixed",NA,"Infl_max","-1.866433e-02","3.719494e-02"," -0.5017975"," 19.519399","6.214230e-01"
-"Carex communis","monoecious","fixed",NA,"Stigma_length"," 4.591191e-01","1.489668e-01","  3.0820233","194.238604","2.354744e-03"
-"Carex communis","monoecious","fixed",NA,"Date"," 3.167245e-01","3.617704e-02","  8.7548481","185.040041","1.267886e-15"
-"Carex communis","monoecious","fixed",NA,"Inv_avg_dist"," 6.326179e+00","1.222758e+01","  0.5173696"," 18.922805","6.108934e-01"
-"Carex communis","monoecious","ran_pars","Plant","sd__(Intercept)"," 4.139006e-01",NA,NA,NA,NA
-"Carex communis","monoecious","ran_pars","Residual","sd__Observation"," 8.678430e-01",NA,NA,NA,NA
-"Carex hirtifolia","monoecious","fixed",NA,"(Intercept)","-1.222636e+03","1.109288e+03"," -1.1021807","194.536612","2.717448e-01"
-"Carex hirtifolia","monoecious","fixed",NA,"Infl_max"," 5.666297e-02","4.024976e-02","  1.4077839"," 21.738497","1.733350e-01"
-"Carex hirtifolia","monoecious","fixed",NA,"Stigma_length"," 4.446476e-01","2.634425e-01","  1.6878350","195.611009","9.303663e-02"
-"Carex hirtifolia","monoecious","fixed",NA,"Date"," 9.739430e-02","8.839037e-02","  1.1018656","194.538951","2.718815e-01"
-"Carex hirtifolia","monoecious","fixed",NA,"Inv_avg_dist"," 7.758908e+00","7.759897e+00","  0.9998726"," 20.298430","3.291433e-01"
-"Carex hirtifolia","monoecious","ran_pars","Plant","sd__(Intercept)"," 1.571205e-01",NA,NA,NA,NA
-"Carex hirtifolia","monoecious","ran_pars","Residual","sd__Observation"," 1.309272e+00",NA,NA,NA,NA
-"Carex pedunculata","monoecious","fixed",NA,"(Intercept)","-5.854192e+03","8.976000e+02"," -6.5220504"," 68.474998","9.933974e-09"
-"Carex pedunculata","monoecious","fixed",NA,"Infl_max","-2.891691e-02","8.131625e-02"," -0.3556105","  9.254257","7.301037e-01"
-"Carex pedunculata","monoecious","fixed",NA,"Stigma_length"," 1.332345e-01","2.001909e-01","  0.6655372"," 70.750498","5.078710e-01"
-"Carex pedunculata","monoecious","fixed",NA,"Date"," 4.671063e-01","7.164630e-02","  6.5196143"," 68.477897","1.003243e-08"
-"Carex pedunculata","monoecious","fixed",NA,"Inv_avg_dist"," 1.426070e+01","3.459712e+01","  0.4121933"," 10.822749","6.882441e-01"
-"Carex pedunculata","monoecious","ran_pars","Plant","sd__(Intercept)"," 6.427962e-01",NA,NA,NA,NA
-"Carex pedunculata","monoecious","ran_pars","Residual","sd__Observation"," 7.791307e-01",NA,NA,NA,NA
-"Carex plantaginea","monoecious","fixed",NA,"(Intercept)","-6.445286e+02","2.136958e+02"," -3.0161031"," 85.433381","3.371989e-03"
-"Carex plantaginea","monoecious","fixed",NA,"Infl_max"," 2.823783e-02","4.644306e-02","  0.6080096"," 16.452801","5.514825e-01"
-"Carex plantaginea","monoecious","fixed",NA,"Stigma_length"," 1.503286e-01","1.172026e-01","  1.2826383"," 90.536561","2.028929e-01"
-"Carex plantaginea","monoecious","fixed",NA,"Date"," 5.143376e-02","1.703710e-02","  3.0189276"," 85.432687","3.343758e-03"
-"Carex plantaginea","monoecious","fixed",NA,"Inv_avg_dist","-1.263261e+01","1.461086e+01"," -0.8646040"," 18.138776","3.985465e-01"
-"Carex plantaginea","monoecious","ran_pars","Plant","sd__(Intercept)"," 5.731840e-01",NA,NA,NA,NA
-"Carex plantaginea","monoecious","ran_pars","Residual","sd__Observation"," 7.778297e-01",NA,NA,NA,NA
-"Carex stipata","monoecious","fixed",NA,"(Intercept)","-2.549386e+03","5.476335e+02"," -4.6552776","315.000000","4.774751e-06"
-"Carex stipata","monoecious","fixed",NA,"Infl_max"," 2.211877e-02","9.435576e-03","  2.3441890","315.000000","1.968955e-02"
-"Carex stipata","monoecious","fixed",NA,"Stigma_length"," 7.512820e-01","1.739092e-01","  4.3199668","315.000000","2.094268e-05"
-"Carex stipata","monoecious","fixed",NA,"Date"," 2.027695e-01","4.358412e-02","  4.6523719","315.000000","4.838144e-06"
-"Carex stipata","monoecious","fixed",NA,"Inv_avg_dist"," 4.540441e+01","1.800539e+01","  2.5217124","315.000000","1.217140e-02"
-"Carex stipata","monoecious","ran_pars","Plant","sd__(Intercept)"," 0.000000e+00",NA,NA,NA,NA
-"Carex stipata","monoecious","ran_pars","Residual","sd__Observation"," 9.473654e-01",NA,NA,NA,NA
-"Rumex crispus","monoecious","fixed",NA,"(Intercept)","-8.253696e+02","3.907787e+02"," -2.1121154","173.988885","3.610396e-02"
-"Rumex crispus","monoecious","fixed",NA,"Infl_max"," 1.574661e-02","1.258283e-02","  1.2514366"," 20.131244","2.251227e-01"
-"Rumex crispus","monoecious","fixed",NA,"Stigma_length"," 1.636539e+00","3.870848e-01","  4.2278568","173.420356","3.809977e-05"
-"Rumex crispus","monoecious","fixed",NA,"Date"," 6.546296e-02","3.105188e-02","  2.1081801","173.989119","3.644758e-02"
-"Rumex crispus","monoecious","fixed",NA,"Inv_avg_dist","-1.225763e+01","1.192750e+01"," -1.0276776"," 17.094368","3.184244e-01"
-"Rumex crispus","monoecious","ran_pars","Plant","sd__(Intercept)"," 3.779717e-01",NA,NA,NA,NA
-"Rumex crispus","monoecious","ran_pars","Residual","sd__Observation"," 8.720750e-01",NA,NA,NA,NA
-"Scirpus microcarpus","monoecious","fixed",NA,"(Intercept)","-3.580809e+03","3.285378e+02","-10.8992279","243.786760","8.572310e-23"
-"Scirpus microcarpus","monoecious","fixed",NA,"Infl_max"," 7.679030e-03","6.552574e-03","  1.1719104"," 21.743434","2.539144e-01"
-"Scirpus microcarpus","monoecious","fixed",NA,"Stigma_length"," 6.976751e-01","4.797596e-01","  1.4542181","258.400208","1.470994e-01"
-"Scirpus microcarpus","monoecious","fixed",NA,"Date"," 2.844535e-01","2.609813e-02"," 10.8993860","243.789688","8.561418e-23"
-"Scirpus microcarpus","monoecious","fixed",NA,"Inv_avg_dist","-1.340188e+00","4.742553e+00"," -0.2825879"," 21.524672","7.801923e-01"
-"Scirpus microcarpus","monoecious","ran_pars","Plant","sd__(Intercept)"," 2.474920e-01",NA,NA,NA,NA
-"Scirpus microcarpus","monoecious","ran_pars","Residual","sd__Observation"," 7.533206e-01",NA,NA,NA,NA
+"Species","Sex_sys","effect","term","estimate","std.error","statistic","df","p.value"
+"Rumex acetosella","dioecious","fixed","(Intercept)",-757.375467546091,94.2696120052294,-8.03414219530337,255.32424726971,3.49165900774996e-14
+"Rumex acetosella","dioecious","fixed","Infl_max",-0.013662067365454,0.00858214390185316,-1.59191776806538,39.5628824205292,0.119362873210966
+"Rumex acetosella","dioecious","fixed","Stigma_length",1.31244686591202,0.393957078448874,3.33144633694491,253.807854817912,0.000992543969645598
+"Rumex acetosella","dioecious","fixed","Date",0.060255139434508,0.00750362406288329,8.03013836108345,255.329336733844,3.58361172298165e-14
+"Rumex acetosella","dioecious","fixed","Inv_avg_dist",14.7262657840985,5.4125829288928,2.72074644907306,35.3073680426481,0.010042535644761
+"Thalictrum dioicum","dioecious","fixed","(Intercept)",-1810.46684739385,396.397458871078,-4.56730185039525,89.901543141301,1.56452523249357e-05
+"Thalictrum dioicum","dioecious","fixed","Infl_max",0.0217698712711114,0.0148531844808036,1.46567029442387,12.6137999589699,0.167217912771743
+"Thalictrum dioicum","dioecious","fixed","Stigma_length",0.340659004983954,0.135525822942757,2.51360956596325,89.9478134047331,0.0137299122243395
+"Thalictrum dioicum","dioecious","fixed","Date",0.144259078674076,0.0315812359424332,4.56787311734835,89.903298960837,1.56104128306026e-05
+"Thalictrum dioicum","dioecious","fixed","Inv_avg_dist",6.2827229203488,18.7018575198619,0.335941117810162,11.6084255383003,0.74290918773873
+"Chenopodium album","hermaphroditic","fixed","(Intercept)",318.100942010848,659.799773326963,0.482117386016763,143.999999997995,0.630454541153067
+"Chenopodium album","hermaphroditic","fixed","Infl_max",-0.00379452344659596,0.00379283291425795,-1.00044571758794,143.999999999255,0.318773032956604
+"Chenopodium album","hermaphroditic","fixed","Stigma_length",2.57758744072132,0.574355256881248,4.48779289444939,143.999999997564,1.46225247577485e-05
+"Chenopodium album","hermaphroditic","fixed","Date",-0.0251752728098934,0.0522763359201168,-0.481580668705695,143.999999997894,0.630834910517937
+"Chenopodium album","hermaphroditic","fixed","Inv_avg_dist",-2.88002045019277,4.4447754394755,-0.647956345468967,143.999999998035,0.518044979405428
+"Plantago lanceolata","hermaphroditic","fixed","(Intercept)",-1811.86861547453,258.677960036216,-7.00434090024857,254.451964636154,2.20908288248263e-11
+"Plantago lanceolata","hermaphroditic","fixed","Infl_max",-0.00883270863233035,0.0184322023086542,-0.479199852758955,26.7003345784557,0.635698002996005
+"Plantago lanceolata","hermaphroditic","fixed","Stigma_length",0.605689539505271,0.132067340176327,4.58621744555918,265.39218413545,6.9621062070808e-06
+"Plantago lanceolata","hermaphroditic","fixed","Date",0.14427219861128,0.0205593980466747,7.01733573540182,254.455193996436,2.04359823244048e-11
+"Plantago lanceolata","hermaphroditic","fixed","Inv_avg_dist",-12.6326429412855,15.13323085857,-0.834761794050846,26.8331518841327,0.411222596863925
+"Schizacne purpurascens","hermaphroditic","fixed","(Intercept)",3080.67087289649,630.876715316448,4.88315830669265,220.649760609035,2.00330861306843e-06
+"Schizacne purpurascens","hermaphroditic","fixed","Infl_max",0.0225064115964487,0.0247625373048236,0.908889558424392,27.7660636912028,0.371230493513976
+"Schizacne purpurascens","hermaphroditic","fixed","Stigma_length",0.106801587620264,0.305049906256106,0.350111851962342,233.668211507709,0.726570132844696
+"Schizacne purpurascens","hermaphroditic","fixed","Date",-0.245064175609634,0.0502038098439414,-4.88138602172656,220.625690557393,2.01975849546773e-06
+"Schizacne purpurascens","hermaphroditic","fixed","Inv_avg_dist",66.7749532541171,48.3096910720152,1.38222687358062,29.4816815679489,0.177285322799705
+"Ambrosia artemisiifolia","monoecious","fixed","(Intercept)",-149.145312476926,284.207598524063,-0.524775949874186,212.37114932265,0.60028631629311
+"Ambrosia artemisiifolia","monoecious","fixed","Infl_max",-0.00070636542965568,0.0039695135020455,-0.177947607255068,23.885947586499,0.860264660004255
+"Ambrosia artemisiifolia","monoecious","fixed","Stigma_length",0.218144960942035,0.137671105431762,1.58453700402777,208.547910710598,0.114586763796969
+"Ambrosia artemisiifolia","monoecious","fixed","Date",0.0120857006851463,0.0224576945836705,0.53815411195119,212.406948799778,0.591034112253118
+"Ambrosia artemisiifolia","monoecious","fixed","Inv_avg_dist",4.66790423331126,4.34496879836101,1.07432399401166,24.3042381876356,0.293228171248539
+"Carex communis","monoecious","fixed","(Intercept)",-3972.97297595563,453.798477681683,-8.75492795007231,185.031608666468,1.26754696342398e-15
+"Carex communis","monoecious","fixed","Infl_max",-0.018664329280837,0.0371949416556406,-0.501797514663035,19.5193992467708,0.621422972865404
+"Carex communis","monoecious","fixed","Stigma_length",0.459119125326281,0.148966793264069,3.08202328362143,194.238604408391,0.00235474363672414
+"Carex communis","monoecious","fixed","Date",0.316724471966099,0.0361770381105819,8.7548480613026,185.040040763309,1.26788649800734e-15
+"Carex communis","monoecious","fixed","Inv_avg_dist",6.32617886262867,12.2275806325856,0.517369629587221,18.9228045764443,0.610893389434208
+"Carex hirtifolia","monoecious","fixed","(Intercept)",-1222.63629175603,1109.28840836359,-1.10218071561719,194.536612065082,0.271744827497894
+"Carex hirtifolia","monoecious","fixed","Infl_max",0.0566629678303887,0.0402497617178643,1.40778393242611,21.7384971451235,0.173335027755949
+"Carex hirtifolia","monoecious","fixed","Stigma_length",0.444647552703268,0.26344254296768,1.68783503110133,195.611008741086,0.0930366349154493
+"Carex hirtifolia","monoecious","fixed","Date",0.0973943018503196,0.0883903665582029,1.10186557249073,194.538950835687,0.2718814715238
+"Carex hirtifolia","monoecious","fixed","Inv_avg_dist",7.75890821343669,7.75989655748103,0.999872634378949,20.298429838675,0.329143324225891
+"Carex pedunculata","monoecious","fixed","(Intercept)",-5854.1921568291,897.599955508483,-6.52205040887368,68.4749981139265,9.93397427526178e-09
+"Carex pedunculata","monoecious","fixed","Infl_max",-0.0289169114870277,0.0813162504371512,-0.355610487836959,9.25425682775759,0.730103715604483
+"Carex pedunculata","monoecious","fixed","Stigma_length",0.133234479097846,0.200190890844368,0.665537170726841,70.7504977918174,0.507870970786837
+"Carex pedunculata","monoecious","fixed","Date",0.467106260501784,0.0716463028442225,6.51961429911314,68.4778966001826,1.00324302992303e-08
+"Carex pedunculata","monoecious","fixed","Inv_avg_dist",14.2606989612123,34.5971184981309,0.412193257134484,10.8227485848842,0.688244133903376
+"Carex plantaginea","monoecious","fixed","(Intercept)",-644.528634647906,213.695820326568,-3.01610313979443,85.4333810943111,0.00337198892435867
+"Carex plantaginea","monoecious","fixed","Infl_max",0.0282378287751471,0.0464430649914637,0.60800958722981,16.452800832568,0.551482548333351
+"Carex plantaginea","monoecious","fixed","Stigma_length",0.150328590892863,0.117202635079445,1.28263831944533,90.5365610798132,0.202892948175549
+"Carex plantaginea","monoecious","fixed","Date",0.051433764897503,0.0170370979074871,3.0189275883013,85.4326873252538,0.00334375820109835
+"Carex plantaginea","monoecious","fixed","Inv_avg_dist",-12.6326116248951,14.6108646628136,-0.864603972210256,18.1387761682136,0.398546490274115
+"Carex stipata","monoecious","fixed","(Intercept)",-2549.38584858989,547.633475183131,-4.65527759736996,314.99999999772,4.77475093945624e-06
+"Carex stipata","monoecious","fixed","Infl_max",0.0221187731091194,0.00943557599562485,2.34418896306654,315.000000000446,0.0196895543034253
+"Carex stipata","monoecious","fixed","Stigma_length",0.751282034464968,0.173909214814435,4.31996680145213,314.999999998187,2.09426771863109e-05
+"Carex stipata","monoecious","fixed","Date",0.202769535636646,0.0435841199713299,4.65237191367017,314.999999998651,4.83814438295236e-06
+"Carex stipata","monoecious","fixed","Inv_avg_dist",45.4044057365703,18.0053865660661,2.52171235368763,314.999999998684,0.012171397691422
+"Rumex crispus","monoecious","fixed","(Intercept)",-825.369625196385,390.778650920206,-2.11211544758856,173.988884892514,0.0361039603618907
+"Rumex crispus","monoecious","fixed","Infl_max",0.0157466091000261,0.0125828260840964,1.25143660055259,20.1312444926963,0.225122661834524
+"Rumex crispus","monoecious","fixed","Stigma_length",1.63653896663525,0.387084764862278,4.22785682928522,173.420356378984,3.80997726566259e-05
+"Rumex crispus","monoecious","fixed","Date",0.0654629583666658,0.0310518810679333,2.10818012034279,173.989119305623,0.0364475789899402
+"Rumex crispus","monoecious","fixed","Inv_avg_dist",-12.2576272523801,11.9275025600519,-1.02767760398006,17.0943675780284,0.318424437112414
+"Scirpus microcarpus","monoecious","fixed","(Intercept)",-3580.8088693507,328.537847622719,-10.8992278827576,243.786760255816,8.57230958872323e-23
+"Scirpus microcarpus","monoecious","fixed","Infl_max",0.00767902977953604,0.00655257412860648,1.17191040174758,21.7434341147208,0.253914424927005
+"Scirpus microcarpus","monoecious","fixed","Stigma_length",0.697675097985358,0.47975961432698,1.45421806494504,258.400208273043,0.147099402478995
+"Scirpus microcarpus","monoecious","fixed","Date",0.284453549122759,0.0260981261142056,10.899385951236,243.789687682937,8.56141843100861e-23
+"Scirpus microcarpus","monoecious","fixed","Inv_avg_dist",-1.34018815424765,4.74255259055748,-0.282587937330625,21.5246716427317,0.780192319956489
