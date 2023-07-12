@@ -101,28 +101,28 @@ sizenum_sp <- sizenum %>%
   summarize(Avg_pol_anth = mean(Avg_pol_anth),
             Avg_diam = mean(Avg_diam),
             N = n()) %>%
-  filter(N>=3) %>% # Keep only species with at least 5 individuals
+  filter(N>=3) %>% # Keep only species with at least 3 individuals
   droplevels() %>% 
   as.data.frame()
 
 # add this to species-level data 
 # head(sizenum_sp)
-# summary(sizenum_sp) # 27 species
+# summary(sizenum_sp) # 31 species
 # str(sizenum_sp) 
 # sum(is.na(sizenum_sp)) # no missing data
-# sample size per sex system: 
-sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
-# sample size per species:
-print(sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(N=N), n=Inf)
+# # sample size per sex system: 
+# sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
+# # sample size per species:
+# print(sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(N=N), n=Inf)
 
 ```
 
-The resulting dataset has 27 species.
+The resulting dataset has 31 species.
 
 Key variables:
 
 * "Avg_pol_anth" - mean pollen production per anther, per species
-* "Avg_diam" - the mean pollen diameter (per flower) per species in nm, averaged within individuals then across individuals to get a species-wide mean
+* "Avg_diam" - the mean pollen diameter (per flower) per species in um, averaged within individuals then across individuals to get a species-wide mean
 * "collector" - a factor with 2 levels to control for who collected the data (CS or JF)
 * "Sex_sys" - a factor with 3 levels specifying a species' sex system (dioecious, monoecious, or hermaphroditic). 
 
@@ -285,7 +285,7 @@ keep_spp <- spp_over10$Species
 
 sizenum_filt <- sizenum %>% group_by(Sex_sys, Species) %>% 
   filter(Species %in% keep_spp)
-# sizenum_filt %>% 
+# sizenum_filt %>%
 #   group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
 
 #   Sex_sys            n
