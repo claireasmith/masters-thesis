@@ -257,6 +257,7 @@ plot(pgls.profile(fullA, "lambda")) # strange likelihood surface - it peaks at 0
 
 The surface looks kind of flat - not sure how valid it is to say the estimate should be 0. 
 
+
 #### Post model fit checks
 
 I'll inspect the residuals for normality and homogeneity. 
@@ -383,40 +384,6 @@ ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) +
                      limits = c(log(250), NA)) +
   scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
   theme_cs()
-```
-
-
-```{r plot pollen number by size to visualize tradeoff, include=F}
-# **not currently working! **
-
-# Plot pollen number by size to visualize tradeoff. 
-# *** How???
-mod.fit <- sizenum_filt %>% as.data.frame()
-fit.mod <- fitted(prodsize_mixmod)
-mod.fit <- mutate(mod.fit, fit.mod)
-emms <- emmip(prodsize_mixmod, ~ Avg_diam | Sex_sys, cov.reduce=range,
-              type="response", plotit=T)
-emmip(prodsize_mixmod, ~ Avg_diam, cov.reduce=range,
-              type="response", plotit=T)
-
-# emmip_ggplot(emms) #plots predicted slope
-ggplot() + 
-  geom_point(data = mod.fit, aes(x=Avg_diam, y=fit.mod)) 
-# doesn't work from here on out
-# + 
-#   geom_line(data= emms, aes(xvar, yvar), linewidth=0.7) + 
-#   # geom_smooth(data=mod.fit, aes(x=Log_stigma_length, y=fit.AMARmod),
-#   #             method="lm",
-#   #             formula = y ~ x, linetype=1, colour="black", se=F, linewidth=0.7) + 
-#   scale_y_continuous(name="Stigmatic pollen load",
-#                      breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
-#                      labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
-#                      limits=c(log(10)+1,NA)) +
-#   scale_x_continuous(name = "Stigma length (cm)",
-#                      breaks = log(c(0.5, 1, 2, 5)),
-#                      labels = c(0.5, 1, 2, 5),
-#                      limits=c(log(0.5),log(5))) +
-#   theme_cs()
 ```
 
 ## Effect of sex system on pollen size 
