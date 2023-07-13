@@ -30,6 +30,17 @@ sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors =
 
 ```{r prepare data}
 prod_spp <- sizenum.dat
+
+prod_spp <- prod_spp %>% 
+  # Update species names
+  # Agropyron trachycaulum => Elymus trachycaulus
+  # Elymus innovatus => Leymus innovatus
+  mutate(Species = gsub("Agropyron trachycaulum", "Elymus trachycaulus", Species),
+         Species = gsub("Elymus innovatus", "Leymus innovatus", Species)) %>% 
+  mutate(Species = gsub("Bcarianatus", "Bromus carinatus", Species),
+         Species = gsub("Astolonifera", "Agrostis stolonifera", Species)) 
+
+
 # Re-order levels in sex system column 
 prod_spp$Sex_sys <- as.character(prod_spp$Sex_sys)
 prod_spp$Sex_sys <- factor(prod_spp$Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))
@@ -42,17 +53,22 @@ prod_spp$Species <- factor(prod_spp$Species, levels = unique(prod_spp$Species), 
 prod_spp <- prod_spp %>% 
   filter(!is.na(Avg_pol_anth))
 
-# Keep only species with at least 5 individuals
+# Keep only species with at least 3 individuals
 p_sum <- prod_spp %>% group_by(Species) %>% dplyr::summarize(n=n())
-keep_vec <- p_sum$Species[which(p_sum$n>=5)]
-p_all_5ormore <- prod_spp[prod_spp$Species %in% keep_vec,]
+keep_vec <- p_sum$Species[which(p_sum$n>=3)]
+p_all_3ormore <- prod_spp[prod_spp$Species %in% keep_vec,]
 
-prodfull <- p_all_5ormore %>% droplevels()
+prodfull <- p_all_3ormore %>% droplevels() 
+
+# Version with at least 5 indiviuals per species
+keep_vec2 <- p_sum$Species[which(p_sum$n>=5)]
+prodfilt <- prodfull[prodfull$Species %in% keep_vec2,] 
+prodfilt <- prodfilt %>% droplevels()
 
 ```
 
 ```{r}
-prod_sum <- prodfull_filt %>% 
+prod_sum <- prodfull %>% 
   group_by(Species, Sex_sys, source) %>% 
   summarize(Avg_prod_anth_sp = mean(Avg_pol_anth, na.rm=T),
             Sd_prod_anth_sp = sd(Avg_pol_anth, na.rm=T),
@@ -61,16 +77,15 @@ prod_sum <- prodfull_filt %>%
             Max_prod_anth = max(Avg_pol_anth, na.rm=T),
             Min_prod_anth = min(Avg_pol_anth, na.rm=T),
             CV_prod_anth = Sd_prod_anth_sp/Avg_prod_anth_sp) %>% 
-  filter(n_prod_anth>=5) %>% 
   droplevels()
-print(prod_sum, n=27)
+print(prod_sum, n=Inf)
 # write it to a file
-write.csv(prod_sum, "processed-data/pollen-prod-table.csv", row.names=F)
+write.csv(prod_sum, "summary-data/pollen-prod-table.csv", row.names=F)
 
 ```
 
 ```{r plot prod distributions, fig.dim=c(14,10), dpi=200}
-prod_ridges <- prodfull_filt %>% 
+prod_ridges <- prodfilt %>% 
   # Arrange species in order of sex system and alphabetically by species
   mutate(Sex_sys = as.character(Sex_sys),
          Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
