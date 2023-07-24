@@ -42,6 +42,8 @@ library(lme4)
 library(lmerTest)
 library(ggplot2)
 library(emmeans)
+library(gghalves)
+library(ggdist)
 
 library(knitr) # to make nice tables
 
@@ -114,7 +116,7 @@ sizenum_sp <- sizenum %>%
   summarize(Avg_pol_anth = mean(Avg_pol_anth),
             Avg_diam = mean(Avg_diam),
             N = n()) %>%
-  filter(N>=3) %>% # Keep only species with at least 5 individuals
+  filter(N>=3) %>% # Keep only species with at least 3 individuals
   droplevels() %>% 
   as.data.frame()
 ```
@@ -125,73 +127,21 @@ sizenum_sp <- sizenum %>%
 ``` r
 # add this to species-level data 
 # head(sizenum_sp)
-# summary(sizenum_sp) # 27 species
+# summary(sizenum_sp) # 31 species
 # str(sizenum_sp) 
 # sum(is.na(sizenum_sp)) # no missing data
-# sample size per sex system: 
-sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
+# # sample size per sex system: 
+# sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
+# # sample size per species:
+# print(sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(N=N), n=Inf)
 ```
 
-    ## `summarise()` has grouped output by 'Sex_sys'. You can override using the
-    ## `.groups` argument.
-
-    ## # A tibble: 3 × 2
-    ##   Sex_sys            n
-    ##   <fct>          <int>
-    ## 1 dioecious          2
-    ## 2 monoecious         9
-    ## 3 hermaphroditic    20
-
-``` r
-# sample size per species:
-print(sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(N=N), n=Inf)
-```
-
-    ## `summarise()` has grouped output by 'Sex_sys'. You can override using the
-    ## `.groups` argument.
-
-    ## # A tibble: 31 × 3
-    ## # Groups:   Sex_sys [3]
-    ##    Sex_sys        Species                        N
-    ##    <fct>          <chr>                      <int>
-    ##  1 dioecious      Rumex acetosella              21
-    ##  2 dioecious      Thalictrum dioicum            23
-    ##  3 monoecious     Amaranthus retroflexus        16
-    ##  4 monoecious     Ambrosia artemisiifolia       21
-    ##  5 monoecious     Carex communis                18
-    ##  6 monoecious     Carex hirtifolia              18
-    ##  7 monoecious     Carex pedunculata             19
-    ##  8 monoecious     Carex plantaginea              4
-    ##  9 monoecious     Carex stipata                 36
-    ## 10 monoecious     Rumex crispus                 20
-    ## 11 monoecious     Scirpus microcarpus           14
-    ## 12 hermaphroditic Agrostis stolonifera           4
-    ## 13 hermaphroditic Avenula hookeri                5
-    ## 14 hermaphroditic Bromus carinatus               3
-    ## 15 hermaphroditic Bromus inermis                30
-    ## 16 hermaphroditic Chenopodium album             22
-    ## 17 hermaphroditic Elymus repens                 33
-    ## 18 hermaphroditic Elymus trachycaulus           10
-    ## 19 hermaphroditic Festuca campestris            60
-    ## 20 hermaphroditic Festuca pratensis             14
-    ## 21 hermaphroditic Festuca rubra                  8
-    ## 22 hermaphroditic Hierochloe odorata            50
-    ## 23 hermaphroditic Koeleria cristata             25
-    ## 24 hermaphroditic Leymus innovatus              35
-    ## 25 hermaphroditic Phalaris arundinacea           7
-    ## 26 hermaphroditic Phleum pratense               30
-    ## 27 hermaphroditic Plantago lanceolata           24
-    ## 28 hermaphroditic Poa juncifolia                 6
-    ## 29 hermaphroditic Poa secunda subsp. secunda     3
-    ## 30 hermaphroditic Schizachne purpurascens       12
-    ## 31 hermaphroditic Stipa columbiana              10
-
-The resulting dataset has 27 species.
+The resulting dataset has 31 species.
 
 Key variables:
 
 - “Avg_pol_anth” - mean pollen production per anther, per species
-- “Avg_diam” - the mean pollen diameter (per flower) per species in nm,
+- “Avg_diam” - the mean pollen diameter (per flower) per species in um,
   averaged within individuals then across individuals to get a
   species-wide mean
 - “collector” - a factor with 2 levels to control for who collected the
@@ -352,8 +302,8 @@ vif(mod=testmod) # use vif() from "car"
 ```
 
     ##              GVIF Df GVIF^(1/(2*Df))
-    ## Avg_diam 1.508238  1        1.228103
-    ## Sex_sys  1.508238  2        1.108198
+    ## Avg_diam 1.501524  1        1.225367
+    ## Sex_sys  1.501524  2        1.106963
 
 ``` r
 # no! (not over 10)"
@@ -418,29 +368,29 @@ summary(fullA)
     ## 
     ## Residuals:
     ##       Min        1Q    Median        3Q       Max 
-    ## -0.207747 -0.037830 -0.001511  0.030570  0.086058 
+    ## -0.207734 -0.038010 -0.002005  0.030939  0.085092 
     ## 
     ## Branch length transformations:
     ## 
     ## kappa  [Fix]  : 1.000
     ## lambda [ ML]  : 0.000
     ##    lower bound : 0.000, p = 1    
-    ##    upper bound : 1.000, p = 2.4461e-07
+    ##    upper bound : 1.000, p = 2.3125e-07
     ##    95.0% CI   : (NA, 0.957)
     ## delta  [Fix]  : 1.000
     ## 
     ## Coefficients:
-    ##                        Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)            6.538524   0.815840  8.0145  1.3e-08 ***
-    ## Avg_diam               0.072895   0.033023  2.2074 0.035971 *  
-    ## Sex_sysmonoecious     -1.796662   0.634419 -2.8320 0.008637 ** 
-    ## Sex_syshermaphroditic -0.919832   0.668163 -1.3767 0.179928    
+    ##                        Estimate Std. Error t value  Pr(>|t|)    
+    ## (Intercept)            6.536416   0.814189  8.0281 1.258e-08 ***
+    ## Avg_diam               0.073011   0.032934  2.2168  0.035244 *  
+    ## Sex_sysmonoecious     -1.801457   0.634164 -2.8407  0.008459 ** 
+    ## Sex_syshermaphroditic -0.921018   0.667097 -1.3806  0.178714    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.06658 on 27 degrees of freedom
-    ## Multiple R-squared: 0.438,   Adjusted R-squared: 0.3755 
-    ## F-statistic: 7.014 on 3 and 27 DF,  p-value: 0.00123
+    ## Residual standard error: 0.0665 on 27 degrees of freedom
+    ## Multiple R-squared: 0.4388,  Adjusted R-squared: 0.3765 
+    ## F-statistic: 7.038 on 3 and 27 DF,  p-value: 0.001206
 
 ``` r
 # kable(summary(fullA)$coefficients)
@@ -451,9 +401,9 @@ kable(anova(fullA))
 
 |           |  Df |    Sum Sq |   Mean Sq |  F value |   Pr(\>F) |
 |:----------|----:|----------:|----------:|---------:|----------:|
-| Avg_diam  |   1 | 0.0388017 | 0.0388017 | 8.754060 | 0.0063559 |
-| Sex_sys   |   2 | 0.0544591 | 0.0272295 | 6.143258 | 0.0063259 |
-| Residuals |  27 | 0.1196755 | 0.0044324 |       NA |        NA |
+| Avg_diam  |   1 | 0.0385005 | 0.0385005 | 8.707215 | 0.0064800 |
+| Sex_sys   |   2 | 0.0548542 | 0.0274271 | 6.202868 | 0.0060724 |
+| Residuals |  27 | 0.1193854 | 0.0044217 |       NA |        NA |
 
 The PGLS model showed that size and sex system both have a significant
 effect on pollen production at alpha=0.05.
@@ -527,7 +477,7 @@ keep_spp <- spp_over10$Species
 
 sizenum_filt <- sizenum %>% group_by(Sex_sys, Species) %>% 
   filter(Species %in% keep_spp)
-# sizenum_filt %>% 
+# sizenum_filt %>%
 #   group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
 
 #   Sex_sys            n
@@ -552,32 +502,32 @@ summary(prodsize_mixmod)
     ## Formula: Log_avg_pol_anth ~ Avg_diam + Sex_sys + (1 | Species)
     ##    Data: sizenum_filt
     ## 
-    ## REML criterion at convergence: 768.5
+    ## REML criterion at convergence: 762.2
     ## 
     ## Scaled residuals: 
     ##     Min      1Q  Median      3Q     Max 
-    ## -7.7552 -0.3549  0.1299  0.5532  2.1694 
+    ## -7.7618 -0.3686  0.1296  0.5547  2.1994 
     ## 
     ## Random effects:
     ##  Groups   Name        Variance Std.Dev.
-    ##  Species  (Intercept) 0.9625   0.9811  
-    ##  Residual             0.1889   0.4346  
-    ## Number of obs: 561, groups:  Species, 23
+    ##  Species  (Intercept) 0.9825   0.9912  
+    ##  Residual             0.1891   0.4349  
+    ## Number of obs: 555, groups:  Species, 23
     ## 
     ## Fixed effects:
     ##                        Estimate Std. Error        df t value Pr(>|t|)    
-    ## (Intercept)             8.27867    0.73498  23.36453  11.264 6.38e-11 ***
-    ## Avg_diam               -0.02592    0.01278 537.49230  -2.028   0.0431 *  
-    ## Sex_sysmonoecious      -1.27398    0.78207  19.45678  -1.629   0.1194    
-    ## Sex_syshermaphroditic   0.11117    0.76144  20.43969   0.146   0.8854    
+    ## (Intercept)             8.35640    0.74395  23.41846  11.233 6.55e-11 ***
+    ## Avg_diam               -0.03017    0.01316 528.93722  -2.294   0.0222 *  
+    ## Sex_sysmonoecious      -1.24919    0.79032  19.39802  -1.581   0.1301    
+    ## Sex_syshermaphroditic   0.15755    0.76975  20.40128   0.205   0.8399    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
     ## Correlation of Fixed Effects:
     ##             (Intr) Avg_dm Sx_sysm
-    ## Avg_diam    -0.318               
-    ## Sex_sysmncs -0.817 -0.086        
-    ## Sx_syshrmph -0.809 -0.183  0.831
+    ## Avg_diam    -0.323               
+    ## Sex_sysmncs -0.814 -0.089        
+    ## Sx_syshrmph -0.805 -0.187  0.831
 
 ``` r
 # anova(prodsize_mixmod) # sig effects of diam and sex system
@@ -586,8 +536,8 @@ kable(anova(prodsize_mixmod))
 
 |          |    Sum Sq |   Mean Sq | NumDF |     DenDF |  F value |   Pr(\>F) |
 |:---------|----------:|----------:|------:|----------:|---------:|----------:|
-| Avg_diam | 0.7765634 | 0.7765634 |     1 | 537.49230 | 4.111896 | 0.0430754 |
-| Sex_sys  | 1.8751352 | 0.9375676 |     2 |  20.08548 | 4.964411 | 0.0177045 |
+| Avg_diam | 0.9947776 | 0.9947776 |     1 | 528.93722 | 5.260481 | 0.0222062 |
+| Sex_sys  | 1.8828764 | 0.9414382 |     2 |  20.03011 | 4.978417 | 0.0175741 |
 
 Calculate marginal means, test for pairwise differences between sex
 systems.
@@ -600,9 +550,9 @@ kable(emmeans(prodsize_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pai
 
 | 1                           |   estimate |        SE |       df |    t.ratio |   p.value |
 |:----------------------------|-----------:|----------:|---------:|-----------:|----------:|
-| dioecious - monoecious      |  1.2739820 | 0.7821092 | 20.11331 |  1.6289057 | 0.2568835 |
-| dioecious - hermaphroditic  | -0.1111719 | 0.7616209 | 21.12808 | -0.1459675 | 0.9883289 |
-| monoecious - hermaphroditic | -1.3851539 | 0.4490295 | 20.86527 | -3.0847729 | 0.0149436 |
+| dioecious - monoecious      |  1.2491908 | 0.7903667 | 20.12293 |  1.5805205 | 0.2767049 |
+| dioecious - hermaphroditic  | -0.1575501 | 0.7699458 | 21.16219 | -0.2046249 | 0.9772063 |
+| monoecious - hermaphroditic | -1.4067409 | 0.4537667 | 20.87215 | -3.1001411 | 0.0144373 |
 
 ``` r
 # plot(emmeans(prodsize_mixmod , ~Sex_sys))
@@ -636,6 +586,53 @@ ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) +
 
 ![](anal-sizenum-PGLS_files/figure-gfm/plot%20estimated%20marginal%20means%20for%20pollen%20production-1.png)<!-- -->
 
+``` r
+# Plot estimated marginal means: 
+ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=9.2), label="AB") + 
+  geom_text(aes(x=2, y=7.2), label="A") + 
+  geom_text(aes(x=3, y=8.4), label="B") + 
+
+  # # Raw data (individual means) with stat dot histograms
+  # ggdist::stat_dots(data=sizenum, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+  #   side = "left",
+  #   dotsize = .5,
+  #   justification = 1.2,
+  #   binwidth = .12) +
+  # Raw data (individual means) with jittered points
+  gghalves::geom_half_point(data=sizenum, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+    ## draw jitter on the left
+    side = "l",
+    ## control range of jitter
+    range_scale = .4,
+    ## add some transparency
+    alpha = .3,
+    size=1) +
+
+  # # Species means
+  gghalves::geom_half_point(data=sizenum_sp, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+    ## draw jitter on the right
+    side = "r",
+    ## control range of jitter
+    transformation = position_identity(),
+    # transformation = position_jitter(w = 0, h = 0),  # we do NOT want vertical jitter!
+    ## add some transparency
+    alpha = .7,
+    size=5,
+    shape=95) +
+  scale_y_continuous(name="Pollen production per anther",
+                     breaks = log(c(50, 100, 250, 500,1000, 2500, 5000, 10000, 20000)),
+                     labels = c(50, 100, 250, 500,1000, 2500, 5000, 10000, 20000),
+                     limits = c(log(50), NA)) +
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
+![](anal-sizenum-PGLS_files/figure-gfm/plot%20emms%20prod%20sex%20sys%20with%20points-1.png)<!-- -->
+
 ## Effect of sex system on pollen size
 
 B. Does pollen size vary in wind-pollinated species according to their
@@ -659,39 +656,39 @@ summary(modB) # estimated lambda is 0.988, significantly diff from 0 but not 1.
     ## pgls(formula = Avg_diam ~ Sex_sys, data = test.data, lambda = "ML")
     ## 
     ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -1.03501 -0.09736  0.24231  0.64907  1.71694 
+    ##     Min      1Q  Median      3Q     Max 
+    ## -1.5590 -0.3541  0.0643  0.3781  2.0172 
     ## 
     ## Branch length transformations:
     ## 
     ## kappa  [Fix]  : 1.000
     ## lambda [ ML]  : 0.988
-    ##    lower bound : 0.000, p = 0.011636
-    ##    upper bound : 1.000, p = 0.12356
-    ##    95.0% CI   : (0.702, NA)
+    ##    lower bound : 0.000, p = 0.010667
+    ##    upper bound : 1.000, p = 0.12322
+    ##    95.0% CI   : (0.710, NA)
     ## delta  [Fix]  : 1.000
     ## 
     ## Coefficients:
     ##                       Estimate Std. Error t value Pr(>|t|)   
-    ## (Intercept)            18.4490     5.1846  3.5584 0.001354 **
-    ## Sex_sysmonoecious       4.3051     4.5048  0.9557 0.347411   
-    ## Sex_syshermaphroditic   6.0983     5.9482  1.0252 0.314032   
+    ## (Intercept)            18.4517     5.1804  3.5618 0.001342 **
+    ## Sex_sysmonoecious       4.3052     4.5009  0.9565 0.346990   
+    ## Sex_syshermaphroditic   6.0936     5.9433  1.0253 0.313999   
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.7487 on 28 degrees of freedom
-    ## Multiple R-squared: 0.04157, Adjusted R-squared: -0.02689 
-    ## F-statistic: 0.6072 on 2 and 28 DF,  p-value: 0.5519
+    ## Residual standard error: 0.7481 on 28 degrees of freedom
+    ## Multiple R-squared: 0.0416,  Adjusted R-squared: -0.02686 
+    ## F-statistic: 0.6077 on 2 and 28 DF,  p-value: 0.5516
 
 ``` r
 # anova(modB) # no sig effect of sex system
 kable(anova(modB))
 ```
 
-|           |  Df |     Sum Sq |   Mean Sq |   F value |  Pr(\>F) |
-|:----------|----:|-----------:|----------:|----------:|---------:|
-| Sex_sys   |   2 |  0.6806938 | 0.3403469 | 0.6071772 | 0.551905 |
-| Residuals |  28 | 15.6951086 | 0.5605396 |        NA |       NA |
+|           |  Df |     Sum Sq |   Mean Sq |   F value |   Pr(\>F) |
+|:----------|----:|-----------:|----------:|----------:|----------:|
+| Sex_sys   |   2 |  0.6801802 | 0.3400901 | 0.6076744 | 0.5516421 |
+| Residuals |  28 | 15.6704369 | 0.5596585 |        NA |        NA |
 
 ``` r
 # take a look at the likelihood surface for lambda
@@ -739,23 +736,23 @@ summary(size_mixmod)
     ## Formula: Avg_diam ~ Sex_sys + (1 | Species)
     ##    Data: sizenum_filt
     ## 
-    ## REML criterion at convergence: 2092.8
+    ## REML criterion at convergence: 2045.8
     ## 
     ## Scaled residuals: 
     ##     Min      1Q  Median      3Q     Max 
-    ## -4.1346 -0.5092 -0.0015  0.6015  4.9222 
+    ## -3.6108 -0.5147 -0.0066  0.5791  5.0415 
     ## 
     ## Random effects:
     ##  Groups   Name        Variance Std.Dev.
-    ##  Species  (Intercept) 20.853   4.566   
-    ##  Residual              1.997   1.413   
-    ## Number of obs: 561, groups:  Species, 23
+    ##  Species  (Intercept) 20.959   4.578   
+    ##  Residual              1.903   1.380   
+    ## Number of obs: 555, groups:  Species, 23
     ## 
     ## Fixed effects:
     ##                       Estimate Std. Error     df t value Pr(>|t|)    
-    ## (Intercept)             18.287      3.236 19.995   5.651 1.57e-05 ***
-    ## Sex_sysmonoecious        5.259      3.618 20.000   1.454  0.16159    
-    ## Sex_syshermaphroditic   10.923      3.476 19.997   3.142  0.00513 ** 
+    ## (Intercept)             18.287      3.244 19.993   5.637 1.62e-05 ***
+    ## Sex_sysmonoecious        5.328      3.627 20.000   1.469  0.15738    
+    ## Sex_syshermaphroditic   10.923      3.485 19.995   3.135  0.00522 ** 
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
@@ -768,9 +765,9 @@ summary(size_mixmod)
 kable(anova(size_mixmod))
 ```
 
-|         |   Sum Sq |  Mean Sq | NumDF |    DenDF |  F value |   Pr(\>F) |
-|:--------|---------:|---------:|------:|---------:|---------:|----------:|
-| Sex_sys | 28.51353 | 14.25676 |     2 | 20.00695 | 7.139957 | 0.0045679 |
+|         |   Sum Sq |  Mean Sq | NumDF |    DenDF | F value |   Pr(\>F) |
+|:--------|---------:|---------:|------:|---------:|--------:|----------:|
+| Sex_sys | 26.77139 | 13.38569 |     2 | 20.00719 | 7.03384 | 0.0048606 |
 
 From the mixed effects model, sex system has a significant effect on
 pollen size. I’ll use emmeans to run a Tukey’s HSD to determine which
@@ -811,9 +808,9 @@ kable(emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwis
 
 | 1                           |   estimate |       SE |       df |   t.ratio |   p.value |
 |:----------------------------|-----------:|---------:|---------:|----------:|----------:|
-| dioecious - monoecious      |  -5.259189 | 3.618233 | 19.98690 | -1.453524 | 0.3337651 |
-| dioecious - hermaphroditic  | -10.922866 | 3.476130 | 19.98329 | -3.142249 | 0.0135978 |
-| monoecious - hermaphroditic |  -5.663677 | 2.057047 | 20.00417 | -2.753305 | 0.0314810 |
+| dioecious - monoecious      |  -5.328325 | 3.627120 | 19.98651 | -1.469024 | 0.3264467 |
+| dioecious - hermaphroditic  | -10.923001 | 3.484615 | 19.98167 | -3.134637 | 0.0138288 |
+| monoecious - hermaphroditic |  -5.594676 | 2.062152 | 20.00586 | -2.713027 | 0.0342605 |
 
 ``` r
 # plot(emmeans(size_mixmod , ~Sex_sys))
@@ -843,3 +840,53 @@ pollen size at alpha=0.05. A Tukey’s HSD test showed that dioecious
 species have significantly smaller pollen than hermaphroditic species
 but not monoecious species, and monoecious species don’t have
 significantly smaller pollen than hermaphroditic species.
+
+Plot estimated marginal means for pollen size per sex system, with
+points for means:
+
+``` r
+# Plot estimated marginal means: 
+ggplot(data=em_size, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=26), label="A") + 
+  geom_text(aes(x=2, y=27.9), label="AB") + 
+  geom_text(aes(x=3, y=32.8), label="B") + 
+
+  # Raw data (individual means) with stat dot histograms
+  # ggdist::stat_dots(data=sizenum, aes(x=Sex_sys, y=Avg_diam),
+  #   side = "left",
+  #   dotsize = .8,
+  #   justification = 1.2,
+  #   binwidth = .3) +
+  # Raw data (individual means) with jittered points
+  gghalves::geom_half_point(data=sizenum, aes(x=Sex_sys, y=Avg_diam),
+    ## draw jitter on the left
+    side = "l",
+    ## control range of jitter
+    range_scale = .4,
+    ## add some transparency
+    alpha = .3,
+    size=1) +
+  
+  # Species means
+  gghalves::geom_half_point(data=sizenum_sp, aes(x=Sex_sys, y=Avg_diam),
+    ## draw jitter on the right
+    side = "r", 
+    ## control range of jitter
+    transformation = position_identity(),
+    # transformation = position_jitter(w = 0, h = 0),  # we do NOT want vertical jitter!
+    ## add some transparency
+    alpha = .7, 
+    size=5,
+    shape=95) + 
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)"),
+                     breaks=c(10, 20, 30, 40),
+                     labels=c(10, 20, 30, 40), 
+                     limits=c(10,NA)) + 
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
+![](anal-sizenum-PGLS_files/figure-gfm/plot%20emms%20size%20sex%20sys%20with%20points-1.png)<!-- -->

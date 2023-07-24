@@ -44,6 +44,8 @@ prod <- prodfull %>%
          Species = gsub("Astolonifera", "Agrostis stolonifera", Species)) 
 ```
 
+
+#### Table 3-1: summary of pollen size and number
 First I'll take a look at a summary of the pollen size and number data - means, standard deviations, and CVs so that I can compare how variable species area relative to each other. I'll remove any species with less than 5 points. 
 
 ```{r summary of size number data}
@@ -88,7 +90,7 @@ cvtest <- prod_summary %>% select(cv_diam, cv_polanth)
 t.test(x=cvtest$cv_polanth, y=cvtest$cv_diam, paired=T) # t test across all species
 ```
 
-Pollen diameter is less variable than pollen size. The CV for pollen diameter is significantly less than the CV for pollen production per anther (t = 10.885, df = 26, p-value = 3.523e-11)
+Pollen diameter is less variable than pollen size. The CV for pollen diameter is significantly less than the CV for pollen production per anther (t = 10.974, df = 30, p-value = 5.033e-12)
 
 Now I want to build a model for each species. First I'll go through each species and look at the distributions of pollen size and number to see how symmetric they are and if there are any obvious outliers. 
 
@@ -181,6 +183,8 @@ write.csv(tidytab_write, "processed-data/tradeoff-reg-model-coefs.csv", row.name
 
 ```
 
+
+# --------old --------------------------------------------------
 ```{r}
 #take only species with significant relationships to plot with linear model overtop
 sigsub <- glance %>% filter(p.value<0.05) #7 species

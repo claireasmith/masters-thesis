@@ -38,6 +38,8 @@ library(lme4)
 library(lmerTest)
 library(ggplot2)
 library(emmeans)
+library(gghalves)
+library(ggdist)
 
 library(knitr) # to make nice tables
 
@@ -386,6 +388,51 @@ ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) +
   theme_cs()
 ```
 
+```{r plot emms prod sex sys with points, dpi=200, fig.dim=c(5,5)}
+# Plot estimated marginal means: 
+ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=9.2), label="AB") + 
+  geom_text(aes(x=2, y=7.2), label="A") + 
+  geom_text(aes(x=3, y=8.4), label="B") + 
+
+  # # Raw data (individual means) with stat dot histograms
+  # ggdist::stat_dots(data=sizenum, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+  #   side = "left",
+  #   dotsize = .5,
+  #   justification = 1.2,
+  #   binwidth = .12) +
+  # Raw data (individual means) with jittered points
+  gghalves::geom_half_point(data=sizenum, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+    ## draw jitter on the left
+    side = "l",
+    ## control range of jitter
+    range_scale = .4,
+    ## add some transparency
+    alpha = .3,
+    size=1) +
+
+  # # Species means
+  gghalves::geom_half_point(data=sizenum_sp, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+    ## draw jitter on the right
+    side = "r",
+    ## control range of jitter
+    transformation = position_identity(),
+    # transformation = position_jitter(w = 0, h = 0),  # we do NOT want vertical jitter!
+    ## add some transparency
+    alpha = .7,
+    size=5,
+    shape=95) +
+  scale_y_continuous(name="Pollen production per anther",
+                     breaks = log(c(50, 100, 250, 500,1000, 2500, 5000, 10000, 20000)),
+                     labels = c(50, 100, 250, 500,1000, 2500, 5000, 10000, 20000),
+                     limits = c(log(50), NA)) +
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
 ## Effect of sex system on pollen size 
 
 B. Does pollen size vary in wind-pollinated species according to their sex system? Specifically, do dioecious species make smaller pollen (to facilitate long-distance dispersal) and hermaphroditic species make larger pollen? 
@@ -477,3 +524,49 @@ ggplot(data=em_size, aes(x=Sex_sys, y=emmean)) +
 
 A mixed effect model showed that sex system has a significant effect on pollen size at alpha=0.05. A Tukey's HSD test showed that dioecious species have significantly smaller pollen than hermaphroditic species but not monoecious species, and monoecious species don't have significantly smaller pollen than hermaphroditic species. 
 
+Plot estimated marginal means for pollen size per sex system, with points for means: 
+
+```{r plot emms size sex sys with points, dpi=200, fig.dim=c(5,5)}
+# Plot estimated marginal means: 
+ggplot(data=em_size, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=26), label="A") + 
+  geom_text(aes(x=2, y=27.9), label="AB") + 
+  geom_text(aes(x=3, y=32.8), label="B") + 
+
+  # Raw data (individual means) with stat dot histograms
+  # ggdist::stat_dots(data=sizenum, aes(x=Sex_sys, y=Avg_diam),
+  #   side = "left",
+  #   dotsize = .8,
+  #   justification = 1.2,
+  #   binwidth = .3) +
+  # Raw data (individual means) with jittered points
+  gghalves::geom_half_point(data=sizenum, aes(x=Sex_sys, y=Avg_diam),
+    ## draw jitter on the left
+    side = "l",
+    ## control range of jitter
+    range_scale = .4,
+    ## add some transparency
+    alpha = .3,
+    size=1) +
+  
+  # Species means
+  gghalves::geom_half_point(data=sizenum_sp, aes(x=Sex_sys, y=Avg_diam),
+    ## draw jitter on the right
+    side = "r", 
+    ## control range of jitter
+    transformation = position_identity(),
+    # transformation = position_jitter(w = 0, h = 0),  # we do NOT want vertical jitter!
+    ## add some transparency
+    alpha = .7, 
+    size=5,
+    shape=95) + 
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)"),
+                     breaks=c(10, 20, 30, 40),
+                     labels=c(10, 20, 30, 40), 
+                     limits=c(10,NA)) + 
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
