@@ -39,13 +39,13 @@ spJF2001 <- spJF2001raw %>%
 
 # 2004 data
 spJF2004 <- spJF2004raw %>% 
-  dplyr::select(spp, ind, nanth, polcnt, meansize, sdsize, nanth, jday) %>% 
   mutate(source = "JF2004",
          Date = as.character(jday),
          # Keep col names consistent with JF2001
          nanthers = nanth,
          pollmsize=meansize) %>% 
   filter(!is.na(polcnt)) %>% 
+  filter(nsample>1) %>% 
   select(all_of(sel_vec1))
 # head(spJF2004)
 

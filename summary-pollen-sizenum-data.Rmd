@@ -35,6 +35,25 @@ sizeprod_all_sum %>% group_by(Species, Sex_sys) %>% summarize(N=n()) %>% group_b
 ```
 
 ```{r}
+sizeprod_all %>% group_by(Species, source, Sex_sys) %>% 
+  summarize(mean_diam = mean(Avg_diam, na.rm=T), 
+            sd_diam = sd(Avg_diam, na.rm=T),
+            cv_diam = sd_diam/mean_diam,
+            min_diam = min(Avg_diam, na.rm=T),
+            max_diam = max(Avg_diam, na.rm=T),
+            mean_polanth = mean(Avg_pol_anth, na.rm=T),
+            sd_polanth = sd(Avg_pol_anth, na.rm=T),
+            cv_polanth = sd_polanth/mean_polanth,
+            min_polanth = min(Avg_pol_anth, na.rm=T),
+            max_polanth = max(Avg_pol_anth, na.rm=T),
+            n=n()) %>%  
+  filter(n>=3) %>% 
+  droplevels() %>% 
+  arrange(Sex_sys, Species) %>% 
+  as.data.frame()
+```
+
+```{r}
 sizeprod_norep_sum <- sizeprod_norep %>% 
   group_by(Species, Sex_sys, source) %>% 
   summarize(n_ind = n()) %>%
