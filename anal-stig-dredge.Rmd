@@ -1,0 +1,151 @@
+---
+title: "Model selection for stigma pollen loads"
+author: "Claire Smith"
+date: "2023-06-19"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r initialize, message=F}
+# Load packages
+library(tidyverse)
+library(lme4) # for linear mixed effects models
+library(lmerTest)
+library(emmeans)
+library(car)
+library(knitr)
+
+library(MuMIn) # for model selection
+
+# Source files
+source("clean-stig-01.R")
+source("clean-stig-02.R")
+source("theme_cs.R")
+options(na.action = "na.fail")
+```
+
+### Prepare data
+
+```{r load data}
+# Load data
+stig <- read.csv("processed-data/stig-all.csv", stringsAsFactors = T)
+```
+
+```{r pre-processing data}
+stig$Date <- as.Date(stig$Date)
+stig$Sex_sys <- as.factor(stig$Sex_sys)
+stig$source <- as.factor(stig$source)
+# I'll go through each species and run a model predicting pollen capture by flower height
+# Since many likely have log-normal distributions of pollen capture, I'll create a log flw pollen variable now to # save time -- but will still check each species individually 
+stigl <- stig %>% 
+  mutate(Log_flw_pollen=log(Flw_pollen + 1)) %>% 
+  rowwise %>% 
+  mutate(Avg_dist = mean(c_across(c('D1', 'D2', 'D3', 'D4', 'D5')), na.rm=TRUE)) %>% 
+  mutate(Inv_avg_dist = 1/Avg_dist) %>% 
+  # Take only entries stigma length data
+  filter(!is.na(Flw_pollen) & !is.na(Infl_max) & !is.na(Avg_dist) &!is.na(Stigma_length) & !is.na(Date)) %>%
+  droplevels()
+stigl <- stigl %>% filter((Species=="Carex hirtifolia" & Stigma_length>0.5) | Species != "Carex hirtifolia") # remove C. hirtifolia outlier with stigma length = 0.2
+```
+
+```{r look at sample size}
+# How many species have max infl height and stigma length? 
+unique(stigl$Species) #  13 species 
+# [1] Ambrosia artemisiifolia Chenopodium album       Carex communis          Carex hirtifolia       
+#  [5] Carex pedunculata       Carex plantaginea       Carex stipata           Plantago lanceolata    
+#  [9] Rumex acetosella        Rumex crispus           Scirpus microcarpus     Schizacne purpurascens 
+# [13] Thalictrum dioicum
+
+# Create unique ID for each plant within a species (might be repeat labels within each site/date category)
+stigl$Ind_ID=paste(stigl$Date, stigl$Site, stigl$Plant, sep = "-")
+
+#How many unique individuals per species? 
+stigl %>% group_by(Species) %>%
+  distinct(Plant) %>% 
+  summarize(n=n())
+# #How many total flowers? There are multiple flowers measured per plant
+stigl %>% group_by(Species) %>%
+  summarize(n=n())
+
+```
+
+```{r fit models}
+species <- levels(stigl$Species) # list of all species in data
+# for (spec in species){print(spec)}
+# Filter for each species
+spec = species[13]
+dat <- stigl %>% filter(Species==spec) %>% 
+  as_tibble() %>% 
+  # Use "scale" to standardize predictor variables to z-scores
+  mutate(across(c("Infl_max","Stigma_length","Date", "Inv_avg_dist", "Avg_dist"), scale)) %>% 
+  mutate(across(c("Infl_max","Stigma_length","Date", "Inv_avg_dist", "Avg_dist"), as.vector)) %>%
+  select(Species, Plant, Flower, Flw_pollen, Log_flw_pollen, Infl_max, Stigma_length, Date, Inv_avg_dist, Avg_dist)
+
+#Take a look at the data
+hist(dat$Flw_pollen) 
+hist(dat$Log_flw_pollen) 
+hist(dat$Infl_max) 
+hist(dat$Stigma_length)
+hist(dat$Avg_dist)
+hist(dat$Inv_avg_dist)
+table(dat$Date)
+
+ggplot(data=dat, aes(x=Infl_max, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Plant height") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+    geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=dat, aes(x=Stigma_length, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Stigma length") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=dat, aes(x=Inv_avg_dist, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Average distance to 5 nearest neighbours") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs()
+ggplot(data=dat, aes(x=Date, y=Log_flw_pollen)) + 
+  geom_point(size=3) + 
+  scale_x_continuous(name="Date") + 
+  scale_y_continuous(name="Log stigmatic pollen load") + 
+  geom_smooth(method="lm", se=F) + 
+  theme_cs() # dates are in number format
+
+# Fit full model
+dat_mod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=dat)
+summary(dat_mod)
+anova(dat_mod)
+
+# Model selection
+dat_mod_dredge <- MuMIn::dredge(dat_mod)
+head(dat_mod_dredge) # Take a look
+results <- get.models(dat_mod_dredge, subset = delta <= 2) # Top models have lowest AICc, models within 2 AICc are indistinguishable
+results
+## If just one top model: 
+# Get summary of top model results
+topmod <- get.models(dat_mod_dredge, subset = delta<=2)[[2]]
+modsum <- summary(topmod)
+modsum
+anova(topmod)
+## If more than one top model: 
+# Average model results, if needed:
+# summary(model.avg(dat_mod_dredge, subset = delta <= 2))
+
+#normality of residuals
+hist(residuals(topmod)) 
+qqnorm(residuals(topmod))
+qqline(residuals(topmod))
+# homogeneity
+plot(topmod)
+# No obvious deviations from normality - variance in residuals does seem to decrease with increased fitted values. 
+```
+
+```{r}
+options(na.action = "na.omit") # put back NA settings the way they were...
+```
+
