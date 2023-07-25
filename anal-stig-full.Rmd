@@ -15,10 +15,17 @@ library(lmerTest)
 library(emmeans)
 library(car)
 library(knitr)
+
+library(MuMIn) # for model selection
+
 # Source files
 source("clean-stig-01.R")
 source("clean-stig-02.R")
 source("theme_cs.R")
+options(na.action = "na.fail")
+```
+
+```{r}
 # Load data
 stig <- read.csv("processed-data/stig-all.csv", stringsAsFactors = T)
 stig$Date <- as.Date(stig$Date)
@@ -40,6 +47,7 @@ stigl <- stig %>%
   mutate(Log_flw_pollen=log(Flw_pollen + 1)) %>% 
   rowwise %>% 
   mutate(Avg_dist = mean(c_across(c('D1', 'D2', 'D3', 'D4', 'D5')), na.rm=TRUE)) %>% 
+  mutate(Inv_avg_dist = 1/Avg_dist) %>% 
   # Take only entries stigma length data
   filter(!is.na(Flw_pollen) & !is.na(Infl_max) & !is.na(Avg_dist) &!is.na(Stigma_length) & !is.na(Date))
 ```
@@ -137,8 +145,8 @@ ggplot(data=AMAR, aes(x=Date, y=Log_flw_pollen)) +
 # summary(AMAR)
 ```
 
-```{r AMAR model fit }
-#model for height
+```{r AMAR model fit full}
+# #model for height
 AMARmod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=AMAR)
 summary(AMARmod)
 kable(anova(AMARmod))
@@ -146,7 +154,19 @@ kable(anova(AMARmod))
 # plot(AMARmod)
 ```
 
-No significant effect of anything on pollen capture
+```{r AMAR model selection}
+options(na.action = "na.fail") 
+# model selection:
+AMARmod_dredge <- MuMIn::dredge(AMARmod)
+# looks like the top models are log_flw_pollen ~ inv_avg_dist and log_flw_pollen ~ inv_avg_dist + stig_length
+# both have AICc values within 2 of each other
+head(AMARmod_dredge)
+summary(model.avg(AMARmod_dredge, subset = delta <= 2))
+AMARmodsum <- summary(model.avg(AMARmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+AMARmodsum <- AMARmodsum %>% mutate(Species="Ambrosia artemisiifolia")
+```
+
+Significant effect of stigma length on pollen capture
 
 ```{r test AMAR model assumptions, include=F}
 #normality of residuals
@@ -269,7 +289,16 @@ summary(CACOmod)
 kable(anova(CACOmod))
 ```
 
-Significant effect of stigma length on pollen capture. 
+```{r CACO model selection}
+# model selection:
+CACOmod_dredge <- MuMIn::dredge(CACOmod)
+head(CACOmod_dredge)
+# top model has date, inv avg dist and stig length
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+CACOmodsum <- summary(get.models(CACOmod_dredge, subset = 1)[[1]])
+```
+
 
 ```{r test CACO model assumptions, include=F}
 # Check for collinearity between predictors
@@ -384,6 +413,16 @@ summary(CAHImod)
 kable(anova(CAHImod))
 ```
 
+```{r CAHI model selection}
+# model selection:
+CAHImod_dredge <- MuMIn::dredge(CAHImod)
+head(CAHImod_dredge)
+# top model has inv avg dist and stig length
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+CAHImodsum <- summary(get.models(CAHImod_dredge, subset = 1)[[1]])
+```
+
 Significant effect of stigma length on pollen capture. 
 
 ```{r test CAHI model assumptions, include=F}
@@ -496,6 +535,17 @@ kable(anova(CAPEmod))
 
 Significant effect of stigma length on pollen capture. 
 
+```{r CAPE model selection}
+# model selection:
+CAPEmod_dredge <- MuMIn::dredge(CAPEmod)
+head(CAPEmod_dredge)
+# top model has date and inv avg dist
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+CAPEmodsum <- summary(get.models(CAPEmod_dredge, subset = 1)[[1]])
+```
+
+
 ```{r test CAPE model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=CAPEmod, type="predictor") # variance inflation factors from package "car"
@@ -606,6 +656,16 @@ kable(anova(CAPLmod))
 ```
 
 Significant effect of date on pollen capture. 
+
+```{r CAPL model selection}
+# model selection:
+CAPLmod_dredge <- MuMIn::dredge(CAPLmod)
+head(CAPLmod_dredge)
+# top model has date and inv avg dist
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+CAPLmodsum <- summary(get.models(CAPLmod_dredge, subset = 1)[[1]])
+```
 
 ```{r test CAPL model assumptions, include=F}
 # Check for collinearity between predictors
@@ -740,6 +800,16 @@ kable(anova(CASTmod))
 
 boundary (singular) fit: see help('isSingular')...
 Significant effect of height, date, stigma length, and avg distance - but is it valid? 
+
+```{r CAST model selection}
+# model selection:
+CASTmod_dredge <- MuMIn::dredge(CASTmod)
+head(CASTmod_dredge)
+# top model has date and stig legnth - but at least one model failed to converge
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+CASTmodsum <- summary(get.models(CASTmod_dredge, subset = 1)[[1]])
+```
 
 ```{r test CAST model assumptions, include=F}
 # Check for collinearity between predictors
@@ -904,6 +974,16 @@ boundary (singular) fit: see help('isSingular')...
 
 Significant effect of stigma length - but not sure it's valid 
 
+```{r CHAL model selection}
+# model selection:
+CHALmod_dredge <- MuMIn::dredge(CHALmod)
+head(CHALmod_dredge)
+# top model has date and stig legnth - but at least one model failed to converge
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+CHALmodsum <- summary(get.models(CHALmod_dredge, subset = 1)[[1]])
+```
+
 ```{r test CHAL model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=CHALmod, type="predictor") # variance inflation factors from package "car"
@@ -1012,6 +1092,17 @@ kable(anova(PLLAmod))
 ```
 
 Significant effect of date and stigma length
+
+```{r PLLA model selection}
+# model selection:
+PLLAmod_dredge <- MuMIn::dredge(PLLAmod)
+head(PLLAmod_dredge)
+# top model has date and stig legnth - but at least one model failed to converge
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+PLLAmodsum <- summary(get.models(PLLAmod_dredge, subset = 1)[[1]])
+```
+
 
 ```{r test PLLA model assumptions, include=F}
 # Check for collinearity between predictors
@@ -1148,6 +1239,16 @@ kable(anova(RUACmod))
 ```
 
 Significant effect of date, stigma length, and avg dist. 
+
+```{r RUAC model selection}
+# model selection:
+RUACmod_dredge <- MuMIn::dredge(RUACmod)
+head(RUACmod_dredge)
+# top model has date, inv avg dist, and stig length
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+RUACmodsum <- summary(get.models(RUACmod_dredge, subset = 1)[[1]])
+```
 
 ```{r test RUAC model assumptions, include=F}
 # Check for collinearity between predictors
@@ -1299,6 +1400,16 @@ kable(anova(RUCRmod))
 
 Significant effect of stigma length
 
+```{r RUCR model selection}
+# model selection:
+RUCRmod_dredge <- MuMIn::dredge(RUCRmod)
+head(RUCRmod_dredge)
+# top model has inv avg dist, and stig length
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+RUCRmodsum <- summary(get.models(RUCRmod_dredge, subset = 1)[[1]])
+```
+
 ```{r test RUCR model assumptions, include=FALSE}
 # Check for collinearity between predictors
 vif(mod=RUCRmod, type="predictor") # variance inflation factors from package "car"
@@ -1410,6 +1521,16 @@ anova(SCPUmod)
 
 No significant effect of anything - gives a warning that some predictors are on very different scales? weird that only this one gives me that error.
 
+```{r SCPU model selection}
+# model selection:
+SCPUmod_dredge <- MuMIn::dredge(SCPUmod)
+head(SCPUmod_dredge)
+# top model has inv avg dist, and stig length
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+SCPUmodsum <- summary(get.models(SCPUmod_dredge, subset = 1)[[1]])
+```
+
 ```{r test SCPU model assumptions, include=F}
 # Check for collinearity between predictors
 vif(mod=SCPUmod, type="predictor") # variance inflation factors from package "car"
@@ -1520,6 +1641,17 @@ anova(SCMImod)
 ```
 
 Significant effect of Date on pollen loads
+
+```{r SCMI model selection}
+# model selection:
+SCMImod_dredge <- MuMIn::dredge(SCMImod)
+head(SCMImod_dredge)
+# top model has date and stig length
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+SCMImodsum <- summary(get.models(SCMImod_dredge, subset = 1)[[1]])
+```
+
 
 ```{r test SCMI model assumptions, include=F}
 # Check for collinearity between predictors
@@ -1635,6 +1767,18 @@ anova(THDImod)
 ```
 
 Significant effect of stigma length
+
+```{r THDI model selection}
+# model selection:
+THDImod_dredge <- MuMIn::dredge(THDImod)
+head(THDImod_dredge)
+# top model has date, inv avg dist and stig length
+# summary(model.avg(CACOmod_dredge, subset = delta <= 2))
+# CACOmodsum <- summary(model.avg(CACOmod_dredge, subset = delta <= 2))$coefmat.full %>% as.data.frame() 
+THDImodsum <- summary(get.models(THDImod_dredge, subset = 1)[[1]])
+```
+
+
 
 ```{r test THDI model assumptions, include=F}
 # Check for collinearity between predictors
