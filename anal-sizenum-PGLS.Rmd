@@ -352,8 +352,9 @@ Fit the mixed effects model:
 
 ```{r fit size mixed model}
 prodsize_mixmod <- lmer(Log_avg_pol_anth ~ Avg_diam + Sex_sys + (1|Species), data = sizenum_filt)
+# prodsize_mixmod <- lm(Log_avg_pol_anth ~ Avg_diam + Sex_sys/Species, data = sizenum_filt)
 summary(prodsize_mixmod)
-# anova(prodsize_mixmod) # sig effects of diam and sex system
+anova(prodsize_mixmod) # sig effects of diam and sex system
 kable(anova(prodsize_mixmod))
 ```
 
@@ -479,6 +480,8 @@ I'll also do a linear mixed effects model on pollen size by sex system with spec
 # print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(n=n()), n=Inf) 
 
 size_mixmod <- lmer(Avg_diam ~ Sex_sys + (1|Species), data = sizenum_filt)
+# size_mixmod <- lm(Avg_diam ~ Sex_sys + Sex_sys:Species, data = sizenum_filt)
+
 summary(size_mixmod)
 kable(anova(size_mixmod))
 ```
@@ -504,6 +507,9 @@ Calculate marginal means, do Tukey's HSD post hoc test between sex systems
 kable(emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwise differences of Sex_sys`)
 # plot(emmeans(size_mixmod , ~Sex_sys))
 em_size <- emmeans(size_mixmod , ~Sex_sys) %>%  as.data.frame()
+sizenum_filt %>% group_by(Sex_sys) %>% 
+  summarize(m=mean(Avg_diam),
+            s=sd(Avg_diam))
 ```
 
 Plot estimated marginal means for pollen size per sex system:
