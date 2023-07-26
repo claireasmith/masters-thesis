@@ -3,11 +3,6 @@ Stigma pollen by sex sys PGLS
 Claire Smith
 2023-06-27
 
-Based on tutorial by Roger Mundry from the Chapter 6 practical material
-from Modern Phylogenetic Comparative Methods and Their Application in
-Evolutionary Biology (Springer 2014). Link:
-<https://www.mpcm-evolution.com/practice/online-practical-material-chapter-6/chapter-6-1exercises-testing-assumptions-statistical-issues-framework-phylogenetic-generalized-least-squares>
-
 Analysing the relationship between average stigmatic pollen loads and
 sex system across 22 wind-pollinated flowering plant species species.
 
@@ -452,3 +447,58 @@ stigmatic pollen loads. A Tukey’s HSD test shows that hermaphroditic
 species capture significantly more pollen than dioecious or monoecious
 species, but pollen capture is not significantly different between
 dioecious and monoecious species.
+
+Plot estimated marginal means for pollen size per sex system, with
+points for means:
+
+``` r
+stig_ind <- stig_filt %>% group_by(Species, Sex_sys, Date, Site, Plant) %>% 
+  summarize(mean_poll=mean(Flw_pollen, na.rm=T),
+            log.mean_poll=log(mean_poll+1))
+```
+
+    ## `summarise()` has grouped output by 'Species', 'Sex_sys', 'Date', 'Site'. You
+    ## can override using the `.groups` argument.
+
+``` r
+# Plot estimated marginal means: 
+ggplot(data=em_stig, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=pmax(0,asymp.LCL), ymax=asymp.UCL), width=0.1) +
+
+  # Raw data (individual means) with stat dot histograms
+  # ggdist::stat_dots(data=sizenum, aes(x=Sex_sys, y=Avg_diam),
+  #   side = "left",
+  #   dotsize = .8,
+  #   justification = 1.2,
+  #   binwidth = .3) +
+  # Raw data (individual means) with jittered points
+  gghalves::geom_half_point(data=stig_ind, aes(x=Sex_sys, y=log.mean_poll),
+    ## draw jitter on the left
+    side = "l",
+    ## control range of jitter
+    range_scale = .4,
+    ## add some transparency
+    alpha = .3,
+    size=1) +
+#   
+#   # Species means
+  gghalves::geom_half_point(data=stig_sp, aes(x=Sex_sys, y=log.mean_poll),
+    ## draw jitter on the right
+    side = "r",
+    ## control range of jitter
+    transformation = position_identity(),
+    # transformation = position_jitter(w = 0, h = 0),  # we do NOT want vertical jitter!
+    ## add some transparency
+    alpha = .7,
+    size=5,
+    shape=95) +
+  scale_y_continuous(name="Stigmatic pollen load",
+                     breaks = log(c(0,1,2,5,10,25,50,100,200,500,1000, 2500)+1),
+                     labels = c(0,1,2,5,10,25,50,100,200,500,1000, 2500),
+                     limits=c(0,NA)) +
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
+![](anal-stig-sexsys-PGLS_files/figure-gfm/plot%20emms%20size%20sex%20sys%20with%20points-1.png)<!-- -->
