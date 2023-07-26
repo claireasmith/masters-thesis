@@ -1,6 +1,6 @@
 ## Combine CS size and number data 
 ## Claire Smith
-## Last updated: 22 June 2023
+## Last updated: 26 July 2023
 
 # Create size-prod-CS2021.csv, which combines size-CS2021.csv and prod-CS2021.csv.
 # Each row is an individual, containing its average pollen diam (in um) and 
@@ -10,9 +10,8 @@
 # Load libraries
 library(tidyverse) # need dplyr and tidyr specifically
 
-# Source files 
-source("clean-anthers-01.R")
-source("clean-anthers-02.R")
+# Be sure to have run clean-anthers-01.R and clean-anthers-02.R before running this to make 
+# sure files are up to date
 ############################################################################################
 # Load data
 prod <- read.csv("processed-data/prod-CS2021.csv", stringsAsFactors = T)

@@ -1,6 +1,6 @@
 ## Combine CS pollen size and number data with JF pollen size and number data
 ## Claire Smith
-## Last updated: 22 June 2023
+## Last updated: 26 Jul 2023
 
 # Create size-prod-all.csv, which combines size-prod-CS2021.csv with pollen size and number data
 # from JF2001_pollen and JF_2004_anthers_all_spp
@@ -9,11 +9,6 @@
 # Load libraries
 library(tidyverse) # need dplyr and tidyr specifically
 library(readxl)
-
-# Source files 
-source("clean-anthers-01.R")
-source("clean-anthers-02.R")
-source("clean-anthers-03.R")
 
 ############################################################################################
 # Read in data

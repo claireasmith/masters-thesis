@@ -1,6 +1,6 @@
 ## Combine CS pollen number data into one file
 ## Claire Smith
-## Last updated: 22 June 2023
+## Last updated: 26 Jul 2023
 
 # Create prod-CS2021-all.csv, a file with all the CS2021 pollen production data compiled together
 
