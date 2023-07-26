@@ -39,7 +39,7 @@ stigl <- stig %>%
   filter(!is.na(Flw_pollen) & !is.na(Infl_max) & !is.na(Avg_dist) &!is.na(Stigma_length) & !is.na(Date))
 # remove outlier identified in plots in anal-stig-full.Rmd...
 # CAHI[which(CAHI$Stigma_length<1),] # small stigma has length 0.2 (most are between 2-3)
-stigl2 <- stigl %>% filter(Species != "Carex hirtifolia" | 
+stigl <- stigl %>% filter(Species != "Carex hirtifolia" | 
                             (Species == "Carex hirtifolia" & Stigma_length>0.5))
 ```
 

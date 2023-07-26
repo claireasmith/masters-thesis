@@ -35,7 +35,7 @@ stigl <- stig %>%
   filter(!is.na(Flw_pollen) & !is.na(Infl_max) & !is.na(Avg_dist) &!is.na(Stigma_length) & !is.na(Date))
 # remove outlier identified in plots in anal-stig-full.Rmd...
 # CAHI[which(CAHI$Stigma_length<1),] # small stigma has length 0.2 (most are between 2-3)
-stigl2 <- stigl %>% filter(Species != "Carex hirtifolia" | 
+stigl <- stigl %>% filter(Species != "Carex hirtifolia" | 
                             (Species == "Carex hirtifolia" & Stigma_length>0.5))
 ```
 
@@ -243,11 +243,11 @@ print(tidytab, n=46)
     ## 33 Carex comm… monoec… fixed  Stig…  4.59e-1   1.49e-1     3.08  194.   2.35e- 3
     ## 34 Carex comm… monoec… fixed  Date   3.17e-1   3.62e-2     8.75  185.   1.27e-15
     ## 35 Carex comm… monoec… fixed  Inv_…  6.33e+0   1.22e+1     0.517  18.9  6.11e- 1
-    ## 36 Carex hirt… monoec… fixed  (Int… -1.22e+3   1.11e+3    -1.10  195.   2.72e- 1
-    ## 37 Carex hirt… monoec… fixed  Infl…  5.67e-2   4.02e-2     1.41   21.7  1.73e- 1
-    ## 38 Carex hirt… monoec… fixed  Stig…  4.45e-1   2.63e-1     1.69  196.   9.30e- 2
-    ## 39 Carex hirt… monoec… fixed  Date   9.74e-2   8.84e-2     1.10  195.   2.72e- 1
-    ## 40 Carex hirt… monoec… fixed  Inv_…  7.76e+0   7.76e+0     1.00   20.3  3.29e- 1
+    ## 36 Carex hirt… monoec… fixed  (Int… -7.29e+2   1.10e+3    -0.661 192.   5.09e- 1
+    ## 37 Carex hirt… monoec… fixed  Infl…  5.67e-2   4.14e-2     1.37   21.2  1.84e- 1
+    ## 38 Carex hirt… monoec… fixed  Stig…  8.09e-1   2.89e-1     2.80  192.   5.62e- 3
+    ## 39 Carex hirt… monoec… fixed  Date   5.80e-2   8.78e-2     0.660 192.   5.10e- 1
+    ## 40 Carex hirt… monoec… fixed  Inv_…  6.27e+0   8.00e+0     0.783  20.2  4.43e- 1
     ## 41 Carex pedu… monoec… fixed  (Int… -5.85e+3   8.98e+2    -6.52   68.5  9.93e- 9
     ## 42 Carex pedu… monoec… fixed  Infl… -2.89e-2   8.13e-2    -0.356   9.25 7.30e- 1
     ## 43 Carex pedu… monoec… fixed  Stig…  1.33e-1   2.00e-1     0.666  70.8  5.08e- 1
