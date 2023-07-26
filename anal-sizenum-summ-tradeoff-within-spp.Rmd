@@ -1,5 +1,5 @@
 ---
-title: "Testing for intraspecific size number tradeoff"
+title: "Pollen size and number analysis"
 author: "Claire Smith"
 date: "2023-06-28"
 output: github_document
@@ -8,7 +8,8 @@ editor_options:
 always_allow_html: true
 ---
 
-Investigating the relationship between pollen size and number within wind-pollinated species using linear regression: pollen number ~ pollen volume
+Examining patterns in pollen size and number in wind-polllinated flowering plant species. 
+Testing for a within-species tradeoff in pollen size and number using linear regression: pollen number ~ pollen volume. 
 
 ```{r initialize, message=F}
 library(tidyverse)
@@ -45,7 +46,6 @@ prod <- prodfull %>%
 ```
 
 
-#### Table 3-1: summary of pollen size and number
 First I'll take a look at a summary of the pollen size and number data - means, standard deviations, and CVs so that I can compare how variable species area relative to each other. I'll remove any species with less than 5 points. 
 
 ```{r summary of size number data}
@@ -136,7 +136,7 @@ prod %>%
         strip.text = element_text(size = 18, face="italic"))
 ```
 
-Now I'll run linear models predicting pollen production by pollen size, and pull out the ones with a significant relationship. 
+Now I'll run linear models predicting pollen production by pollen size
 
 ```{r, linear regression models, cols.print=14}
 #define function to run model 
@@ -174,198 +174,4 @@ write.csv(tidytab_write, "processed-data/tradeoff-reg-model-coefs.csv", row.name
 #take a look
 # print(tidytab, n=Inf)
 
-
-#take a look at r.squared values
-# glance %>%
-#   ggplot(aes(Species, r.squared)) +
-#   geom_point() +
-#   theme(axis.text = element_text(angle=90))
-
 ```
-
-
-# --------old --------------------------------------------------
-```{r}
-#take only species with significant relationships to plot with linear model overtop
-sigsub <- glance %>% filter(p.value<0.05) #7 species
-#Plot relationship between size and number for the 7 species with a significant relationship
-# sigsub$Species
-```
-
-7 species have significant relationships between pollen size and number: Bromus inermis, Elymus innovatus, Festuca campestris, Festuca pratensis, Koeleria cristata, Plantago lanceolata, and Amaranthus retroflexus. 
-
-```{r Bromus inermis tradeoff, dpi=200}
-# Bromus inermis
-sigsub[which(sigsub$Species=="Bromus inermis"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Elymus innovatus tradeoff, dpi=200}
-# Elymus innovatus
-sigsub[which(sigsub$Species=="Elymus innovatus"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Festuca campestris tradeoff, dpi=200}
-#Festuca campestris
-sigsub[which(sigsub$Species=="Festuca campestris"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Festuca pratensis tradeoff, dpi=200}
-# Festuca pratensis
-sigsub[which(sigsub$Species=="Festuca pratensis"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Koeleria cristata tradeoff, dpi=200}
-# Koeleria cristata
-sigsub[which(sigsub$Species=="Koeleria cristata"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Plantago lanceolata tradeoff, dpi=200}
-# Plantago lanceolata
-sigsub[which(sigsub$Species=="Plantago lanceolata"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Amaranthus retroflexus tradeoff, dpi=200}
-#Amaranthus retroflexus
-sigsub[which(sigsub$Species=="Amaranthus retroflexus"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-
-```
-
-Found a significantly negative relationship between pollen volume and number (i.e. size-number trade-off) in 6/15 species (only taking species with at least 15 entries for pollen size/number). I found a significantly positive relationship between size and number in 1 species (Leymus innovatus). 
-
-I'll also run another set of plots with "Date" as a grouping variable.
-
-```{r Bromus inermis tradeoff date}
-# Bromus inermis
-sigsub[which(sigsub$Species=="Bromus inermis"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Elymus innovatus tradeoff date}
-# Elymus innovatus
-sigsub[which(sigsub$Species=="Elymus innovatus"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Festuca campestris tradeoff date}
-#Festuca campestris
-sigsub[which(sigsub$Species=="Festuca campestris"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Festuca pratensis tradeoff date}
-# Festuca pratensis
-sigsub[which(sigsub$Species=="Festuca pratensis"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Koeleria cristata tradeoff date}
-# Koeleria cristata
-sigsub[which(sigsub$Species=="Koeleria cristata"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Plantago lanceolata tradeoff date}
-# Plantago lanceolata
-sigsub[which(sigsub$Species=="Plantago lanceolata"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-```
-
-```{r Amaranthus retroflexus tradeoff date}
-#Amaranthus retroflexus
-sigsub[which(sigsub$Species=="Amaranthus retroflexus"),]$data %>% 
-  as.data.frame() %>% 
-  ggplot(aes(x=Avg_diam, y=Avg_pol_anth, colour=Date)) + 
-  geom_point() + 
-  geom_smooth(method="lm", se=F) + 
-  scale_y_continuous(name="Pollen production per anther") + 
-  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans")
-
-```
-
-
