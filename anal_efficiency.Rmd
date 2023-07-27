@@ -7,9 +7,15 @@ editor_options:
   chunk_output_type: console
 ---
 
-Calculating pollen transfer efficiency - percentage of grains captured per stigma to grains produced per anther. 
+### Question
 
-Do plants that produce more pollen also capture more pollen? And does this relationship change with sex system (do dioecious species have lower efficiencies because they cannot capture self pollen?)
+Do plants that produce more pollen also capture more pollen? And does this relationship change with sex system (do dioecious species have lower efficiencies because they cannot capture self pollen)?
+
+### Goal 
+
+Calculating and plotting pollen transfer efficiency (PTE) for 19 wind-pollinated species. PTE = percentage of grains captured per stigma over grains produced per anther. 
+
+### Loading and preparing data
 
 ```{r initialize, message=F}
 ## Load packages
@@ -20,20 +26,18 @@ library(ggplot2)
 # custom
 source("theme_cs.R")
 # data cleaning
-source("clean-stig-01.R")
-source("clean-stig-02.R")
-source("clean-anthers-04.R") # calls 1, 2, 3 within itself
+source("clean-dat.R")
 ```
 
-
 ```{r read in data}
-# Stigmatic pollen capture
+## Stigmatic pollen capture
 pc.dat <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T) 
 # head(pc.dat)
 # str(pc.dat)
 #Fix a typo in stigma data
 pc.dat$Species <- gsub("Schizacne purpurascens", "Schizachne purpurascens", pc.dat$Species)
-# Pollen production (and size)
+
+## Pollen production (and size)
 sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
 # head(sizenum.dat)
 # str(sizenum.dat)
@@ -41,25 +45,6 @@ sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors =
 
 ```{r process data}
 # The stigma and anther data is at the per-individual level right now - summarize it so that it's at the per-species level
-# # ** go back and do a satterthwaite pooled sd instead of just lumping it all together - for now just combine all by species
-# stig_sum_ind <- pc.dat %>% 
-#   group_by(Species, Date, Site, Plant) %>% 
-#   summarize(Avg_pollen_ind = mean(Flw_pollen, na.rm=T), # within-individual avg pollen receipt
-#             Sd_pollen_ind = sd(Flw_pollen, na.rm=T), # within-individual sd pollen receipt
-#             N_flw = n()) %>% 
-#   # Now ungroup to find total number of individuals sampled in each sp
-#   group_by(Species) %>% 
-#   mutate(N_ind=n()) %>% 
-#   ungroup()
-# 
-# # Pool together to get per-species mean pollen receipt and sd pollen receipt
-# stig_sum_spp <- stig_sum_ind %>% 
-#   group_by(Species) %>% 
-#   summarise(Avg_pollen_sp = mean(Avg_pollen_ind, na.rm=T),
-#             sd_num = sum((N_flw-1)*Sd_pollen_ind^2),
-#             sd_denom = sum(N_flw) - N_ind,
-#             Sd_pollen_sp_pooled = sd_num/sd_denom)
-
 stig_spp <- pc.dat %>% 
   group_by(Species, Sex_sys, source) %>%
   summarise(Avg_stig_sp = mean(Flw_pollen, na.rm=T), 
@@ -73,16 +58,10 @@ prod_spp <- sizenum.dat %>%
             Sd_prod_anth_sp = sd(Avg_pol_anth, na.rm=T),
             n_prod_anth = n(),
             SE_prod_anth_sp = Sd_prod_anth_sp/n_prod_anth)
-
 # View(prod_spp)
-# Join data for plotting - use inner_join() because not all species have both capture and prod data
-# Keep JF data for pollen production when species overlap - I trust the automated counting with the
-# particle counter more than my subsampling counting. It counts all the particles that go through it
-# vs I only count a fraction of the total pollen and assume it's uniformly distributed within the sample.
-# prod_spp$Species[which(prod_spp$source == "CS2021")]
-# prod_spp_filt <- prod_spp %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
 
-
+## Join data
+# I'll use inner_join() because not all species have both capture and prod data.
 pdat <- inner_join(stig_spp, prod_spp, by = c("Species", "Sex_sys"))
 # which species didn't make it from the stigma data?
 anti_pdat <- anti_join(stig_spp, prod_spp, by = c("Species"))
@@ -91,11 +70,9 @@ anti_pdat2 <- anti_join(prod_spp, stig_spp, by = c("Species"))
 # head(pdat)
 # summary(pdat)
 # View(pdat)
-```
 
-2 dioecious species, 8 monoecious species, 9 hermaphroditic species 
+# 19 total species: 2 dioecious species, 8 monoecious species, 9 hermaphroditic species. 
 
-```{r}
 # Re-order levels in sex system column 
 pdat$Sex_sys <- as.character(pdat$Sex_sys)
 pdat$Sex_sys <- factor(pdat$Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))
@@ -103,14 +80,12 @@ pdat$Sex_sys <- factor(pdat$Sex_sys, levels=c("dioecious", "monoecious", "hermap
 # Arrange data so that species are grouped by sex system and ordered alphabetically
 pdat <- arrange(pdat, Sex_sys, Species)
 pdat$Species <- factor(pdat$Species, levels = unique(pdat$Species), ordered = T)
-# names(pdat)
-# [1] "Species"          "Sex_sys"          "Avg_stig_sp"      "Sd_stig_sp"       "n_stig"           "SE_stig_sp"      
-#  [7] "Avg_prod_anth_sp" "Sd_prod_anth_sp"  "n_prod_anth"      "SE_prod_anth_sp" 
 ```
 
-Plots
+### Plots and tables
 
-```{r plot efficiency, fig.dim = c(14, 10)}
+```{r plot efficiency, dpi=200, fig.dim = c(12, 7)}
+## Plot pollen capture vs pollen production:
 pdat %>% 
   ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys) ) + 
   geom_point(size=5, alpha=0.8) + 
@@ -128,9 +103,8 @@ pdat %>%
 
 ```
 
-A plot with labels, for reference (zoom into saved file)
-
-```{r plot efficiency w labels, fig.dim = c(28,20)}
+```{r plot efficiency w labels, dpi=200, fig.dim = c(28,20)}
+## A plot with labels, for reference (zoom into saved file to see labels):
 pdat %>% 
   ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys, label=Species) ) + 
   geom_point(size=3, alpha=0.8) + 
@@ -149,9 +123,8 @@ pdat %>%
   theme_cs(font="sans", fontsize=20)
 
 ```
-Tables
 
-```{r}
+```{r table pollination efficiency}
 # Create table of pollination efficiency
 
 eff_tab <- pdat %>% dplyr::group_by(Sex_sys, Species) %>% 
@@ -163,7 +136,5 @@ eff_tab <- pdat %>% dplyr::group_by(Sex_sys, Species) %>%
 print(eff_tab, width = 90)
 
 write.csv(eff_tab, "processed-data/efficiency-table.csv", row.names = F)
-
-
 ```
 

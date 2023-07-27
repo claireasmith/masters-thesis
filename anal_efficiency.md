@@ -3,12 +3,19 @@ Pollination efficiency
 Claire Smith
 2023-06-23
 
-Calculating pollen transfer efficiency - percentage of grains captured
-per stigma to grains produced per anther.
+### Question
 
 Do plants that produce more pollen also capture more pollen? And does
 this relationship change with sex system (do dioecious species have
 lower efficiencies because they cannot capture self pollen?)
+
+### Goal
+
+Calculating and plotting pollen transfer efficiency (PTE) for 19
+wind-pollinated species. PTE = percentage of grains captured per stigma
+over grains produced per anther.
+
+### Loading and preparing data
 
 ``` r
 ## Load packages
@@ -19,19 +26,18 @@ library(ggplot2)
 # custom
 source("theme_cs.R")
 # data cleaning
-source("clean-stig-01.R")
-source("clean-stig-02.R")
-source("clean-anthers-04.R") # calls 1, 2, 3 within itself
+source("clean-dat.R")
 ```
 
 ``` r
-# Stigmatic pollen capture
+## Stigmatic pollen capture
 pc.dat <- read.csv("processed-data/stig-no-rep-spp.csv", stringsAsFactors = T) 
 # head(pc.dat)
 # str(pc.dat)
 #Fix a typo in stigma data
 pc.dat$Species <- gsub("Schizacne purpurascens", "Schizachne purpurascens", pc.dat$Species)
-# Pollen production (and size)
+
+## Pollen production (and size)
 sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
 # head(sizenum.dat)
 # str(sizenum.dat)
@@ -39,25 +45,6 @@ sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors =
 
 ``` r
 # The stigma and anther data is at the per-individual level right now - summarize it so that it's at the per-species level
-# # ** go back and do a satterthwaite pooled sd instead of just lumping it all together - for now just combine all by species
-# stig_sum_ind <- pc.dat %>% 
-#   group_by(Species, Date, Site, Plant) %>% 
-#   summarize(Avg_pollen_ind = mean(Flw_pollen, na.rm=T), # within-individual avg pollen receipt
-#             Sd_pollen_ind = sd(Flw_pollen, na.rm=T), # within-individual sd pollen receipt
-#             N_flw = n()) %>% 
-#   # Now ungroup to find total number of individuals sampled in each sp
-#   group_by(Species) %>% 
-#   mutate(N_ind=n()) %>% 
-#   ungroup()
-# 
-# # Pool together to get per-species mean pollen receipt and sd pollen receipt
-# stig_sum_spp <- stig_sum_ind %>% 
-#   group_by(Species) %>% 
-#   summarise(Avg_pollen_sp = mean(Avg_pollen_ind, na.rm=T),
-#             sd_num = sum((N_flw-1)*Sd_pollen_ind^2),
-#             sd_denom = sum(N_flw) - N_ind,
-#             Sd_pollen_sp_pooled = sd_num/sd_denom)
-
 stig_spp <- pc.dat %>% 
   group_by(Species, Sex_sys, source) %>%
   summarise(Avg_stig_sp = mean(Flw_pollen, na.rm=T), 
@@ -84,14 +71,9 @@ prod_spp <- sizenum.dat %>%
 
 ``` r
 # View(prod_spp)
-# Join data for plotting - use inner_join() because not all species have both capture and prod data
-# Keep JF data for pollen production when species overlap - I trust the automated counting with the
-# particle counter more than my subsampling counting. It counts all the particles that go through it
-# vs I only count a fraction of the total pollen and assume it's uniformly distributed within the sample.
-# prod_spp$Species[which(prod_spp$source == "CS2021")]
-# prod_spp_filt <- prod_spp %>% filter(source != "CS2021" |  Species == "Amaranthus retroflexus")
 
-
+## Join data
+# I'll use inner_join() because not all species have both capture and prod data.
 pdat <- inner_join(stig_spp, prod_spp, by = c("Species", "Sex_sys"))
 # which species didn't make it from the stigma data?
 anti_pdat <- anti_join(stig_spp, prod_spp, by = c("Species"))
@@ -100,11 +82,9 @@ anti_pdat2 <- anti_join(prod_spp, stig_spp, by = c("Species"))
 # head(pdat)
 # summary(pdat)
 # View(pdat)
-```
 
-2 dioecious species, 8 monoecious species, 9 hermaphroditic species
+# 19 total species: 2 dioecious species, 8 monoecious species, 9 hermaphroditic species. 
 
-``` r
 # Re-order levels in sex system column 
 pdat$Sex_sys <- as.character(pdat$Sex_sys)
 pdat$Sex_sys <- factor(pdat$Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"))
@@ -112,14 +92,12 @@ pdat$Sex_sys <- factor(pdat$Sex_sys, levels=c("dioecious", "monoecious", "hermap
 # Arrange data so that species are grouped by sex system and ordered alphabetically
 pdat <- arrange(pdat, Sex_sys, Species)
 pdat$Species <- factor(pdat$Species, levels = unique(pdat$Species), ordered = T)
-# names(pdat)
-# [1] "Species"          "Sex_sys"          "Avg_stig_sp"      "Sd_stig_sp"       "n_stig"           "SE_stig_sp"      
-#  [7] "Avg_prod_anth_sp" "Sd_prod_anth_sp"  "n_prod_anth"      "SE_prod_anth_sp" 
 ```
 
-Plots
+### Plots and tables
 
 ``` r
+## Plot pollen capture vs pollen production:
 pdat %>% 
   ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys) ) + 
   geom_point(size=5, alpha=0.8) + 
@@ -138,9 +116,8 @@ pdat %>%
 
 ![](anal_efficiency_files/figure-gfm/plot%20efficiency-1.png)<!-- -->
 
-A plot with labels, for reference (zoom into saved file)
-
 ``` r
+## A plot with labels, for reference (zoom into saved file to see labels):
 pdat %>% 
   ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys, label=Species) ) + 
   geom_point(size=3, alpha=0.8) + 
@@ -160,7 +137,6 @@ pdat %>%
 ```
 
 ![](anal_efficiency_files/figure-gfm/plot%20efficiency%20w%20labels-1.png)<!-- -->
-Tables
 
 ``` r
 # Create table of pollination efficiency
@@ -208,12 +184,12 @@ print(eff_tab, width = 90)
     ##  1            2070.           564.    0.109
     ##  2            3320.          1295.    0.111
     ##  3            2648.           618.    0.846
-    ##  4             766.           388.    6.66 
-    ##  5             607.           100.    1.86 
+    ##  4             741.           391.    6.88 
+    ##  5             618.            88.5   1.83 
     ##  6             665.           152.    4.11 
-    ##  7             518.           126.    2.05 
+    ##  7             525.           126.    2.03 
     ##  8            1006.           115.    0.985
-    ##  9             413.            72.9   1.13 
+    ##  9             415.            73.2   1.12 
     ## 10             758.           166.    0.875
     ## 11             169.            63.7   3.05 
     ## 12            5659.          2452.    0.894
