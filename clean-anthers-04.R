@@ -87,15 +87,13 @@ sp_all <- rbind(JF2001_2004_pre, CS2021_pre)
 
 ### Cleaning up joined pollen number data
 
-# # Keep only species with at least 5 individuals
-# sp_sum <- sp_all %>% group_by(Species) %>% dplyr::summarize(n=n())
-# keep_vec <- sp_sum$Species[which(sp_sum$n>=5)]
-# 
-# sp_all_5ormore <- sp_all[sp_all$Species %in% keep_vec,]
-# sp_dat <- sp_all_5ormore
+## Keep only species with at least 3 individuals
+sp_sum <- sp_all %>% group_by(Species) %>% dplyr::summarize(n=n())
+keep_vec <- sp_sum$Species[which(sp_sum$n>=3)]
+sp_3ormore <- sp_all[sp_all$Species %in% keep_vec,]
 
 # Update names to full species names to full versions
-sp_dat <- sp_all %>% 
+sp_dat <- sp_3ormore %>% 
   mutate(Species=stringr::str_replace_all(Species, c("A.artemisi"="Ambrosia artemisiifolia",
                                                      "Astolonifera"="Agrostis stolonifera",
                                                      "Atrachg"="Elymus trachycaulus",
