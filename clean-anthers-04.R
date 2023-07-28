@@ -156,36 +156,18 @@ sp_dat_ss <- sp_dat %>%
 # View(sp_dat_ss[which(is.na(sp_dat_ss$Sex_sys),)]) # none NA
 
 # Remove any repeat lines if they exist
-sp_dat_distinct <- sp_dat_ss %>% distinct() 
-
-## Add in anthers per flower...
-# If it comes from JF 2001 it will be a grass, so Anth_per_flw = 3. Sedges also have 3 stamens. 
-sp_dat2 <- sp_dat_distinct %>% 
-  mutate(Anth_per_flw = case_when(source == "JF2001" ~ 3,
-                                  Species == "Ambrosia artemisiifolia" ~ Anth_per_sample,
-                                  Species == "Chenopodium album" ~ 5,
-                                  source == "JF2004" & Species == "Carex communis" ~ 3,
-                                  source == "JF2004" & Species == "Carex hirtifolia" ~ 3,
-                                  source == "JF2004" & Species == "Carex pedunculata" ~ 3,
-                                  source == "JF2004" & Species == "Carex stipata" ~ 3,
-                                  Species == "Plantago lanceolata" ~ 4,
-                                  Species == "Rumex acetosella" ~ Anth_per_sample,
-                                  source == "JF2004" & Species == "Rumex crispus" ~ Anth_per_sample,
-                                  source == "JF2004" & Species == "Scirpus microcarpus" ~ 3,
-                                  source == "JF2004" & Species == "Schizachne purpurascens" ~ 3,
-                                  source == "JF2004" & Species == "Thalictrum dioicum" ~ Anth_per_sample,
-                                  Species == "Amaranthus retroflexus" ~ 5,
-                                  TRUE ~ as.numeric(as.character(Anth_per_flw))))
-
+sp_dat2 <- sp_dat_ss %>% distinct() 
 
 sp_dat3 <- sp_dat2 %>% mutate(Pol_flw = Avg_pol_anth*Anth_per_flw,
                             Sd_pol_flw = Sd_pol_anth*Anth_per_flw)
 
 # After looking at ridgeplot distributions of pollen production it looks like there are some clear outliers in some species - like Phleum pratense
 # prodfull %>% filter(Species == "Phleum pratense")
-# looks like Ind C11 is the one, with 16161 grains/anther! The rest are all <10,000. I'll
-# remove it
-sp_dat3 <- sp_dat3 %>% filter(!(Species=="Phleum pratense" & Ind == "C11"))
+# looks like Ind C11 is one, with 16161 grains/anther! The rest are all <10,000. I'll remove it
+sp_dat3 <- sp_dat3 %>% 
+  # remove outliers 
+  filter(!(Species=="Phleum pratense"&Ind=="C11")) %>% 
+  filter(!(Species=="Elymus innovatus"&Ind=="EI01"))
 # prodfull_filt %>% filter(Species == "Phleum pratense") # make sure it's gone
 
 write.csv(sp_dat3, "processed-data/size-prod-all.csv", row.names = F)
@@ -194,7 +176,7 @@ write.csv(sp_dat3, "processed-data/size-prod-all.csv", row.names = F)
 # with a particle counter. It counts all particles that go through it vs small subsample I 
 # counted in mine, makes less assumptions about how uniformly pollen is suspended in the sample -- I'll keep her data where there's overlap. 
 
-# A very long line of code to find out if there are any species in my production data NOT also included in the JF data: 
+# Are any species in my production data NOT also included in the JF data?
 (unique(sp_dat3$Species[which(sp_dat3$source == "CS2021")]))[!(unique(sp_dat3$Species[which(sp_dat3$source == "CS2021")])) %in% unique(sp_dat3$Species[which(sp_dat3$source == "JF2001" | sp_dat3$source == "JF2004" )])]
 # Amaranthus retroflexus is the only one
 # Exclude all pollen production data from CS2021 except Amaranthus retroflexus
