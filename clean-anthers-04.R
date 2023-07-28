@@ -97,14 +97,17 @@ sp_all <- rbind(JF2001_2004_pre, CS2021_pre)
 # Update names to full species names to full versions
 sp_dat <- sp_all %>% 
   mutate(Species=stringr::str_replace_all(Species, c("A.artemisi"="Ambrosia artemisiifolia",
+                                                     "Astolonifera"="Agrostis stolonifera",
+                                                     "Atrachg"="Elymus trachycaulus",
                                              "Binermis"="Bromus inermis",
+                                             "Bcarianatus"="Bromus carianatus",
                                              "C.album"="Chenopodium album",
                                              "C.communis"="Carex communis",
                                              "C.hirtifol"="Carex hirtifolia",
                                              "C.peduncul"="Carex pedunculata",
                                              "C.stipata"="Carex stipata",
                                              "C.plantagi"="Carex plantaginea",
-                                             "Einnovatus"="Elymus innovatus",
+                                             "Einnovatus"="Leymus innovatus",
                                              "Fcampestris"="Festuca campestris",
                                              "P.lanceola"="Plantago lanceolata",
                                              "Ppratense"="Phleum pratense",
