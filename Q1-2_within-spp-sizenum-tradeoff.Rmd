@@ -1,0 +1,229 @@
+---
+title: "Testing for intraspecific pollen size-number tradeoffs"
+author: "Claire Smith"
+date: "2023-07-28"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+### Goal
+
+Testing for a within-species tradeoff in pollen size and number using linear regression: pollen number ~ pollen volume. 
+
+If n = number of grains per anther, s = pollen grain size, and e is the average resources for pollen production per flower, then we should expect
+
+$$n \propto e s^a $$
+where a is a constant determining the shape of the relationship between pollen number and size. 
+
+If we let c be some constant converting pollen size to number, we have
+
+$$ n = c s^a $$
+
+If pollen size and number trade off, a should be negative. Since pollen diameter is our measure for s, and pollen from wind-pollinated plants tends to be spherical, we should expect s to be related to n by a power of 3. So if pollen diameter and number trade off, we should expect a to be equal to (or less than) -3.
+
+I'll test for a tradeoff between pollen diameter and number by log-transforming n and s,
+
+$$log(n) = log(c s^a) = log(c) + a log(s) $$
+and estimating a and the intercept log(c) using linear regression.
+
+```{r initialize, message=F}
+library(tidyverse)
+library(ggplot2)
+library(lme4)
+library(lmerTest)
+source("theme_cs.R")
+```
+
+```{r read in data}
+# Read in individual-level pollen size and number data
+prodfull <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T) 
+# head(prodfull)
+# str(prodfull)
+# summary(prodfull)
+
+# Keep only entries with both size and prod values
+prod <- prodfull %>% 
+  filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth))
+
+# Add log-transformed pollen per anther to dataframe
+prod$Log_avg_pol_anth <- log(prod$Avg_pol_anth)
+prod$Log_avg_diam <- log(prod$Avg_diam)
+
+# Sort species alphabetically
+prod <- prod %>% arrange(Species)
+
+# Remove outliers identified below
+prod <- prod %>% 
+  filter(Species == "Plantago lanceolata" & Ind!="q" | Species !="Plantago lanceolata") %>% 
+  filter(Species == "Phleum pratense" & Ind!="C17" | Species !="Phleum pratense") %>% 
+  filter(Species == "Hierochloe odorata" & Ind!="08P" | Species !="Hierochloe odorata") %>% 
+  filter(Species == "Festuca campestris" & Ind!="FF07" | Species !="Festuca campestris")
+
+# Nest data by species to make it easier to handle
+by_spp <- prod %>% group_by(Species, Sex_sys) %>% 
+  nest() %>% 
+  arrange(Species) %>% 
+  # Keep only species with at least 10 entries %>% 
+  mutate(nind = purrr::map(data, nrow)) %>% 
+  filter(nind>=10)
+# 23 species remaining
+```
+
+To test for tradeoffs in pollen size and number within species, I will build a linear model for each species predicting pollen production by pollen size. 
+
+First I'll go through each species' data and look at the distributions of pollen size and number to see how symmetric they are and if there are any obvious outliers. 
+
+```{r inspect data}
+#inspect distributions of mean pollen diam and pollen production for each species - are they symmetric? any obvious outliers? 
+#define function for this
+checkfun <- function(df,i){
+  spec = as.character(df[i,]$Species)
+  n=length(df[i,]$data[[1]]$Avg_diam)
+  par(mfrow = c(2, 2))
+  hist(df[i,]$data[[1]]$Avg_diam, main=paste(spec, "n=",n), xlab="Mean pollen diameter")
+  hist(log(df[i,]$data[[1]]$Avg_diam), main=paste(spec, "n=",n), xlab="Log mean pollen diameter")
+  hist(df[i,]$data[[1]]$Avg_pol_anth, main=paste(spec, "n=",n), xlab="Mean pollen per anther")
+  hist(log(df[i,]$data[[1]]$Avg_pol_anth), main=paste(spec, "n=",n), xlab="Log mean pollen per anther")
+  par(mfrow=c(1,1))
+}
+
+# Run through all species
+# by_spp$Species
+checkfun(by_spp,13)
+
+# Pollen production per anther tends to be right-skewed 
+
+```
+
+I'll plot all the data as pollen production vs size to get an idea of what it looks like, and if there's any clear outliers or potential grouping in the data. 
+
+```{r all tradeoff plots, dpi=200, fig.dim=c(16,24)}
+prod %>% 
+  filter(Species %in% by_spp$Species) %>% 
+  ggplot(aes(x=Avg_diam, y=Avg_pol_anth)) + 
+  geom_point() + 
+  geom_smooth(method = "glm", formula = y~log(x),
+              method.args = list(family = gaussian(link = 'log')),
+              se=F) +
+  facet_wrap(~Species, scales = "free", ncol=5) + 
+  scale_y_continuous(name="Pollen production per anther") + 
+  scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
+  theme_cs(font = "sans") + 
+  theme(strip.background = element_rect(linewidth = NULL,
+                                        linetype = NULL,
+                                        colour = "white"),
+        strip.text = element_text(face="italic"))
+```
+
+Now I'll run linear models predicting pollen production by pollen size
+
+```{r, linear regression models, cols.print=14}
+#define function to run model 
+spp_model <- function(df) {
+  lm(Log_avg_pol_anth ~ Log_avg_diam, data = df)
+}
+#run models and add model to by_spp dataframe
+by_spp <- by_spp %>% 
+  mutate(model = purrr::map(data, spp_model)) %>% 
+  arrange(Sex_sys, Species) # arrange in order of sex sys, then alphabetical
+#get model summary using glance() from "broom"
+glance <- by_spp %>% 
+  mutate(glance = purrr::map(model, broom::glance)) %>% 
+  unnest(glance, .drop=T)
+# put this in a viewable format (remove nested data and model info)
+glancetab <- glance %>% select(-c(data, model)) %>% 
+  arrange(Sex_sys, Species)
+#save this in a new table without the ugly list elements, which I can print to a file
+glancetab_write <- glance %>% select(-c(data, model)) %>% 
+  arrange(Sex_sys, Species) %>% apply(2, as.character) # coercing all columns to characters so that I can write this to a file
+write.csv(glancetab_write, "processed-data/tradeoff-reg-model-sum.csv", row.names = F)
+#take a look
+print(glancetab, n=Inf)
+
+#similar - but using broom::tidy(), gives me model coefficients
+tidy <- by_spp %>% 
+  mutate(tidy = purrr::map(model, broom::tidy)) %>% 
+  unnest(tidy, .drop=T)
+tidytab <- tidy %>% select(-c(data, model)) %>% 
+  arrange(Sex_sys, Species)
+print(tidytab, n=46)
+tidytab_write <- tidy %>% select(-c(data, model)) %>% 
+  arrange(Sex_sys, Species) %>% apply(2, as.character)
+write.csv(tidytab_write, "processed-data/tradeoff-reg-model-coefs.csv", row.names = F)
+#take a look
+# print(tidytab, n=Inf)
+
+# Which species have estimates <= -3? 
+tidytab[which(tidytab$term == "Log_avg_diam" & tidytab$estimate <= -3),]
+# 6 species: Bromus inermis, Chenopodium album, Festuca pratensis, Koeleria cristata,
+# Ambrosia artemisiifolia, and Carex hirtifolia
+# Any >=3?
+tidytab[which(tidytab$term == "Log_avg_diam" & tidytab$estimate >= 3),]
+# 2 species: Leymus innovatus and Stipa columbiana
+
+```
+
+Check model assumptions, look for outliers: 
+
+```{r test model assumptions}
+## Test assumptions for each linear model
+#define function for this
+checkassum <- function(df,spec){
+  dat = df %>% filter(Species == spec)
+  mod = lm(Log_avg_pol_anth ~ Log_avg_diam, data = dat)
+  par(mfrow = c(2, 2))
+  plot(mod, main=as.character(spec))
+  par(mfrow=c(1,1))
+}
+
+prod2 <- prod %>% filter(Species %in% by_spp$Species) %>% droplevels()
+spvec <- levels(prod2$Species)
+for (spec in spvec) {
+  checkassum(prod, spec)
+}
+
+# Quite a few species look like there's deviations from normality (from QQ line) near extremes of residuals
+
+# point 20 in Plantago lanceolata has very negative standardized residual (<-3), almost 0.5 cook's d
+# will remove
+# point 5 Phleum pratense also has standardized residual <-3
+# Hierochloe odorata 5 has standardized residual <-4!! 
+# Festuca campestris point 7 also has standardized residual <-4
+# Also seems to be a point with unusually high leverage in A artemisiifolia
+
+# test = prod %>% filter(Species == "Plantago lanceolata")
+# # point 20 Ind="q"
+# test = prod %>% filter(Species == "Phleum pratense")
+# # point 5 Ind = C17
+# test = prod %>% filter(Species == "Hierochloe odorata")
+# # point 5 Ind=08P -- 50 grains per anther! seems like an error
+# test = prod %>% filter(Species == "Festuca campestris")
+# # point 7 Ind=FF07, also very low grains per anther
+# 
+# filter(Species == "Plantago lanceolata" & Ind!="q" | Species !="Plantago lanceolata") %>% 
+# filter(Species == "Phleum pratense" & Ind!="C17" | Species !="Phleum pratense") %>% 
+# filter(Species == "Hierochloe odorata" & Ind!="08P" | Species !="Hierochloe odorata") %>% 
+# filter(Species == "Festuca campestris" & Ind!="FF07" | Species !="Festuca campestris")
+# 
+# 
+# test = prod %>% filter(Species == "Ambrosia artemisiifolia")
+# library(ggfortify)
+# autoplot(tmod)
+# 
+# model.diag.metrics <- broom::augment(tmod)
+# head(model.diag.metrics)
+# 
+# model.diag.metrics <- model.diag.metrics %>%
+#   mutate(index = 1:nrow(model.diag.metrics)) %>%
+#   select(index, everything(), -.sigma)
+# # point 4 has very high hat values relative to everything else - 0.5
+# test
+# # Individual 4 has the largest pollen measured for this species: 19 um, with high sd. It also has
+# # relatively few N diam measurements (~6000), which isn't the lowest reported but is a lot lower
+# # than other inds. It has relatively low pollen per anther but again not the lowest. 
+# 
+# 
+
+```
+
