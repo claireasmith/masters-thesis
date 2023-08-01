@@ -24,27 +24,9 @@ prodfull <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
 # head(prodfull)
 # str(prodfull)
 # summary(prodfull)
-```
-
-First I'll take a look at the data and make any adjustments that I want to carry throughout the whole script. In later plots I identified two obvious outliers -- I'll remove these. 
-
-```{r check data}
-# head(prodfull)
-# summary(prodfull)
 prod <- prodfull %>% 
-  filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth)) %>% # want only entries with both size and prod values
-  # remove outliers
-  filter(!(Species=="Phleum pratense"&Ind=="C11")) %>% 
-  filter(!(Species=="Elymus innovatus"&Ind=="EI01")) %>% 
-  # Update species names 
-  # Agropyron trachycaulum => Elymus trachycaulus
-  # Elymus innovatus => Leymus innovatus
-  mutate(Species = gsub("Agropyron trachycaulum", "Elymus trachycaulus", Species),
-         Species = gsub("Elymus innovatus", "Leymus innovatus", Species)) %>% 
-  mutate(Species = gsub("Bcarianatus", "Bromus carinatus", Species),
-         Species = gsub("Astolonifera", "Agrostis stolonifera", Species)) 
+  filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth)) # want only entries with both size and prod values
 ```
-
 
 First I'll take a look at a summary of the pollen size and number data - means, standard deviations, and CVs so that I can compare how variable species area relative to each other. I'll remove any species with less than 5 points. 
 
@@ -78,6 +60,8 @@ prod_summary_filt <- prod_summary
 #write it to a file I will make a table with 
 write.csv(prod_summary_filt, "summary-data/sizeprod-summary.csv", row.names = F, fileEncoding = "UTF-8")
 ```
+
+Pollen size seems much less variable than pollen number. I'll test whether this difference is significant using a paired t test. 
 
 ```{r t test variance in pollen size vs number}
 # how variable is pollen size/num across species? 
