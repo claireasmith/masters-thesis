@@ -1,0 +1,584 @@
+---
+title: "PGLS pollen size by sex system"
+author: "Claire Smith"
+date: "2023-06-27"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+PGLS analysis based on tutorial by Roger Mundry from the Chapter 6 practical material from Modern Phylogenetic Comparative Methods and Their Application in Evolutionary Biology (Springer 2014). Link: https://www.mpcm-evolution.com/practice/online-practical-material-chapter-6/chapter-6-1exercises-testing-assumptions-statistical-issues-framework-phylogenetic-generalized-least-squares
+
+I'll run two analyses: 
+
+B. Does pollen size vary in wind-pollinated species according to their sex system? Specifically, do dioecious species make smaller pollen (to facilitate long-distance dispersal)? 
+
+model: pollen size ~ sex system + collector
+
+A. Is there an effect of sex system on pollen number? Do we see a size-number tradeoff across species (i.e. is there an effect of pollen size on number)?
+
+model: pollen production/anther ~ pollen size + sex system + collector
+
+Variables:
+- pollen production/anther is average pollen produced per anther per species
+- pollen size is the mean diameter of pollen grains per species
+- sex system is a categorical test predictor with 3 levels (dioecious, monoecious, hermaphroditic)
+- collector is a categorical control predictor with 2 levels (CS, JF), to control for any effects on pollen load depending on who collected the data
+
+```{r initialize, message=F}
+# Load packages
+library(dplyr)
+library(car)
+library(V.PhyloMaker2)
+library(ape)
+library(dplyr)
+library(caper)
+
+library(lme4)
+library(lmerTest)
+library(ggplot2)
+library(emmeans)
+library(gghalves)
+library(ggdist)
+
+library(knitr) # to make nice tables
+
+source("theme_cs.R")
+```
+
+### Read in and prepare data
+
+Read in the tree data:
+
+```{r read tree data}
+#read the phylogeny into an R object
+sizenum_tree <- read.tree("processed-data/sizenum_tree.nwk")
+#inspect the tree
+# str(sizenum_tree)
+```
+
+The tree has 29 tips and 27 internal nodes. Plot the tree:
+
+```{r plot tree}
+plot.phylo(x=sizenum_tree, cex=0.7, direction="upwards", no.margin=TRUE)
+```
+
+Read in and prepare trait data: 
+
+```{r read trait data}
+## read in data with pollen size/number 
+sizenum_raw <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
+# head(sizenum)
+# summary(sizenum)
+# str(sizenum)
+
+```
+
+I want the data to be at the species level -- I'll take species-wide averages. I'll also filter the data so that I only keep species with at least 5 individuals. At the same time, I'll edit some species names to match those in the tree dataset (in later analyses mismatches come up as dropped data when I try to join tree and trait data together). I'll add a new column, "Species_", that has an underscore between genus and species, to match the species name format in the tree data. And I'll also add a "collector" column that specifies whether I (CS) or JF collected the data, in case it has an effect. 
+
+```{r prepare trait data}
+# species-wide averages
+sizenum <- sizenum_raw %>% 
+  # Update species names to match tree
+  # Agropyron trachycaulum => Elymus trachycaulus
+  # Elymus innovatus => Leymus innovatus
+  mutate(Species = gsub("Agropyron trachycaulum", "Elymus trachycaulus", Species),
+         Species = gsub("Elymus innovatus", "Leymus innovatus", Species)) %>% 
+  mutate(Species = gsub("Bcarianatus", "Bromus carinatus", Species),
+         Species = gsub("Astolonifera", "Agrostis stolonifera", Species)) %>% 
+  # Species_ to match style of species names in phylogeny
+  mutate(Species_ = gsub(" ", "_", Species)) %>% 
+  # create column "Collector" describing who took the data
+  mutate(collector = as.factor(case_when(source == "CS2021" ~ "CS",
+                               source == "JF2001" ~ "JF",
+                               source == "JF2004" ~ "JF"))) %>% 
+  # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(Sex_sys, Species) %>% 
+  filter(!is.na(Avg_diam) & !is.na(Avg_pol_anth))
+
+sizenum_sp <- sizenum %>% 
+  group_by(Sex_sys, Species, Species_, source) %>% 
+  summarize(Avg_pol_anth = mean(Avg_pol_anth),
+            Avg_diam = mean(Avg_diam),
+            N = n()) %>%
+  filter(N>=3) %>% # Keep only species with at least 3 individuals
+  droplevels() %>% 
+  as.data.frame()
+
+# add this to species-level data 
+# head(sizenum_sp)
+# summary(sizenum_sp) # 31 species
+# str(sizenum_sp) 
+# sum(is.na(sizenum_sp)) # no missing data
+# # sample size per sex system: 
+# sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
+# # sample size per species:
+# print(sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(N=N), n=Inf)
+
+sizenum_sp$Log_avg_pol_anth <- log(sizenum_sp$Avg_pol_anth)
+sizenum_sp$Log_avg_diam <- log(sizenum_sp$Avg_diam)
+
+```
+
+The resulting dataset has 31 species.
+
+Key variables:
+
+* "Avg_pol_anth" - mean pollen production per anther, per species
+* "Avg_diam" - the mean pollen diameter (per flower) per species in um, averaged within individuals then across individuals to get a species-wide mean
+* "collector" - a factor with 2 levels to control for who collected the data (CS or JF)
+* "Sex_sys" - a factor with 3 levels specifying a species' sex system (dioecious, monoecious, or hermaphroditic). 
+
+## Pre model-fitting checks:
+
+#### Histograms and boxplots to check distributions of predictors and response variables
+
+Pollen size: 
+
+```{r pollen size pre fit dist}
+# pollen size: 
+ggplot(sizenum_sp) + 
+  geom_histogram(aes(x=Avg_diam)) + 
+  theme_cs()
+ggplot(sizenum_sp) + 
+  geom_histogram(aes(x=Avg_diam)) + 
+  facet_grid(Sex_sys~.) + 
+  theme_cs()
+ggplot(sizenum_sp) + 
+  geom_boxplot(aes(y=Avg_diam, x=Sex_sys)) + 
+  xlab("Sex system") + 
+  ylab("Pollen diameter") + 
+  theme_cs()
+#looks okay, not too skewed, no obvious outliers
+```
+
+Pollen production: 
+
+```{r pollen production pre fit dist}
+# pollen number: 
+ggplot(sizenum_sp) + 
+  geom_histogram(aes(x=Avg_pol_anth)) + 
+  theme_cs()
+# looks pretty right-skewed
+ggplot(sizenum_sp) + 
+  geom_histogram(aes(x=Avg_pol_anth)) + 
+  facet_grid(Sex_sys~.) + 
+  theme_cs()
+ggplot(sizenum_sp) + 
+  geom_boxplot(aes(y=Avg_pol_anth, x=Sex_sys)) + 
+  xlab("Sex system") + 
+  ylab("Pollen production") + 
+  theme_cs()
+
+# log pollen number: 
+# min(sizenum_sp$Avg_pol_anth) # non-zero - can log-transform
+sizenum_sp$Log_avg_pol_anth <- log(sizenum_sp$Avg_pol_anth)
+
+ggplot(sizenum_sp) + 
+  geom_histogram(aes(x=Log_avg_pol_anth)) + 
+  theme_cs()
+# looks more symmetrical!
+ggplot(sizenum_sp) + 
+  geom_histogram(aes(x=Log_avg_pol_anth)) + 
+  facet_grid(Sex_sys~.) + 
+  theme_cs()
+ggplot(sizenum_sp) + 
+  geom_boxplot(aes(y=Log_avg_pol_anth, x=Sex_sys)) + 
+  xlab("Sex system") + 
+  ylab("Log pollen production") + 
+  theme_cs()
+```
+
+It's a little had to tell because there are only 2 species in the dioecious group, but it looks like overall pollen production tends to have a right-skewed distribution, so I will log transform it to make the distribution more symmetric. 
+
+Sex system and collector: 
+
+```{r sex system pre fit dist}
+#inspect the frequency distributions of the factors
+table(sizenum_sp$collector) #CS:1, JF:26 #only 1 CS! Will not consider collector for the analyses then
+table(sizenum_sp$Sex_sys)
+     # dioecious     monoecious hermaphroditic 
+     #         2              8             17 
+```
+
+#### Multicollinearity 
+
+Are there collinear predictors? Test for multicollinearity using function vif from package "car" (Fox & Weisberg 2011).
+
+```{r test for multicollinearity}
+# are size and sex system collinear? 
+# the only model with multiple predictors is this one: 
+testmod <- lm(Log_avg_pol_anth ~ Avg_diam + Sex_sys, data=sizenum_sp)
+vif(mod=testmod) # use vif() from "car"
+# no! (not over 10)"
+```
+
+#### Combine data
+
+To do the phylogenetic least squares analysis (PGLS), the function pgls() needs the data and the tree to be combined into a single object, do this with the function comparative.data() from "caper":
+
+```{r combine trait and tree data}
+test.data=comparative.data(phy=sizenum_tree, data=sizenum_sp, names.col=Species_, vcv=TRUE, na.omit=FALSE, warn.dropped=TRUE)
+#were any species dropped?
+test.data$dropped # "Setaria_viridis"
+```
+
+## Effect of sex system on pollen number
+
+A. Is there an effect of sex system on pollen number? Do we see a size-number tradeoff across species (i.e. is there an effect of pollen size on number)?
+
+Take a look at the data before running the model - it looks like there could be a positive trend - or two groups? 
+
+```{r}
+ggplot(sizenum_sp, aes(x=Avg_diam, y=Avg_pol_anth, colour=Sex_sys, label=Species)) +
+  geom_point() + 
+  geom_label()
+```
+
+model: pollen production/anther ~ pollen size + sex system + collector
+
+First I'll fit the full model with branch length parameter lambda estimated using maximum likelihood. 
+
+
+```{r fit PGLS model prod}
+# fit the PGLS model:
+fullA <- pgls(Log_avg_pol_anth ~ Log_avg_diam + Sex_sys, dat=test.data, lambda="ML")
+summary(fullA)
+# kable(summary(fullA)$coefficients)
+# ML lambda estimate is 0, not significantly different from 0, significantly different from 1. 
+# anova(fullA) # sig effect of diam and sex sys
+kable(anova(fullA))
+```
+
+The PGLS model showed that size and sex system both have a significant effect on pollen production at alpha=0.05. 
+
+Take a look at likelihood surface for lambda. 
+
+```{r}
+plot(pgls.profile(fullA, "lambda")) # strange likelihood surface - it peaks at 0, drops off sharply around 1
+```
+
+The surface looks kind of flat - not sure how valid it is to say the estimate should be 0. 
+
+
+#### Post model fit checks
+
+I'll inspect the residuals for normality and homogeneity. 
+
+```{r}
+#inspect the phylogenetic residuals for normality:
+hist(fullA$phyres) #looks pretty normal
+qqnorm(fullA$phyres) 
+qqline(fullA$phyres) #looks okay? deviates from the line at the extremes, especially at the largest point, but is otherwise pretty close
+#inspect phylogenetic residuals for homogeneity:
+plot(x=fitted(fullA), y=fullA$phyres, pch=19)
+# only 2 dieocious species - 
+```
+
+Two points clearly have greater fitted values and less variance - these are likely the dioecious species. There being only two dioecious species might give these species undue influence in the model and not represent their sex system well. 
+
+### Linear mixed effects model
+
+Since the ML lambda was not significantly different from 0 (lambda=0 corresponds to a normal OLS model, no phylogenetic signal in the data), I'll also run a linear mixed effects model with species as a random effect. Since there was no evidence of phylogenetic signal (lambda not being significantly different from 0), this will let me use a fuller dataset with individual-level rather than species-level data for pollen size, to capture more within-species variation. 
+
+```{r prepare mixed mod data}
+# sizenum has the individual-level size/number data
+# For the mixed-effect model, I'll only take the species with at least 10 individuals measured per group. 
+spp_over10 <- sizenum %>% group_by(Sex_sys, Species) %>% summarize(n=n()) %>% filter(n>=10)
+keep_spp <- spp_over10$Species
+
+sizenum_filt <- sizenum %>% group_by(Sex_sys, Species) %>% 
+  filter(Species %in% keep_spp)
+# sizenum_filt %>%
+#   group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
+
+#   Sex_sys            n
+#   <fct>          <int>
+# 1 dioecious          2
+# 2 monoecious         8
+# 3 hermaphroditic    13
+
+# sample size per species:
+# print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(N=n()), n=Inf)
+
+sizenum_filt$Log_avg_pol_anth <- log(sizenum_filt$Avg_pol_anth)
+sizenum_filt$Log_avg_diam <- log(sizenum_filt$Avg_diam)
+
+```
+
+```{r inspect distributions mixed mod, include=F}
+# pollen size: 
+ggplot(sizenum_filt) + 
+  geom_histogram(aes(x=Avg_diam)) + 
+  theme_cs()
+ggplot(sizenum_filt) + 
+  geom_histogram(aes(x=Avg_diam)) + 
+  facet_grid(Sex_sys~.) + 
+  theme_cs()
+ggplot(sizenum_filt) + 
+  geom_boxplot(aes(y=Avg_diam, x=Sex_sys)) + 
+  xlab("Sex system") + 
+  ylab("Pollen diameter") + 
+  theme_cs()
+# pollen number: 
+ggplot(sizenum_filt) + 
+  geom_histogram(aes(x=Avg_pol_anth)) + 
+  theme_cs()
+# looks pretty right-skewed
+ggplot(sizenum_filt) + 
+  geom_histogram(aes(x=Avg_pol_anth)) + 
+  facet_grid(Sex_sys~.) + 
+  theme_cs()
+ggplot(sizenum_filt) + 
+  geom_boxplot(aes(y=Avg_pol_anth, x=Sex_sys)) + 
+  xlab("Sex system") + 
+  ylab("Pollen production") + 
+  theme_cs()
+# log pollen number: 
+# min(sizenum_filt$Avg_pol_anth) # non-zero - can log-transform
+sizenum_filt$Log_avg_pol_anth <- log(sizenum_filt$Avg_pol_anth)
+ggplot(sizenum_filt) + 
+  geom_histogram(aes(x=Log_avg_pol_anth)) + 
+  theme_cs()
+# looks more symmetrical!
+ggplot(sizenum_filt) + 
+  geom_histogram(aes(x=Log_avg_pol_anth)) + 
+  facet_grid(Sex_sys~.) + 
+  theme_cs()
+ggplot(sizenum_filt) + 
+  geom_boxplot(aes(y=Log_avg_pol_anth, x=Sex_sys)) + 
+  xlab("Sex system") + 
+  ylab("Log pollen production") + 
+  theme_cs()
+```
+
+Fit the mixed effects model: 
+
+```{r fit size mixed model}
+prodsize_mixmod <- lmer(Log_avg_pol_anth ~ Log_avg_diam + Sex_sys + (1|Species), data = sizenum_filt)
+# prodsize_mixmod <- lm(Log_avg_pol_anth ~ Avg_diam + Sex_sys/Species, data = sizenum_filt)
+summary(prodsize_mixmod)
+anova(prodsize_mixmod) # sig effects of diam and sex system
+kable(anova(prodsize_mixmod))
+```
+
+Calculate marginal means, test for pairwise differences between sex systems.
+
+```{r prod by sex system marginal means}
+# emmeans(prodsize_mixmod , ~Sex_sys)
+# emmeans(prodsize_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")
+kable(emmeans(prodsize_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwise differences of Sex_sys`)
+# plot(emmeans(prodsize_mixmod , ~Sex_sys))
+em_prodsize <- emmeans(prodsize_mixmod , ~Sex_sys) %>%  as.data.frame()
+```
+
+A post hoc Tukey test showed that hermaphroditic species produce significantly more pollen than monoecious species at p<0.05. Pollen production in monoecious species did not differ signifcantly from that of dioecious or hermaphroditic species. 
+
+Now I'll plot the estimated marginal means for pollen production by sex system, with error bars as CIs. 
+
+```{r plot estimated marginal means for pollen production}
+# Plot estimated marginal means for pollen production: 
+ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=9.2), label="AB") + 
+  geom_text(aes(x=2, y=7.2), label="A") + 
+  geom_text(aes(x=3, y=8.4), label="B") + 
+  scale_y_continuous(name="Pollen production per anther",
+                     breaks = log(c(250, 500,1000, 2500, 5000, 10000, 20000)),
+                     labels = c(250, 500,1000, 2500, 5000, 10000, 20000),
+                     limits = c(log(250), NA)) +
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
+```{r plot emms prod sex sys with points, dpi=200, fig.dim=c(5,5)}
+# Plot estimated marginal means: 
+ggplot(data=em_prodsize, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=9.2), label="AB") + 
+  geom_text(aes(x=2, y=7.2), label="A") + 
+  geom_text(aes(x=3, y=8.4), label="B") + 
+
+  # # Raw data (individual means) with stat dot histograms
+  # ggdist::stat_dots(data=sizenum, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+  #   side = "left",
+  #   dotsize = .5,
+  #   justification = 1.2,
+  #   binwidth = .12) +
+  # Raw data (individual means) with jittered points
+  gghalves::geom_half_point(data=sizenum, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+    ## draw jitter on the left
+    side = "l",
+    ## control range of jitter
+    range_scale = .4,
+    ## add some transparency
+    alpha = .3,
+    size=1) +
+
+  # # Species means
+  gghalves::geom_half_point(data=sizenum_sp, aes(x=Sex_sys, y=log(Avg_pol_anth)),
+    ## draw jitter on the right
+    side = "r",
+    ## control range of jitter
+    transformation = position_identity(),
+    # transformation = position_jitter(w = 0, h = 0),  # we do NOT want vertical jitter!
+    ## add some transparency
+    alpha = .7,
+    size=5,
+    shape=95) +
+  scale_y_continuous(name="Pollen production per anther",
+                     breaks = log(c(50, 100, 250, 500,1000, 2500, 5000, 10000, 20000)),
+                     labels = c(50, 100, 250, 500,1000, 2500, 5000, 10000, 20000),
+                     limits = c(log(50), NA)) +
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
+## Effect of sex system on pollen size 
+
+B. Does pollen size vary in wind-pollinated species according to their sex system? Specifically, do dioecious species make smaller pollen (to facilitate long-distance dispersal) and hermaphroditic species make larger pollen? 
+
+### Pollen size PGLS model
+
+First, I'll run a PGLS model where I predict the optimal branch length parameter lambda using maximum-likelihood, to test if there is phylogenetic signal in the data. 
+
+```{r ML lambda PGLS size}
+modB <- pgls(Avg_diam ~ Sex_sys, dat=test.data, lambda="ML")
+summary(modB) # estimated lambda is 0.988, significantly diff from 0 but not 1. 
+# anova(modB) # no sig effect of sex system
+kable(anova(modB))
+# take a look at the likelihood surface for lambda
+plot(pgls.profile(modB, "lambda")) # kind of strange looking, peak near 1
+```
+
+The ML lambda was estimated to be 0.988, significantly different from 0 but not 1 at alpha=0.05. I'll run a PGLS model with lambda=0.988 (above) and an additional mixed effects model with species as a random effect, using individual-level data rather than the species-level data used for the PGLS analysis. However this latter model should be interpreted with caution given that lambda was significantly different from 0, evidence of phylogenetic signal in the data. 
+
+Check post-fit assumptions of PGLS model:
+
+```{r PGLS size post fit assumptions, include=F}
+# test PGLS assumptions post fit
+#inspect the phylogenetic residuals for normality:
+hist(modB$phyres) #looks pretty normal
+qqnorm(modB$phyres) 
+qqline(modB$phyres) #looks okay...
+#inspect phylogenetic residuals for homogeneity:
+plot(x=fitted(modB), y=modB$phyres, pch=19)
+# only 2 dioecious species - might give them undue influence and not represent their sex system well. Also much more variable in hermaphroditic category. 
+```
+
+Residuals look relatively normal but not homoskedastic among sex system categories. This is probably mostly due to the fact that there are only 2 dioecious species, so they are necessarily less variable than the other sex systems. There only being 2 dioecious species may give these points undue influence and may mean this isn't a great representation of that sex system, which could reduce the validity of these models. 
+
+### Pollen size linear mixed effects model  
+
+I'll also do a linear mixed effects model on pollen size by sex system with species as random effect. I'll use individual-level data instead of the species-level data necessary for the PGLS. 
+
+```{r size mixed mod}
+# Prepare individual-level data
+# sizenumb_filt -- I already filtered this data for the mixed model analysis for pollen production, there should be no species with fewer
+# than 10 members
+# sample size per species
+# print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(n=n()), n=Inf) 
+
+size_mixmod <- lmer(Avg_diam ~ Sex_sys + (1|Species), data = sizenum_filt)
+# size_mixmod <- lm(Avg_diam ~ Sex_sys + Sex_sys:Species, data = sizenum_filt)
+
+summary(size_mixmod)
+kable(anova(size_mixmod))
+```
+
+From the mixed effects model, sex system has a significant effect on pollen size. I'll use emmeans to run a Tukey's HSD to determine which groups are significantly different from each other and the direction of the difference(s). 
+
+First, check model assumptions post-fit:
+
+```{r test size mixed model assumptions}
+#normality of residuals
+hist(residuals(size_mixmod))
+qqnorm(residuals(size_mixmod))
+qqline(residuals(size_mixmod))
+# homogeneity
+plot(size_mixmod)
+```
+
+Calculate marginal means, do Tukey's HSD post hoc test between sex systems
+
+```{r size mixed mod emmeans}
+# emmeans(size_mixmod , ~Sex_sys)
+# emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")
+kable(emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwise differences of Sex_sys`)
+# plot(emmeans(size_mixmod , ~Sex_sys))
+em_size <- emmeans(size_mixmod , ~Sex_sys) %>%  as.data.frame()
+sizenum_filt %>% group_by(Sex_sys) %>% 
+  summarize(m=mean(Avg_diam),
+            s=sd(Avg_diam))
+```
+
+Plot estimated marginal means for pollen size per sex system:
+
+```{r plot estimated marginal means pollen size by sex system}
+# Plot estimated marginal means: 
+ggplot(data=em_size, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=25.6), label="A") + 
+  geom_text(aes(x=2, y=27.5), label="AB") + 
+  geom_text(aes(x=3, y=32.4), label="B") + 
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
+
+A mixed effect model showed that sex system has a significant effect on pollen size at alpha=0.05. A Tukey's HSD test showed that dioecious species have significantly smaller pollen than hermaphroditic species but not monoecious species, and monoecious species don't have significantly smaller pollen than hermaphroditic species. 
+
+Plot estimated marginal means for pollen size per sex system, with points for means: 
+
+```{r plot emms size sex sys with points, dpi=200, fig.dim=c(5,5)}
+# Plot estimated marginal means: 
+ggplot(data=em_size, aes(x=Sex_sys, y=emmean)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), width=0.1) +
+  # Add letters corresponding to Tukey's HSD
+  geom_text(aes(x=1, y=26), label="A") + 
+  geom_text(aes(x=2, y=27.9), label="AB") + 
+  geom_text(aes(x=3, y=32.8), label="B") + 
+
+  # Raw data (individual means) with stat dot histograms
+  # ggdist::stat_dots(data=sizenum, aes(x=Sex_sys, y=Avg_diam),
+  #   side = "left",
+  #   dotsize = .8,
+  #   justification = 1.2,
+  #   binwidth = .3) +
+  # Raw data (individual means) with jittered points
+  gghalves::geom_half_point(data=sizenum, aes(x=Sex_sys, y=Avg_diam),
+    ## draw jitter on the left
+    side = "l",
+    ## control range of jitter
+    range_scale = .4,
+    ## add some transparency
+    alpha = .3,
+    size=1) +
+  
+  # Species means
+  gghalves::geom_half_point(data=sizenum_sp, aes(x=Sex_sys, y=Avg_diam),
+    ## draw jitter on the right
+    side = "r", 
+    ## control range of jitter
+    transformation = position_identity(),
+    # transformation = position_jitter(w = 0, h = 0),  # we do NOT want vertical jitter!
+    ## add some transparency
+    alpha = .7, 
+    size=5,
+    shape=95) + 
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)"),
+                     breaks=c(10, 20, 30, 40),
+                     labels=c(10, 20, 30, 40), 
+                     limits=c(10,NA)) + 
+  scale_x_discrete(name = "Sex system", labels = c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  theme_cs()
+```
