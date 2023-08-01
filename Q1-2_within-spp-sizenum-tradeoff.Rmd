@@ -2,7 +2,7 @@
 title: "Testing for intraspecific pollen size-number tradeoffs"
 author: "Claire Smith"
 date: "2023-07-28"
-output: html_document
+output: github_document
 editor_options: 
   chunk_output_type: console
 ---
@@ -106,14 +106,15 @@ prod %>%
   geom_smooth(method = "glm", formula = y~log(x),
               method.args = list(family = gaussian(link = 'log')),
               se=F) +
-  facet_wrap(~Species, scales = "free", ncol=5) + 
+  facet_wrap(~Species, scales = "free", ncol=4) + 
   scale_y_continuous(name="Pollen production per anther") + 
   scale_x_continuous(name=expression(paste("Pollen diameter (", mu, "m",")"))) + 
-  theme_cs(font = "sans") + 
+  theme_cs(font = "sans", fontsize=20) +
   theme(strip.background = element_rect(linewidth = NULL,
                                         linetype = NULL,
                                         colour = "white"),
-        strip.text = element_text(face="italic"))
+        strip.text = element_text(size = 18, face="italic"))
+
 ```
 
 Now I'll run linear models predicting pollen production by pollen size
@@ -147,19 +148,18 @@ tidy <- by_spp %>%
   unnest(tidy, .drop=T)
 tidytab <- tidy %>% select(-c(data, model)) %>% 
   arrange(Sex_sys, Species)
-print(tidytab, n=46)
 tidytab_write <- tidy %>% select(-c(data, model)) %>% 
   arrange(Sex_sys, Species) %>% apply(2, as.character)
 write.csv(tidytab_write, "processed-data/tradeoff-reg-model-coefs.csv", row.names = F)
 #take a look
 # print(tidytab, n=Inf)
 
-# Which species have estimates <= -3? 
-tidytab[which(tidytab$term == "Log_avg_diam" & tidytab$estimate <= -3),]
+# Which species have estimates <= -0? 
+tidytab[which(tidytab$term == "Log_avg_diam" & tidytab$estimate <= 0 & tidytab$p.value<0.05),]
 # 6 species: Bromus inermis, Chenopodium album, Festuca pratensis, Koeleria cristata,
 # Ambrosia artemisiifolia, and Carex hirtifolia
-# Any >=3?
-tidytab[which(tidytab$term == "Log_avg_diam" & tidytab$estimate >= 3),]
+# Any >=0?
+tidytab[which(tidytab$term == "Log_avg_diam" & tidytab$estimate >= 3 & tidytab$p.value<0.05),]
 # 2 species: Leymus innovatus and Stipa columbiana
 
 ```
