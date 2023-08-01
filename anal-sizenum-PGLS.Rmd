@@ -117,6 +117,9 @@ sizenum_sp <- sizenum %>%
 # # sample size per species:
 # print(sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(N=N), n=Inf)
 
+sizenum_sp$Log_avg_pol_anth <- log(sizenum_sp$Avg_pol_anth)
+sizenum_sp$Log_avg_diam <- log(sizenum_sp$Avg_diam)
+
 ```
 
 The resulting dataset has 31 species.
@@ -241,7 +244,7 @@ First I'll fit the full model with branch length parameter lambda estimated usin
 
 ```{r fit PGLS model prod}
 # fit the PGLS model:
-fullA <- pgls(Log_avg_pol_anth ~ Avg_diam + Sex_sys, dat=test.data, lambda="ML")
+fullA <- pgls(Log_avg_pol_anth ~ Log_avg_diam + Sex_sys, dat=test.data, lambda="ML")
 summary(fullA)
 # kable(summary(fullA)$coefficients)
 # ML lambda estimate is 0, not significantly different from 0, significantly different from 1. 
@@ -268,7 +271,7 @@ I'll inspect the residuals for normality and homogeneity.
 #inspect the phylogenetic residuals for normality:
 hist(fullA$phyres) #looks pretty normal
 qqnorm(fullA$phyres) 
-qqline(fullA$phyres) #looks okay? deviates from the line at the extremes but is otherwise pretty close
+qqline(fullA$phyres) #looks okay? deviates from the line at the extremes, especially at the largest point, but is otherwise pretty close
 #inspect phylogenetic residuals for homogeneity:
 plot(x=fitted(fullA), y=fullA$phyres, pch=19)
 # only 2 dieocious species - 
@@ -299,6 +302,9 @@ sizenum_filt <- sizenum %>% group_by(Sex_sys, Species) %>%
 
 # sample size per species:
 # print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(N=n()), n=Inf)
+
+sizenum_filt$Log_avg_pol_anth <- log(sizenum_filt$Avg_pol_anth)
+sizenum_filt$Log_avg_diam <- log(sizenum_filt$Avg_diam)
 
 ```
 
@@ -351,7 +357,7 @@ ggplot(sizenum_filt) +
 Fit the mixed effects model: 
 
 ```{r fit size mixed model}
-prodsize_mixmod <- lmer(Log_avg_pol_anth ~ Avg_diam + Sex_sys + (1|Species), data = sizenum_filt)
+prodsize_mixmod <- lmer(Log_avg_pol_anth ~ Log_avg_diam + Sex_sys + (1|Species), data = sizenum_filt)
 # prodsize_mixmod <- lm(Log_avg_pol_anth ~ Avg_diam + Sex_sys/Species, data = sizenum_filt)
 summary(prodsize_mixmod)
 anova(prodsize_mixmod) # sig effects of diam and sex system

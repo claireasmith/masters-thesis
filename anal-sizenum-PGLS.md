@@ -134,6 +134,9 @@ sizenum_sp <- sizenum %>%
 # sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(n=n()) %>% group_by(Sex_sys) %>%  summarize(n=n())
 # # sample size per species:
 # print(sizenum_sp %>% group_by(Sex_sys, Species) %>% summarize(N=N), n=Inf)
+
+sizenum_sp$Log_avg_pol_anth <- log(sizenum_sp$Avg_pol_anth)
+sizenum_sp$Log_avg_diam <- log(sizenum_sp$Avg_diam)
 ```
 
 The resulting dataset has 31 species.
@@ -328,10 +331,10 @@ test.data$dropped # "Setaria_viridis"
 ```
 
     ## $tips
-    ## [1] "Setaria_viridis"
+    ## [1] "Setaria_viridis"  "Bromus_carinatus"
     ## 
     ## $unmatched.rows
-    ## character(0)
+    ## [1] "Bromus_carianatus"
 
 ## Effect of sex system on pollen number
 
@@ -357,40 +360,40 @@ estimated using maximum likelihood.
 
 ``` r
 # fit the PGLS model:
-fullA <- pgls(Log_avg_pol_anth ~ Avg_diam + Sex_sys, dat=test.data, lambda="ML")
+fullA <- pgls(Log_avg_pol_anth ~ Log_avg_diam + Sex_sys, dat=test.data, lambda="ML")
 summary(fullA)
 ```
 
     ## 
     ## Call:
-    ## pgls(formula = Log_avg_pol_anth ~ Avg_diam + Sex_sys, data = test.data, 
+    ## pgls(formula = Log_avg_pol_anth ~ Log_avg_diam + Sex_sys, data = test.data, 
     ##     lambda = "ML")
     ## 
     ## Residuals:
     ##       Min        1Q    Median        3Q       Max 
-    ## -0.207734 -0.038010 -0.002005  0.030939  0.085092 
+    ## -0.094306 -0.036773  0.003997  0.043982  0.227550 
     ## 
     ## Branch length transformations:
     ## 
     ## kappa  [Fix]  : 1.000
     ## lambda [ ML]  : 0.000
     ##    lower bound : 0.000, p = 1    
-    ##    upper bound : 1.000, p = 2.3125e-07
-    ##    95.0% CI   : (NA, 0.957)
+    ##    upper bound : 1.000, p = 4.313e-07
+    ##    95.0% CI   : (NA, 0.950)
     ## delta  [Fix]  : 1.000
     ## 
     ## Coefficients:
-    ##                        Estimate Std. Error t value  Pr(>|t|)    
-    ## (Intercept)            6.536416   0.814189  8.0281 1.258e-08 ***
-    ## Avg_diam               0.073011   0.032934  2.2168  0.035244 *  
-    ## Sex_sysmonoecious     -1.801457   0.634164 -2.8407  0.008459 ** 
-    ## Sex_syshermaphroditic -0.921018   0.667097 -1.3806  0.178714    
+    ##                       Estimate Std. Error t value Pr(>|t|)  
+    ## (Intercept)            3.08831    2.77190  1.1141  0.27541  
+    ## Log_avg_diam           1.64830    0.93535  1.7622  0.08978 .
+    ## Sex_sysmonoecious     -1.83009    0.67070 -2.7286  0.01125 *
+    ## Sex_syshermaphroditic -0.91967    0.71346 -1.2890  0.20874  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.0665 on 27 degrees of freedom
-    ## Multiple R-squared: 0.4388,  Adjusted R-squared: 0.3765 
-    ## F-statistic: 7.038 on 3 and 27 DF,  p-value: 0.001206
+    ## Residual standard error: 0.06821 on 26 degrees of freedom
+    ## Multiple R-squared: 0.4005,  Adjusted R-squared: 0.3314 
+    ## F-statistic: 5.791 on 3 and 26 DF,  p-value: 0.003593
 
 ``` r
 # kable(summary(fullA)$coefficients)
@@ -399,11 +402,11 @@ summary(fullA)
 kable(anova(fullA))
 ```
 
-|           |  Df |    Sum Sq |   Mean Sq |  F value |   Pr(\>F) |
-|:----------|----:|----------:|----------:|---------:|----------:|
-| Avg_diam  |   1 | 0.0385005 | 0.0385005 | 8.707215 | 0.0064800 |
-| Sex_sys   |   2 | 0.0548542 | 0.0274271 | 6.202868 | 0.0060724 |
-| Residuals |  27 | 0.1193854 | 0.0044217 |       NA |        NA |
+|              |  Df |    Sum Sq |   Mean Sq |  F value |   Pr(\>F) |
+|:-------------|----:|----------:|----------:|---------:|----------:|
+| Log_avg_diam |   1 | 0.0233336 | 0.0233336 | 5.015327 | 0.0338954 |
+| Sex_sys      |   2 | 0.0574917 | 0.0287458 | 6.178631 | 0.0063773 |
+| Residuals    |  26 | 0.1209640 | 0.0046525 |       NA |        NA |
 
 The PGLS model showed that size and sex system both have a significant
 effect on pollen production at alpha=0.05.
@@ -432,7 +435,7 @@ hist(fullA$phyres) #looks pretty normal
 
 ``` r
 qqnorm(fullA$phyres) 
-qqline(fullA$phyres) #looks okay? deviates from the line at the extremes but is otherwise pretty close
+qqline(fullA$phyres) #looks okay? deviates from the line at the extremes, especially at the largest point, but is otherwise pretty close
 ```
 
 ![](anal-sizenum-PGLS_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
@@ -488,56 +491,70 @@ sizenum_filt <- sizenum %>% group_by(Sex_sys, Species) %>%
 
 # sample size per species:
 # print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(N=n()), n=Inf)
+
+sizenum_filt$Log_avg_pol_anth <- log(sizenum_filt$Avg_pol_anth)
+sizenum_filt$Log_avg_diam <- log(sizenum_filt$Avg_diam)
 ```
 
 Fit the mixed effects model:
 
 ``` r
-prodsize_mixmod <- lmer(Log_avg_pol_anth ~ Avg_diam + Sex_sys + (1|Species), data = sizenum_filt)
+prodsize_mixmod <- lmer(Log_avg_pol_anth ~ Log_avg_diam + Sex_sys + (1|Species), data = sizenum_filt)
+# prodsize_mixmod <- lm(Log_avg_pol_anth ~ Avg_diam + Sex_sys/Species, data = sizenum_filt)
 summary(prodsize_mixmod)
 ```
 
     ## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
     ## lmerModLmerTest]
-    ## Formula: Log_avg_pol_anth ~ Avg_diam + Sex_sys + (1 | Species)
+    ## Formula: Log_avg_pol_anth ~ Log_avg_diam + Sex_sys + (1 | Species)
     ##    Data: sizenum_filt
     ## 
-    ## REML criterion at convergence: 762.2
+    ## REML criterion at convergence: 755.4
     ## 
     ## Scaled residuals: 
     ##     Min      1Q  Median      3Q     Max 
-    ## -7.7618 -0.3686  0.1296  0.5547  2.1994 
+    ## -7.7769 -0.3682  0.1314  0.5487  2.1592 
     ## 
     ## Random effects:
     ##  Groups   Name        Variance Std.Dev.
-    ##  Species  (Intercept) 0.9825   0.9912  
+    ##  Species  (Intercept) 0.9723   0.9861  
     ##  Residual             0.1891   0.4349  
     ## Number of obs: 555, groups:  Species, 23
     ## 
     ## Fixed effects:
-    ##                        Estimate Std. Error        df t value Pr(>|t|)    
-    ## (Intercept)             8.35640    0.74395  23.41846  11.233 6.55e-11 ***
-    ## Avg_diam               -0.03017    0.01316 528.93722  -2.294   0.0222 *  
-    ## Sex_sysmonoecious      -1.24919    0.79032  19.39802  -1.581   0.1301    
-    ## Sex_syshermaphroditic   0.15755    0.76975  20.40128   0.205   0.8399    
+    ##                       Estimate Std. Error       df t value Pr(>|t|)    
+    ## (Intercept)            10.2452     1.2590 132.8012   8.138 2.54e-13 ***
+    ## Log_avg_diam           -0.8412     0.3606 527.2805  -2.333    0.020 *  
+    ## Sex_sysmonoecious      -1.1958     0.7885  19.7166  -1.517    0.145    
+    ## Sex_syshermaphroditic   0.2103     0.7699  20.9310   0.273    0.787    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
     ## Correlation of Fixed Effects:
-    ##             (Intr) Avg_dm Sx_sysm
-    ## Avg_diam    -0.323               
-    ## Sex_sysmncs -0.814 -0.089        
-    ## Sx_syshrmph -0.805 -0.187  0.831
+    ##             (Intr) Lg_vg_ Sx_sysm
+    ## Log_avg_dim -0.831               
+    ## Sex_sysmncs -0.397 -0.116        
+    ## Sx_syshrmph -0.329 -0.213  0.833
 
 ``` r
-# anova(prodsize_mixmod) # sig effects of diam and sex system
+anova(prodsize_mixmod) # sig effects of diam and sex system
+```
+
+    ## Type III Analysis of Variance Table with Satterthwaite's method
+    ##              Sum Sq Mean Sq NumDF  DenDF F value  Pr(>F)  
+    ## Log_avg_diam 1.0291 1.02907     1 527.28  5.4418 0.02004 *
+    ## Sex_sys      1.8896 0.94479     2  20.30  4.9961 0.01720 *
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+``` r
 kable(anova(prodsize_mixmod))
 ```
 
-|          |    Sum Sq |   Mean Sq | NumDF |     DenDF |  F value |   Pr(\>F) |
-|:---------|----------:|----------:|------:|----------:|---------:|----------:|
-| Avg_diam | 0.9947776 | 0.9947776 |     1 | 528.93722 | 5.260481 | 0.0222062 |
-| Sex_sys  | 1.8828764 | 0.9414382 |     2 |  20.03011 | 4.978417 | 0.0175741 |
+|              |   Sum Sq |   Mean Sq | NumDF |     DenDF |  F value |   Pr(\>F) |
+|:-------------|---------:|----------:|------:|----------:|---------:|----------:|
+| Log_avg_diam | 1.029067 | 1.0290670 |     1 | 527.28046 | 5.441798 | 0.0200357 |
+| Sex_sys      | 1.889582 | 0.9447911 |     2 |  20.30107 | 4.996140 | 0.0172008 |
 
 Calculate marginal means, test for pairwise differences between sex
 systems.
@@ -548,11 +565,11 @@ systems.
 kable(emmeans(prodsize_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwise differences of Sex_sys`)
 ```
 
-| 1                           |   estimate |        SE |       df |    t.ratio |   p.value |
-|:----------------------------|-----------:|----------:|---------:|-----------:|----------:|
-| dioecious - monoecious      |  1.2491908 | 0.7903667 | 20.12293 |  1.5805205 | 0.2767049 |
-| dioecious - hermaphroditic  | -0.1575501 | 0.7699458 | 21.16219 | -0.2046249 | 0.9772063 |
-| monoecious - hermaphroditic | -1.4067409 | 0.4537667 | 20.87215 | -3.1001411 | 0.0144373 |
+| 1                           |   estimate |        SE |       df |   t.ratio |   p.value |
+|:----------------------------|-----------:|----------:|---------:|----------:|----------:|
+| dioecious - monoecious      |  1.1958002 | 0.7885693 | 20.33431 |  1.516417 | 0.3043517 |
+| dioecious - hermaphroditic  | -0.2103318 | 0.7702033 | 21.58516 | -0.273086 | 0.9597996 |
+| monoecious - hermaphroditic | -1.4061320 | 0.4512358 | 20.83655 | -3.116180 | 0.0139479 |
 
 ``` r
 # plot(emmeans(prodsize_mixmod , ~Sex_sys))
@@ -657,38 +674,38 @@ summary(modB) # estimated lambda is 0.988, significantly diff from 0 but not 1.
     ## 
     ## Residuals:
     ##     Min      1Q  Median      3Q     Max 
-    ## -1.5590 -0.3541  0.0643  0.3781  2.0172 
+    ## -1.5679 -0.5797 -0.2496  0.1455  1.7935 
     ## 
     ## Branch length transformations:
     ## 
     ## kappa  [Fix]  : 1.000
     ## lambda [ ML]  : 0.988
-    ##    lower bound : 0.000, p = 0.010667
-    ##    upper bound : 1.000, p = 0.12322
-    ##    95.0% CI   : (0.710, NA)
+    ##    lower bound : 0.000, p = 0.032046
+    ##    upper bound : 1.000, p = 0.1278
+    ##    95.0% CI   : (0.568, NA)
     ## delta  [Fix]  : 1.000
     ## 
     ## Coefficients:
     ##                       Estimate Std. Error t value Pr(>|t|)   
-    ## (Intercept)            18.4517     5.1804  3.5618 0.001342 **
-    ## Sex_sysmonoecious       4.3052     4.5009  0.9565 0.346990   
-    ## Sex_syshermaphroditic   6.0936     5.9433  1.0253 0.313999   
+    ## (Intercept)            18.4528     5.2597  3.5083 0.001599 **
+    ## Sex_sysmonoecious       4.3058     4.5723  0.9417 0.354687   
+    ## Sex_syshermaphroditic   6.1017     6.0351  1.0110 0.320971   
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.7481 on 28 degrees of freedom
-    ## Multiple R-squared: 0.0416,  Adjusted R-squared: -0.02686 
-    ## F-statistic: 0.6077 on 2 and 28 DF,  p-value: 0.5516
+    ## Residual standard error: 0.7594 on 27 degrees of freedom
+    ## Multiple R-squared: 0.04188, Adjusted R-squared: -0.0291 
+    ## F-statistic:  0.59 on 2 and 27 DF,  p-value: 0.5613
 
 ``` r
 # anova(modB) # no sig effect of sex system
 kable(anova(modB))
 ```
 
-|           |  Df |     Sum Sq |   Mean Sq |   F value |   Pr(\>F) |
-|:----------|----:|-----------:|----------:|----------:|----------:|
-| Sex_sys   |   2 |  0.6801802 | 0.3400901 | 0.6076744 | 0.5516421 |
-| Residuals |  28 | 15.6704369 | 0.5596585 |        NA |        NA |
+|           |  Df |    Sum Sq |   Mean Sq |   F value |   Pr(\>F) |
+|:----------|----:|----------:|----------:|----------:|----------:|
+| Sex_sys   |   2 |  0.680487 | 0.3402435 | 0.5900497 | 0.5612893 |
+| Residuals |  27 | 15.569154 | 0.5766353 |        NA |        NA |
 
 ``` r
 # take a look at the likelihood surface for lambda
@@ -728,6 +745,8 @@ the species-level data necessary for the PGLS.
 # print(sizenum_filt %>% group_by(Sex_sys, Species) %>% summarize(n=n()), n=Inf) 
 
 size_mixmod <- lmer(Avg_diam ~ Sex_sys + (1|Species), data = sizenum_filt)
+# size_mixmod <- lm(Avg_diam ~ Sex_sys + Sex_sys:Species, data = sizenum_filt)
+
 summary(size_mixmod)
 ```
 
@@ -815,7 +834,17 @@ kable(emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwis
 ``` r
 # plot(emmeans(size_mixmod , ~Sex_sys))
 em_size <- emmeans(size_mixmod , ~Sex_sys) %>%  as.data.frame()
+sizenum_filt %>% group_by(Sex_sys) %>% 
+  summarize(m=mean(Avg_diam),
+            s=sd(Avg_diam))
 ```
+
+    ## # A tibble: 3 × 3
+    ##   Sex_sys            m     s
+    ##   <fct>          <dbl> <dbl>
+    ## 1 dioecious       18.2  1.81
+    ## 2 monoecious      23.7  2.39
+    ## 3 hermaphroditic  28.9  5.58
 
 Plot estimated marginal means for pollen size per sex system:
 
