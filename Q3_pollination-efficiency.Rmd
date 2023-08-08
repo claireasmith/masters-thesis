@@ -84,22 +84,34 @@ pdat$Species <- factor(pdat$Species, levels = unique(pdat$Species), ordered = T)
 
 ### Plots and tables
 
-```{r plot efficiency, dpi=200, fig.dim = c(12, 7)}
+```{r plot efficiency, dpi=200, fig.dim = c(9, 7)}
 ## Plot pollen capture vs pollen production:
 pdat %>% 
-  ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys) ) + 
-  geom_point(size=5, alpha=0.8) + 
+  ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys) ) + 
+  geom_point(size=4, alpha=0.7, aes(color=Sex_sys)) + 
   geom_errorbar(aes(ymin = pmax(0,Avg_stig_sp - Sd_stig_sp), ymax = Avg_stig_sp + Sd_stig_sp), color="black") + 
   geom_errorbarh(aes(xmin = Avg_prod_anth_sp - Sd_prod_anth_sp, xmax = Avg_prod_anth_sp + Sd_prod_anth_sp), color="black") + 
+  
+  # Axes
   scale_x_continuous(name = expression("Pollen production per anther"), na.value=0) + 
   scale_y_continuous(name = "Pollen capture per flower", na.value = 0) + 
-  guides(shape=guide_legend(title="Sex system"), color=guide_legend(title="Sex system")) + 
+  guides(shape=guide_legend(title="Sex system"),
+         color=guide_legend(title="Sex system")) + 
   scale_shape_manual(values = c(15, 16, 17),
                      labels=c("Dioecious", "Monoecious", "Hermaphroditic")) + 
   scale_color_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
                      values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
-  # geom_text(aes(label=Species), size=2, color="black") + 
-  theme_cs(font="sans", fontsize=20)
+  # Guide lines
+  geom_segment(aes(x=0, xend = 8000, y=0, yend = 0.0001*8000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 8000, y=0, yend = 0.001*8000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 8000, y=0, yend = 0.01*8000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 2000, y=0, yend = 0.1*2000), colour="black", linetype = "dashed") +
+  geom_text(x=8000+500, y=0.0001*8000, label = "0.01%", colour="black") + 
+  geom_text(x=8000+400, y=0.001*8000, label = "0.1%", colour="black") +
+  geom_text(x=8000+400, y=0.01*8000, label = "1%", colour="black") +
+  geom_text(x=2000+400, y=0.1*2000, label = "10%", colour="black") +
+  
+  theme_cs(font="sans", fontsize=18)
 
 ```
 
@@ -111,7 +123,7 @@ pdat %>%
   geom_errorbar(aes(ymin = pmax(0,Avg_stig_sp - Sd_stig_sp), ymax = Avg_stig_sp + Sd_stig_sp), color="black") + 
   geom_errorbarh(aes(xmin = Avg_prod_anth_sp - Sd_prod_anth_sp, xmax = Avg_prod_anth_sp + Sd_prod_anth_sp), color="black") + 
   geom_label(size=2) + 
-  
+  # Axes
   scale_x_continuous(name = expression("Pollen production per anther"), na.value=0) + 
   scale_y_continuous(name = "Pollen capture per flower", na.value = 0) + 
   guides(shape=guide_legend(title="Sex system"), color=guide_legend(title="Sex system")) + 
