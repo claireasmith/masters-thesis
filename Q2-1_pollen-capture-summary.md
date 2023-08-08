@@ -10,8 +10,7 @@ library(ggplot2)
 library(ggridges)
 
 # Source files
-source("clean-stig-01.R")
-source("clean-stig-02.R")
+source("clean-dat.R") # get cleaned data
 source("theme_cs.R")
 ```
 
@@ -69,10 +68,11 @@ Visualize distributions of pollen loads across species
 
 ``` r
 stig %>% 
-  # Arrange species in order of sex system and alphabetically by species
+  # Arrange species in order of sex system and alphabetically by species -- edit: just arrange in order of species alphabetically to match tables for easy comparison
   mutate(Sex_sys = as.character(Sex_sys),
-         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
-  arrange(desc(Sex_sys), desc(Species)) %>% 
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>%
+  # arrange(desc(Sex_sys), desc(Species)) %>% 
+  arrange(desc(Species)) %>% 
   mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
   
   ggplot(aes(x=log(Flw_pollen+1), y=Species, fill=Sex_sys)) +
@@ -110,8 +110,9 @@ stig %>%
   mutate(Sex_sys = as.character(Sex_sys),
          Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic"),
                           ordered=T) ) %>% 
+  # arrange(desc(Sex_sys), desc(Species_SS)) %>% 
 
-  arrange(desc(Sex_sys), desc(Species_SS)) %>% 
+  arrange(desc(Species_SS)) %>% 
 
   mutate(Species_SS =  factor(Species_SS, levels = unique(Species_SS), ordered = T)) %>% 
 
@@ -143,7 +144,8 @@ stig %>%
     # Arrange species in order of sex system and alphabetically by species
   mutate(Sex_sys = as.character(Sex_sys),
          Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
-  arrange(Sex_sys, Species) %>% 
+  # arrange(Sex_sys, Species) %>% 
+  arrange(Species) %>% 
   mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
   
   ggplot() + 

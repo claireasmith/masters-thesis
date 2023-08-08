@@ -223,6 +223,8 @@ To do the phylogenetic least squares analysis (PGLS), the function pgls() needs 
 test.data=comparative.data(phy=sizenum_tree, data=sizenum_sp, names.col=Species_, vcv=TRUE, na.omit=FALSE, warn.dropped=TRUE)
 #were any species dropped?
 test.data$dropped # "Setaria_viridis"
+test.data$data$Species
+
 ```
 
 ## Effect of sex system on pollen number
