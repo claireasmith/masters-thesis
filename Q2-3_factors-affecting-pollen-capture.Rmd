@@ -74,13 +74,18 @@ stigl %>% group_by(Species) %>%
 species <- levels(stigl$Species) # list of all species in data
 # for (spec in species){print(spec)}
 # Filter for each species
-spec = species[13]
+spec = species[9]
 dat <- stigl %>% filter(Species==spec) %>% 
   as_tibble() %>% 
   # Use "scale" to standardize predictor variables to z-scores
   mutate(across(c("Infl_max","Stigma_length","Date", "Inv_avg_dist", "Avg_dist"), scale)) %>% 
   mutate(across(c("Infl_max","Stigma_length","Date", "Inv_avg_dist", "Avg_dist"), as.vector)) %>%
   select(Species, Plant, Flower, Flw_pollen, Log_flw_pollen, Infl_max, Stigma_length, Date, Inv_avg_dist, Avg_dist)
+
+test <- lm(Log_flw_pollen~Plant, data=dat)
+anova(test)
+lmer(Log_flw_pollen ~ (1|Plant), data=dat)
+plot(dat$Plant, dat$Log_flw_pollen)
 
 #Take a look at the data
 hist(dat$Flw_pollen) 
@@ -147,5 +152,26 @@ plot(topmod)
 
 ```{r}
 options(na.action = "na.omit") # put back NA settings the way they were...
+```
+
+
+```{r}
+sumdat <- stigl %>% group_by(Species) %>% 
+  summarize(m_height = mean(Infl_max),
+            min_height = min(Infl_max),
+            max_height = max(Infl_max),
+            sd_height = sd(Infl_max),
+            cv_height = sd_height/m_height,
+            m_stig = mean(Stigma_length),
+            min_stig = min(Stigma_length),
+            max_stig = max(Stigma_length),
+            sd_stig = sd(Stigma_length),
+            cv_stig = sd_stig/m_stig,
+            m_dist = mean(Avg_dist),
+            min_dist = min(Avg_dist),
+            max_dist = max(Avg_dist),
+            sd_dist = sd(Avg_dist),
+            cv_dist = sd_dist/m_dist)
+write.csv(sumdat,"summary-data/summary-ind-factors.csv", row.names = F)
 ```
 
