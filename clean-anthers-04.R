@@ -20,29 +20,37 @@ spJF2004raw <- read_xls("raw-data/JF_2004_anthers_all_spp.xls")
 # head(spJF2004raw)
 
 sel_vec1 <- c("spp", "ind", "nanthers","polcnt","pollmsize","sdsize", "source", "Date")
-# 2001 data
+
+## 2001 data prep
 spJF2001 <- spJF2001raw %>% 
   # keep only relevant columns
   dplyr::select(spp, ind, nanthers, polcnt, pollmsize, sdsize, nanthers, date) %>% 
   # keep track of which dataset they came from 
   mutate(source = "JF2001",
-         Date = as.character(date)) %>% 
+         Date = as.Date(date)) %>% 
   filter(!is.na(polcnt)) %>% 
   select(all_of(sel_vec1))
 # head(spJF2001)
 # names(spJF2001)
 
-# 2004 data
-spJF2004 <- spJF2004raw %>% 
+
+## 2004 data prep
+# Convert dates from jday to date
+spJF2004pre <- spJF2004raw
+d2004 <- as.character(spJF2004raw$jday)
+d2004_jday <- as.numeric(gsub("^4", "", d2004)) # they are julian dates with a prefix "4"
+d2004_date <- as.Date(d2004_jday,    # Convert Julian day to date
+                      origin = as.Date("2004-01-01"))
+spJF2004pre$Date <- as.Date(d2004_date) # add back to dataframe
+
+spJF2004 <- spJF2004pre %>% 
   mutate(source = "JF2004",
-         Date = as.character(jday),
          # Keep col names consistent with JF2001
          nanthers = nanth,
          pollmsize=meansize) %>% 
   filter(!is.na(polcnt)) %>% 
   filter(nsample>1) %>% 
   select(all_of(sel_vec1))
-# head(spJF2004)
 
 # Join JF datasets together
 JF2001_2004 <- rbind(spJF2001, spJF2004)
@@ -79,8 +87,9 @@ JF2001_2004_pre <- JF2001_2004 %>%
 
 CS2021_pre <- spCS2021 %>% 
   mutate(Anth_per_sample = NA,
-         Date = as.character(Date)) %>% 
+         Date = dmy(spCS2021$Date)) %>% 
   select(all_of(sel_vec))
+
 
 # Bind them together
 sp_all <- rbind(JF2001_2004_pre, CS2021_pre)
@@ -149,12 +158,18 @@ sp_dat_ss <- sp_dat %>%
                                         "Plantago lanceolata", 
                                         "Poa juncifolia", "Poa secunda subsp. secunda",
                                         "Stipa columbiana") ~ "hermaphroditic"))
-
 # View(sp_dat_ss)
 # View(sp_dat_ss[which(is.na(sp_dat_ss$Sex_sys),)]) # none NA
 
+## Add families
+# read in file with species names and families
+famdat <- read.csv("raw-data/species_list_sizenum.csv", stringsAsFactors = T)
+sp_dat_fam <- left_join(sp_dat_ss, famdat, by=c("Species"="species"))
+# View(sp_dat_fam[which(is.na(sp_dat_fam$family)),]) # none NA
+
+
 # Remove any repeat lines if they exist
-sp_dat2 <- sp_dat_ss %>% distinct() 
+sp_dat2 <- sp_dat_fam %>% distinct() 
 
 sp_dat3 <- sp_dat2 %>% mutate(Pol_flw = Avg_pol_anth*Anth_per_flw,
                             Sd_pol_flw = Sd_pol_anth*Anth_per_flw)
@@ -182,3 +197,31 @@ sizeprod_norep <- sp_dat3 %>% filter(source != "CS2021" |  Species == "Amaranthu
 
 write.csv(sizeprod_norep, "processed-data/size-prod-norep.csv", row.names = F)
 
+
+## Do the Cyperaceae produce more pollen or smaller pollen? 
+# cyper <- sizeprod_norep %>% filter(family=="Cyperaceae") %>% 
+#   group_by(Species) %>% 
+#   summarize(m_avg_diam = mean(Avg_diam),
+#             sd_avg_diam = sd(Avg_diam),
+#             n = n()) %>% 
+#   summarize(m_diam = mean(m_avg_diam))
+# summary(cyper)
+# noncyper <- sizeprod_norep %>% filter(family!="Cyperaceae") %>% 
+#   group_by(Species) %>% 
+#   summarize(m_avg_diam = mean(Avg_diam, na.rm=T),
+#             sd_avg_diam = sd(Avg_diam),
+#             n = n()) %>% 
+#   summarize(m_diam = mean(m_avg_diam, na.rm=T))
+# 
+# cyper2 <- sizeprod_norep %>% filter(family=="Cyperaceae") %>% 
+#   group_by(Species) %>% 
+#   summarize(m_pol_anth = mean(Avg_pol_anth),
+#             sd_pol_anth = sd(Avg_pol_anth),
+#             n = n()) %>% 
+#   summarize(m_pol = mean(m_pol_anth))
+# noncyper2 <- sizeprod_norep %>% filter(family!="Cyperaceae") %>% 
+#   group_by(Species) %>% 
+#   summarize(m_pol_anth = mean(Avg_pol_anth),
+#             sd_pol_anth = sd(Avg_pol_anth),
+#             n = n()) %>% 
+#   summarize(m_pol = mean(m_pol_anth))
