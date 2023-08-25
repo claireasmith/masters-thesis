@@ -32,7 +32,7 @@ library(car)
 library(V.PhyloMaker2)
 library(ape)
 library(dplyr)
-library(caper)
+library(caper) # for PGLS analysis
 
 library(lme4)
 library(lmerTest)
@@ -71,7 +71,6 @@ sizenum_raw <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors =
 # head(sizenum)
 # summary(sizenum)
 # str(sizenum)
-
 ```
 
 I want the data to be at the species level -- I'll take species-wide averages. I'll also filter the data so that I only keep species with at least 5 individuals. At the same time, I'll edit some species names to match those in the tree dataset (in later analyses mismatches come up as dropped data when I try to join tree and trait data together). I'll add a new column, "Species_", that has an underscore between genus and species, to match the species name format in the tree data. And I'll also add a "collector" column that specifies whether I (CS) or JF collected the data, in case it has an effect. 
@@ -263,6 +262,24 @@ plot(pgls.profile(fullA, "lambda")) # strange likelihood surface - it peaks at 0
 ```
 
 The surface looks kind of flat - not sure how valid it is to say the estimate should be 0. 
+
+<!-- Calculate marginal means, do Tukey's HSD post hoc test between sex systems -->
+
+<!-- ```{r prod mixed mod emmeans} -->
+<!-- install.packages("multcomp") -->
+<!-- library(multcomp) -->
+<!-- glht(fullA,linfct=mcp(X="Tukey")) -->
+
+<!-- # emmeans(size_mixmod , ~Sex_sys) -->
+<!-- # emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey") -->
+<!-- kable(emmeans(size_mixmod , list(pairwise ~ Sex_sys), adjust = "tukey")$`pairwise differences of Sex_sys`) -->
+<!-- # plot(emmeans(size_mixmod , ~Sex_sys)) -->
+<!-- em_size <- emmeans(size_mixmod , ~Sex_sys) %>%  as.data.frame() -->
+<!-- sizenum_filt %>% group_by(Sex_sys) %>%  -->
+<!--   summarize(m=mean(Avg_diam), -->
+<!--             s=sd(Avg_diam)) -->
+<!-- ``` -->
+
 
 
 #### Post model fit checks
@@ -495,6 +512,13 @@ kable(anova(size_mixmod))
 ```
 
 From the mixed effects model, sex system has a significant effect on pollen size. I'll use emmeans to run a Tukey's HSD to determine which groups are significantly different from each other and the direction of the difference(s). 
+
+Detect influential points
+
+```{r}
+install.packages("influence.ME")
+```
+
 
 First, check model assumptions post-fit:
 
