@@ -86,7 +86,7 @@ JF2001_2004_pre <- JF2001_2004 %>%
   select(all_of(sel_vec))
 
 CS2021_pre <- spCS2021 %>% 
-  mutate(Anth_per_sample = NA,
+  mutate(Anth_per_sample = Anth_per_flw,
          Date = dmy(spCS2021$Date)) %>% 
   select(all_of(sel_vec))
 
@@ -158,8 +158,34 @@ sp_dat_ss <- sp_dat %>%
                                         "Plantago lanceolata", 
                                         "Poa juncifolia", "Poa secunda subsp. secunda",
                                         "Stipa columbiana") ~ "hermaphroditic"))
+# Add anthers per flower if not already there
+# Add sex system data
+sp_dat_anth <- sp_dat_ss %>% 
+  mutate(Anth_per_flw = case_when(source == "JF2001" ~ 3, # all JF2001 species are grasses with 3 anthers
+                                  Species %in% c("Carex communis",
+                                                 "Carex hirtifolia","Carex plantaginea",
+                                                 "Carex pedunculata",
+                                                 "Carex stipata",
+                                                 "Scirpus microcarpus",
+                                                 "Dicanthelium sp 1", 
+                                                 "Dicanthelium sp 2", "Phleum pratense", 
+                                                 "Setaria viridis", "Schizachne purpurascens",
+                                                 "Elymus repens", "Agropyron trachycaulum",
+                                                 "Festuca rubra", "Festuca pratensis", 
+                                                 "Festuca campestris",
+                                                 "Avenula hookeri", "Hierochloe odorata",
+                                                 "Koeleria cristata","Phalaris arundinacea",
+                                                 "Poa juncifolia", "Poa secunda subsp. secunda",
+                                                 "Stipa columbiana") ~ 3,
+                                  Species %in% c("Plantago lanceolata") ~ 4,
+                                  Species %in% c("Amaranthus retroflexus",
+                                                 "Ambrosia artemisiifolia",
+                                                 "Chenopodium album") ~ 5,
+                                  Species %in% c("Rumex acetosella", "Rumex crispus") ~ 6,
+                                  Species %in% c("Thalictrum dioicum") ~ Anth_per_sample))
+
 # View(sp_dat_ss)
-# View(sp_dat_ss[which(is.na(sp_dat_ss$Sex_sys),)]) # none NA
+# View(sp_dat_anth[which(is.na(sp_dat_anth$Anth_per_flw)),]) # none NA
 
 ## Add families
 # read in file with species names and families
