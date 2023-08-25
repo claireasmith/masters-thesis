@@ -44,7 +44,7 @@ prod_summary <- prod  %>% group_by(Species, source, Sex_sys) %>%
             n=n()) %>%  
   filter(n>=3) %>% 
   droplevels() %>% 
-  arrange(Sex_sys, Species) %>% 
+  arrange(Species) %>% 
   as.data.frame()
 
 # This will be made into a table - I'll add columns with mean +/- sd for that future table
