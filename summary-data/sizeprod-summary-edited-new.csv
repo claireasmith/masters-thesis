@@ -1,0 +1,33 @@
+,,,,Pollen size (?m),,,,Pollen per anther,,,
+Species,Family,Sex system,N,Mean ± SD,CV (%),Min,Max,Mean ± SD,CV,Min,Max
+Agrostis stolonifera,Poaceae,H,4,24.8 ± 0.1,0.3%,24.75,24.90,2347 ± 159,6.8%,2162,2549
+Amaranthus retroflexus,Amaranthaceae,M,16,24.7 ± 1.7,6.8%,21.92,28.15,2648 ± 618,23.4%,1467,3733
+Ambrosia artemisiifolia,Asteraceae,M,19,17.9 ± 0.4,2.1%,17.44,19.03,741 ± 391,52.7%,228,1532
+Avenula hookeri,Poaceae,H,5,28.1 ± 1.6,5.7%,25.88,29.73,1719 ± 1078,62.7%,771,3491
+Bromus carianatus,Poaceae,H,3,32.6 ± 0.2,0.6%,32.39,32.77,5216 ± 1212,23.2%,3887,6261
+Bromus inermis,Poaceae,H,30,33.5 ± 2.6,7.7%,30.10,40.41,5659 ± 2452,43.3%,940,11633
+Carex communis,Cyperaceae,M,16,25 ± 0.8,3.3%,23.20,26.11,618 ± 88,14.3%,507,776
+Carex hirtifolia,Cyperaceae,M,18,25.2 ± 0.4,1.6%,24.67,26.07,665 ± 152,22.9%,365,950
+Carex pedunculata,Cyperaceae,M,18,24.6 ± 0.7,3.0%,23.23,25.97,525 ± 126,24.0%,335,909
+Carex plantaginea,Cyperaceae,M,4,27 ± 0.2,0.7%,26.75,27.23,1006 ± 115,11.4%,872,1129
+Carex stipata,Cyperaceae,M,35,24.6 ± 0.8,3.1%,23.81,26.70,415 ± 73,17.6%,256,568
+Chenopodium album,Amaranthaceae,H,22,24.2 ± 0.6,2.3%,23.27,25.45,525 ± 137,26.2%,273,824
+Elymus repens,Poaceae,H,33,37.1 ± 1.6,4.2%,33.84,39.19,4995 ± 1848,37.0%,1481,8909
+Elymus trachycaulus,Poaceae,H,10,37.7 ± 1.6,4.1%,34.91,39.23,5395 ± 927,17.2%,3249,6493
+Festuca campestris,Poaceae,H,60,28.9 ± 1.6,5.4%,23.92,32.58,6518 ± 1947,29.9%,1084,10865
+Festuca pratensis,Poaceae,H,14,29.6 ± 1.1,3.8%,27.82,31.11,2473 ± 931,37.7%,1095,4481
+Festuca rubra,Poaceae,H,8,29.1 ± 1.2,4.1%,26.63,30.51,3037 ± 2565,84.4%,649,7500
+Hierochloe odorata,Poaceae,H,50,22.6 ± 1.9,8.4%,18.08,25.58,1713 ± 784,45.7%,51,3631
+Koeleria cristata,Poaceae,H,25,22 ± 1.2,5.3%,20.70,24.48,2374 ± 1045,44.0%,866,4818
+Leymus innovatus,Poaceae,H,35,35.2 ± 1.6,4.7%,31.90,38.18,7802 ± 2754,35.3%,3737,15584
+Phalaris arundinacea,Poaceae,H,7,32.1 ± 0.5,1.6%,31.08,32.53,1496 ± 493,32.9%,532,2106
+Phleum pratense,Poaceae,H,30,29.9 ± 1.8,6.0%,26.82,33.46,1697 ± 595,35.1%,265,2654
+Plantago lanceolata,Plantaginaceae,H,24,21.2 ± 1.2,5.6%,18.59,23.16,2749 ± 768,28.0%,1009,4743
+Poa juncifolia,Poaceae,H,6,21.7 ± 1,4.6%,20.02,22.99,2426 ± 1037,42.7%,1320,4195
+Poa secunda subsp. secunda,Poaceae,H,3,23.4 ± 0.4,1.9%,22.90,23.67,923 ± 413,44.7%,575,1379
+Rumex acetosella,Polygonaceae,D,21,20 ± 0.6,3.0%,19.30,21.49,2070 ± 564,27.3%,1034,3242
+Rumex crispus,Polygonaceae,M,20,24.1 ± 0.6,2.3%,23.05,24.85,758 ± 166,21.9%,499,1103
+Schizachne purpurascens,Poaceae,H,12,29.3 ± 0.5,1.7%,28.61,30.25,287 ± 99,34.6%,150,430
+Scirpus microcarpus,Cyperaceae,M,14,22.8 ± 0.4,1.9%,21.97,23.44,169 ± 64,37.7%,109,334
+Stipa columbiana,Poaceae,H,10,28.5 ± 1.3,4.7%,26.52,30.09,673 ± 387,57.5%,144,1336
+Thalictrum dioicum,Ranunculaceae,D,23,16.6 ± 0.6,3.7%,15.88,17.71,3320 ± 1295,39.0%,1108,5450

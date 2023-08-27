@@ -190,7 +190,7 @@ sp_dat_anth <- sp_dat_ss %>%
 ## Add families
 # read in file with species names and families
 famdat <- read.csv("raw-data/species_list_sizenum.csv", stringsAsFactors = T)
-sp_dat_fam <- left_join(sp_dat_ss, famdat, by=c("Species"="species"))
+sp_dat_fam <- left_join(sp_dat_anth, famdat, by=c("Species"="species"))
 # View(sp_dat_fam[which(is.na(sp_dat_fam$family)),]) # none NA
 
 

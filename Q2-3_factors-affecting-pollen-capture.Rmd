@@ -123,6 +123,7 @@ ggplot(data=dat, aes(x=Date, y=Log_flw_pollen)) +
 
 # Fit full model
 dat_mod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + Date + Inv_avg_dist + (1|Plant), data=dat)
+# dat_mod <- lmer(Log_flw_pollen ~ Infl_max + Stigma_length + poly(Date,2) + Inv_avg_dist + (1|Plant), data=dat)
 summary(dat_mod)
 anova(dat_mod)
 

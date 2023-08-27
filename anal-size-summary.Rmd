@@ -1,0 +1,233 @@
+---
+title: "Summary pollen size"
+author: "Claire Smith"
+date: "2023-06-26"
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r initialize, message=F}
+## Load packages
+library(tidyverse)
+library(ggplot2)
+library(ggridges)
+
+## Source files
+# custom
+source("theme_cs.R")
+# data cleaning
+source("clean-dat.R")
+```
+
+```{r}
+# Load data - size-prod-all.csv has per individual average size
+sizefull <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors = T)
+# head(sizefull)
+# str(sizefull)
+sizefull2 <- read.csv("processed-data/size-prod-all.csv")
+# head(sizefull2)
+# str(sizefull2)
+# size-CS2021-within-inds.csv has within-individual variation in pollen size as well
+sizewithin <- read.csv("processed-data/size-CS2021-within-inds.csv", stringsAsFactors = T)
+# head(sizewithin)
+# summary(sizewithin)
+```
+
+```{r prepare data}
+# Remove NAs
+sizefull <- sizefull %>% 
+  filter(!is.na(Avg_diam))
+
+# Keep only species with at least 5 individuals
+sf_sum <- sizefull %>% group_by(Species) %>% dplyr::summarize(n=n())
+keep_vec <- sf_sum$Species[which(sf_sum$n>=10)]
+sf_all_5ormore <- sizefull[sizefull$Species %in% keep_vec,]
+
+sizefull <- sf_all_5ormore %>% droplevels()
+
+# Remove NAs
+sizefull2 <- sizefull2 %>% 
+  filter(!is.na(Avg_diam))
+
+# Keep only species with at least 5 individuals
+sf_sum2 <- sizefull2 %>% group_by(Species) %>% dplyr::summarize(n=n())
+keep_vec2 <- sf_sum2$Species[which(sf_sum2$n>=10)]
+sf_all_5ormore2 <- sizefull2[sizefull2$Species %in% keep_vec2,]
+
+sizefull2 <- sf_all_5ormore2 %>% droplevels()
+```
+
+```{r size summary table}
+size_sum <- sizefull %>% group_by(Sex_sys, Species) %>% 
+  summarize(df = N_diam-1,
+            s2 = Sd_diam^2,
+            ss = s2 * df,
+            m = Avg_diam,
+            nn = N_diam) %>% 
+  group_by(Species) %>% 
+  summarize(Mean_diam = sum(m*nn)/sum(nn),
+            Sd_diam_pooled = sum(ss)/sum(df),
+            Cv = Sd_diam_pooled/Mean_diam,
+            Max_diam = max(m),
+            Min_diam = min(m),
+            N_grains = sum(nn),
+            N_ind = n()) %>% 
+  filter(N_ind>=5) # Keep only species with at least 5 individuals
+
+print(size_sum, n=Inf)
+
+# write it to a file
+write.csv(size_sum, "processed-data/pollen-size-table.csv", row.names=F)
+```
+
+```{r size summary table ss}
+size_sum_ss <- size_sum %>% 
+  group_by(Sex_sys) %>% 
+  summarize(msize = mean(Mean_diam),
+            sdsize = sd(Mean_diam),
+            maxsize = max(Max_diam),
+            minsize = min(Min_diam),
+            nspp=n(),
+            nplantstot = sum(N_ind))
+size_sum_ss
+
+# write it to a file
+write.csv(size_sum_ss, "processed-data/pollen-size-table-ss.csv", row.names=F)
+```
+
+```{r}
+safe_colorblind_palette <- c("#88CCEE", "#CC6677", "#DDCC77", "#117733", "#332288", "#AA4499", 
+                             "#44AA99", "#999933", "#882255", "#661100", "#6699CC", "#888888",
+                             "#88CCEE", "#CC6677", "#DDCC77", "#117733", "#332288", "#AA4499", 
+                             "#44AA99", "#999933", "#882255", "#661100", "#6699CC", "#888888")
+scales::show_col(safe_colorblind_palette)
+```
+
+```{r plot size distributions, fig.dim=c(14,10), dpi=200}
+size_ridges <- sizefull %>% 
+  # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(desc(Species)) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
+  
+  ggplot(aes(x=Avg_diam, y=Species, fill=Sex_sys)) +
+  geom_density_ridges2() + 
+  scale_fill_manual(values=c("#66C2A5","#8DA0CB","#FC8D62"),
+                    labels=c("Dioecious", "Monoecious", "Hermaphroditic")) +
+  scale_x_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+
+  scale_y_discrete() +
+  ylab(label="") + 
+  guides(fill="none") + 
+  theme_cs(font="sans", fontsize=15) + 
+  theme(axis.text.y = element_text(face = "italic"),
+        axis.ticks.y = element_line())
+
+size_ridges
+
+sizefull %>% 
+  # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(desc(Species)) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
+  
+  ggplot(aes(x=Avg_diam, y=Species, fill=Species)) +
+  geom_density_ridges2() + 
+  scale_fill_manual(values=safe_colorblind_palette) +
+  scale_x_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+
+  scale_y_discrete() +
+  ylab(label="") + 
+  guides(fill="none") + 
+  theme_cs(font="sans", fontsize=15) + 
+  theme(axis.text.y = element_text(face = "italic"),
+        axis.ticks.y = element_line())
+```
+
+```{r}
+
+sizefull_date_sum <- sizefull %>% 
+  mutate(Date = as.Date(Date),
+         Species_date=paste(Species, Date)) %>% 
+  group_by(Species_date, Species) %>% 
+  summarize(n=n()) %>% 
+  filter(n>=5)
+
+sizefull_date <- sizefull %>% 
+  mutate(Species_date=paste(Species, Date)) %>% 
+  filter(Species_date %in% sizefull_date_sum$Species_date) %>% 
+  filter(!is.na(Date))
+
+sizefull_date_n <- left_join(sizefull_date, sizefull_date_sum, by=c("Species_date","Species"))
+sizefull_date_n$Species_date_n <- paste0(" ",sizefull_date_n$Species_date, " n=",sizefull_date_n$n)
+
+sizefull_date_n %>% 
+  arrange(desc(Species_date_n)) %>% 
+  mutate(Species_date_n =  factor(Species_date_n, levels = unique(Species_date_n), ordered = T)) %>% 
+  
+  ggplot(aes(x=Avg_diam, y=Species_date_n, fill=Species)) +
+  geom_density_ridges2() + 
+  scale_fill_manual(values=safe_colorblind_palette) +
+  scale_x_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+
+  scale_y_discrete() +
+  ylab(label="") + 
+  guides(fill="none") + 
+  theme_cs(font="sans", fontsize=10) + 
+  theme(axis.text.y = element_text(face = "italic"),
+        axis.ticks.y = element_line())
+```
+
+```{r size boxplots, fig.dim=c(14,10), dpi=200}
+size_box <- sizefull %>% 
+    # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(Sex_sys, Species) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
+  
+  ggplot() + 
+  geom_boxplot(aes(x=Species, y=Avg_diam, fill=Sex_sys)) + 
+
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+  scale_x_discrete(name = "") + 
+  
+  guides(fill="none") + 
+  scale_fill_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
+                    values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
+  theme_cs(fontsize=15, font="sans") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, face="italic"))
+
+size_box
+```
+
+
+```{r sex sys size boxplots, fig.dim=c(8,8), dpi=200}
+size_box_ss <- sizefull %>% 
+  # Arrange species in order of sex system and alphabetically by species
+  mutate(Sex_sys = as.character(Sex_sys),
+         Sex_sys = factor(Sex_sys, levels=c("dioecious", "monoecious", "hermaphroditic")) ) %>% 
+  arrange(Sex_sys, Species) %>% 
+  mutate(Species =  factor(Species, levels = unique(Species), ordered = T)) %>% 
+  
+  ggplot() + 
+  geom_boxplot(aes(x=Sex_sys, y=Avg_diam, fill=Sex_sys),
+               width=0.4) + 
+  
+  scale_y_continuous(name = expression("Pollen diameter ("*mu*"m)")) + 
+  scale_x_discrete(name = "", labels = NULL) + 
+  
+  guides(fill=guide_legend(title="Sex system")) + 
+  scale_fill_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
+                    values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
+  theme_cs(fontsize=15, font="sans") + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+        legend.position = "right")
+
+size_box_ss
+```
+
+
