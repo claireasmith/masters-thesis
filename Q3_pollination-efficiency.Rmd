@@ -44,6 +44,14 @@ sizenum.dat <- read.csv("processed-data/size-prod-norep.csv", stringsAsFactors =
 ```
 
 ```{r process data}
+# Get estimate of pollen production per flower
+# first make sure all species have values for anthers per flower
+anthsum <- sizenum.dat %>% group_by(Species) %>% 
+  summarize(m_anth_flw = mean(Anth_per_flw, na.rm=T))
+sizenum.dat <- sizenum.dat %>%
+  mutate(Avg_pol_flw = Avg_pol_anth*Anth_per_flw)
+
+
 # The stigma and anther data is at the per-individual level right now - summarize it so that it's at the per-species level
 stig_spp <- pc.dat %>% 
   group_by(Species, Sex_sys, source) %>%
@@ -57,7 +65,11 @@ prod_spp <- sizenum.dat %>%
   summarize(Avg_prod_anth_sp = mean(Avg_pol_anth, na.rm=T),
             Sd_prod_anth_sp = sd(Avg_pol_anth, na.rm=T),
             n_prod_anth = n(),
-            SE_prod_anth_sp = Sd_prod_anth_sp/n_prod_anth)
+            SE_prod_anth_sp = Sd_prod_anth_sp/n_prod_anth,
+            Avg_prod_flw_sp = mean(Avg_pol_flw, na.rm=T),
+            Sd_prod_flw_sp = sd(Avg_pol_flw, na.rm=T),
+            n_prod_flw = n(),
+            SE_prod_flw_sp = Sd_prod_flw_sp/n_prod_flw)
 # View(prod_spp)
 
 ## Join data
@@ -84,17 +96,18 @@ pdat$Species <- factor(pdat$Species, levels = unique(pdat$Species), ordered = T)
 
 ### Plots and tables
 
-```{r plot efficiency, dpi=200, fig.dim = c(9, 7)}
+```{r plot efficiency, dpi=200, fig.dim = c(9, 6)}
 ## Plot pollen capture vs pollen production:
 pdat %>% 
-  ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys) ) + 
+  # filter(Species != "Thalictrum dioicum") %>% 
+  ggplot(aes(x=Avg_prod_flw_sp, y=Avg_stig_sp, shape=Sex_sys) ) + 
   geom_point(size=4, alpha=0.7, aes(color=Sex_sys)) + 
   geom_errorbar(aes(ymin = pmax(0,Avg_stig_sp - Sd_stig_sp), ymax = Avg_stig_sp + Sd_stig_sp), color="black") + 
-  geom_errorbarh(aes(xmin = Avg_prod_anth_sp - Sd_prod_anth_sp, xmax = Avg_prod_anth_sp + Sd_prod_anth_sp), color="black") + 
+  geom_errorbarh(aes(xmin = Avg_prod_flw_sp - Sd_prod_flw_sp, xmax = Avg_prod_flw_sp + Sd_prod_flw_sp), color="black") + 
   
   # Axes
-  scale_x_continuous(name = expression("Pollen production per anther"), na.value=0) + 
-  scale_y_continuous(name = "Pollen capture per flower", na.value = 0) + 
+  scale_x_continuous(name = expression("Pollen production per flower"), na.value=0, expand = c(0, 0)) + 
+  scale_y_continuous(name = "Pollen capture per flower", na.value = 0, expand = c(0, 0.2)) + 
   guides(shape=guide_legend(title="Sex system"),
          color=guide_legend(title="Sex system")) + 
   scale_shape_manual(values = c(15, 16, 17),
@@ -102,29 +115,62 @@ pdat %>%
   scale_color_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
                      values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
   # Guide lines
-  geom_segment(aes(x=0, xend = 8000, y=0, yend = 0.0001*8000), colour="black", linetype = "dashed") + 
-  geom_segment(aes(x=0, xend = 8000, y=0, yend = 0.001*8000), colour="black", linetype = "dashed") + 
-  geom_segment(aes(x=0, xend = 8000, y=0, yend = 0.01*8000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 90000+2000, y=0, yend = 0.0001*90000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 90000+2000, y=0, yend = 0.001*90000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 20000, y=0, yend = 0.01*20000), colour="black", linetype = "dashed") + 
   geom_segment(aes(x=0, xend = 2000, y=0, yend = 0.1*2000), colour="black", linetype = "dashed") +
-  geom_text(x=8000+500, y=0.0001*8000, label = "0.01%", colour="black") + 
-  geom_text(x=8000+400, y=0.001*8000, label = "0.1%", colour="black") +
-  geom_text(x=8000+400, y=0.01*8000, label = "1%", colour="black") +
-  geom_text(x=2000+400, y=0.1*2000, label = "10%", colour="black") +
+  geom_text(x=90000+5000, y=0.0001*90000, label = "0.01%", colour="black") + 
+  geom_text(x=90000+4000, y=0.001*90000+5, label = "0.1%", colour="black") +
+  geom_text(x=20000+1000, y=0.01*20000+5, label = "1%", colour="black") +
+  geom_text(x=2000+400, y=0.1*2000+5, label = "10%", colour="black") +
   
-  theme_cs(font="sans", fontsize=18)
+  theme_cs(font="sans", fontsize=18) + 
+  theme(legend.position = c(0.85,0.85))
+```
+
+```{r plot efficiency wo T dioicum, dpi=200, fig.dim = c(9, 7)}
+## Plot pollen capture vs pollen production:
+pdat %>% 
+  filter(Species != "Thalictrum dioicum") %>% 
+  ggplot(aes(x=Avg_prod_flw_sp, y=Avg_stig_sp, shape=Sex_sys) ) + 
+  geom_point(size=4, alpha=0.7, aes(color=Sex_sys)) + 
+  geom_errorbar(aes(ymin = pmax(0,Avg_stig_sp - Sd_stig_sp), ymax = Avg_stig_sp + Sd_stig_sp), color="black") + 
+  geom_errorbarh(aes(xmin = Avg_prod_flw_sp - Sd_prod_flw_sp, xmax = Avg_prod_flw_sp + Sd_prod_flw_sp), color="black") + 
+  
+  # Axes
+  scale_x_continuous(name = expression("Pollen production per flower"), na.value=0, expand = c(0, 0)) + 
+  scale_y_continuous(name = "Pollen capture per flower", na.value = 0, expand = c(0, 0.2)) + 
+  guides(shape=guide_legend(title="Sex system"),
+         color=guide_legend(title="Sex system")) + 
+  scale_shape_manual(values = c(15, 16, 17),
+                     labels=c("Dioecious", "Monoecious", "Hermaphroditic")) + 
+  scale_color_manual(labels=c("Dioecious", "Monoecious", "Hermaphroditic"),
+                     values=c("#66C2A5","#8DA0CB","#FC8D62")) + 
+  # Guide lines
+  geom_segment(aes(x=0, xend = 20000+2000, y=0, yend = 0.0001*20000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 20000+2000, y=0, yend = 0.001*20000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 15000, y=0, yend = 0.01*15000), colour="black", linetype = "dashed") + 
+  geom_segment(aes(x=0, xend = 2000, y=0, yend = 0.1*2000), colour="black", linetype = "dashed") +
+  geom_text(x=20000+4000, y=0.0001*20000+2, label = "0.01%", colour="black") + 
+  geom_text(x=20000+3000, y=0.001*20000+5, label = "0.1%", colour="black") +
+  geom_text(x=15000+1000, y=0.01*15000+5, label = "1%", colour="black") +
+  geom_text(x=2000+400, y=0.1*2000+5, label = "10%", colour="black") +
+  
+  theme_cs(font="sans", fontsize=18) + 
+    theme(legend.position = c(0.85,0.7))
 
 ```
 
 ```{r plot efficiency w labels, dpi=200, fig.dim = c(28,20)}
 ## A plot with labels, for reference (zoom into saved file to see labels):
 pdat %>% 
-  ggplot(aes(x=Avg_prod_anth_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys, label=Species) ) + 
+  ggplot(aes(x=Avg_prod_flw_sp, y=Avg_stig_sp, shape=Sex_sys, color=Sex_sys, label=Species) ) + 
   geom_point(size=3, alpha=0.8) + 
   geom_errorbar(aes(ymin = pmax(0,Avg_stig_sp - Sd_stig_sp), ymax = Avg_stig_sp + Sd_stig_sp), color="black") + 
-  geom_errorbarh(aes(xmin = Avg_prod_anth_sp - Sd_prod_anth_sp, xmax = Avg_prod_anth_sp + Sd_prod_anth_sp), color="black") + 
+  geom_errorbarh(aes(xmin = Avg_prod_flw_sp - Sd_prod_flw_sp, xmax = Avg_prod_flw_sp + Sd_prod_flw_sp), color="black") + 
   geom_label(size=2) + 
   # Axes
-  scale_x_continuous(name = expression("Pollen production per anther"), na.value=0) + 
+  scale_x_continuous(name = expression("Pollen production per flower"), na.value=0) + 
   scale_y_continuous(name = "Pollen capture per flower", na.value = 0) + 
   guides(shape=guide_legend(title="Sex system"), color=guide_legend(title="Sex system")) + 
   scale_shape_manual(values = c(15, 16, 17),
@@ -142,9 +188,9 @@ pdat %>%
 eff_tab <- pdat %>% dplyr::group_by(Sex_sys, Species) %>% 
   dplyr::summarize(Avg_stig_sp = Avg_stig_sp,
             Sd_stig_sp = Sd_stig_sp,
-            Avg_prod_anth_sp = Avg_prod_anth_sp,
-            Sd_prod_anth_sp = Sd_prod_anth_sp,
-            polleff = 100 * Avg_stig_sp/Avg_prod_anth_sp)
+            Avg_prod_flw_sp = Avg_prod_flw_sp,
+            Sd_prod_flw_sp = Sd_prod_flw_sp,
+            polleff = Avg_stig_sp/Avg_prod_flw_sp)
 print(eff_tab, width = 90)
 
 write.csv(eff_tab, "processed-data/efficiency-table.csv", row.names = F)
